@@ -2,19 +2,25 @@
 
 use GrahamCampbell\GitHub\Facades\GitHub;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
-    return GitHub::issues()->show('tightenco', 'giscus', 2);
+    $projects = [
+        ['name' => 'giscus', 'namespace' => 'tightenco', 'maintainer' => 'mattstauffer'],
+        ['name' => 'gistlog', 'namespace' => 'tightenco', 'maintainer' => 'mattstauffer'],
+        ['name' => 'mailthief', 'namespace' => 'tightenco', 'maintainer' => 'mattstauffer'],
+        ['name' => 'collect', 'namespace' => 'tightenco', 'maintainer' => 'besologic'],
+        ['name' => 'jigsaw', 'namespace' => 'tightenco', 'maintainer' => 'damiani'],
+        ['name' => 'symposium', 'namespace' => 'tightenco', 'maintainer' => 'mattstauffer'],
+        ['name' => 'confomo', 'namespace' => 'tightenco', 'maintainer' => 'mattstauffer'],
+        ['name' => 'quicksand', 'namespace' => 'tightenco', 'maintainer' => 'mattstauffer'],
+        ['name' => 'lambo', 'namespace' => 'tightenco', 'maintainer' => 'mattstauffer'],
+        ['name' => 'torch', 'namespace' => 'mattstauffer', 'maintainer' => 'mattstauffer'],
+    ];
 
-    return view('welcome');
+    $projects = collect($projects)->map(function ($project) {
+        $project['issues'] = Github::issues()->all($project['namespace'], $project['name']);
+        $project['prs'] = Github::pullRequests()->all($project['namespace'], $project['name']);
+        return $project;
+    });
+
+    return view('dashboard')->with('projects', $projects);
 });
