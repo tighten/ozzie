@@ -1,0 +1,4 @@
+- show open issues on all our packages
+- show open pull requests on all our packages
+- define in config who maintains every package
+- download statistics i guess?
