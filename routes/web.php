@@ -1,5 +1,7 @@
 <?php
 
+use GrahamCampbell\GitHub\Facades\GitHub;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,5 +14,7 @@
 */
 
 Route::get('/', function () {
+    return GitHub::issues()->show('tightenco', 'giscus', 2);
+
     return view('welcome');
 });
