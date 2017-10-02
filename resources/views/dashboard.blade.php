@@ -88,7 +88,11 @@
                         <h3>Pull Requests</h3>
                         <ul class="issues">
                             @foreach ($project['prs'] as $pr)
-                                <li><a href="{{ $pr['html_url'] }}">{{ $pr['title'] }}</a></li>
+                                @php $pr['date'] = Carbon\Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $pr['created_at']) @endphp
+                                <li class="m-b-sm"><a href="{{ $pr['html_url'] }}">{{ $pr['title'] }}</a><br>
+                                    <a href="{{ $pr['user']['html_url'] }}" class="username">{{ '@' . $pr['user']['login'] }}</a>
+                                    | <span style="{{ $pr['date']->diff(new DateTime)->days > 30 ? 'color: red; font-weight: bold; ' : ''}}">{{ $pr['date']->diffForHumans() }}</span>
+                                </li>
                             @endforeach
                         </ul>
 
