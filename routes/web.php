@@ -16,10 +16,13 @@ Route::get('/', function () {
         ['name' => 'torch', 'namespace' => 'mattstauffer', 'maintainer' => 'mattstauffer'],
     ];
 
-    $projects = collect($projects)->map(function ($project) {
-        $project['issues'] = Github::issues()->all($project['namespace'], $project['name']);
-        $project['prs'] = Github::pullRequests()->all($project['namespace'], $project['name']);
-        return $project;
+    /* At the moment I don't trust our GitHub package to be caching correctly. */
+    $projects = Cache::remember('projects', 60, function () use ($projects) {
+        return collect($projects)->map(function ($project) {
+            $project['issues'] = Github::issues()->all($project['namespace'], $project['name']);
+            $project['prs'] = Github::pullRequests()->all($project['namespace'], $project['name']);
+            return $project;
+        });
     });
 
     return view('dashboard')->with('projects', $projects);

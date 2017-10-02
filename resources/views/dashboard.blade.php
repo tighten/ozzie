@@ -10,8 +10,10 @@
         <!-- Styles -->
         <style>
             html, body {
+                /* System Fonts as used by GitHub */
                 background-color: #fff;
-                color: #636b6f;
+                color: #111;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
                 margin: 0;
             }
 
@@ -23,15 +25,52 @@
             .title {
                 font-size: 84px;
             }
+            
+            .m-b-sm {
+                margin-bottom: 1rem; 
+            }
 
             .m-b-md {
-                margin-bottom: 30px;
+                margin-bottom: 2rem; 
             }
 
             .m-b-lg {
-                margin-bottom: 60px;
+                margin-bottom: 3rem;
             }
-        </style>
+
+            .p-b-md {
+                padding-bottom: 2em;
+            }
+
+            .p-b-lg {
+                padding-bottom: 3em;
+            }
+
+            [class^="border-"], [class*=" border-"] {
+                border-width: 0;
+                border-color: #333;
+                border-style: solid;
+            }
+
+            .border-b {
+                border-bottom-width: 1px;
+            }
+
+            .border-soft {
+                border-color: #aaa;
+            }
+
+            .username {
+                color: #8888cc;
+                font-size: 0.9em;
+                }
+
+            .issue-label {
+                color: #555;
+                font-size: 0.75em;
+                padding: 0.25em;
+                text-decoration: none;
+            }
         </style>
     </head>
     <body>
@@ -42,7 +81,7 @@
                 </div>
 
                 @foreach ($projects as $project)
-                    <div class="m-b-lg">
+                    <div class="m-b-lg p-b-md border-b border-soft">
                         <h2>{{ $project['namespace'] }} | {{ $project['name'] }}</h2>
                         <p>Maintained by <a href="https://github.com/{{ $project['maintainer'] }}">{{ $project['maintainer'] }}</a></p>
 
@@ -56,7 +95,12 @@
                         <h3>Issues</h3>
                         <ul class="issues">
                             @foreach ($project['issues'] as $issue)
-                                <li><a href="{{ $issue['html_url'] }}">{{ $issue['title'] }}</a></li>
+                                <li class="m-b-sm"><a href="{{ $issue['html_url'] }}">{{ $issue['title'] }}</a><br>
+                                    <a href="{{ $issue['user']['html_url'] }}" class="username">{{ '@' . $issue['user']['login'] }}</a>
+                                    @foreach ($issue['labels'] as $label)
+                                        <a href="https://github.com/{{ $project['namespace'] }}/{{ $project['name'] }}/labels/{{ $label['name'] }}" class="issue-label" style="border: 1px solid #{{ $label['color'] }}">{{ $label['name'] }}</a>
+                                    @endforeach
+                                </li>
                             @endforeach
                         </ul>
                     </div>
