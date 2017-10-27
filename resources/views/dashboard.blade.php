@@ -25,13 +25,13 @@
             .title {
                 font-size: 84px;
             }
-            
+
             .m-b-sm {
-                margin-bottom: 1rem; 
+                margin-bottom: 1rem;
             }
 
             .m-b-md {
-                margin-bottom: 2rem; 
+                margin-bottom: 2rem;
             }
 
             .m-b-lg {
@@ -80,9 +80,46 @@
                     Ozzie - Tighten
                 </div>
 
+                <!-- summary -->
+
+                <table border="1" cellpadding="3">
+                    <tr>
+                        <th>Project name</th>
+                        <th>Open issues</th>
+                        <th>Open pull requests</th>
+                        <th>Old pull requests</th>
+                    </tr>
+                @foreach ($projects as $project)
+                    <tr>
+                        <td>
+                            <a href="#project-{{ $project['namespace'] }}-{{ $project['name'] }}">
+                                {{ $project['namespace'] }}/{{ $project['name'] }}
+                            </a>
+                        </td>
+                        <td>
+                            {{ count($project['issues']) }}
+                        </td>
+                        <td>
+                            {{ count($project['prs']) }}
+                        </td>
+                        @php
+                            $oldPrs = collect($project['prs'])->filter(function ($pr) {
+                                $date = Carbon\Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $pr['created_at']);
+                                return $date->diff(new DateTime)->days > 30;
+                            })
+                        @endphp
+                        <td style="{{ $oldPrs->count() > 0 ? 'color: red; font-weight: bold; ' : ''}}">
+                            {{ $oldPrs->count() }}
+                        </td>
+                    </li>
+                @endforeach
+                </table>
+
+                <!-- full -->
+
                 @foreach ($projects as $project)
                     <div class="m-b-lg p-b-md border-b border-soft">
-                        <h2>{{ $project['namespace'] }} | {{ $project['name'] }}</h2>
+                        <h2 id="project-{{ $project['namespace'] }}-{{ $project['name'] }}">{{ $project['namespace'] }} | {{ $project['name'] }}</h2>
                         <p>Maintained by <a href="https://github.com/{{ $project['maintainer'] }}">{{ $project['maintainer'] }}</a></p>
 
                         <h3>Pull Requests</h3>
