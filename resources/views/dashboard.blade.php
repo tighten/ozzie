@@ -80,16 +80,18 @@
                     Ozzie - Tighten
                 </div>
 
-                <!-- summary -->
-
+                <!-- shame board -->
+                <p>Projects in descending order of "get-your-shit-together-ness"</p>
                 <table border="1" cellpadding="3">
                     <tr>
                         <th>Project name</th>
-                        <th>Open issues</th>
-                        <th>Open pull requests</th>
-                        <th>Old pull requests</th>
+                        <th>Debt Score</th>
+                        <th>Old PR's</th>
+                        <th>Old Issues</th>
+                        <th>PR's</th>
+                        <th>Issues</th>
                     </tr>
-                @foreach ($projects as $project)
+                @foreach ($projects->sortByDesc(function ($project) { return $project->debtScore(); }) as $project)
                     <tr>
                         <td>
                             <a href="#project-{{ $project->namespace }}-{{ $project->name }}">
@@ -97,19 +99,19 @@
                             </a>
                         </td>
                         <td>
-                            {{ count($project->issues) }}
+                            {{ number_format($project->debtScore(), 2) }}
+                        </td>
+                        <td style="{{ $project->oldPrs()->count() > 0 ? 'color: red; font-weight: bold; ' : ''}}">
+                            {{ $project->oldPrs()->count() }}
+                        </td>
+                        <td style="{{ $project->oldIssues()->count() > 0 ? 'color: red; font-weight: bold; ' : ''}}">
+                            {{ $project->oldIssues()->count() }}
                         </td>
                         <td>
-                            {{ count($project->prs) }}
+                            {{ $project->prs()->count() }}
                         </td>
-                        @php
-                            $oldPrs = collect($project->prs)->filter(function ($pr) {
-                                $date = Carbon\Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $pr['created_at']);
-                                return $date->diff(new DateTime)->days > 30;
-                            })
-                        @endphp
-                        <td style="{{ $oldPrs->count() > 0 ? 'color: red; font-weight: bold; ' : ''}}">
-                            {{ $oldPrs->count() }}
+                        <td>
+                            {{ $project->issues()->count() }}
                         </td>
                     </li>
                 @endforeach
@@ -124,7 +126,7 @@
 
                         <h3>Pull Requests</h3>
                         <ul class="issues">
-                            @foreach ($project->prs as $pr)
+                            @foreach ($project->prs() as $pr)
                                 @php $pr['date'] = Carbon\Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $pr['created_at']) @endphp
                                 <li class="m-b-sm"><a href="{{ $pr['html_url'] }}">{{ $pr['title'] }}</a><br>
                                     <a href="{{ $pr['user']['html_url'] }}" class="username">{{ '@' . $pr['user']['login'] }}</a>
@@ -135,7 +137,7 @@
 
                         <h3>Issues</h3>
                         <ul class="issues">
-                            @foreach ($project->issues as $issue)
+                            @foreach ($project->issues() as $issue)
                                 <li class="m-b-sm"><a href="{{ $issue['html_url'] }}">{{ $issue['title'] }}</a><br>
                                     <a href="{{ $issue['user']['html_url'] }}" class="username">{{ '@' . $issue['user']['login'] }}</a>
                                     @foreach ($issue['labels'] as $label)

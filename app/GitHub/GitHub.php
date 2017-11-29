@@ -13,6 +13,6 @@ class GitHub
 
     public function projectPrs($namespace, $name)
     {
-        return GitHubClient::issues()->all($namespace, $name);
+        return GitHubClient::pullRequests()->all($namespace, $name);
     }
 }

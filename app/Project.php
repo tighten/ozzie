@@ -2,12 +2,14 @@
 
 namespace App;
 
+use Carbon\Carbon;
+use DateTime;
 use Exception;
 
 class Project
 {
-    protected $prs = [];
-    protected $issues = [];
+    protected $prs;
+    protected $issues;
     protected $namespace;
     protected $name;
     protected $maintainer;
@@ -21,26 +23,62 @@ class Project
 
         $this->github = app('mygithub');
 
-        $this->prs = $this->getPrs();
-        $this->issues = $this->getIssues();
+        $this->hydratePrs();
+        $this->hydrateIssues();
     }
 
-    protected function getIssues()
+    protected function hydrateIssues()
     {
-        return $this->github->projectIssues($this->namespace, $this->name);
+        $this->issues = collect($this->github->projectIssues($this->namespace, $this->name));
     }
 
-    protected function getPrs()
+    protected function hydratePrs()
     {
-        return $this->github->projectPrs($this->namespace, $this->name);
+        $this->prs = collect($this->github->projectPrs($this->namespace, $this->name));
+    }
+
+    public function issues()
+    {
+        return $this->issues;
+    }
+
+    public function prs()
+    {
+        return $this->prs;
     }
 
     public function __get($key)
     {
-        if (in_array($key, ['name', 'namespace', 'maintainer', 'issues', 'prs'])) {
+        if (in_array($key, ['name', 'namespace', 'maintainer'])) {
             return $this->$key;
         }
 
         throw new Exception('No such property ' . $key);
+    }
+
+    public function oldPrs()
+    {
+        return $this->prs->filter(function ($pr) {
+            $date = Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $pr['created_at']);
+            return $date->diff(new DateTime)->days > 30;
+        });
+    }
+
+    public function oldIssues()
+    {
+        return $this->issues->filter(function ($issue) {
+            $date = Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $issue['created_at']);
+            return $date->diff(new DateTime)->days > 30;
+        });
+    }
+
+    public function debtScore()
+    {
+        return array_sum([
+            $this->oldIssues()->count() * 5,
+            $this->issues()->count() * 1,
+            $this->oldPrs()->count() * 25,
+            $this->prs()->count() * 13,
+        ]) / 100;
     }
 }
