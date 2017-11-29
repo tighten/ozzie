@@ -92,18 +92,18 @@
                 @foreach ($projects as $project)
                     <tr>
                         <td>
-                            <a href="#project-{{ $project['namespace'] }}-{{ $project['name'] }}">
-                                {{ $project['namespace'] }}/{{ $project['name'] }}
+                            <a href="#project-{{ $project->namespace }}-{{ $project->name }}">
+                                {{ $project->namespace }}/{{ $project->name }}
                             </a>
                         </td>
                         <td>
-                            {{ count($project['issues']) }}
+                            {{ count($project->issues) }}
                         </td>
                         <td>
-                            {{ count($project['prs']) }}
+                            {{ count($project->prs) }}
                         </td>
                         @php
-                            $oldPrs = collect($project['prs'])->filter(function ($pr) {
+                            $oldPrs = collect($project->prs)->filter(function ($pr) {
                                 $date = Carbon\Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $pr['created_at']);
                                 return $date->diff(new DateTime)->days > 30;
                             })
@@ -119,12 +119,12 @@
 
                 @foreach ($projects as $project)
                     <div class="m-b-lg p-b-md border-b border-soft">
-                        <h2 id="project-{{ $project['namespace'] }}-{{ $project['name'] }}">{{ $project['namespace'] }} | {{ $project['name'] }}</h2>
-                        <p>Maintained by <a href="https://github.com/{{ $project['maintainer'] }}">{{ $project['maintainer'] }}</a></p>
+                        <h2 id="project-{{ $project->namespace }}-{{ $project->name }}">{{ $project->namespace }} | {{ $project->name }}</h2>
+                        <p>Maintained by <a href="https://github.com/{{ $project->maintainer }}">{{ $project->maintainer }}</a></p>
 
                         <h3>Pull Requests</h3>
                         <ul class="issues">
-                            @foreach ($project['prs'] as $pr)
+                            @foreach ($project->prs as $pr)
                                 @php $pr['date'] = Carbon\Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $pr['created_at']) @endphp
                                 <li class="m-b-sm"><a href="{{ $pr['html_url'] }}">{{ $pr['title'] }}</a><br>
                                     <a href="{{ $pr['user']['html_url'] }}" class="username">{{ '@' . $pr['user']['login'] }}</a>
@@ -135,11 +135,11 @@
 
                         <h3>Issues</h3>
                         <ul class="issues">
-                            @foreach ($project['issues'] as $issue)
+                            @foreach ($project->issues as $issue)
                                 <li class="m-b-sm"><a href="{{ $issue['html_url'] }}">{{ $issue['title'] }}</a><br>
                                     <a href="{{ $issue['user']['html_url'] }}" class="username">{{ '@' . $issue['user']['login'] }}</a>
                                     @foreach ($issue['labels'] as $label)
-                                        <a href="https://github.com/{{ $project['namespace'] }}/{{ $project['name'] }}/labels/{{ $label['name'] }}" class="issue-label" style="border: 1px solid #{{ $label['color'] }}">{{ $label['name'] }}</a>
+                                        <a href="https://github.com/{{ $project->namespace }}/{{ $project->name }}/labels/{{ $label['name'] }}" class="issue-label" style="border: 1px solid #{{ $label['color'] }}">{{ $label['name'] }}</a>
                                     @endforeach
                                 </li>
                             @endforeach

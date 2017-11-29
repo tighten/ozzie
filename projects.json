@@ -1,0 +1,52 @@
+[
+    {
+        "name": "giscus",
+        "namespace": "tightenco",
+        "maintainer": "mattstauffer"
+    },
+    {
+        "name": "gistlog",
+        "namespace": "tightenco",
+        "maintainer": "mattstauffer"
+    },
+    {
+        "name": "mailthief",
+        "namespace": "tightenco",
+        "maintainer": "mattstauffer"
+    },
+    {
+        "name": "collect",
+        "namespace": "tightenco",
+        "maintainer": "besologic"
+    },
+    {
+        "name": "jigsaw",
+        "namespace": "tightenco",
+        "maintainer": "damiani"
+    },
+    {
+        "name": "symposium",
+        "namespace": "tightenco",
+        "maintainer": "mattstauffer"
+    },
+    {
+        "name": "confomo",
+        "namespace": "tightenco",
+        "maintainer": "mattstauffer"
+    },
+    {
+        "name": "quicksand",
+        "namespace": "tightenco",
+        "maintainer": "mattstauffer"
+    },
+    {
+        "name": "lambo",
+        "namespace": "tightenco",
+        "maintainer": "mattstauffer"
+    },
+    {
+        "name": "torch",
+        "namespace": "mattstauffer",
+        "maintainer": "mattstauffer"
+    }
+]

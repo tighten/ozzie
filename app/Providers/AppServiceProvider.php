@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\GitHub\GitHub;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // @todo: Bind to a non-internet-required version optionally based on flag in .env
+        app()->bind('mygithub', function () {
+            return new GitHub;
+        });
     }
 }
