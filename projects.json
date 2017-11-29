@@ -48,5 +48,10 @@
         "name": "torch",
         "namespace": "mattstauffer",
         "maintainer": "mattstauffer"
+    },
+    {
+        "name": "ziggy",
+        "namespace": "tightenco",
+        "maintainer": "DanielCoulbourne"
     }
 ]
