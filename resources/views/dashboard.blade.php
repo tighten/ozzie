@@ -12,7 +12,7 @@
     </head>
 
     <body>
-        <div class=" bg-white border-t-4 border-indigo relative z-10 shadow">
+        <div class="bg-white border-t-4 border-indigo relative z-10 shadow">
             <div class="p-2">
                 <section class="max-w-lg mx-auto">
                     <div class="flex justify-between items-center">
