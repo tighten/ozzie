@@ -29,12 +29,12 @@ class Project
 
     protected function hydrateIssues()
     {
-        $this->issues = collect($this->github->projectIssues($this->namespace, $this->name));
+        $this->issues = $this->github->projectIssues($this->namespace, $this->name);
     }
 
     protected function hydratePrs()
     {
-        $this->prs = collect($this->github->projectPrs($this->namespace, $this->name));
+        $this->prs = $this->github->projectPrs($this->namespace, $this->name);
     }
 
     public function issues()

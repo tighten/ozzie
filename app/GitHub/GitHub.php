@@ -8,11 +8,13 @@ class GitHub
 {
     public function projectIssues($namespace, $name)
     {
-        return GitHubClient::issues()->all($namespace, $name);
+        return collect(GitHubClient::issues()->all($namespace, $name))->reject(function ($issue) {
+            return isset($issue['pull_request']);
+        });
     }
 
     public function projectPrs($namespace, $name)
     {
-        return GitHubClient::pullRequests()->all($namespace, $name);
+        return collect(GitHubClient::pullRequests()->all($namespace, $name));
     }
 }
