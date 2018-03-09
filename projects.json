@@ -53,5 +53,15 @@
         "name": "ziggy",
         "namespace": "tightenco",
         "maintainer": "DanielCoulbourne"
+    },
+    {
+        "name": "tlint",
+        "namespace": "tightenco",
+        "maintainer": "loganhenson"
+    },
+    {
+        "name": "ozzie",
+        "namespace": "tightenco",
+        "maintainer": "mattstauffer"
     }
 ]
