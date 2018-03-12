@@ -13,7 +13,7 @@ class DashboardController extends Controller
     {
         /* At the moment I don't trust our GitHub package to be caching correctly. */
         $projects = Cache::remember('projects', 60, function () {
-            $projects = collect(json_decode(file_get_contents(base_path('projects.json'))));
+            $projects = collect(json_decode(file_get_contents(base_path('projects.json'))))->sortBy('name');
 
             return $projects->map(function ($project) {
                 return new Project($project->namespace, $project->name, $project->maintainer);

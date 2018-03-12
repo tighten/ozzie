@@ -63,5 +63,10 @@
         "name": "ozzie",
         "namespace": "tightenco",
         "maintainer": "mattstauffer"
+    },
+    {
+        "name": "jigsaw-site",
+        "namespace": "tightenco",
+        "maintainer": "damiani"
     }
 ]
