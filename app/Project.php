@@ -12,14 +12,14 @@ class Project
     protected $issues;
     protected $namespace;
     protected $name;
-    protected $maintainer;
+    protected $maintainers;
     protected $github;
 
-    public function __construct($namespace, $name, $maintainer)
+    public function __construct($namespace, $name, $maintainers)
     {
         $this->namespace = $namespace;
         $this->name = $name;
-        $this->maintainer = $maintainer;
+        $this->maintainers = $maintainers;
 
         $this->github = app('mygithub');
 
@@ -49,7 +49,7 @@ class Project
 
     public function __get($key)
     {
-        if (in_array($key, ['name', 'namespace', 'maintainer'])) {
+        if (in_array($key, ['name', 'namespace', 'maintainers'])) {
             return $this->$key;
         }
 

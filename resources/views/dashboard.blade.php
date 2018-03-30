@@ -54,7 +54,7 @@
                                     <a class="text-indigo no-underline text-md" href="#project-{{ $project->namespace }}-{{ $project->name }}">
                                         {{ $project->namespace }}/{{ $project->name }}
                                     </a>
-                                </li">
+                                </li>
 
                                 <li class="w-1/7 text-black-lightest">{{ number_format($project->debtScore(), 2) }}</li>
 
@@ -80,7 +80,9 @@
                             <p class="w-1/2 text-right text-black-lightest">
                                 Maintained by 
 
-                                <a class="text-indigo no-underline" href="https://github.com/{{ $project->maintainer }}">{{ $project->maintainer }}</a>
+                                @foreach ($project->maintainers as $maintainer)
+                                    <a class="text-indigo no-underline" href="https://github.com/{{ $maintainer }}">{{ '@' . $maintainer }}</a>
+                                @endforeach
                             </p>
                         </section>
 
@@ -104,7 +106,7 @@
                                         </div>
 
                                         <div class="py-6 w-auto">
-                                            <a class="no-underline" href="{{ $pr['html_url'] }}"">
+                                            <a class="no-underline" href="{{ $pr['html_url'] }}">
                                                 @include('svg.launch')
                                             </a>
                                         </div>

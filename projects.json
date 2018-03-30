@@ -2,71 +2,99 @@
     {
         "name": "giscus",
         "namespace": "tightenco",
-        "maintainer": "mattstauffer"
+        "maintainers": [
+            "mattstauffer"
+        ]
     },
     {
         "name": "gistlog",
         "namespace": "tightenco",
-        "maintainer": "mattstauffer"
+        "maintainers": [
+            "mattstauffer"
+        ]
     },
     {
         "name": "mailthief",
         "namespace": "tightenco",
-        "maintainer": "mattstauffer"
+        "maintainers": [
+            "mattstauffer"
+        ]
     },
     {
         "name": "collect",
         "namespace": "tightenco",
-        "maintainer": "besologic"
+        "maintainers": [
+            "besologic"
+        ]
     },
     {
         "name": "jigsaw",
         "namespace": "tightenco",
-        "maintainer": "damiani"
+        "maintainers": [
+            "damiani"
+        ]
     },
     {
         "name": "symposium",
         "namespace": "tightenco",
-        "maintainer": "mattstauffer"
+        "maintainers": [
+            "mattstauffer"
+        ]
     },
     {
         "name": "confomo",
         "namespace": "tightenco",
-        "maintainer": "mattstauffer"
+        "maintainers": [
+            "mattstauffer"
+        ]
     },
     {
         "name": "quicksand",
         "namespace": "tightenco",
-        "maintainer": "mattstauffer"
+        "maintainers": [
+            "mattstauffer"
+        ]
     },
     {
         "name": "lambo",
         "namespace": "tightenco",
-        "maintainer": "mattstauffer"
+        "maintainers": [
+            "mattstauffer"
+        ]
     },
     {
         "name": "torch",
         "namespace": "mattstauffer",
-        "maintainer": "mattstauffer"
+        "maintainers": [
+            "mattstauffer"
+        ]
     },
     {
         "name": "ziggy",
         "namespace": "tightenco",
-        "maintainer": "DanielCoulbourne"
+        "maintainers": [
+            "DanielCoulbourne"
+        ]
     },
     {
         "name": "tlint",
         "namespace": "tightenco",
-        "maintainer": "loganhenson"
+        "maintainers": [
+            "loganhenson"
+        ]
     },
     {
         "name": "ozzie",
         "namespace": "tightenco",
-        "maintainer": "mattstauffer"
+        "maintainers": [
+            "mattstauffer"
+        ]
     },
     {
         "name": "jigsaw-site",
         "namespace": "tightenco",
-        "maintainer": "damiani"
+        "maintainers": [
+            "damiani"
+        ]
     }
 ]
