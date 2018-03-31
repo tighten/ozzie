@@ -16,7 +16,7 @@ class DashboardController extends Controller
             $projects = collect(json_decode(file_get_contents(base_path('projects.json'))))->sortBy('name');
 
             return $projects->map(function ($project) {
-                return new Project($project->namespace, $project->name, $project->maintainer);
+                return new Project($project->namespace, $project->name, $project->maintainers);
             });
         });
 
