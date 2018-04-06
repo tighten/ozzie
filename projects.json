@@ -17,21 +17,26 @@
         "name": "mailthief",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer"
+            "mattstauffer",
+            "sariyana",
+            "darkboywonder"
         ]
     },
     {
         "name": "collect",
         "namespace": "tightenco",
         "maintainers": [
-            "besologic"
+            "mattstauffer",
+            "loganhenson",
+            "damiani"
         ]
     },
     {
         "name": "jigsaw",
         "namespace": "tightenco",
         "maintainers": [
-            "damiani"
+            "damiani",
+            "calebporzio"
         ]
     },
     {
@@ -52,14 +57,16 @@
         "name": "quicksand",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer"
+            "josecanhelp",
+            "imjohnbon"
         ]
     },
     {
         "name": "lambo",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer"
+            "mattstauffer",
+            "jakebathman"
         ]
     },
     {
@@ -73,14 +80,17 @@
         "name": "ziggy",
         "namespace": "tightenco",
         "maintainers": [
-            "DanielCoulbourne"
+            "DanielCoulbourne",
+            "jakebathman"
         ]
     },
     {
         "name": "tlint",
         "namespace": "tightenco",
         "maintainers": [
-            "loganhenson"
+            "loganhenson",
+            "darkboywonder",
+            "sbine"
         ]
     },
     {
