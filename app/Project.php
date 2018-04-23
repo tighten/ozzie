@@ -4,6 +4,8 @@ namespace App;
 
 use DateTime;
 use Exception;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class Project
 {
