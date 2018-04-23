@@ -5,6 +5,7 @@ namespace App;
 use Carbon\Carbon;
 use DateTime;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class Project
 {
@@ -80,5 +81,13 @@ class Project
             $this->oldPrs()->count() * 25,
             $this->prs()->count() * 13,
         ]) / 100;
+    }
+
+    public function currentStatistics()
+    {
+        return DB::table('projects')
+                        ->whereDate('created_at', Carbon::now()->format('Y-m-d'))
+                        ->where('name', $this->name)
+                        ->first();
     }
 }
