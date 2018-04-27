@@ -33,7 +33,20 @@ Currently Github is the only supported VCS. The following `.env` variables need 
 	GITHUB_CLIENT_ID=
 	GITHUB_CLIENT_SECRET=
 
-#### 6. Run Artisan Command
+#### 6. Project Repositories
+Projects are currently stored in a json file, `projects.json` in the root directory.
+
+	[
+		{
+        "name": "ozzie",
+        "namespace": "tightenco",
+        "maintainers": [
+            "mattstauffer"
+        	]
+    	},
+	]
+
+#### 7. Run Artisan Command
 **In order to cache these results daily, this artisan command needs to be ran once a day.**
 
 	$ php artisan projects:save
