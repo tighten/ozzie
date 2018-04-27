@@ -23,7 +23,7 @@ If you're using Yarn instead
 
 #### 3.Migrate database
 
-By default SQLite is confired in the `.env.example` file. This configuration can be changed to another setting ([Laravel documentation](https://laravel.com/docs/5.5/database) ).
+Choose a database configuration before migration. ([Laravel documentation](https://laravel.com/docs/5.5/database)).
 
 	$ php artisan migrate
 

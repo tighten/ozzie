@@ -22,7 +22,7 @@ class CreateProjectSnapshot extends Command
      *
      * @var string
      */
-    protected $description = 'Create a snapshot of the current status of github projects.';
+    protected $description = 'Create a snapshot of the current status of Github projects.';
 
     /**
      * Execute the console command.
