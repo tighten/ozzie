@@ -82,12 +82,4 @@ class Project
             $this->prs()->count() * 13,
         ]) / 100;
     }
-
-    public function currentStatistics()
-    {
-        return DB::table('projects')
-                        ->whereDate('created_at', Carbon::now()->format('Y-m-d'))
-                        ->where('name', $this->name)
-                        ->first();
-    }
 }

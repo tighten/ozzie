@@ -56,15 +56,15 @@
                                     </a>
                                 </li>
 
-                                <li class="w-1/7 text-black-lightest">{{ number_format($project->currentStatistics()->debt_score, 2) }}</li>
+                                <li class="w-1/7 text-black-lightest">{{ number_format($project->debtScore(), 2) }}</li>
 
-                                <li class="w-1/7 text-black-lightest">{{ $project->currentStatistics()->old_pull_requests }}</li>
+                                <li class="w-1/7 text-black-lightest">{{ $project->oldPrs()->count() }}</li>
 
-                                <li class="w-1/7 text-black-lightest">{{ $project->currentStatistics()->old_issues }}</li>
+                                <li class="w-1/7 text-black-lightest">{{ $project->oldIssues()->count() }}</li>
 
-                                <li class="w-1/7 text-black-lightest">{{ $project->currentStatistics()->pull_requests }}</li>
+                                <li class="w-1/7 text-black-lightest">{{ $project->prs()->count() }}</li>
 
-                                <li class="w-1/7 text-black-lightest">{{ $project->currentStatistics()->issues }}</li>
+                                <li class="w-1/7 text-black-lightest">{{ $project->issues()->count() }}</li>
                             </ul>
                         @endforeach
                     </section>
