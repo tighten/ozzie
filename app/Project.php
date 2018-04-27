@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use DateTime;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 
 class Project
 {
@@ -28,26 +29,46 @@ class Project
         $this->hydrateIssues();
     }
 
-    protected function hydrateIssues()
+    /**
+     * Query Github for issues
+     * @return void
+     */
+    protected function hydrateIssues(): void
     {
         $this->issues = $this->github->projectIssues($this->namespace, $this->name);
     }
 
-    protected function hydratePrs()
+    /**
+     * Query Github for pull requests
+     * @return void
+     */
+    protected function hydratePrs(): void
     {
         $this->prs = $this->github->projectPrs($this->namespace, $this->name);
     }
 
-    public function issues()
+    /**
+     * Issues
+     * @return Collection
+     */
+    public function issues(): Collection
     {
         return $this->issues;
     }
 
-    public function prs()
+    /**
+     * Pull requests
+     * @return Collection
+     */
+    public function prs(): Collection
     {
         return $this->prs;
     }
 
+    /**
+     * __get magic method
+     * @param  string $key
+     */
     public function __get($key)
     {
         if (in_array($key, ['name', 'namespace', 'maintainers'])) {
@@ -57,7 +78,11 @@ class Project
         throw new Exception('No such property ' . $key);
     }
 
-    public function oldPrs()
+    /**
+     * Old pull requests
+     * @return Collection
+     */
+    public function oldPrs(): Collection
     {
         return $this->prs->filter(function ($pr) {
             $date = Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $pr['created_at']);
@@ -65,7 +90,11 @@ class Project
         });
     }
 
-    public function oldIssues()
+    /**
+     * Old issues
+     * @return collection
+     */
+    public function oldIssues(): Collection
     {
         return $this->issues->filter(function ($issue) {
             $date = Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $issue['created_at']);
@@ -73,7 +102,11 @@ class Project
         });
     }
 
-    public function debtScore()
+    /**
+     * Project debt score
+     * @return float
+     */
+    public function debtScore(): float
     {
         return array_sum([
             $this->oldIssues()->count() * 5,
