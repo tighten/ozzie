@@ -33,7 +33,7 @@ class Project
      * Query Github for issues
      * @return void
      */
-    protected function hydrateIssues(): void
+    protected function hydrateIssues()
     {
         $this->issues = $this->github->projectIssues($this->namespace, $this->name);
     }
@@ -42,7 +42,7 @@ class Project
      * Query Github for pull requests
      * @return void
      */
-    protected function hydratePrs(): void
+    protected function hydratePrs()
     {
         $this->prs = $this->github->projectPrs($this->namespace, $this->name);
     }
@@ -51,7 +51,7 @@ class Project
      * Issues
      * @return Collection
      */
-    public function issues(): Collection
+    public function issues()
     {
         return $this->issues;
     }
@@ -60,7 +60,7 @@ class Project
      * Pull requests
      * @return Collection
      */
-    public function prs(): Collection
+    public function prs()
     {
         return $this->prs;
     }
@@ -82,7 +82,7 @@ class Project
      * Old pull requests
      * @return Collection
      */
-    public function oldPrs(): Collection
+    public function oldPrs()
     {
         return $this->prs->filter(function ($pr) {
             $date = Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $pr['created_at']);
@@ -94,7 +94,7 @@ class Project
      * Old issues
      * @return collection
      */
-    public function oldIssues(): Collection
+    public function oldIssues()
     {
         return $this->issues->filter(function ($issue) {
             $date = Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $issue['created_at']);
@@ -106,7 +106,7 @@ class Project
      * Project debt score
      * @return float
      */
-    public function debtScore(): float
+    public function debtScore()
     {
         return array_sum([
             $this->oldIssues()->count() * 5,
