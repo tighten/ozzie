@@ -29,46 +29,26 @@ class Project
         $this->hydrateIssues();
     }
 
-    /**
-     * Query Github for issues
-     * @return void
-     */
     protected function hydrateIssues()
     {
         $this->issues = $this->github->projectIssues($this->namespace, $this->name);
     }
 
-    /**
-     * Query Github for pull requests
-     * @return void
-     */
     protected function hydratePrs()
     {
         $this->prs = $this->github->projectPrs($this->namespace, $this->name);
     }
 
-    /**
-     * Issues
-     * @return Collection
-     */
     public function issues()
     {
         return $this->issues;
     }
 
-    /**
-     * Pull requests
-     * @return Collection
-     */
     public function prs()
     {
         return $this->prs;
     }
 
-    /**
-     * __get magic method
-     * @param  string $key
-     */
     public function __get($key)
     {
         if (in_array($key, ['name', 'namespace', 'maintainers'])) {
@@ -78,10 +58,6 @@ class Project
         throw new Exception('No such property ' . $key);
     }
 
-    /**
-     * Old pull requests
-     * @return Collection
-     */
     public function oldPrs()
     {
         return $this->prs->filter(function ($pr) {
@@ -90,10 +66,6 @@ class Project
         });
     }
 
-    /**
-     * Old issues
-     * @return collection
-     */
     public function oldIssues()
     {
         return $this->issues->filter(function ($issue) {
@@ -102,10 +74,6 @@ class Project
         });
     }
 
-    /**
-     * Project debt score
-     * @return float
-     */
     public function debtScore()
     {
         return array_sum([
