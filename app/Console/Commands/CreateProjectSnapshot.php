@@ -24,43 +24,38 @@ class CreateProjectSnapshot extends Command
      */
     protected $description = 'Create a snapshot of the current status of Github projects.';
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
     public function handle()
     {
-        $projects = $this->fetchProjects();
-
-        $projects->each(function ($repository) {
-            $project = new Project($repository->namespace, $repository->name, $repository->maintainers);
+        $this->fetchProjects()->each(function ($repository) {
+            $project_snapshot = new Project($repository->namespace, $repository->name, $repository->maintainers);
 
             DB::table('projects')->insert([
-                'name' => $project->name,
-                'debt_score' => $project->debtScore(),
-                'issues' => $project->issues()->count(),
-                'old_issues' => $project->oldIssues()->count(),
-                'pull_requests' => $project->prs()->count(),
-                'old_pull_requests' => $project->oldPrs()->count(),
+                'name' => $project_snapshot->name,
+                'debt_score' => $project_snapshot->debtScore(),
+                'issues' => $project_snapshot->issues()->count(),
+                'old_issues' => $project_snapshot->oldIssues()->count(),
+                'pull_requests' => $project_snapshot->prs()->count(),
+                'old_pull_requests' => $project_snapshot->oldPrs()->count(),
             ]);
         });
     }
 
     /**
-     * Fetch github projects
-     * from projects.json
+     * Fetch Github projects from projects.json
+     *
      * @return Collection
      */
     protected function fetchProjects(): Collection
     {
         $repositories = collect(json_decode(file_get_contents(base_path('projects.json'))))->sortBy('name');
 
-        return $repositories->filter(function ($repository) {
-            return !DB::table('projects')
-                        ->where('name', $repository->name)
+        $snapshots = DB::table('projects')
+                        ->whereIn('name', $repositories->pluck('name'))
                         ->whereDate('created_at', '=', Carbon::now()->format('Y-m-d'))
-                        ->exists();
+                        ->get();
+
+        return $repositories->filter(function ($repository) use ($snapshots) {
+            return $snapshots->where('name', $repository->name)->isEmpty();
         });
     }
 }
