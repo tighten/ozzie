@@ -32,10 +32,10 @@ class CreateProjectSnapshot extends Command
             DB::table('projects')->insert([
                 'name' => $project_snapshot->name,
                 'debt_score' => $project_snapshot->debtScore(),
-                'issues' => $project_snapshot->issues()->count(),
-                'old_issues' => $project_snapshot->oldIssues()->count(),
-                'pull_requests' => $project_snapshot->prs()->count(),
-                'old_pull_requests' => $project_snapshot->oldPrs()->count(),
+                'issue_count' => $project_snapshot->issues()->count(),
+                'old_issue_count' => $project_snapshot->oldIssues()->count(),
+                'pull_request_count' => $project_snapshot->prs()->count(),
+                'old_pull_request_count' => $project_snapshot->oldPrs()->count(),
             ]);
         });
     }

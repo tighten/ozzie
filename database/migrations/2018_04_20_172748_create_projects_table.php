@@ -12,10 +12,10 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->decimal('debt_score', 3, 2)->default(0);
-            $table->integer('pull_requests')->default(0);
-            $table->integer('old_pull_requests')->default(0);
-            $table->integer('issues')->default(0);
-            $table->integer('old_issues')->default(0);
+            $table->integer('pull_request_count')->default(0);
+            $table->integer('old_pull_request_count')->default(0);
+            $table->integer('issue_count')->default(0);
+            $table->integer('old_issue_count')->default(0);
             $table->timestamp('created_at')->useCurrent();
         });
     }
