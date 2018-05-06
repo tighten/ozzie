@@ -1,7 +1,7 @@
 ## Ozzie
 Get-Your-Shit-Together-Ness
 
-Simple Github project analytics. Issue and Pull Request tracking, with calculated debt score.
+Simple GitHub project analytics. Issue and Pull Request tracking, with calculated debt score.
 
 ### Setup
 
@@ -14,14 +14,14 @@ git clone git@github.com:tightenco/ozzie.git
 #### 2. Install dependencies
 NPM and Yarn are both supported.
 
-```bash  
-composer install  
+```bash
+composer install
 npm install
 ```
 
 If you're using Yarn instead
 
-```bash  
+```bash
 yarn
 ```
 
@@ -29,12 +29,12 @@ yarn
 
 Choose a database configuration before migration. ([Laravel documentation](https://laravel.com/docs/5.5/database)).
 
-```bash  
+```bash
 php artisan migrate
 ```
 
-#### 5. Github settings
-Currently Github is the only supported VCS. The following `.env` variables need to be set. You'll need to create a client id and secret through Github. ([documentation](https://github.com/settings/applications/new))
+#### 5. GitHub settings
+Currently GitHub is the only supported VCS. The following `.env` variables need to be set. You'll need to create a client id and secret through GitHub. ([documentation](https://github.com/settings/applications/new))
 
 ```
 GITHUB_CLIENT_ID=
@@ -58,6 +58,6 @@ Projects are currently stored in a JSON file, `projects.json` in the root direct
 #### 7. Run Artisan Command
 **In order to cache these results daily, make sure to run the scheduler.**
 
-```bash  
-php artisan projects:save  
+```bash
+php artisan projects:save
 ```
