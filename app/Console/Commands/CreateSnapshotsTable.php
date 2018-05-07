@@ -10,18 +10,9 @@ use Illuminate\Support\Facades\DB;
 
 class CreateProjectSnapshot extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'projects:save';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
+    protected $signature = 'snapshot:today';
+
     protected $description = 'Create a snapshot of the current status of GitHub projects.';
 
     public function handle()
@@ -29,7 +20,7 @@ class CreateProjectSnapshot extends Command
         $this->fetchProjects()->each(function ($repository) {
             $project = new Project($repository->namespace, $repository->name, $repository->maintainers);
 
-            DB::table('projects')->insert([
+            DB::table('snapshots')->insert([
                 'name' => $project->name,
                 'debt_score' => $project->debtScore(),
                 'issue_count' => $project->issues()->count(),
@@ -44,7 +35,7 @@ class CreateProjectSnapshot extends Command
     {
         $projects = collect(json_decode(file_get_contents(base_path('projects.json'))))->sortBy('name');
 
-        $snapshots = DB::table('projects')
+        $snapshots = DB::table('snapshots')
                         ->whereIn('name', $projects->pluck('name'))
                         ->whereDate('created_at', '=', Carbon::now()->format('Y-m-d'))
                         ->get();
