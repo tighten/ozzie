@@ -51,7 +51,7 @@
                         @foreach ($projects->sortByDesc(function ($project) { return $project->debtScore(); }) as $project)
                             <ul class="flex list-reset p-4 border-t border-smoke">
                                 <li class="w-2/7">
-                                    <a class="text-indigo no-underline text-md" href="#project-{{ $project->namespace }}-{{ $project->name }}">
+                                    <a class="text-indigo no-underline text-md" href="#project-{{ $project->namespace }}-{{ $project->name }}" target="_blank">
                                         {{ $project->namespace }}/{{ $project->name }}
                                     </a>
                                 </li>
@@ -81,7 +81,7 @@
                                 Maintained by 
 
                                 @foreach ($project->maintainers as $maintainer)
-                                    <a class="text-indigo no-underline" href="https://github.com/{{ $maintainer }}">{{ '@' . $maintainer }}</a>
+                                    <a class="text-indigo no-underline" href="https://github.com/{{ $maintainer }}" target="_blank">{{ '@' . $maintainer }}</a>
                                 @endforeach
                             </p>
                         </section>
@@ -95,18 +95,18 @@
                                     <li class="flex justify-between">
                                         <div class="py-6 w-auto">
                                             <p class="pb-2">
-                                                <a class="text-black-lighter font-medium no-underline leading-normal" href="{{ $pr['html_url'] }}">{{ $pr['title'] }}</a>
+                                                <a class="text-black-lighter font-medium no-underline leading-normal" href="{{ $pr['html_url'] }}" target="_blank">{{ $pr['title'] }}</a>
                                             </p>
 
                                             <p>
-                                                <a class="text-indigo no-underline" href="{{ $pr['user']['html_url'] }}">{{ '@' . $pr['user']['login'] }}</a>      |   
+                                                <a class="text-indigo no-underline" href="{{ $pr['user']['html_url'] }}" target="_blank">{{ '@' . $pr['user']['login'] }}</a>      |
 
                                                 <span class="font-semibold text-grey-darkest">{{ $pr['date']->diffForHumans() }}</span>
                                             </p>
                                         </div>
 
                                         <div class="py-6 w-auto">
-                                            <a class="no-underline" href="{{ $pr['html_url'] }}">
+                                            <a class="no-underline" href="{{ $pr['html_url'] }}" target="_blank">
                                                 @include('svg.launch')
                                             </a>
                                         </div>
@@ -123,16 +123,16 @@
                                     <li class="flex justify-between">
                                         <div class="py-6 w-auto">
                                             <p class="pb-2">
-                                                <a class="text-black-lighter font-medium no-underline leading-normal" href="{{ $issue['html_url'] }}">{{ $issue['title'] }}</a>
+                                                <a class="text-black-lighter font-medium no-underline leading-normal" href="{{ $issue['html_url'] }}" target="_blank">{{ $issue['title'] }}</a>
                                             </p>
 
                                             <p>
-                                                <a class="text-indigo no-underline" href="{{ $issue['user']['html_url'] }}">
+                                                <a class="text-indigo no-underline" href="{{ $issue['user']['html_url'] }}" target="_blank">
                                                     {{ '@' . $issue['user']['login'] }}
                                                 </a>
 
                                                 @foreach ($issue['labels'] as $label)
-                                                    <a class="rounded-full py-1 px-2 mr-2 bg-grey-blue text-grey-blue-dark font-medium no-underline text-xs capitalize" href="https://github.com/{{ $project->namespace }}/{{ $project->name }}/labels/{{ $label['name'] }}">
+                                                    <a class="rounded-full py-1 px-2 mr-2 bg-grey-blue text-grey-blue-dark font-medium no-underline text-xs capitalize" href="https://github.com/{{ $project->namespace }}/{{ $project->name }}/labels/{{ $label['name'] }}" target="_blank">
                                                         {{ $label['name'] }}
                                                     </a>
                                                 @endforeach
@@ -140,7 +140,7 @@
                                         </div>
 
                                         <div class="py-6 w-auto">
-                                            <a class="no-underline" href="{{ $issue['html_url'] }}">
+                                            <a class="no-underline" href="{{ $issue['html_url'] }}" target="_blank">
                                                 @include('svg.launch')
                                             </a>
                                         </div>
