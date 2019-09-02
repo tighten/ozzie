@@ -106,5 +106,54 @@
         "maintainers": [
             "damiani"
         ]
+    },
+    {
+        "name": "jigsaw-docs-template",
+        "namespace": "tightenco",
+        "maintainers": [
+            "mattstauffer"
+        ]
+    },
+    {
+        "name": "onramp",
+        "namespace": "tightenco",
+        "maintainers": [
+            "mattstauffer"
+        ]
+    },
+    {
+        "name": "parental",
+        "namespace": "tightenco",
+        "maintainers": [
+            "mattstauffer"
+        ]
+    },
+    {
+        "name": "jigsaw-blog-template",
+        "namespace": "tightenco",
+        "maintainers": [
+            "mattstauffer"
+        ]
+    },
+    {
+        "name": "omgphp",
+        "namespace": "tightenco",
+        "maintainers": [
+            "mattstauffer"
+        ]
+    },
+    {
+        "name": "version-check",
+        "namespace": "tightenco",
+        "maintainers": [
+            "mattstauffer"
+        ]
+    },
+    {
+        "name": "whyphp",
+        "namespace": "tightenco",
+        "maintainers": [
+            "mattstauffer"
+        ]
     }
 ]
