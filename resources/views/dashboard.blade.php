@@ -22,7 +22,7 @@
                             <span class="uppercase text-2xl leading-normal text-black-light font-semibold font-open-sans tracking-wide">zzie</span>
                         </p>
 
-                        <p class="italic font-thin leading-normal text-grey-blue-darkest">Get-Your-Shit-Together-Ness</p>
+                        <p class="italic font-thin leading-normal text-grey-blue-darkest">Get-Your-Poop-In-A-Group-Ness</p>
                     </div>
                 </section>
             </div>
@@ -30,7 +30,7 @@
 
         <div class="bg-frost font-sans relative z-0">
             <div class="max-w-lg mx-auto pt-8">
-                <p class="mb-6 text-black-lighter">Projects in descending order of "get-your-shit-together-ness"</p>
+                <p class="mb-6 text-black-lighter">Projects in descending order of "get-your-poop-in-a-group-ness"</p>
 
                 <div class="rounded-lg shadow">
                     <ul class="bg-grey-blue-light flex list-reset p-4 rounded-t-lg border-grey border-b-2">
