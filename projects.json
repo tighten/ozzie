@@ -125,14 +125,16 @@
         "name": "parental",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer"
+            "calebporzio"
         ]
     },
     {
         "name": "jigsaw-blog-template",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer"
+            "damiani",
+            "mattstauffer",
+            "anthonyterrell"
         ]
     },
     {
@@ -146,7 +148,8 @@
         "name": "version-check",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer"
+            "mattstauffer",
+            "jakebathman"
         ]
     },
     {
