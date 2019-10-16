@@ -43,3 +43,9 @@
  * @import "utilities/background-patterns";
  * @import "utilities/skew-transforms";
  */
+.hover-pop {
+    transition: transform 0.3s ease;
+}
+.hover-pop:hover {
+    transform: scale(1.1) rotate(-3deg);
+}

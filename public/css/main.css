@@ -546,12 +546,42 @@ ul {
  * Tailwind custom reset styles
  */
 
+/**
+ * Allow adding a border to an element by just adding a border-width.
+ *
+ * By default, the way the browser specifies that an element should have no
+ * border is by setting it's border-style to `none` in the user-agent
+ * stylesheet.
+ *
+ * In order to easily add borders to elements by just setting the `border-width`
+ * property, we change the default border-style for all elements to `solid`, and
+ * use border-width to hide them instead. This way our `border` utilities only
+ * need to set the `border-width` property instead of the entire `border`
+ * shorthand, making our border utilities much more straightforward to compose.
+ *
+ * https://github.com/tailwindcss/tailwindcss/pull/116
+ */
+
 *,
 *::before,
 *::after {
   border-width: 0;
   border-style: solid;
   border-color: #dae1e7;
+}
+
+/**
+ * Undo the `border-style: none` reset that Normalize applies to images so that
+ * our `border-{width}` utilities have the expected effect.
+ *
+ * The Normalize reset is unnecessary for us since we default the border-width
+ * to 0 on all elements.
+ *
+ * https://github.com/tailwindcss/tailwindcss/issues/362
+ */
+
+img {
+  border-style: solid;
 }
 
 /**
@@ -589,8 +619,8 @@ textarea::-webkit-input-placeholder {
   opacity: .5;
 }
 
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
+input::-moz-placeholder,
+textarea::-moz-placeholder {
   color: inherit;
   opacity: .5;
 }
@@ -780,6 +810,10 @@ button,
   background-color: #d1d7da;
 }
 
+.bg-halloween-orange {
+  background-color: #e4730b;
+}
+
 .hover\:bg-transparent:hover {
   background-color: transparent;
 }
@@ -874,6 +908,10 @@ button,
 
 .hover\:bg-clouds:hover {
   background-color: #d1d7da;
+}
+
+.hover\:bg-halloween-orange:hover {
+  background-color: #e4730b;
 }
 
 .bg-bottom {
@@ -1032,6 +1070,10 @@ button,
   border-color: #d1d7da;
 }
 
+.border-halloween-orange {
+  border-color: #e4730b;
+}
+
 .hover\:border-transparent:hover {
   border-color: transparent;
 }
@@ -1126,6 +1168,10 @@ button,
 
 .hover\:border-clouds:hover {
   border-color: #d1d7da;
+}
+
+.hover\:border-halloween-orange:hover {
+  border-color: #e4730b;
 }
 
 .rounded-none {
@@ -1733,7 +1779,7 @@ button,
 }
 
 .font-open-sans {
-  font-family: Open\ Sans, sans-serif;
+  font-family: Open Sans, sans-serif;
 }
 
 .font-hairline {
@@ -3019,6 +3065,10 @@ button,
   color: #d1d7da;
 }
 
+.text-halloween-orange {
+  color: #e4730b;
+}
+
 .hover\:text-transparent:hover {
   color: transparent;
 }
@@ -3113,6 +3163,10 @@ button,
 
 .hover\:text-clouds:hover {
   color: #d1d7da;
+}
+
+.hover\:text-halloween-orange:hover {
+  color: #e4730b;
 }
 
 .text-xs {
@@ -3506,6 +3560,18 @@ button,
  * @import "utilities/skew-transforms";
  */
 
+.hover-pop {
+  -webkit-transition: -webkit-transform .3s ease;
+  transition: -webkit-transform .3s ease;
+  transition: transform .3s ease;
+  transition: transform .3s ease, -webkit-transform .3s ease;
+}
+
+.hover-pop:hover {
+  -webkit-transform: scale(1.1) rotate(-3deg);
+          transform: scale(1.1) rotate(-3deg);
+}
+
 @media (min-width: 576px) {
   .sm\:list-reset {
     list-style: none;
@@ -3626,6 +3692,10 @@ button,
     background-color: #d1d7da;
   }
 
+  .sm\:bg-halloween-orange {
+    background-color: #e4730b;
+  }
+
   .sm\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -3720,6 +3790,10 @@ button,
 
   .sm\:hover\:bg-clouds:hover {
     background-color: #d1d7da;
+  }
+
+  .sm\:hover\:bg-halloween-orange:hover {
+    background-color: #e4730b;
   }
 
   .sm\:bg-bottom {
@@ -3878,6 +3952,10 @@ button,
     border-color: #d1d7da;
   }
 
+  .sm\:border-halloween-orange {
+    border-color: #e4730b;
+  }
+
   .sm\:hover\:border-transparent:hover {
     border-color: transparent;
   }
@@ -3972,6 +4050,10 @@ button,
 
   .sm\:hover\:border-clouds:hover {
     border-color: #d1d7da;
+  }
+
+  .sm\:hover\:border-halloween-orange:hover {
+    border-color: #e4730b;
   }
 
   .sm\:rounded-none {
@@ -4579,7 +4661,7 @@ button,
   }
 
   .sm\:font-open-sans {
-    font-family: Open\ Sans, sans-serif;
+    font-family: Open Sans, sans-serif;
   }
 
   .sm\:font-hairline {
@@ -5857,6 +5939,10 @@ button,
     color: #d1d7da;
   }
 
+  .sm\:text-halloween-orange {
+    color: #e4730b;
+  }
+
   .sm\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -5951,6 +6037,10 @@ button,
 
   .sm\:hover\:text-clouds:hover {
     color: #d1d7da;
+  }
+
+  .sm\:hover\:text-halloween-orange:hover {
+    color: #e4730b;
   }
 
   .sm\:text-xs {
@@ -6450,6 +6540,10 @@ button,
     background-color: #d1d7da;
   }
 
+  .md\:bg-halloween-orange {
+    background-color: #e4730b;
+  }
+
   .md\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -6544,6 +6638,10 @@ button,
 
   .md\:hover\:bg-clouds:hover {
     background-color: #d1d7da;
+  }
+
+  .md\:hover\:bg-halloween-orange:hover {
+    background-color: #e4730b;
   }
 
   .md\:bg-bottom {
@@ -6702,6 +6800,10 @@ button,
     border-color: #d1d7da;
   }
 
+  .md\:border-halloween-orange {
+    border-color: #e4730b;
+  }
+
   .md\:hover\:border-transparent:hover {
     border-color: transparent;
   }
@@ -6796,6 +6898,10 @@ button,
 
   .md\:hover\:border-clouds:hover {
     border-color: #d1d7da;
+  }
+
+  .md\:hover\:border-halloween-orange:hover {
+    border-color: #e4730b;
   }
 
   .md\:rounded-none {
@@ -7403,7 +7509,7 @@ button,
   }
 
   .md\:font-open-sans {
-    font-family: Open\ Sans, sans-serif;
+    font-family: Open Sans, sans-serif;
   }
 
   .md\:font-hairline {
@@ -8681,6 +8787,10 @@ button,
     color: #d1d7da;
   }
 
+  .md\:text-halloween-orange {
+    color: #e4730b;
+  }
+
   .md\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -8775,6 +8885,10 @@ button,
 
   .md\:hover\:text-clouds:hover {
     color: #d1d7da;
+  }
+
+  .md\:hover\:text-halloween-orange:hover {
+    color: #e4730b;
   }
 
   .md\:text-xs {
@@ -9274,6 +9388,10 @@ button,
     background-color: #d1d7da;
   }
 
+  .lg\:bg-halloween-orange {
+    background-color: #e4730b;
+  }
+
   .lg\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -9368,6 +9486,10 @@ button,
 
   .lg\:hover\:bg-clouds:hover {
     background-color: #d1d7da;
+  }
+
+  .lg\:hover\:bg-halloween-orange:hover {
+    background-color: #e4730b;
   }
 
   .lg\:bg-bottom {
@@ -9526,6 +9648,10 @@ button,
     border-color: #d1d7da;
   }
 
+  .lg\:border-halloween-orange {
+    border-color: #e4730b;
+  }
+
   .lg\:hover\:border-transparent:hover {
     border-color: transparent;
   }
@@ -9620,6 +9746,10 @@ button,
 
   .lg\:hover\:border-clouds:hover {
     border-color: #d1d7da;
+  }
+
+  .lg\:hover\:border-halloween-orange:hover {
+    border-color: #e4730b;
   }
 
   .lg\:rounded-none {
@@ -10227,7 +10357,7 @@ button,
   }
 
   .lg\:font-open-sans {
-    font-family: Open\ Sans, sans-serif;
+    font-family: Open Sans, sans-serif;
   }
 
   .lg\:font-hairline {
@@ -11505,6 +11635,10 @@ button,
     color: #d1d7da;
   }
 
+  .lg\:text-halloween-orange {
+    color: #e4730b;
+  }
+
   .lg\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -11599,6 +11733,10 @@ button,
 
   .lg\:hover\:text-clouds:hover {
     color: #d1d7da;
+  }
+
+  .lg\:hover\:text-halloween-orange:hover {
+    color: #e4730b;
   }
 
   .lg\:text-xs {
@@ -12098,6 +12236,10 @@ button,
     background-color: #d1d7da;
   }
 
+  .xl\:bg-halloween-orange {
+    background-color: #e4730b;
+  }
+
   .xl\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
@@ -12192,6 +12334,10 @@ button,
 
   .xl\:hover\:bg-clouds:hover {
     background-color: #d1d7da;
+  }
+
+  .xl\:hover\:bg-halloween-orange:hover {
+    background-color: #e4730b;
   }
 
   .xl\:bg-bottom {
@@ -12350,6 +12496,10 @@ button,
     border-color: #d1d7da;
   }
 
+  .xl\:border-halloween-orange {
+    border-color: #e4730b;
+  }
+
   .xl\:hover\:border-transparent:hover {
     border-color: transparent;
   }
@@ -12444,6 +12594,10 @@ button,
 
   .xl\:hover\:border-clouds:hover {
     border-color: #d1d7da;
+  }
+
+  .xl\:hover\:border-halloween-orange:hover {
+    border-color: #e4730b;
   }
 
   .xl\:rounded-none {
@@ -13051,7 +13205,7 @@ button,
   }
 
   .xl\:font-open-sans {
-    font-family: Open\ Sans, sans-serif;
+    font-family: Open Sans, sans-serif;
   }
 
   .xl\:font-hairline {
@@ -14329,6 +14483,10 @@ button,
     color: #d1d7da;
   }
 
+  .xl\:text-halloween-orange {
+    color: #e4730b;
+  }
+
   .xl\:hover\:text-transparent:hover {
     color: transparent;
   }
@@ -14423,6 +14581,10 @@ button,
 
   .xl\:hover\:text-clouds:hover {
     color: #d1d7da;
+  }
+
+  .xl\:hover\:text-halloween-orange:hover {
+    color: #e4730b;
   }
 
   .xl\:text-xs {

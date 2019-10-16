@@ -74,6 +74,8 @@ let colors = {
   'frost': '#f4f5f7',
   'smoke': '#e7e8e8',
   'clouds': '#d1d7da',
+
+  'halloween-orange': '#e4730b',
 }
 
 module.exports = {

@@ -22,7 +22,7 @@
                             <span class="uppercase text-2xl leading-normal text-black-light font-semibold font-open-sans tracking-wide">zzie</span>
                         </p>
 
-                        <p class="italic font-thin leading-normal text-grey-blue-darkest">Get-Your-Poop-In-A-Group-Ness</p>
+                        <p class="italic font-thin leading-normal text-grey-blue-darkest">Addressing our open source debt</p>
                     </div>
                 </section>
             </div>
@@ -31,10 +31,10 @@
         <div class="bg-frost font-sans relative z-0">
             <div class="max-w-lg mx-auto pt-8">
                 <div class="flex items-center justify-between">
-                    <p class="mb-6 text-black-lighter">Projects in descending order of "get-your-poop-in-a-group-ness"</p>
+                    <p class="mb-6 text-black-lighter">Projects in descending order of "debt" (how much attention it needs)</p>
 
                     @if ($hacktoberfest)
-                        <a href="https://github.com/search?o=desc&q=label%3Ahacktoberfest+is%3Aopen+type%3Aissue+user%3Atightenco&s=created&type=Issues" target="_blank" class="mb-6 px-4 py-3 bg-grey-blue no-underline rounded-lg text-black-lighter">
+                        <a href="https://github.com/search?o=desc&q=label%3Ahacktoberfest+is%3Aopen+type%3Aissue+user%3Atightenco&s=created&type=Issues" target="_blank" class="mb-6 px-4 py-3 bg-grey-blue hover:bg-halloween-orange no-underline rounded-lg text-black-lighter hover:text-white hover-pop">
                             Hacktoberfest is here! 👻
                         </a>
                     @endif
