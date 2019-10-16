@@ -138,25 +138,11 @@
         ]
     },
     {
-        "name": "omgphp",
-        "namespace": "tightenco",
-        "maintainers": [
-            "mattstauffer"
-        ]
-    },
-    {
         "name": "version-check",
         "namespace": "tightenco",
         "maintainers": [
             "mattstauffer",
             "jakebathman"
-        ]
-    },
-    {
-        "name": "whyphp",
-        "namespace": "tightenco",
-        "maintainers": [
-            "mattstauffer"
         ]
     }
 ]
