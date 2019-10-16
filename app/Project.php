@@ -56,6 +56,14 @@ class Project
         throw new Exception('No such property ' . $key);
     }
 
+    public function hacktoberfestIssues()
+    {
+        return $this->issues->filter(function ($issue) {
+            return ! empty($issue['labels'])
+                && collect($issue['labels'])->contains('name', 'hacktoberfest');
+        });
+    }
+
     public function oldPrs()
     {
         return $this->prs->filter(function ($pr) {

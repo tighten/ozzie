@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Project;
 use GrahamCampbell\GitHub\Facades\GitHub;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 
 class DashboardController extends Controller
@@ -20,6 +21,10 @@ class DashboardController extends Controller
             });
         });
 
-        return view('dashboard')->with('projects', $projects);
+        $hacktoberfest = (bool)Carbon::now()->isSameMonth(Carbon::parse('October'));
+
+        return view('dashboard')
+            ->with('projects', $projects)
+            ->with('hacktoberfest', $hacktoberfest);
     }
 }
