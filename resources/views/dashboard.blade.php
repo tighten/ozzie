@@ -30,7 +30,15 @@
 
         <div class="bg-frost font-sans relative z-0">
             <div class="max-w-lg mx-auto pt-8">
-                <p class="mb-6 text-black-lighter">Projects in descending order of "get-your-poop-in-a-group-ness"</p>
+                <div class="flex items-center justify-between">
+                    <p class="mb-6 text-black-lighter">Projects in descending order of "get-your-poop-in-a-group-ness"</p>
+
+                    @if ($hacktoberfest)
+                        <a href="https://github.com/search?o=desc&q=label%3Ahacktoberfest+is%3Aopen+type%3Aissue+user%3Atightenco&s=created&type=Issues" target="_blank" class="mb-6 px-4 py-3 bg-grey-blue no-underline rounded-lg text-black-lighter">
+                            Hacktoberfest is here! 👻
+                        </a>
+                    @endif
+                </div>
 
                 <div class="rounded-lg shadow">
                     <ul class="bg-grey-blue-light flex list-reset p-4 rounded-t-lg border-grey border-b-2">
@@ -38,13 +46,17 @@
 
                         <li class="w-1/7 text-grey-darker font-semibold uppercase text-xs tracking-wide">debt score</li>
 
-                        <li class="w-1/7 text-grey-darker font-semibold uppercase text-xs tracking-wide">old pr's</li>
+                        <li class="w-1/7 text-grey-darker font-semibold uppercase text-xs tracking-wide">old prs</li>
 
                         <li class="w-1/7 text-grey-darker font-semibold uppercase text-xs tracking-wide">old issues</li>
 
-                        <li class="w-1/7 text-grey-darker font-semibold uppercase text-xs tracking-wide">pr's</li>
+                        <li class="w-1/7 text-grey-darker font-semibold uppercase text-xs tracking-wide">prs</li>
 
                         <li class="w-1/7 text-grey-darker font-semibold uppercase text-xs tracking-wide">issues</li>
+
+                        @if ($hacktoberfest)
+                            <li class="w-4 text-xs">🎃</li>
+                        @endif
                     </ul>
 
                     <section class="bg-white rounded-b-lg">
@@ -65,6 +77,14 @@
                                 <li class="w-1/7 text-black-lightest">{{ $project->prs()->count() }}</li>
 
                                 <li class="w-1/7 text-black-lightest">{{ $project->issues()->count() }}</li>
+
+                                @if ($hacktoberfest)
+                                    <li class="w-4">
+                                        <a class="text-indigo no-underline" href="https://github.com/{{ $project->namespace }}/{{ $project->name }}/labels/hacktoberfest" target="_blank">
+                                            {{ $project->hacktoberfestIssues()->count() }}
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
                         @endforeach
                     </section>
@@ -78,7 +98,7 @@
                             </h2>
 
                             <p class="w-1/2 text-right text-black-lightest">
-                                Maintained by 
+                                Maintained by
 
                                 @foreach ($project->maintainers as $maintainer)
                                     <a class="text-indigo no-underline" href="https://github.com/{{ $maintainer }}" target="_blank">{{ '@' . $maintainer }}</a>
