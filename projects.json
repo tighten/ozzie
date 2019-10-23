@@ -70,13 +70,6 @@
         ]
     },
     {
-        "name": "torch",
-        "namespace": "mattstauffer",
-        "maintainers": [
-            "mattstauffer"
-        ]
-    },
-    {
         "name": "ziggy",
         "namespace": "tightenco",
         "maintainers": [
