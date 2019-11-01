@@ -29,7 +29,7 @@
         </div>
 
         <div class="bg-frost font-sans relative z-0">
-            <div class="max-w-lg mx-auto pt-8">
+            <div class="max-w-lg mx-auto py-8">
                 <div class="flex items-center justify-between">
                     <p class="mb-6 text-black-lighter">Projects in descending order of "debt" (how much attention it needs)</p>
 
@@ -63,7 +63,7 @@
                         @foreach ($projects->sortByDesc(function ($project) { return $project->debtScore(); }) as $project)
                             <ul class="flex list-reset p-4 border-t border-smoke">
                                 <li class="w-2/7">
-                                    <a class="text-indigo no-underline text-md" href="#project-{{ $project->namespace }}-{{ $project->name }}" target="_blank">
+                                    <a class="text-indigo no-underline text-md" href="#project-{{ $project->namespace }}-{{ $project->name }}">
                                         {{ $project->namespace }}/{{ $project->name }}
                                     </a>
                                 </li>
@@ -167,6 +167,10 @@
                                     </li>
                                 @endforeach
                             </ul>
+                        </section>
+
+                        <section class="flex flex-col items-end mt-6">
+                            <a class="text-indigo no-underline" href="#">&#8593; Back to top</a>
                         </section>
                     </div>
                 @endforeach
