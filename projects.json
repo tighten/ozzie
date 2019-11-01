@@ -3,23 +3,23 @@
         "name": "giscus",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer"
+            "mattstauffer",
+            "jakebathman"
         ]
     },
     {
         "name": "gistlog",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer"
+            "mattstauffer",
+            "imjohnbon"
         ]
     },
     {
         "name": "mailthief",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer",
-            "sariyana",
-            "darkboywonder"
+            "mattstauffer"
         ]
     },
     {
@@ -27,7 +27,6 @@
         "namespace": "tightenco",
         "maintainers": [
             "mattstauffer",
-            "loganhenson",
             "damiani"
         ]
     },
@@ -36,14 +35,15 @@
         "namespace": "tightenco",
         "maintainers": [
             "damiani",
-            "calebporzio"
+            "darkboywonder"
         ]
     },
     {
         "name": "symposium",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer"
+            "andrewmile",
+            "josecanhelp"
         ]
     },
     {
@@ -66,7 +66,7 @@
         "namespace": "tightenco",
         "maintainers": [
             "mattstauffer",
-            "jakebathman"
+            "andrewmile"
         ]
     },
     {
@@ -82,36 +82,40 @@
         "namespace": "tightenco",
         "maintainers": [
             "loganhenson",
-            "darkboywonder",
-            "sbine"
+            "andrewmile"
         ]
     },
     {
         "name": "ozzie",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer"
+            "mattstauffer",
+            "jakebathman",
+            "sbine"
         ]
     },
     {
         "name": "jigsaw-site",
         "namespace": "tightenco",
         "maintainers": [
-            "damiani"
+            "damiani",
+            "darkboywonder"
         ]
     },
     {
         "name": "jigsaw-docs-template",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer"
+            "damiani",
+            "darkboywonder"
         ]
     },
     {
         "name": "onramp",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer"
+            "mattstauffer",
+            "sariyana"
         ]
     },
     {
@@ -119,16 +123,15 @@
         "namespace": "tightenco",
         "maintainers": [
             "damiani",
-            "mattstauffer",
-            "anthonyterrell"
+            "darkboywonder"
         ]
     },
     {
         "name": "version-check",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer",
-            "jakebathman"
+            "jakebathman",
+            "ctroms"
         ]
     }
 ]
