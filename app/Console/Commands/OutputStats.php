@@ -11,17 +11,13 @@ class OutputStats extends Command
 
     protected $description = 'Output project stats to the console';
 
-    public function __construct(Projects $projects)
-    {
-        $this->projects = $projects;
-
-        parent::__construct();
-    }
-
-    public function handle()
+    public function handle(Projects $projects)
     {
         $this->info("\n\n");
-        $this->projects->all()->sortByDesc(function ($project) { return $project->debtScore(); })->each(function ($project) {
+
+        $projects->all()->sortByDesc(function ($project) {
+            return $project->debtScore();
+        })->each(function ($project) {
             $this->info($project->name);
             $this->comment("-----------------------");
             $this->info('Debt score: ' . $project->debtScore() . "\n\n");
