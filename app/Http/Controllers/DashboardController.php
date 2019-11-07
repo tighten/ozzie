@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Projects;
 use Illuminate\Support\Carbon;
 
 class DashboardController extends Controller
@@ -11,8 +12,8 @@ class DashboardController extends Controller
         $hacktoberfest = (bool) Carbon::now()->isSameMonth(Carbon::parse('October'));
 
         return view('dashboard', [
-            'projects', (new Projects)->all(),
-            'hacktoberfest', $hacktoberfest,
+            'projects' => (new Projects)->all(),
+            'hacktoberfest' => $hacktoberfest,
         ]);
     }
 }
