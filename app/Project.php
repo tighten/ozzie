@@ -95,4 +95,9 @@ class Project
             $this->prs()->count() * 13,
         ]) / 100;
     }
+
+    public function url()
+    {
+        return 'https://github.com/' . $this->namespace . '/' . $this->name;
+    }
 }
