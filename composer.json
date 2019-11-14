@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "tightenco/ozzie",
+    "description": "Manage open source projects.",
+    "keywords": ["open source", "laravel"],
     "license": "MIT",
     "type": "project",
     "require": {
