@@ -1,3 +1,5 @@
+![Ozzie logo](https://raw.githubusercontent.com/tightenco/ozzie/master/ozzie-banner.png)
+
 Ozzie
 ======
 **Ozzie** Tighten's Open Source Projects Monitor
