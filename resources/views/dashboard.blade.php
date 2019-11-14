@@ -94,7 +94,7 @@
                     <div class="mt-max">
                         <section class="flex justify-between items-center py-6 border-b-2 border-clouds" id="project-{{ $project->namespace }}-{{ $project->name }}">
                             <h2 class="w-1/2 text-black font-normal tracking-wide">
-                                {{ $project->namespace }} | {{ $project->name }}
+                                <a href="{{ $project->url() }}">{{ $project->namespace }} | {{ $project->name }}</a>
                             </h2>
 
                             <p class="w-1/2 text-right text-black-lightest">
