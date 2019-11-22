@@ -13,14 +13,32 @@ class OutputStats extends Command
 
     public function handle(Projects $projects)
     {
-        $this->info("\n\n");
+        $this->info("\n");
 
-        $projects->all()->sortByDesc(function ($project) {
-            return $project->debtScore();
-        })->each(function ($project) {
-            $this->info($project->name);
-            $this->comment("-----------------------");
-            $this->info('Debt score: ' . $project->debtScore() . "\n\n");
-        });
+        $this->table(
+            ['Project', 'Debt Score'],
+            $projects->all()->sortByDesc(function ($project) {
+                return $project->debtScore();
+            })->map(function ($project) {
+                return [
+                    $project->name,
+                    $this->formatDebtScore($project->debtScore()),
+                ];
+            })
+        );
+
+        $this->info("\n");
+    }
+
+    protected function formatDebtScore(float $debtScore): string
+    {
+        if ($debtScore > 5) {
+            return sprintf('<error>%s</error>', $debtScore);
+        }
+        if ($debtScore > 1) {
+            return sprintf('<comment>%s</comment>', $debtScore);
+        }
+
+        return $debtScore;
     }
 }
