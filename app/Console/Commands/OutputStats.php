@@ -13,7 +13,7 @@ class OutputStats extends Command
 
     public function handle(Projects $projects)
     {
-        $this->info("\n\n");
+        $this->info("\n");
 
         $this->table(
             ['Project', 'Debt Score'],
@@ -26,6 +26,8 @@ class OutputStats extends Command
                 ];
             })
         );
+
+        $this->info("\n");
     }
 
     protected function formatDebtScore(float $debtScore): string
