@@ -15,12 +15,28 @@ class OutputStats extends Command
     {
         $this->info("\n\n");
 
-        $projects->all()->sortByDesc(function ($project) {
-            return $project->debtScore();
-        })->each(function ($project) {
-            $this->info($project->name);
-            $this->comment("-----------------------");
-            $this->info('Debt score: ' . $project->debtScore() . "\n\n");
-        });
+        $this->table(
+            ['Project', 'Debt Score'],
+            $projects->all()->sortByDesc(function ($project) {
+                return $project->debtScore();
+            })->map(function ($project) {
+                return [
+                    $project->name,
+                    $this->formatDebtScore($project->debtScore()),
+                ];
+            })
+        );
+    }
+
+    protected function formatDebtScore(float $debtScore): string
+    {
+        if ($debtScore > 5) {
+            return sprintf('<error>%s</error>', $debtScore);
+        }
+        if ($debtScore > 1) {
+            return sprintf('<comment>%s</comment>', $debtScore);
+        }
+
+        return $debtScore;
     }
 }
