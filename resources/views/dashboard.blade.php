@@ -13,23 +13,21 @@
 
     <body>
         <div class="bg-white border-t-4 border-indigo relative z-10 shadow">
-            <div class="p-2">
-                <section class="max-w-lg mx-auto">
-                    <div class="flex justify-between items-center">
-                        <p class="flex items-center">
-                            <span class="text-5xl text-indigo font-montserrat">O</span>
+            <section class="max-w-4xl mx-auto">
+                <div class="flex justify-between items-center">
+                    <p class="flex items-center">
+                        <span class="text-5xl text-indigo font-montserrat">O</span>
 
-                            <span class="uppercase text-2xl leading-normal text-black-light font-semibold font-open-sans tracking-wide">zzie</span>
-                        </p>
+                        <span class="uppercase text-2xl leading-normal text-black-light font-semibold font-open-sans tracking-wide">zzie</span>
+                    </p>
 
-                        <p class="italic font-thin leading-normal text-grey-blue-darkest">Addressing our open source debt</p>
-                    </div>
-                </section>
-            </div>
+                    <p class="font-open-sans italic font-normal leading-normal tracking-tight text-grey-blue-darkest">Addressing our open source debt</p>
+                </div>
+            </section>
         </div>
 
         <div class="bg-frost font-sans relative z-0">
-            <div class="max-w-lg mx-auto py-8">
+            <div class="max-w-4xl mx-auto py-6">
                 <div class="flex items-center justify-between">
                     <p class="mb-6 text-black-lighter">Projects in descending order of "debt" (how much attention it needs)</p>
 
@@ -41,18 +39,18 @@
                 </div>
 
                 <div class="rounded-lg shadow">
-                    <ul class="bg-grey-blue-light flex list-reset p-4 rounded-t-lg border-grey border-b-2">
-                        <li class="w-2/7 text-grey-darker font-semibold uppercase text-xs tracking-wide">project name</li>
+                    <ul class="bg-grey-blue-light flex p-4 rounded-t-lg border-grey border-b-2">
+                        <li class="w-2/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">project name</li>
 
-                        <li class="w-1/7 text-grey-darker font-semibold uppercase text-xs tracking-wide">debt score</li>
+                        <li class="w-1/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">debt score</li>
 
-                        <li class="w-1/7 text-grey-darker font-semibold uppercase text-xs tracking-wide">old prs</li>
+                        <li class="w-1/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">old prs</li>
 
-                        <li class="w-1/7 text-grey-darker font-semibold uppercase text-xs tracking-wide">old issues</li>
+                        <li class="w-1/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">old issues</li>
 
-                        <li class="w-1/7 text-grey-darker font-semibold uppercase text-xs tracking-wide">prs</li>
+                        <li class="w-1/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">prs</li>
 
-                        <li class="w-1/7 text-grey-darker font-semibold uppercase text-xs tracking-wide">issues</li>
+                        <li class="w-1/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">issues</li>
 
                         @if ($hacktoberfest)
                             <li class="w-4 text-xs">🎃</li>
@@ -61,7 +59,7 @@
 
                     <section class="bg-white rounded-b-lg">
                         @foreach ($projects->sortByDesc(function ($project) { return $project->debtScore(); }) as $project)
-                            <ul class="flex list-reset p-4 border-t border-smoke">
+                            <ul class="flex justify-between list-reset p-3 border-t border-smoke">
                                 <li class="w-2/7">
                                     <a class="text-indigo no-underline text-md" href="#project-{{ $project->namespace }}-{{ $project->name }}">
                                         {{ $project->namespace }}/{{ $project->name }}
@@ -91,10 +89,16 @@
                 </div>
 
                 @foreach ($projects as $project)
-                    <div class="mt-max">
+                    <div class="mt-16">
                         <section class="flex justify-between items-center py-6 border-b-2 border-clouds" id="project-{{ $project->namespace }}-{{ $project->name }}">
-                            <h2 class="w-1/2 text-black font-normal tracking-wide">
-                                <a href="{{ $project->url() }}">{{ $project->namespace }} | {{ $project->name }}</a>
+                            <h2 class="w-1/2 text-2xl text-black font-semibold tracking-wide">
+                                <a href="{{ $project->url() }}">
+                                    {{ $project->namespace }} | {{ $project->name }}
+                                    <svg class="fill-current text-indigo-muted inline-block w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path>
+                                    </svg>
+                                </a>
                             </h2>
 
                             <p class="w-1/2 text-right text-black-lightest">
@@ -107,14 +111,14 @@
                         </section>
 
                         <section class="flex items-start border-b border-clouds">
-                            <h3 class="w-1/3 text-black-lightest py-6 font-thin">Pull Requests</h3>
+                            <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">Pull Requests</h3>
 
-                            <ul class="w-2/3 list-reset">
+                            <ul class="w-2/3">
                                 @foreach ($project->prs() as $pr)
                                     @php $pr['date'] = Carbon\Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $pr['created_at']) @endphp
                                     <li class="flex justify-between">
                                         <div class="py-6 w-auto">
-                                            <p class="pb-2">
+                                            <p class="pb-1">
                                                 <a class="text-black-lighter font-medium no-underline leading-normal" href="{{ $pr['html_url'] }}" target="_blank">{{ $pr['title'] }}</a>
                                             </p>
 
@@ -136,13 +140,13 @@
                         </section>
 
                         <section class="flex items-start border-b-1 border-clouds">
-                            <h3 class="w-1/3 text-black-lightest py-6 font-thin">Issues</h3>
+                            <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">Issues</h3>
 
                             <ul class="w-2/3 list-reset">
                                 @foreach ($project->issues() as $issue)
                                     <li class="flex justify-between">
                                         <div class="py-6 w-auto">
-                                            <p class="pb-2">
+                                            <p class="pb-1">
                                                 <a class="text-black-lighter font-medium no-underline leading-normal" href="{{ $issue['html_url'] }}" target="_blank">{{ $issue['title'] }}</a>
                                             </p>
 
@@ -152,7 +156,7 @@
                                                 </a>
 
                                                 @foreach ($issue['labels'] as $label)
-                                                    <a class="rounded-full py-1 px-2 mr-2 bg-grey-blue text-grey-blue-dark font-medium no-underline text-xs capitalize" href="https://github.com/{{ $project->namespace }}/{{ $project->name }}/labels/{{ $label['name'] }}" target="_blank">
+                                                    <a class="rounded-full py-1 px-2 mr-2 bg-grey-blue text-grey-blue-dark font-semibold no-underline text-xs capitalize font-open-sans" href="https://github.com/{{ $project->namespace }}/{{ $project->name }}/labels/{{ $label['name'] }}" target="_blank">
                                                         {{ $label['name'] }}
                                                     </a>
                                                 @endforeach
