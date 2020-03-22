@@ -39,9 +39,9 @@ class Project
 
     public function issues()
     {
-        return $this->issues->reject(function ($pr) {
-            return ! empty($issues['labels'])
-                && collect($issue['labels'])->contains('name', 'in-progress');
+        return $this->issues->reject(function ($issues) {
+            return ! empty($issues->labels)
+                && collect($issues->labels)->contains('name', 'in-progress');
         });
     }
 
@@ -73,7 +73,7 @@ class Project
     public function oldPrs()
     {
         return $this->prs()->filter(function ($pr) {
-            $date = Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $pr['created_at']);
+            $date = Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $pr->created_at);
             return $date->diff(new DateTime)->days > 30;
         });
     }
@@ -81,7 +81,7 @@ class Project
     public function oldIssues()
     {
         return $this->issues()->filter(function ($issue) {
-            $date = Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $issue['created_at']);
+            $date = Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $issue->created_at);
             return $date->diff(new DateTime)->days > 30;
         });
     }

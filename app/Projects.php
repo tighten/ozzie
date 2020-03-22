@@ -8,7 +8,7 @@ class Projects
 {
     public function all()
     {
-        return Cache::remember('projects', 60 * 60, function () {
+        $projects = Cache::remember('projects', 60 * 60, function () {
             return $this->load()->sortBy('name')->map(function ($project) {
                 return new Project(
                     $project->namespace,
@@ -17,6 +17,11 @@ class Projects
                 );
             });
         });
+
+        // dd($projects->map(function($project) { return $project->prs(); }));
+        // dd($projects->map(function($project) { return $project->prs()->map(function($pr){ return $pr['labels']; }); }));
+
+        return $projects;
     }
 
     public function load()
