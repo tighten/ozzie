@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\GitHub\Dto\LabelData;
 use Illuminate\View\Component;
 
 class Label extends Component
@@ -10,7 +11,7 @@ class Label extends Component
     public $projectName;
     public $label;
 
-    public function __construct(string $projectNamespace, string $projectName, string $label)
+    public function __construct(LabelData $label, string $projectNamespace, string $projectName)
     {
         $this->projectNamespace = $projectNamespace;
         $this->projectName = $projectName;

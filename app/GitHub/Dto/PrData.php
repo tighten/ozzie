@@ -28,6 +28,7 @@ class PrData extends DataTransferObject
 
     public $title;
 
+    /** @var \App\GitHub\Dto\UserData */
     public $user;
 
     public $body;
@@ -50,6 +51,7 @@ class PrData extends DataTransferObject
 
     public $requested_teams;
 
+    /** @var \App\GitHub\Dto\LabelData[] */
     public $labels;
 
     public $milestone;

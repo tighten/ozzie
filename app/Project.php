@@ -65,8 +65,8 @@ class Project
     public function hacktoberfestIssues()
     {
         return $this->issues->filter(function ($issue) {
-            return ! empty($issue['labels'])
-                && collect($issue['labels'])->contains('name', 'hacktoberfest');
+            return ! empty($issue->labels)
+                && collect($issue->labels)->contains('name', 'hacktoberfest');
         });
     }
 

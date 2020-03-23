@@ -29,30 +29,7 @@
 
                 <ul class="w-2/3">
                     @foreach ($project->prs() as $pr)
-                        @php $pr->date = Carbon\Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $pr->created_at) @endphp
-                        <li class="flex justify-between">
-                            <div class="py-6 w-auto">
-                                <p class="pb-1">
-                                    <a class="text-black-lighter font-medium no-underline leading-normal"
-                                       href="{{ $pr->html_url }}" target="_blank">{{ $pr->title }}</a>
-                                </p>
-
-                                <p>
-                                    <a class="text-indigo no-underline" href="{{ $pr->user['html_url'] }}"
-                                       target="_blank">{{ '@' . $pr->user['login'] }}</a>
-                                    |
-
-                                    <span
-                                        class="font-semibold text-grey-darkest">{{ $pr->date->diffForHumans() }}</span>
-                                </p>
-                            </div>
-
-                            <div class="py-6 w-auto">
-                                <a class="no-underline" href="{{ $pr->html_url }}" target="_blank">
-                                    @include('svg.launch')
-                                </a>
-                            </div>
-                        </li>
+                        <x-pr-detail :pr-data="$pr" :project="$project" />
                     @endforeach
                 </ul>
             </section>
@@ -62,7 +39,7 @@
 
                 <ul class="w-2/3 list-reset">
                     @foreach ($project->issues() as $issue)
-                        <x-issue-detail :issue-data="$issue" :project="$project" />
+                        <x-issue-detail :issue="$issue" :project="$project" />
                     @endforeach
                 </ul>
             </section>

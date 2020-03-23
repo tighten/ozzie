@@ -2,23 +2,23 @@
     <div class="py-6 w-auto">
         <p>
             <a class="text-black-lighter font-medium no-underline leading-normal"
-               href="{{ $issue->html_url }}"
+               href="{{ $prData->html_url }}"
                target="_blank">
-                {{ $issue->title }}
+                {{ $prData->title }}
             </a>
         </p>
 
         <div class="">
-            <a class="text-indigo no-underline" href="{{ $issue->user->html_url }}"
+            <a class="text-indigo no-underline" href="{{ $prData->user->html_url }}"
                target="_blank">
-                {{ '@' . $issue->user->login }}
+                {{ '@' . $prData->user->login }}
             </a>
             |
             <span class="font-semibold text-grey-darkest">
-                {{ $issue->date->diffForHumans() }}
+                {{ $prData->date->diffForHumans() }}
             </span>
             <div>
-                @foreach ($issue->labels as $label)
+                @foreach ($prData->labels as $label)
                     <x-label :project-namespace="$project->namespace" :project-name="$project->name" :label="$label"/>
                 @endforeach
             </div>
@@ -26,7 +26,7 @@
     </div>
 
     <div class="py-6 w-auto">
-        <a class="no-underline" href="{{ $issue->html_url }}" target="_blank">
+        <a class="no-underline" href="{{ $prData->html_url }}" target="_blank">
             @include('svg.launch')
         </a>
     </div>

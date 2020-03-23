@@ -6,6 +6,8 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class IssueData extends DataTransferObject
 {
+    // Identifiers -------------------------------------------------------------
+
     /** @var integer */
     public $id;
 
