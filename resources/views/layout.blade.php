@@ -26,10 +26,11 @@
             </section>
         </div>
 
-        <div class="bg-frost font-sans relative z-0">
+        <div id="app" class="bg-frost font-sans relative z-0">
             <div class="max-w-4xl mx-auto py-6">
                 @yield('content')
             </div>
         </div>
+        <script src="{{ asset('js/app.js') }}" defer></script>
     </body>
 </html>

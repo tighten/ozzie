@@ -48,8 +48,8 @@ class Project
     public function prs()
     {
         return $this->prs->reject(function ($pr) {
-            return ! empty($issues['labels'])
-                && collect($issue['labels'])->contains('name', 'in-progress');
+            return ! empty($pr->labels)
+                && collect($pr->labels)->contains('name', 'in-progress');
         });
     }
 

@@ -7,10 +7,12 @@
     "require": {
         "php": "^7.2",
         "ext-json": "*",
+        "erusev/parsedown": "^1.7",
         "fideloper/proxy": "^4.0",
         "graham-campbell/github": "^8.6",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
+        "laravel/ui": "^2.0",
         "nathanheffley/laravel-slack-blocks": "^2.1",
         "php-http/guzzle6-adapter": "^1.1",
         "spatie/data-transfer-object": "^1.13"

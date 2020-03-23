@@ -13,7 +13,7 @@ class DashboardController extends Controller
 
         return view('dashboard', [
             'projects' => (new Projects)->all(),
-            'hacktoberfest' => true,
+            'hacktoberfest' => $hacktoberfest,
         ]);
     }
 }
