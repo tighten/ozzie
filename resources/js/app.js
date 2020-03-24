@@ -6,7 +6,7 @@ import VModal from 'vue-js-modal'
 
 Vue.use(VModal);
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('modal-button', require('./components/ModalButton.vue').default);
 
 
 const app = new Vue({
