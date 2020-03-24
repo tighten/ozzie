@@ -18,9 +18,6 @@ class Projects
             });
         });
 
-        // dd($projects->map(function($project) { return $project->prs(); }));
-        // dd($projects->map(function($project) { return $project->prs()->map(function($pr){ return $pr['labels']; }); }));
-
         return $projects;
     }
 
