@@ -7,7 +7,7 @@ use App\Project as ProjectModel;
 use Carbon\Carbon;
 use Illuminate\View\Component;
 
-class IssueDetail extends Component
+class Issue extends Component
 {
     public $issue;
     public $project;
@@ -21,6 +21,6 @@ class IssueDetail extends Component
 
     public function render()
     {
-        return view('components.issue-detail');
+        return view('components.issue');
     }
 }

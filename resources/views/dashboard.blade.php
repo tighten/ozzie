@@ -1,52 +1,40 @@
-@extends('layout')
+<!doctype html>
+<html lang="{{ app()->getLocale() }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
-    <x-debt-table :projects="$projects" :hacktoberfest="$hacktoberfest"/>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,700" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
 
-    @foreach ($projects as $project)
-        <div class="mt-16">
-            <section class="flex justify-between items-center py-6 border-b-2 border-clouds"
-                     id="project-{{ $project->namespace }}-{{ $project->name }}">
-                <h2 class="w-1/2 text-2xl text-black font-semibold tracking-wide">
-                    <a href="{{ $project->url() }}">
-                        {{ $project->namespace }} | {{ $project->name }}
-                        @include('svg.launch')
-                    </a>
-                </h2>
+        <title>Ozzie - Tighten</title>
+    </head>
 
-                <p class="w-1/2 text-right text-black-lightest">
-                    Maintained by
+    <body>
+        <div class="bg-white border-t-4 border-indigo relative z-10 shadow">
+            <section class="max-w-4xl mx-auto">
+                <div class="flex justify-between items-center">
+                    <h1 class="flex items-center">
+                        <span class="text-5xl text-indigo font-montserrat">O</span>
 
-                    @foreach ($project->maintainers as $maintainer)
-                        <a class="text-indigo no-underline" href="https://github.com/{{ $maintainer }}"
-                           target="_blank">{{ '@' . $maintainer }}</a>
-                    @endforeach
-                </p>
-            </section>
+                        <span class="uppercase text-2xl leading-normal text-black-light font-semibold font-open-sans tracking-wide">zzie</span>
+                    </h1>
 
-            <section class="flex items-start border-b border-clouds">
-                <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">Pull Requests</h3>
-
-                <ul class="w-2/3">
-                    @foreach ($project->prs() as $pr)
-                        <x-pr-detail :pr-data="$pr" :project="$project" />
-                    @endforeach
-                </ul>
-            </section>
-
-            <section class="flex items-start border-b-1 border-clouds">
-                <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">Issues</h3>
-
-                <ul class="w-2/3 list-reset">
-                    @foreach ($project->issues() as $issue)
-                        <x-issue-detail :issue="$issue" :project="$project" />
-                    @endforeach
-                </ul>
-            </section>
-
-            <section class="flex flex-col items-end mt-6">
-                <a class="text-indigo no-underline" href="#">&#8593; Back to top</a>
+                    <p class="font-open-sans italic font-normal leading-normal tracking-tight text-grey-blue-darkest">Addressing our open source debt</p>
+                </div>
             </section>
         </div>
-    @endforeach
-@endsection
+
+        <div id="app" class="bg-frost font-sans relative z-0">
+            <div class="max-w-4xl mx-auto py-6">
+                <x-debt-table :projects="$projects" :hacktoberfest="$hacktoberfest"/>
+
+                @foreach ($projects as $project)
+                    <x-project :project="$project" />
+                @endforeach
+            </div>
+        </div>
+        <script src="{{ asset('js/app.js') }}" defer></script>
+    </body>
+</html>

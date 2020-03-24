@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use Parsedown;
 
-class PrDetail extends Component
+class Pr extends Component
 {
     public $prData;
     public $project;
@@ -24,6 +24,6 @@ class PrDetail extends Component
 
     public function render()
     {
-        return view('components.pr-detail');
+        return view('components.pr');
     }
 }

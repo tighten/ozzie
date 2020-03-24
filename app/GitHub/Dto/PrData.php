@@ -68,8 +68,10 @@ class PrData extends DataTransferObject
 
     public $statuses_url;
 
+    /** @var \App\GitHub\Dto\HeadData */
     public $head;
 
+    /** @var \App\GitHub\Dto\BaseData */
     public $base;
 
     public $_links;
