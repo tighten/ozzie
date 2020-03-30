@@ -67,7 +67,7 @@
                     <span class="text-indigo">Files changed</span>
                 </a>
             </div>
-            @if(! empty($prData->body))
+            @if (! empty($prData->body))
             <div class="markdown-body mt-4 bg-white rounded">
                 {!! $prData->body !!}
             </div>
