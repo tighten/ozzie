@@ -39,9 +39,9 @@ class Project
 
     public function issues()
     {
-        return $this->issues->reject(function ($issues) {
-            return ! empty($issues->labels)
-                && collect($issues->labels)->contains('name', 'in-progress');
+        return $this->issues->reject(function ($issue) {
+            return ! empty($issue->labels)
+                && collect($issue->labels)->contains('name', 'in-progress');
         });
     }
 

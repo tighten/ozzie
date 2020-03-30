@@ -12,17 +12,17 @@
 
 <div class="rounded-lg shadow">
     <ul class="bg-grey-blue-light flex p-4 rounded-t-lg border-grey border-b-2">
-        <li class="w-2/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">project name</li>
+        <li class="w-2/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">Project Name</li>
 
-        <li class="w-1/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">debt score</li>
+        <li class="w-1/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">Debt Score</li>
 
-        <li class="w-1/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">old prs</li>
+        <li class="w-1/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">Old Prs</li>
 
-        <li class="w-1/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">old issues</li>
+        <li class="w-1/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">Old Issues</li>
 
-        <li class="w-1/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">prs</li>
+        <li class="w-1/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">Prs</li>
 
-        <li class="w-1/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">issues</li>
+        <li class="w-1/7 text-grey-darker font-bold uppercase text-xs leading-none tracking-wide">Issues</li>
 
         @if ($hacktoberfest)
             <li class="w-4 text-xs">🎃</li>

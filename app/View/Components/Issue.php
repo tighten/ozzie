@@ -3,7 +3,7 @@
 namespace App\View\Components;
 
 use App\GitHub\Dto\IssueData;
-use App\Project as ProjectModel;
+use App\Project;
 use Carbon\Carbon;
 use Illuminate\View\Component;
 
@@ -12,7 +12,7 @@ class Issue extends Component
     public $issue;
     public $project;
 
-    public function __construct(IssueData $issue, ProjectModel $project)
+    public function __construct(IssueData $issue, Project $project)
     {
         $this->issue = $issue;
         $this->project = $project;

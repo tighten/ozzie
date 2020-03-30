@@ -3,9 +3,8 @@
 namespace App\View\Components;
 
 use App\GitHub\Dto\PrData;
-use App\Project as ProjectModel;
+use App\Project;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use Parsedown;
 
@@ -14,7 +13,7 @@ class Pr extends Component
     public $prData;
     public $project;
 
-    public function __construct(PrData $prData, ProjectModel $project, Parsedown $parsedown)
+    public function __construct(PrData $prData, Project $project, Parsedown $parsedown)
     {
         $this->prData = $prData;
         $this->project = $project;

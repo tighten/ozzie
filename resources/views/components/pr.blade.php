@@ -32,7 +32,7 @@
         </div>
     </div>
     <modal name="{{ $prData->node_id }}" height="auto" width="800" :scrollable="true">
-        <div class="flex flex-col p-2">
+        <div class="flex flex-col p-6">
             <h3 class="text-4xl text-black-lighter font-medium leading-none">
                 {{ $prData->title }}
                 <span class="ml-2 text-3xl text-grey-dark font-normal">#{{ $prData->number }}</span>
@@ -67,11 +67,13 @@
                     <span class="text-indigo">Files changed</span>
                 </a>
             </div>
-            @if (! empty($prData->body))
             <div class="markdown-body mt-4 bg-white rounded">
+            @if (! empty($prData->body))
                 {!! $prData->body !!}
-            </div>
+            @else
+                <em class="text-grey-darker">No description provided.</em>
             @endif
+            </div>
         </div>
     </modal>
 </li>

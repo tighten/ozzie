@@ -6,75 +6,59 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class PrData extends DataTransferObject
 {
-    public $url;
+    // Identifiers -------------------------------------------------------------
 
     public $id;
-
     public $node_id;
+    public $merge_commit_sha;
 
-    public $html_url;
-
-    public $diff_url;
-
-    public $patch_url;
-
-    public $issue_url;
+    // Details -----------------------------------------------------------------
 
     public $number;
-
-    public $state;
-
-    public $locked;
-
     public $title;
+    public $body;
+    /** @var \App\GitHub\Dto\LabelData[] */
+    public $labels;
+    public $state;
+    public $locked;
+    public $milestone;
+    public $draft;
+
+    // People ------------------------------------------------------------------
 
     /** @var \App\GitHub\Dto\UserData */
     public $user;
-
-    public $body;
-
-    public $created_at;
-
-    public $updated_at;
-
-    public $closed_at;
-
-    public $merged_at;
-
-    public $merge_commit_sha;
-
     public $assignee;
-
     public $assignees;
-
     public $requested_reviewers;
-
+    public $author_association;
     public $requested_teams;
 
-    /** @var \App\GitHub\Dto\LabelData[] */
-    public $labels;
+    // Dates -------------------------------------------------------------------
 
-    public $milestone;
+    public $created_at;
+    public $updated_at;
+    public $closed_at;
+    public $merged_at;
 
-    public $draft;
-
-    public $commits_url;
-
-    public $review_comments_url;
-
-    public $review_comment_url;
-
-    public $comments_url;
-
-    public $statuses_url;
+    // Branches -------------------------------------------------------------------
 
     /** @var \App\GitHub\Dto\HeadData */
     public $head;
-
     /** @var \App\GitHub\Dto\BaseData */
     public $base;
 
-    public $_links;
+    // Urls --------------------------------------------------------------------
 
-    public $author_association;
+    public $html_url;
+    public $url;
+    public $comments_url;
+    public $diff_url;
+    public $patch_url;
+    public $issue_url;
+    public $commits_url;
+    public $review_comments_url;
+    public $review_comment_url;
+    public $statuses_url;
+    public $_links;
 }
