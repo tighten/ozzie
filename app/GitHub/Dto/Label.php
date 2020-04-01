@@ -4,7 +4,7 @@ namespace App\GitHub\Dto;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
-class LabelData extends DataTransferObject
+class Label extends DataTransferObject
 {
     public $id;
     public $node_id;

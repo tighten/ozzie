@@ -4,7 +4,7 @@ namespace App\GitHub\Dto;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
-class BaseData extends DataTransferObject
+class Branch extends DataTransferObject
 {
     public $label;
     public $ref;

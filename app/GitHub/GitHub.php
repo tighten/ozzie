@@ -2,8 +2,8 @@
 
 namespace App\GitHub;
 
-use App\GitHub\Dto\IssueData;
-use App\GitHub\Dto\PrData;
+use App\GitHub\Dto\Issue;
+use App\GitHub\Dto\Pr;
 use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
 
 class GitHub
@@ -12,8 +12,8 @@ class GitHub
     {
         return collect(GitHubClient::issues()->all($namespace, $name))
             ->map(function ($issue) {
-                return new IssueData($issue);
-            })->reject(function (IssueData $issue) {
+                return new Issue($issue);
+            })->reject(function (Issue $issue) {
                 return ! is_null($issue->pull_request);
             });
     }
@@ -22,7 +22,7 @@ class GitHub
     {
         return collect(GitHubClient::pullRequests()->all($namespace, $name))
             ->map(function ($pr) {
-                return new PrData($pr);
+                return new Pr($pr);
             });
     }
 }

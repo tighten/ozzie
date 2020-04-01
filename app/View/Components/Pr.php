@@ -2,7 +2,7 @@
 
 namespace App\View\Components;
 
-use App\GitHub\Dto\PrData;
+use App\GitHub\Dto\Pr as GitHubPr;
 use App\Project;
 use Carbon\Carbon;
 use Illuminate\View\Component;
@@ -13,7 +13,7 @@ class Pr extends Component
     public $prData;
     public $project;
 
-    public function __construct(PrData $prData, Project $project, Parsedown $parsedown)
+    public function __construct(GitHubPr $prData, Project $project, Parsedown $parsedown)
     {
         $this->prData = $prData;
         $this->project = $project;
