@@ -26,7 +26,7 @@
         </div>
         <div class="flex h-10 py-6 w-auto">
             <modal-button modal-id="{{ $prData->node_id }}"></modal-button>
-            <a class="no-underline" href="{{ $prData->html_url }}" target="_blank">
+            <a class="no-underline" href="{{ $prData->html_url }}" target="_blank" aria-label="Launch">
                 @include('svg.launch')
             </a>
         </div>

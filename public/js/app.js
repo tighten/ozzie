@@ -19545,7 +19545,7 @@ var render = function() {
       "button",
       {
         staticClass:
-          "mt-1 h-6 inline-flex items-center px-2 py-1 bg-grey-blue hover:bg-grey-blue-light text-grey-blue-dark font-open-sans font-semibold no-underline leading-none text-xs capitalize rounded",
+          "mt-1 h-6 inline-flex items-center px-2 py-1 bg-grey-blue hover:bg-grey-blue-light text-grey-blue-darkest font-open-sans font-semibold no-underline leading-none text-xs capitalize rounded",
         on: { click: _vm.show }
       },
       [_vm._v("Details\n")]
@@ -31858,8 +31858,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/jsugar/Sites/open-source/ozzie/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/jsugar/Sites/open-source/ozzie/resources/css/main.css */"./resources/css/main.css");
+__webpack_require__(/*! /Users/mattstauffer/Sites/ozzie/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/mattstauffer/Sites/ozzie/resources/css/main.css */"./resources/css/main.css");
 
 
 /***/ })

@@ -26,7 +26,7 @@
     </div>
 
     <div class="py-6 w-auto">
-        <a class="no-underline" href="{{ $issue->html_url }}" target="_blank">
+        <a class="no-underline" href="{{ $issue->html_url }}" target="_blank" aria-label="Launch">
             @include('svg.launch')
         </a>
     </div>

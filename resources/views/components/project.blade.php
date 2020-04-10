@@ -2,7 +2,7 @@
     <section class="flex justify-between items-center py-6 border-b-2 border-clouds"
              id="project-{{ $project->namespace }}-{{ $project->name }}">
         <h2 class="w-1/2 text-2xl text-black font-semibold tracking-wide">
-            <a href="{{ $project->url() }}">
+            <a href="{{ $project->url() }}" aria-label="Launch">
                 {{ $project->namespace }} | {{ $project->name }}
                 @include('svg.launch')
             </a>
