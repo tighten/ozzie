@@ -18,12 +18,13 @@
         </p>
     </section>
 
+
     <section class="flex items-start border-b border-clouds">
         <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">Pull Requests</h3>
 
         <ul class="w-2/3">
             @foreach ($project->prs() as $pr)
-                <x-pr :pr-data="$pr" :project="$project" />
+                <x-pull-request :pr-data="$pr" :project="$project" />
             @endforeach
         </ul>
     </section>

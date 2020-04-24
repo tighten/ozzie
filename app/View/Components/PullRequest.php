@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\View\Component;
 use Parsedown;
 
-class Pr extends Component
+class PullRequest extends Component
 {
     public $prData;
     public $project;
@@ -23,6 +23,6 @@ class Pr extends Component
 
     public function render()
     {
-        return view('components.pr');
+        return view('components.pull-request');
     }
 }
