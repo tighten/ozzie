@@ -4,6 +4,10 @@
 
 @tailwind utilities;
 
+[v-cloak] {
+    display: none;
+}
+
 .hover-pop {
     transition: transform 0.3s ease;
 }
