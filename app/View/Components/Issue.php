@@ -16,7 +16,6 @@ class Issue extends Component
     {
         $this->issue = $issue;
         $this->project = $project;
-        $this->issue->date = Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $issue->created_at);
     }
 
     public function render()

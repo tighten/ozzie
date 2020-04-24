@@ -6,6 +6,17 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class Pr extends DataTransferObject
 {
+    use CastDates;
+
+    public function __construct(array $parameters = [])
+    {
+        parent::__construct($parameters);
+        $this->toCarbon($this->created_at);
+        $this->toCarbon($this->updated_at);
+        $this->toCarbon($this->closed_at);
+        $this->toCarbon($this->merged_at);
+    }
+
     // Identifiers -------------------------------------------------------------
 
     public $id;

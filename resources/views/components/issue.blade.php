@@ -15,7 +15,7 @@
             </a>
             |
             <span class="font-semibold text-grey-darkest">
-                {{ $issue->date->diffForHumans() }}
+                {{ $issue->created_at->diffForHumans() }}
             </span>
             <div>
                 @foreach ($issue->labels as $label)

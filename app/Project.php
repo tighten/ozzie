@@ -73,16 +73,14 @@ class Project
     public function oldPrs()
     {
         return $this->prs()->filter(function ($pr) {
-            $date = Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $pr->created_at);
-            return $date->diff(new DateTime)->days > 30;
+            return $pr->created_at->diff(new DateTime)->days > 30;
         });
     }
 
     public function oldIssues()
     {
         return $this->issues()->filter(function ($issue) {
-            $date = Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $issue->created_at);
-            return $date->diff(new DateTime)->days > 30;
+            return $issue->created_at->diff(new DateTime)->days > 30;
         });
     }
 

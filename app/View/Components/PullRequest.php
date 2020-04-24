@@ -17,7 +17,6 @@ class PullRequest extends Component
     {
         $this->prData = $prData;
         $this->project = $project;
-        $this->prData->date = Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $prData->created_at);
         $this->prData->body = $parsedown->parse($this->prData->body);
     }
 

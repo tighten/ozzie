@@ -2,10 +2,21 @@
 
 namespace App\GitHub\Dto;
 
+use Carbon\Carbon;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class Issue extends DataTransferObject
 {
+    use CastDates;
+
+    public function __construct(array $parameters = [])
+    {
+        parent::__construct($parameters);
+        $this->toCarbon($this->created_at);
+        $this->toCarbon($this->updated_at);
+        $this->toCarbon($this->closed_at);
+    }
+
     // Identifiers -------------------------------------------------------------
 
     public $id;

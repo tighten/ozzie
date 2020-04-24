@@ -14,7 +14,7 @@
                 </a>
                 |
                 <span class="font-semibold text-grey-darkest">
-                    {{ $prData->date->diffForHumans() }}
+                    {{ $prData->created_at->diffForHumans() }}
                 </span>
                 <div>
                     @foreach ($prData->labels as $label)
