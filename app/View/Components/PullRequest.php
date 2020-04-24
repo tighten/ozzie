@@ -4,7 +4,6 @@ namespace App\View\Components;
 
 use App\GitHub\Dto\Pr as GitHubPr;
 use App\Project;
-use Carbon\Carbon;
 use Illuminate\View\Component;
 use Parsedown;
 

@@ -18,10 +18,7 @@
                 </span>
                 <div>
                     @foreach ($prData->labels as $label)
-                        <x-label :project-namespace="$project->namespace"
-                            :project-name="$project->name"
-                            :label="$label">
-                        </x-label>
+                        <x-label :project="$project" :label="$label"></x-label>
                     @endforeach
                 </div>
             </div>

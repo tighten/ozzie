@@ -19,7 +19,7 @@
             </span>
             <div>
                 @foreach ($issue->labels as $label)
-                    <x-label :project-namespace="$project->namespace" :project-name="$project->name" :label="$label"/>
+                    <x-label :project="$project" :label="$label"/>
                 @endforeach
             </div>
         </div>

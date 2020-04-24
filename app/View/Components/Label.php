@@ -3,18 +3,17 @@
 namespace App\View\Components;
 
 use App\GitHub\Dto\Label as GithubLabel;
+use App\Project;
 use Illuminate\View\Component;
 
 class Label extends Component
 {
-    public $projectNamespace;
-    public $projectName;
+    public $project;
     public $label;
 
-    public function __construct(GithubLabel $label, string $projectNamespace, string $projectName)
+    public function __construct(GithubLabel $label, Project $project)
     {
-        $this->projectNamespace = $projectNamespace;
-        $this->projectName = $projectName;
+        $this->project = $project;
         $this->label = $label;
     }
 
