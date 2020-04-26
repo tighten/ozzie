@@ -39,17 +39,17 @@ class Project
 
     public function issues()
     {
-        return $this->issues->reject(function ($pr) {
-            return ! empty($issues['labels'])
-                && collect($issue['labels'])->contains('name', 'in-progress');
+        return $this->issues->reject(function ($issue) {
+            return ! empty($issue->labels)
+                && collect($issue->labels)->contains('name', 'in-progress');
         });
     }
 
     public function prs()
     {
         return $this->prs->reject(function ($pr) {
-            return ! empty($issues['labels'])
-                && collect($issue['labels'])->contains('name', 'in-progress');
+            return ! empty($pr->labels)
+                && collect($pr->labels)->contains('name', 'in-progress');
         });
     }
 
@@ -65,24 +65,22 @@ class Project
     public function hacktoberfestIssues()
     {
         return $this->issues->filter(function ($issue) {
-            return ! empty($issue['labels'])
-                && collect($issue['labels'])->contains('name', 'hacktoberfest');
+            return ! empty($issue->labels)
+                && collect($issue->labels)->contains('name', 'hacktoberfest');
         });
     }
 
     public function oldPrs()
     {
         return $this->prs()->filter(function ($pr) {
-            $date = Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $pr['created_at']);
-            return $date->diff(new DateTime)->days > 30;
+            return $pr->created_at->diff(new DateTime)->days > 30;
         });
     }
 
     public function oldIssues()
     {
         return $this->issues()->filter(function ($issue) {
-            $date = Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $issue['created_at']);
-            return $date->diff(new DateTime)->days > 30;
+            return $issue->created_at->diff(new DateTime)->days > 30;
         });
     }
 
