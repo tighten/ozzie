@@ -1,5 +1,9 @@
 <div>
     <div class="mb-2 py-4 flex justify-between items-end leading-none">
+        <label for="debt-table" class="block text-gray-500 font-bold">
+            <span class="text-sm mr-2">
+                Projects maintained by:
+            </span>
         <select class="p-2 rounded-lg shadow focus:outline-none"
             wire:model="selectedMaintainer">
             <option value="0">All</option>
@@ -9,6 +13,7 @@
                     value="{{ $maintainer }}">{{ '@' . $maintainer }}</option>
             @endforeach
         </select>
+        </label>
         <label wire:key="debt_table" for="debt-table" class="block text-gray-500 font-bold">
             <input class="mr-2 leading-tight"
                 wire:change="$emit('toggleInlineDebtTable')"
