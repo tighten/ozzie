@@ -53,7 +53,8 @@ class DebtTable extends Component
             ->map(fn($project) => $project->maintainers)
             ->flatten()
             ->unique()
-            ->sortKeysDesc()
+            ->sort()
+            ->values()
             ->toArray();
     }
 
