@@ -9,6 +9,8 @@
         <link rel="stylesheet" type="text/css" href="css/main.css">
 
         <title>Ozzie - Tighten</title>
+
+        @livewireStyles
     </head>
 
     <body>
@@ -28,13 +30,10 @@
 
         <div id="app" class="bg-frost font-sans relative z-0">
             <div class="max-w-4xl mx-auto py-6">
-                <x-debt-table :projects="$projects" :hacktoberfest="$hacktoberfest"/>
-
-                @foreach ($projects as $project)
-                    <x-project :project="$project" />
-                @endforeach
+                <livewire:debt-table />
             </div>
         </div>
         <script src="{{ asset('js/app.js') }}" defer></script>
+        @livewireScripts
     </body>
 </html>

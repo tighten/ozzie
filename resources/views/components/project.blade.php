@@ -24,6 +24,7 @@
         </div>
 
         {{--Debt stats--}}
+        @if($inlineDebt)
         <div class="mt-4 rounded-lg shadow">
             <ul class="bg-grey-blue-light flex p-4 rounded-t-lg border-grey border-b-2">
                 <li class="w-1/5 text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide">Debt Score</li>
@@ -51,6 +52,7 @@
                 </ul>
             </section>
         </div>
+        @endif
     </div>
 
     {{--Pull Requests--}}
