@@ -8,8 +8,7 @@ Ozzie
 1. Clone the repo
 2. Run `composer install`
 3. Copy the .env example file: `cp .env.example .env`
-4. Create an Oauth Application on [GitHub](https://github.com/settings/developers);
-  - If you use `php artisan serve` to serve your application locally, you can use the following settings:
+4. Create a [GitHub OAuth Application](https://github.com/settings/developers). If you use `php artisan serve` to serve your application locally, you can use the following settings:
     - Application Name: Local Ozzie
     - Homepage URL: http://127.0.0.1:8000
     - Application Description: Local Version of Ozzie
