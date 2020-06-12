@@ -11,7 +11,7 @@
 </div>
 
 <div class="overflow-x-auto max-w-full">
-<table class="table-auto rounded-lg shadow max-w-full">
+<table class="table-auto rounded-lg shadow w-full">
     <thead class="bg-grey-blue-light border-grey border-b-2 text-left">
         <tr>
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Project Name</th>
@@ -35,8 +35,8 @@
     <tbody class="bg-white rounded-b-lg">
         @foreach ($projects->sortByDesc(function ($project) { return $project->debtScore(); }) as $project)
             <tr class="border-t border-smoke">
-                <td>
-                    <a class="text-indigo no-underline text-md p-4"
+                <td class="p-4">
+                    <a class="text-indigo no-underline text-md p-2 -mx-2"
                        href="#project-{{ $project->namespace }}-{{ $project->name }}">
                         {{ $project->namespace }}/{{ $project->name }}
                     </a>
@@ -53,8 +53,8 @@
                 <td class="text-black-lightest p-4">{{ $project->issues()->count() }}</td>
 
                 @if ($hacktoberfest)
-                    <td>
-                        <a class="text-indigo no-underline p-4"
+                    <td class="p-4">
+                        <a class="text-indigo no-underline p-2 -mx-2"
                            href="https://github.com/{{ $project->namespace }}/{{ $project->name }}/labels/hacktoberfest"
                            target="_blank">
                             {{ $project->hacktoberfestIssues()->count() }}
