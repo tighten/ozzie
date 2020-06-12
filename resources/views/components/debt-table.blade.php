@@ -10,7 +10,8 @@
     @endif
 </div>
 
-<table class="table-auto rounded-lg shadow max-w-full overflow-x-scroll">
+<div class="overflow-x-auto max-w-full">
+<table class="table-auto rounded-lg shadow max-w-full">
     <thead class="bg-grey-blue-light border-grey border-b-2 text-left">
         <tr>
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Project Name</th>
@@ -64,3 +65,4 @@
         @endforeach
     </tbody>
 </table>
+</div>
