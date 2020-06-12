@@ -32,6 +32,7 @@ class Pr extends DataTransferObject
     public $labels;
     public $state;
     public $locked;
+    public $active_lock_reason;
     public $milestone;
     public $draft;
 
