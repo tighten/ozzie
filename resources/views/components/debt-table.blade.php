@@ -10,55 +10,59 @@
     @endif
 </div>
 
-<div class="rounded-lg shadow">
-    <ul class="bg-grey-blue-light flex p-4 rounded-t-lg border-grey border-b-2">
-        <li class="w-2/7 text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide">Project Name</li>
+<div class="overflow-x-auto max-w-full">
+<table class="table-auto rounded-lg shadow w-full">
+    <thead class="bg-grey-blue-light border-grey border-b-2 text-left">
+        <tr>
+            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Project Name</th>
 
-        <li class="w-1/7 text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide">Debt Score</li>
+            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Debt Score</th>
 
-        <li class="w-1/7 text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide">Old Prs</li>
+            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Old Prs</th>
 
-        <li class="w-1/7 text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide">Old Issues</li>
+            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Old Issues</th>
 
-        <li class="w-1/7 text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide">Prs</li>
+            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Prs</th>
 
-        <li class="w-1/7 text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide">Issues</li>
+            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Issues</th>
 
-        @if ($hacktoberfest)
-            <li class="w-4 text-xs">🎃</li>
-        @endif
-    </ul>
+            @if ($hacktoberfest)
+                <th class="text-xs p-4">🎃</th>
+            @endif
+        </tr>
+    </thead>
 
-    <section class="bg-white rounded-b-lg">
+    <tbody class="bg-white rounded-b-lg">
         @foreach ($projects->sortByDesc(function ($project) { return $project->debtScore(); }) as $project)
-            <ul class="flex justify-between list-reset p-3 border-t border-smoke">
-                <li class="w-2/7">
-                    <a class="text-indigo no-underline text-md"
+            <tr class="border-t border-smoke">
+                <td class="p-4">
+                    <a class="text-indigo no-underline text-md p-2 -mx-2"
                        href="#project-{{ $project->namespace }}-{{ $project->name }}">
                         {{ $project->namespace }}/{{ $project->name }}
                     </a>
-                </li>
+                </td>
 
-                <li class="w-1/7 text-black-lightest">{{ number_format($project->debtScore(), 2) }}</li>
+                <td class="text-black-lightest p-4">{{ number_format($project->debtScore(), 2) }}</td>
 
-                <li class="w-1/7 text-black-lightest">{{ $project->oldPrs()->count() }}</li>
+                <td class="text-black-lightest p-4">{{ $project->oldPrs()->count() }}</td>
 
-                <li class="w-1/7 text-black-lightest">{{ $project->oldIssues()->count() }}</li>
+                <td class="text-black-lightest p-4">{{ $project->oldIssues()->count() }}</td>
 
-                <li class="w-1/7 text-black-lightest">{{ $project->prs()->count() }}</li>
+                <td class="text-black-lightest p-4">{{ $project->prs()->count() }}</td>
 
-                <li class="w-1/7 text-black-lightest">{{ $project->issues()->count() }}</li>
+                <td class="text-black-lightest p-4">{{ $project->issues()->count() }}</td>
 
                 @if ($hacktoberfest)
-                    <li class="w-4">
-                        <a class="text-indigo no-underline"
+                    <td class="p-4">
+                        <a class="text-indigo no-underline p-2 -mx-2"
                            href="https://github.com/{{ $project->namespace }}/{{ $project->name }}/labels/hacktoberfest"
                            target="_blank">
                             {{ $project->hacktoberfestIssues()->count() }}
                         </a>
-                    </li>
+                    </td>
                 @endif
-            </ul>
+            </tr>
         @endforeach
-    </section>
+    </tbody>
+</table>
 </div>
