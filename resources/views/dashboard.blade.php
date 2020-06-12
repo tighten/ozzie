@@ -13,7 +13,7 @@
 
     <body>
         <div class="bg-white border-t-4 border-indigo relative z-10 shadow">
-            <section class="max-w-4xl mx-auto">
+            <section class="max-w-4xl mx-auto px-2">
                 <div class="flex justify-between items-center">
                     <h1 class="flex items-center">
                         <span class="text-5xl text-indigo font-montserrat">O</span>
