@@ -18,7 +18,7 @@ class SendOzzieStats extends Notification
         $message = (new SlackMessage)
             ->from('Ozzie', ':robot_face:')
             // Provide a text-only fallback message
-            ->content('Here are your Ozzie stats! %s', config('app.url'))
+            ->content(sprintf('Here are your Ozzie stats! %s', config('app.url')))
             ->block(function ($block) {
                 $block
                     ->type('section')
@@ -76,7 +76,7 @@ class SendOzzieStats extends Notification
                                         $project->issues()->count(),
                                         $project->oldIssues()->count()
                                     ),
-                                ]
+                                ],
                             ]);
                     })
                     ->dividerBlock();
