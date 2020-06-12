@@ -26,8 +26,8 @@
             </section>
         </div>
 
-        <div id="app" class="bg-frost font-sans relative z-0">
-            <div class="max-w-4xl mx-auto py-6">
+        <div id="app" class="bg-frost font-sans relative overflow-x-scroll z-0">
+            <div class="max-w-4xl mx-auto px-2 py-6">
                 <x-debt-table :projects="$projects" :hacktoberfest="$hacktoberfest"/>
 
                 @foreach ($projects as $project)
