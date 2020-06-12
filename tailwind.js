@@ -34,23 +34,7 @@ module.exports = {
 
       'halloween-orange': '#e4730b',
     },
-    extend: {
-      fontFamily: {
-        'montserrat': [
-          'Montserrat',
-          'sans-serif'
-        ],
-        'open-sans': [
-          'Open Sans',
-          'sans-serif',
-        ],
-      },
-      width: {
-        '1/7': '14.8571428%',
-        '2/7': '28.57142857%',
-        '3/7': '42.85714285%',
-      },
-    },
+    extend: {},
   },
   variants: {},
   plugins: [],

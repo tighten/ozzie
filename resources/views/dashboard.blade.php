@@ -5,7 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,700" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/main.css">
 
         <title>Ozzie - Tighten</title>
@@ -16,12 +15,12 @@
             <section class="max-w-4xl mx-auto px-2">
                 <div class="flex justify-between items-center">
                     <h1 class="flex items-center">
-                        <span class="text-5xl text-indigo font-montserrat">O</span>
+                        <span class="font-light text-5xl text-indigo">O</span>
 
-                        <span class="uppercase text-2xl leading-normal text-black-light font-semibold font-open-sans tracking-wide">zzie</span>
+                        <span class="uppercase text-2xl leading-normal text-black-light font-semibold font-sans tracking-wide">zzie</span>
                     </h1>
 
-                    <p class="font-open-sans italic font-normal leading-normal tracking-tight text-grey-blue-darkest">Addressing our open source debt</p>
+                    <p class="font-sans italic font-normal leading-normal tracking-tight text-grey-blue-darkest">Addressing our open source debt</p>
                 </div>
             </section>
         </div>
