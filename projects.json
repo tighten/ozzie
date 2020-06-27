@@ -1,5 +1,27 @@
 [
     {
+        "name": "checkmate",
+        "namespace": "tightenco",
+        "maintainers": [
+            "ctroms",
+            "marcusmoore"
+        ]
+    },
+    {
+        "name": "collect",
+        "namespace": "tightenco",
+        "maintainers": [
+            "jamisonvalenta"
+        ]
+    },
+    {
+        "name": "confomo",
+        "namespace": "tightenco",
+        "maintainers": [
+            "mattstauffer"
+        ]
+    },
+    {
         "name": "giscus",
         "namespace": "tightenco",
         "maintainers": [
@@ -16,20 +38,6 @@
         ]
     },
     {
-        "name": "mailthief",
-        "namespace": "tightenco",
-        "maintainers": [
-            "mattstauffer"
-        ]
-    },
-    {
-        "name": "collect",
-        "namespace": "tightenco",
-        "maintainers": [
-            "jamisonvalenta"
-        ]
-    },
-    {
         "name": "jigsaw",
         "namespace": "tightenco",
         "maintainers": [
@@ -39,62 +47,7 @@
         ]
     },
     {
-        "name": "symposium",
-        "namespace": "tightenco",
-        "maintainers": [
-            "andrewmile",
-            "sariyana"
-        ]
-    },
-    {
-        "name": "confomo",
-        "namespace": "tightenco",
-        "maintainers": [
-            "mattstauffer"
-        ]
-    },
-    {
-        "name": "quicksand",
-        "namespace": "tightenco",
-        "maintainers": [
-            "josecanhelp",
-            "imjohnbon"
-        ]
-    },
-    {
-        "name": "lambo",
-        "namespace": "tightenco",
-        "maintainers": [
-            "mattstauffer"
-        ]
-    },
-    {
-        "name": "ziggy",
-        "namespace": "tightenco",
-        "maintainers": [
-            "jakebathman",
-            "mattstauffer",
-            "bakerkretzmar"
-        ]
-    },
-    {
-        "name": "tlint",
-        "namespace": "tightenco",
-        "maintainers": [
-            "loganhenson",
-            "andrewmile"
-        ]
-    },
-    {
-        "name": "ozzie",
-        "namespace": "tightenco",
-        "maintainers": [
-            "jakebathman",
-            "sbine"
-        ]
-    },
-    {
-        "name": "jigsaw-site",
+        "name": "jigsaw-blog-template",
         "namespace": "tightenco",
         "maintainers": [
             "damiani",
@@ -112,14 +65,7 @@
         ]
     },
     {
-        "name": "onramp",
-        "namespace": "tightenco",
-        "maintainers": [
-            "mattstauffer"
-        ]
-    },
-    {
-        "name": "jigsaw-blog-template",
+        "name": "jigsaw-site",
         "namespace": "tightenco",
         "maintainers": [
             "damiani",
@@ -128,11 +74,65 @@
         ]
     },
     {
-        "name": "checkmate",
+        "name": "lambo",
         "namespace": "tightenco",
         "maintainers": [
-            "ctroms",
-            "marcusmoore"
+            "mattstauffer"
+        ]
+    },
+    {
+        "name": "mailthief",
+        "namespace": "tightenco",
+        "maintainers": [
+            "mattstauffer"
+        ]
+    },
+    {
+        "name": "onramp",
+        "namespace": "tightenco",
+        "maintainers": [
+            "mattstauffer"
+        ]
+    },
+    {
+        "name": "ozzie",
+        "namespace": "tightenco",
+        "maintainers": [
+            "jakebathman",
+            "sbine"
+        ]
+    },
+    {
+        "name": "quicksand",
+        "namespace": "tightenco",
+        "maintainers": [
+            "josecanhelp",
+            "imjohnbon"
+        ]
+    },
+    {
+        "name": "symposium",
+        "namespace": "tightenco",
+        "maintainers": [
+            "andrewmile",
+            "sariyana"
+        ]
+    },
+    {
+        "name": "tlint",
+        "namespace": "tightenco",
+        "maintainers": [
+            "loganhenson",
+            "andrewmile"
+        ]
+    },
+    {
+        "name": "ziggy",
+        "namespace": "tightenco",
+        "maintainers": [
+            "jakebathman",
+            "mattstauffer",
+            "bakerkretzmar"
         ]
     }
 ]
