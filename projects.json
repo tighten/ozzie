@@ -25,16 +25,14 @@
         "name": "giscus",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer",
-            "jakebathman"
+            "mattstauffer"
         ]
     },
     {
         "name": "gistlog",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer",
-            "imjohnbon"
+            "mattstauffer"
         ]
     },
     {
@@ -106,8 +104,7 @@
         "name": "quicksand",
         "namespace": "tightenco",
         "maintainers": [
-            "josecanhelp",
-            "imjohnbon"
+            "mattstauffer"
         ]
     },
     {
