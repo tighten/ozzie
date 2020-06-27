@@ -15,20 +15,6 @@
         ]
     },
     {
-        "name": "confomo",
-        "namespace": "tightenco",
-        "maintainers": [
-            "mattstauffer"
-        ]
-    },
-    {
-        "name": "giscus",
-        "namespace": "tightenco",
-        "maintainers": [
-            "mattstauffer"
-        ]
-    },
-    {
         "name": "gistlog",
         "namespace": "tightenco",
         "maintainers": [
