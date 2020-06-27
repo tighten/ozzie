@@ -26,8 +26,7 @@
         "name": "collect",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer",
-            "damiani"
+            "jamisonvalenta"
         ]
     },
     {
@@ -35,6 +34,7 @@
         "namespace": "tightenco",
         "maintainers": [
             "damiani",
+            "bakerkretzmar",
             "darkboywonder"
         ]
     },
@@ -43,7 +43,7 @@
         "namespace": "tightenco",
         "maintainers": [
             "andrewmile",
-            "josecanhelp"
+            "sariyana"
         ]
     },
     {
@@ -65,16 +65,16 @@
         "name": "lambo",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer",
-            "andrewmile"
+            "mattstauffer"
         ]
     },
     {
         "name": "ziggy",
         "namespace": "tightenco",
         "maintainers": [
-            "DanielCoulbourne",
-            "jakebathman"
+            "jakebathman",
+            "mattstauffer",
+            "bakerkretzmar"
         ]
     },
     {
@@ -89,7 +89,6 @@
         "name": "ozzie",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer",
             "jakebathman",
             "sbine"
         ]
@@ -99,6 +98,7 @@
         "namespace": "tightenco",
         "maintainers": [
             "damiani",
+            "bakerkretzmar",
             "darkboywonder"
         ]
     },
@@ -107,6 +107,7 @@
         "namespace": "tightenco",
         "maintainers": [
             "damiani",
+            "bakerkretzmar",
             "darkboywonder"
         ]
     },
@@ -114,8 +115,7 @@
         "name": "onramp",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer",
-            "sariyana"
+            "mattstauffer"
         ]
     },
     {
@@ -123,15 +123,16 @@
         "namespace": "tightenco",
         "maintainers": [
             "damiani",
+            "bakerkretzmar",
             "darkboywonder"
         ]
     },
     {
-        "name": "version-check",
+        "name": "checkmate",
         "namespace": "tightenco",
         "maintainers": [
-            "jakebathman",
-            "ctroms"
+            "ctroms",
+            "marcusmoore"
         ]
     }
 ]
