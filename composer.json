@@ -1,7 +1,8 @@
 {
     "name": "tightenco/ozzie",
-    "description": "Manage open source projects.",
-    "keywords": ["open source", "laravel"],
+    "description": "A dashboard to manage open source projects.",
+    "keywords": ["open source", "laravel", "tightenco"],
+    "homepage": "https://github.com/tightenco/ozzie",
     "license": "MIT",
     "type": "project",
     "require": {
