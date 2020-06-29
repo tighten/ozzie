@@ -42,7 +42,7 @@ class SendOzzieStats extends Notification
         })->each(function ($project) use ($message) {
             $message->attachment(function ($attachment) use ($project) {
                 $scoreMoji = $project->debtScore() < 1 ? ':white_check_mark: ' : ':warning: ';
-                $hexColor = $project->debtScore() < 1 ? '#44AB31': '#F9C336';
+                $hexColor = $project->debtScore() < 1 ? '#44AB31' : '#F9C336';
                 $attachment
                     ->color($hexColor)
                     ->block(function ($block) use ($project) {

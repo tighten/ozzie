@@ -41,18 +41,18 @@ return [
     'connections' => [
 
         'main' => [
-            'token'      => 'your-token',
-            'method'     => 'token',
+            'token' => 'your-token',
+            'method' => 'token',
             // 'backoff'    => false,
-            'cache'      => true,
+            'cache' => true,
             // 'version'    => 'v3',
             // 'enterprise' => false,
         ],
 
         'app' => [
-            'clientId'     => env('GITHUB_CLIENT_ID'),
+            'clientId' => env('GITHUB_CLIENT_ID'),
             'clientSecret' => env('GITHUB_CLIENT_SECRET'),
-            'method'       => 'application',
+            'method' => 'application',
             // 'backoff'      => false,
             // 'cache'        => false,
             // 'version'      => 'v3',
@@ -60,8 +60,8 @@ return [
         ],
 
         'jwt' => [
-            'token'        => 'your-jwt-token',
-            'method'       => 'jwt',
+            'token' => 'your-jwt-token',
+            'method' => 'jwt',
             // 'backoff'      => false,
             // 'cache'        => false,
             // 'version'      => 'v3',
@@ -69,9 +69,9 @@ return [
         ],
 
         'other' => [
-            'username'   => 'your-username',
-            'password'   => 'your-password',
-            'method'     => 'password',
+            'username' => 'your-username',
+            'password' => 'your-password',
+            'method' => 'password',
             // 'backoff'    => false,
             // 'cache'      => false,
             // 'version'    => 'v3',

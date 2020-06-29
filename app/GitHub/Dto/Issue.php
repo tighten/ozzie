@@ -2,7 +2,6 @@
 
 namespace App\GitHub\Dto;
 
-use Carbon\Carbon;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class Issue extends DataTransferObject
