@@ -1,18 +1,67 @@
 [
     {
-        "name": "giscus",
+        "name": "checkmate",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer",
-            "jakebathman"
+            "ctroms",
+            "marcusmoore"
+        ]
+    },
+    {
+        "name": "collect",
+        "namespace": "tightenco",
+        "maintainers": [
+            "jamisonvalenta"
         ]
     },
     {
         "name": "gistlog",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer",
-            "imjohnbon"
+            "mattstauffer"
+        ]
+    },
+    {
+        "name": "jigsaw",
+        "namespace": "tightenco",
+        "maintainers": [
+            "damiani",
+            "bakerkretzmar",
+            "darkboywonder"
+        ]
+    },
+    {
+        "name": "jigsaw-blog-template",
+        "namespace": "tightenco",
+        "maintainers": [
+            "damiani",
+            "bakerkretzmar",
+            "darkboywonder"
+        ]
+    },
+    {
+        "name": "jigsaw-docs-template",
+        "namespace": "tightenco",
+        "maintainers": [
+            "damiani",
+            "bakerkretzmar",
+            "darkboywonder"
+        ]
+    },
+    {
+        "name": "jigsaw-site",
+        "namespace": "tightenco",
+        "maintainers": [
+            "damiani",
+            "bakerkretzmar",
+            "darkboywonder"
+        ]
+    },
+    {
+        "name": "lambo",
+        "namespace": "tightenco",
+        "maintainers": [
+            "mattstauffer"
         ]
     },
     {
@@ -23,19 +72,25 @@
         ]
     },
     {
-        "name": "collect",
+        "name": "onramp",
         "namespace": "tightenco",
         "maintainers": [
-            "mattstauffer",
-            "damiani"
+            "mattstauffer"
         ]
     },
     {
-        "name": "jigsaw",
+        "name": "ozzie",
         "namespace": "tightenco",
         "maintainers": [
-            "damiani",
-            "darkboywonder"
+            "jakebathman",
+            "sbine"
+        ]
+    },
+    {
+        "name": "quicksand",
+        "namespace": "tightenco",
+        "maintainers": [
+            "mattstauffer"
         ]
     },
     {
@@ -43,38 +98,7 @@
         "namespace": "tightenco",
         "maintainers": [
             "andrewmile",
-            "josecanhelp"
-        ]
-    },
-    {
-        "name": "confomo",
-        "namespace": "tightenco",
-        "maintainers": [
-            "mattstauffer"
-        ]
-    },
-    {
-        "name": "quicksand",
-        "namespace": "tightenco",
-        "maintainers": [
-            "josecanhelp",
-            "imjohnbon"
-        ]
-    },
-    {
-        "name": "lambo",
-        "namespace": "tightenco",
-        "maintainers": [
-            "mattstauffer",
-            "andrewmile"
-        ]
-    },
-    {
-        "name": "ziggy",
-        "namespace": "tightenco",
-        "maintainers": [
-            "DanielCoulbourne",
-            "jakebathman"
+            "sariyana"
         ]
     },
     {
@@ -86,52 +110,12 @@
         ]
     },
     {
-        "name": "ozzie",
-        "namespace": "tightenco",
-        "maintainers": [
-            "mattstauffer",
-            "jakebathman",
-            "sbine"
-        ]
-    },
-    {
-        "name": "jigsaw-site",
-        "namespace": "tightenco",
-        "maintainers": [
-            "damiani",
-            "darkboywonder"
-        ]
-    },
-    {
-        "name": "jigsaw-docs-template",
-        "namespace": "tightenco",
-        "maintainers": [
-            "damiani",
-            "darkboywonder"
-        ]
-    },
-    {
-        "name": "onramp",
-        "namespace": "tightenco",
-        "maintainers": [
-            "mattstauffer",
-            "sariyana"
-        ]
-    },
-    {
-        "name": "jigsaw-blog-template",
-        "namespace": "tightenco",
-        "maintainers": [
-            "damiani",
-            "darkboywonder"
-        ]
-    },
-    {
-        "name": "version-check",
+        "name": "ziggy",
         "namespace": "tightenco",
         "maintainers": [
             "jakebathman",
-            "ctroms"
+            "mattstauffer",
+            "bakerkretzmar"
         ]
     }
 ]
