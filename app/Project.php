@@ -40,7 +40,7 @@ class Project
     {
         return $this->issues->reject(function ($issue) {
             return ! empty($issue->labels)
-                && collect($issue->labels)->contains('name', 'in-progress');
+                && collect($issue->labels)->contains('name', 'in progress');
         });
     }
 
@@ -49,7 +49,7 @@ class Project
         return $this->prs->reject(function ($pr) {
             return $pr->draft || (
                     ! empty($pr->labels)
-                    && collect($pr->labels)->contains('name', 'in-progress')
+                    && collect($pr->labels)->contains('name', 'in progress')
                 );
         });
     }
