@@ -73,4 +73,6 @@ class Pr extends DataTransferObject
     public $review_comment_url;
     public $statuses_url;
     public $_links;
+
+    protected $ignoreMissing = true;
 }

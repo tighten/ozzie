@@ -13,4 +13,6 @@ class Label extends DataTransferObject
     public $color;
     public $default;
     public $description;
+
+    protected $ignoreMissing = true;
 }
