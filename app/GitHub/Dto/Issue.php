@@ -57,4 +57,6 @@ class Issue extends DataTransferObject
     public $labels_url;
     public $comments_url;
     public $events_url;
+
+    protected $ignoreMissing = true;
 }

@@ -24,4 +24,6 @@ class User extends DataTransferObject
     public $received_events_url;
     public $type;
     public $site_admin;
+
+    protected $ignoreMissing = true;
 }

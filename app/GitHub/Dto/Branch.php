@@ -11,4 +11,6 @@ class Branch extends DataTransferObject
     public $sha;
     public $user;
     public $repo;
+
+    protected $ignoreMissing = true;
 }
