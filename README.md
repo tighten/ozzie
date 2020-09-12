@@ -1,4 +1,4 @@
-![Ozzie logo](https://raw.githubusercontent.com/tightenco/ozzie/master/ozzie-banner.png)
+![Ozzie logo](https://raw.githubusercontent.com/tighten/ozzie/master/ozzie-banner.png)
 
 Ozzie
 ======
@@ -51,7 +51,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [All Contributors](https://github.com/tightenco/ozzie/graphs/contributors)
+- [All Contributors](https://github.com/tighten/ozzie/graphs/contributors)
 
 ## License
 
