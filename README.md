@@ -1,7 +1,7 @@
-![Ozzie logo](https://raw.githubusercontent.com/tighten/ozzie/master/ozzie-banner.png)
+![Ozzie logo](https://raw.githubusercontent.com/tighten/ozzie/main/ozzie-banner.png)
 
-Ozzie
-======
+# Ozzie
+
 **Ozzie** is Tighten's open source projects monitor. Each project is assigned a "debt score" based on how many open issues/PRs there are, and how old they are.
 
 ## Local Development
@@ -22,6 +22,7 @@ Ozzie
 ### Compiling the Frontend Assets
 
 Use Laravel Mix to automatically compile JS/CSS on save:
+
 ```bash
 npm run watch
 ```
@@ -31,16 +32,19 @@ npm run watch
 This project uses [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) to fix PHP, [Prettier](https://prettier.io/) to fix JS, and [StyleLint](https://stylelint.io/) to lint & fix CSS.
 
 To automatically fix PHP:
+
 ```bash
 composer fix
 ```
 
 To automatically fix JS:
+
 ```bash
 npm run fix-js
 ```
 
 To automatically fix CSS:
+
 ```bash
 npm run fix-css
 ```
@@ -51,9 +55,8 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [All Contributors](https://github.com/tighten/ozzie/graphs/contributors)
+-   [All Contributors](https://github.com/tighten/ozzie/graphs/contributors)
 
 ## License
 
 The MIT License (MIT). Please see [LICENSE](LICENSE.md) for details.
-
