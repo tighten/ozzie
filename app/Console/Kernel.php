@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\CreateProjectSnapshot::class,
+        \App\Console\Commands\CreateProjectSnapshot::class,
     ];
 
     /**
@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('snapshot:today')
-                 ->daily();
+            ->daily();
 
         $schedule->command('stats:slack')
             ->weekly()

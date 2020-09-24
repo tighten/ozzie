@@ -49,6 +49,30 @@ To automatically fix CSS:
 npm run fix-css
 ```
 
+## Projects and Daily Caching
+
+Projects are currently stored in a JSON file, `projects.json` in the root directory.
+
+```json
+[
+    {
+        "name": "ozzie",
+        "namespace": "tightenco",
+        "maintainers": [
+            "mattstauffer"
+        ]
+    },
+]
+```
+
+The scores and info for each project are cached no more than daily using the `snapshot:today` command. This can be run manually, but is scheduled to run daily. Make sure to run the scheduler when deployed.
+
+Ad-hoc or updated caching can be run using the `-f` flag to force all project data to be updated for today's date:
+
+```bash
+php artisan snapshot:today -f
+```
+
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
