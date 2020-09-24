@@ -4,8 +4,6 @@ namespace App;
 
 use DateTime;
 use Exception;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
 class Project
 {
@@ -26,16 +24,6 @@ class Project
 
         $this->hydratePrs();
         $this->hydrateIssues();
-    }
-
-    protected function hydrateIssues()
-    {
-        $this->issues = $this->github->projectIssues($this->namespace, $this->name);
-    }
-
-    protected function hydratePrs()
-    {
-        $this->prs = $this->github->projectPrs($this->namespace, $this->name);
     }
 
     public function issues()
@@ -100,5 +88,15 @@ class Project
     public function url()
     {
         return 'https://github.com/' . $this->namespace . '/' . $this->name;
+    }
+
+    protected function hydrateIssues()
+    {
+        $this->issues = $this->github->projectIssues($this->namespace, $this->name);
+    }
+
+    protected function hydratePrs()
+    {
+        $this->prs = $this->github->projectPrs($this->namespace, $this->name);
     }
 }
