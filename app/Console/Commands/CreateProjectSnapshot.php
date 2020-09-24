@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Project;
+use App\Projects;
 use App\Snapshot;
 use Illuminate\Console\Command;
 
@@ -17,7 +18,7 @@ class CreateProjectSnapshot extends Command
     public function handle()
     {
         // Get a collection of projects from projects.json that don't have a snapshot for today
-        $projects = $this->fetchProjects();
+        $projects = $this->getProjectsToSnapshot();
 
         if ($projects->isEmpty()) {
             $this->line('No projects need snapshots for ' . now()->format('Y-m-d'));
@@ -53,9 +54,9 @@ class CreateProjectSnapshot extends Command
         return 0;
     }
 
-    protected function fetchProjects()
+    protected function getProjectsToSnapshot()
     {
-        $projects = collect(json_decode(file_get_contents(base_path('projects.json'))));
+        $projects = (new Projects)->all();
 
         if ($this->option('force')) {
             // Return the full list of projects without filtering

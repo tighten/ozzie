@@ -67,11 +67,13 @@ Projects are currently stored in a JSON file, `projects.json` in the root direct
 
 The scores and info for each project are cached no more than daily using the `snapshot:today` command. This can be run manually, but is scheduled to run daily. Make sure to run the scheduler when deployed.
 
-Ad-hoc or updated caching can be run using the `-f` flag to force all project data to be updated for today's date:
+Updating this cache manually using the `-f` flag to force all project data to be updated for today's date:
 
 ```bash
 php artisan snapshot:today -f
 ```
+
+This does not create a new snapshot for the day; any existing project data for today is updated, and missing projects have a new snapshot created.
 
 ## Contributing
 
