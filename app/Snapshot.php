@@ -12,4 +12,9 @@ class Snapshot extends Model
     {
         return $query->whereDate('created_at', '=', now()->format('Y-m-d'));
     }
+
+    public function project()
+    {
+        return $this->belongsTo('App\SnapshotProject');
+    }
 }
