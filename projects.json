@@ -72,6 +72,13 @@
         ]
     },
     {
+        "name": "novapackages",
+        "namespace": "tighten",
+        "maintainers": [
+            "mattstauffer"
+        ]
+    },
+    {
         "name": "onramp",
         "namespace": "tighten",
         "maintainers": [
