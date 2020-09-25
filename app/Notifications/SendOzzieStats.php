@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\Projects;
+use App\Project;
 use Illuminate\Notifications\Notification;
 use NathanHeffley\LaravelSlackBlocks\Messages\SlackMessage;
 
@@ -37,7 +37,7 @@ class SendOzzieStats extends Notification
                     ]);
             });
 
-        app(Projects::class)->all()->sortByDesc(function ($project) {
+        Project::all()->sortByDesc(function ($project) {
             return $project->debtScore();
         })->each(function ($project) use ($message) {
             $message->attachment(function ($attachment) use ($project) {
@@ -72,9 +72,9 @@ class SendOzzieStats extends Notification
                                     'type' => 'mrkdwn',
                                     'text' => sprintf(
                                         "PRs: %s (*%s old*)\t\t\tIssues: %s (*%s old*)",
-                                        $project->prs()->count(),
-                                        $project->oldPrs()->count(),
-                                        $project->issues()->count(),
+                                        $project->pull_requests_count,
+                                        $project->oldPullRequests()->count(),
+                                        $project->issues_count,
                                         $project->oldIssues()->count()
                                     ),
                                 ],

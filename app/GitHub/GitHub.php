@@ -3,14 +3,23 @@
 namespace App\GitHub;
 
 use App\GitHub\Dto\Issue;
-use App\GitHub\Dto\Pr;
+use App\GitHub\Dto\PullRequest;
 use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
 
 class GitHub
 {
-    public function projectIssues($namespace, $name)
+    public $name;
+    public $namespace;
+
+    public function __construct($namespace, $name)
     {
-        return collect(GitHubClient::issues()->all($namespace, $name))
+       $this->namespace = $namespace;
+       $this->name = $name;
+    }
+
+    public function projectIssues()
+    {
+        return collect(GitHubClient::issues()->all($this->namespace, $this->name))
             ->map(function ($issue) {
                 return new Issue($issue);
             })->reject(function (Issue $issue) {
@@ -18,11 +27,11 @@ class GitHub
             });
     }
 
-    public function projectPrs($namespace, $name)
+    public function projectPullRequests()
     {
-        return collect(GitHubClient::pullRequests()->all($namespace, $name))
-            ->map(function ($pr) {
-                return new Pr($pr);
+        return collect(GitHubClient::pullRequests()->all($this->namespace, $this->name))
+            ->map(function ($pullRequest) {
+                return new PullRequest($pullRequest);
             });
     }
 }

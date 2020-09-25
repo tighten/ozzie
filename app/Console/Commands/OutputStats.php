@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Projects;
+use App\Project;
 use Illuminate\Console\Command;
 
 class OutputStats extends Command
@@ -11,13 +11,13 @@ class OutputStats extends Command
 
     protected $description = 'Output project stats to the console';
 
-    public function handle(Projects $projects)
+    public function handle()
     {
         $this->info("\n");
 
         $this->table(
             ['Project', 'Debt Score'],
-            $projects->all()->sortByDesc(function ($project) {
+            Project::all()->sortByDesc(function ($project) {
                 return $project->debtScore();
             })->map(function ($project) {
                 return [

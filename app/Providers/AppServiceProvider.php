@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         // @todo: Bind to a non-internet-required version optionally based on flag in .env
-        app()->bind('mygithub', function () {
+        app()->bind('githubClient', function () {
             return new GitHub;
         });
     }

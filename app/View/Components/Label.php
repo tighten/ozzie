@@ -13,8 +13,8 @@ class Label extends Component
 
     public function __construct(GithubLabel $label, Project $project)
     {
-        $this->project = $project;
         $this->label = $label;
+        $this->project = $project;
     }
 
     public function render()

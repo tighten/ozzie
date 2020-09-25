@@ -11,9 +11,9 @@ class Issue extends Component
     public $issue;
     public $project;
 
-    public function __construct(GitHubIssue $issue, Project $project)
+    public function __construct($issue, Project $project)
     {
-        $this->issue = $issue;
+        $this->issue = new GitHubIssue($issue);
         $this->project = $project;
     }
 

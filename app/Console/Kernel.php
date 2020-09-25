@@ -28,6 +28,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('snapshot:today')
             ->daily();
 
+        $schedule->command('stats:fetch')
+            ->hourly();
+
         $schedule->command('stats:slack')
             ->weekly()
             ->fridays()

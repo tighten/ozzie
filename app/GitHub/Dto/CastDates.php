@@ -11,6 +11,7 @@ trait CastDates
         if (is_null($date)) {
             return;
         }
-        $date = Carbon::createFromFormat('Y-m-d\TG:i:s\Z', $date);
+
+        $date = Carbon::parse($date);
     }
 }
