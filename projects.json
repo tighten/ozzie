@@ -124,5 +124,13 @@
             "mattstauffer",
             "bakerkretzmar"
         ]
+    },
+    {
+        "name": "takeout",
+        "namespace": "tighten",
+        "maintainers": [
+            "josecanhelp",
+            "mattstauffer"
+        ]
     }
 ]
