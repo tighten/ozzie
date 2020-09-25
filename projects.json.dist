@@ -124,6 +124,7 @@
         "namespace": "tighten",
         "packagist_name": "tightenco/onramp",
         "maintainers": [
+            "tammytee",
             "mattstauffer"
         ]
     },
