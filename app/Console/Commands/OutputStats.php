@@ -21,7 +21,7 @@ class OutputStats extends Command
                 return $project->debtScore();
             })->map(function ($project) {
                 return [
-                    $project->name,
+                    sprintf('%s/%s', $project->namespace, $project->name),
                     $this->formatDebtScore($project->debtScore()),
                 ];
             })
