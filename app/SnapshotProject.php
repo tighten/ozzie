@@ -8,6 +8,7 @@ class SnapshotProject extends Model
 {
     protected $guarded = [];
     protected $table = 'projects';
+    public $timestamps = false;
 
     public function snapshots()
     {

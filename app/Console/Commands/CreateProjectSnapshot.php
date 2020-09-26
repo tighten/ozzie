@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Project;
 use App\Projects;
 use App\Snapshot;
+use App\SnapshotProject;
 use Illuminate\Console\Command;
 
 class CreateProjectSnapshot extends Command
@@ -32,11 +33,15 @@ class CreateProjectSnapshot extends Command
         $projects->each(function ($project) {
             $project = new Project($project->namespace, $project->name, $project->maintainers);
 
-            $this->updateProgress($project->name);
+            $this->updateProgress($project);
+
+            $snapshotProject = SnapshotProject::firstOrCreate(
+                ['namespace' => $project->namespace, 'name' => $project->name]
+            );
 
             Snapshot::updateOrCreate(
                 [
-                    'name' => $project->name,
+                    'project_id' => $snapshotProject->id,
                     'snapshot_date' => now()->format('Y-m-d'),
                 ],
                 [
@@ -63,11 +68,15 @@ class CreateProjectSnapshot extends Command
             return $projects;
         }
 
-        $completedSnapshots = Snapshot::today()->get()->pluck('name');
+        $completedSnapshots = Snapshot::with('project')->today()->get()->map(function ($snapshot) {
+            return sprintf('%s/%s', $snapshot->project->namespace, $snapshot->project->name);
+        });
 
         // Only return projects that don't have a snapshot record for today
         return $projects->filter(function ($project) use ($completedSnapshots) {
-            return ! $completedSnapshots->contains($project->name);
+            return ! $completedSnapshots->contains(
+                sprintf('%s/%s', $project->namespace, $project->name)
+            );
         });
     }
 
@@ -78,7 +87,7 @@ class CreateProjectSnapshot extends Command
         if ($current) {
             // Display current task context above the progress bar
             $this->bar->clear();
-            $this->line("... {$current}");
+            $this->line("... {$current->namespace}/{$current->name}");
             $this->bar->display();
         }
     }

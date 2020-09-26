@@ -10,7 +10,7 @@ class Snapshot extends Model
 
     public function scopeToday($query)
     {
-        return $query->whereDate('created_at', '=', now()->format('Y-m-d'));
+        return $query->whereDate('snapshot_date', '=', now()->format('Y-m-d'));
     }
 
     public function project()
