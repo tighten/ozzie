@@ -65,7 +65,7 @@ Projects are currently stored in a JSON file, `projects.json` in the root direct
 ]
 ```
 
-The scores and info for each project are cached no more than daily using the `snapshot:today` command. This can be run manually, but is scheduled to run daily. Make sure to run the scheduler when deployed.
+The scores and info for each project are snapshotted daily using the `snapshot:today` command. This can be run manually, but is scheduled to run daily. Make sure to run the scheduler when deployed.
 
 To update daily snapshots for all projects, use the `-f` flag:
 
