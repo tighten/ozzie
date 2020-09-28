@@ -11,7 +11,7 @@ class CreateSnapshotsTable extends Migration
         Schema::create('snapshots', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('snapshot_date');
+            $table->date('snapshot_date');
             $table->string('debt_score')->default(0);
             $table->integer('pull_request_count')->default(0);
             $table->integer('old_pull_request_count')->default(0);

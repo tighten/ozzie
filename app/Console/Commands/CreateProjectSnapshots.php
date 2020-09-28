@@ -6,19 +6,19 @@ use App\Project;
 use App\Projects;
 use App\Snapshot;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
-class CreateProjectSnapshot extends Command
+class CreateProjectSnapshots extends Command
 {
-    protected $signature = 'snapshot:today {--f|force : Snapshot all projects, updating any existing data for today}';
+    protected $signature = 'snapshot:today {--f|force : Force an update of any snapshots captured today}';
 
-    protected $description = 'Create a snapshot of the current status of all GitHub projects.';
+    protected $description = "Create a snapshot of the current status of all projects' scores.";
 
     protected $bar;
 
     public function handle()
     {
-        // Get a collection of projects from projects.json that don't have a snapshot for today
-        $projects = $this->getProjectsToSnapshot();
+        $projects = $this->projectsToSnapshot();
 
         if ($projects->isEmpty()) {
             $this->line('No projects need snapshots for ' . now()->format('Y-m-d'));
@@ -26,13 +26,12 @@ class CreateProjectSnapshot extends Command
             return 0;
         }
 
-        $this->line("Getting snapshot for {$projects->count()} projects");
-        $this->bar = $this->output->createProgressBar($projects->count());
+        $this->createProgressBar($projects->count());
 
         $projects->each(function ($project) {
             $project = new Project($project->namespace, $project->name, $project->maintainers);
 
-            $this->updateProgress($project->name);
+            $this->updateProgressBar($project->name);
 
             Snapshot::updateOrCreate(
                 [
@@ -54,12 +53,12 @@ class CreateProjectSnapshot extends Command
         return 0;
     }
 
-    protected function getProjectsToSnapshot()
+    protected function projectsToSnapshot()
     {
         $projects = (new Projects)->all();
 
         if ($this->option('force')) {
-            // Return the full list of projects without filtering
+            // Require updating for all projects, whether or not they've already had a snapshot captured today
             return $projects;
         }
 
@@ -71,15 +70,19 @@ class CreateProjectSnapshot extends Command
         });
     }
 
-    protected function updateProgress($current = null)
+    protected function createProgressBar($count)
+    {
+        $this->line("Getting snapshot for {$count} " . Str::plural('project', $count));
+        $this->bar = $this->output->createProgressBar($count);
+    }
+
+    protected function updateProgressBar($current)
     {
         $this->bar->advance();
 
-        if ($current) {
-            // Display current task context above the progress bar
-            $this->bar->clear();
-            $this->line("... {$current}");
-            $this->bar->display();
-        }
+        // Display current task context above the progress bar
+        $this->bar->clear();
+        $this->line("... {$current}");
+        $this->bar->display();
     }
 }
