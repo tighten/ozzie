@@ -49,6 +49,30 @@ To automatically fix CSS:
 npm run fix-css
 ```
 
+## Projects and Daily Caching
+
+The list of projects is currently stored in a JSON file, `projects.json`, in the root directory.
+
+```json
+[
+    {
+        "name": "ozzie",
+        "namespace": "tightenco",
+        "maintainers": [
+            "mattstauffer"
+        ]
+    },
+]
+```
+
+The scores for each project are recorded in a daily snapshot (for historical comparison) using the `snapshot:today` command. This can be run manually, but it's also scheduled to run daily. Make sure to [set up the scheduler cron job](https://laravel.com/docs/scheduling) on any server where this project is deployed.
+
+By default, re-running the command will not update the day's existing snapshots. To override this behavior, use the `-f` flag, which will create any missing snapshots for the day and update all existing snapshots.
+
+```bash
+php artisan snapshot:today -f
+```
+
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.

@@ -26,16 +26,6 @@ class Project
         $this->hydrateIssues();
     }
 
-    protected function hydrateIssues()
-    {
-        $this->issues = $this->github->projectIssues($this->namespace, $this->name);
-    }
-
-    protected function hydratePrs()
-    {
-        $this->prs = $this->github->projectPrs($this->namespace, $this->name);
-    }
-
     public function issues()
     {
         return $this->issues->reject(function ($issue) {
@@ -98,5 +88,15 @@ class Project
     public function url()
     {
         return 'https://github.com/' . $this->namespace . '/' . $this->name;
+    }
+
+    protected function hydrateIssues()
+    {
+        $this->issues = $this->github->projectIssues($this->namespace, $this->name);
+    }
+
+    protected function hydratePrs()
+    {
+        $this->prs = $this->github->projectPrs($this->namespace, $this->name);
     }
 }
