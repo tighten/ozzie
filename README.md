@@ -4,7 +4,7 @@
 
 **Ozzie** is Tighten's open source projects monitor. Each project is assigned a "debt score" based on how many open issues/PRs there are, and how old they are.
 
-## Local Development
+## Local Installation
 
 1. Clone the repo
 2. Run `composer install && npm install`
@@ -21,6 +21,32 @@
 > Note: If using [Laravel Valet](https://laravel.com/docs/master/valet) or [Laravel Homestead](https://laravel.com/docs/master/homestead), you can configure your local URL to be something like `http://ozzie.test`.
 
 If you plan to use the snapshot feature, you'll also need to create a database table (by default `.env` looks for one named `ozzie`) and run the migrations (`php artisan migrate`).
+
+## Projects and Daily Caching
+
+The list of projects is currently stored in a JSON file, `projects.json`, in the root directory.
+
+```json
+[
+    {
+        "name": "ozzie",
+        "namespace": "tightenco",
+        "maintainers": [
+            "mattstauffer"
+        ]
+    },
+]
+```
+
+The scores for each project are recorded in a daily snapshot (for historical comparison) using the `snapshot:today` command. This can be run manually, but it's also scheduled to run daily. Make sure to [set up the scheduler cron job](https://laravel.com/docs/scheduling) on any server where this project is deployed.
+
+By default, re-running the command will not update the day's existing snapshots. To override this behavior, use the `-f` flag, which will create any missing snapshots for the day and update all existing snapshots.
+
+```bash
+php artisan snapshot:today -f
+```
+
+## Local Development
 
 ### Compiling the Frontend Assets
 
@@ -50,30 +76,6 @@ To automatically fix CSS:
 
 ```bash
 npm run fix-css
-```
-
-## Projects and Daily Caching
-
-The list of projects is currently stored in a JSON file, `projects.json`, in the root directory.
-
-```json
-[
-    {
-        "name": "ozzie",
-        "namespace": "tightenco",
-        "maintainers": [
-            "mattstauffer"
-        ]
-    },
-]
-```
-
-The scores for each project are recorded in a daily snapshot (for historical comparison) using the `snapshot:today` command. This can be run manually, but it's also scheduled to run daily. Make sure to [set up the scheduler cron job](https://laravel.com/docs/scheduling) on any server where this project is deployed.
-
-By default, re-running the command will not update the day's existing snapshots. To override this behavior, use the `-f` flag, which will create any missing snapshots for the day and update all existing snapshots.
-
-```bash
-php artisan snapshot:today -f
 ```
 
 ## Contributing
