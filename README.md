@@ -20,6 +20,8 @@
 
 > Note: If using [Laravel Valet](https://laravel.com/docs/master/valet) or [Laravel Homestead](https://laravel.com/docs/master/homestead), you can configure your local URL to be something like `http://ozzie.test`.
 
+If you plan to use the snapshot feature, you'll also need to create a database table (by default `.env` looks for one named `ozzie`) and run the migrations (`php artisan migrate`).
+
 ### Compiling the Frontend Assets
 
 Use Laravel Mix to automatically compile JS/CSS on save:
