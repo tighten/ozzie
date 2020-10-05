@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class Projects
 {
@@ -32,6 +33,6 @@ class Projects
 
     public function path()
     {
-        return base_path('projects.json');
+        return Storage::disk('root')->exists('projects.json') ? base_path('projects.json') : base_path('projects.json.dist');
     }
 }
