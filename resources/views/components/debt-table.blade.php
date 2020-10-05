@@ -24,7 +24,11 @@
 
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Prs</th>
 
-            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Issues</th>
+						<th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Issues</th>
+
+						<th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Total Downloads</th>
+
+            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Monthly Downloads</th>
 
             @if ($hacktoberfest)
                 <th class="text-xs p-4">🎃</th>
@@ -50,7 +54,11 @@
 
                 <td class="text-black-lightest p-4">{{ $project->prs()->count() }}</td>
 
-                <td class="text-black-lightest p-4">{{ $project->issues()->count() }}</td>
+								<td class="text-black-lightest p-4">{{ $project->issues()->count() }}</td>
+
+								<td class="text-black-lightest p-4">{{ $project->packagistDownloads('total') }}</td>
+
+                <td class="text-black-lightest p-4">{{ $project->packagistDownloads('monthly') }}</td>
 
                 @if ($hacktoberfest)
                     <td class="p-4">

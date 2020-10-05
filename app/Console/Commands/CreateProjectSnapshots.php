@@ -44,6 +44,8 @@ class CreateProjectSnapshots extends Command
                     'old_issue_count' => $project->oldIssues()->count(),
                     'pull_request_count' => $project->prs()->count(),
                     'old_pull_request_count' => $project->oldPrs()->count(),
+										'download_totals' => $project->downloadsTotal(),
+										'download_last_30_days' => $project->downloadsMonthly(),
                 ]
             );
         });

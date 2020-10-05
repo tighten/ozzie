@@ -2,6 +2,9 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
+
 use DateTime;
 use Exception;
 
@@ -99,4 +102,31 @@ class Project
     {
         $this->prs = $this->github->projectPrs($this->namespace, $this->name);
     }
+
+		public function packagistUrl()
+		{
+				return 'https://packagist.org/packages/tightenco/' . $this->name . '.json';
+		}
+
+		public function downloadsTotal()
+		{
+				return $this->packagistDownloads('total');
+		}
+
+		public function downloadsMonthly()
+		{
+				return $this->packagistDownloads('monthly');
+		}
+
+		public function packagistDownloads($period)
+		{
+				return Cache::remember('downloads_' . $period . '_' . $this->name, 60 * 60 * 24, function () use ($period) {
+					$response = Http::get($this->packagistUrl());
+					if ($response->ok()) {
+						$json = $response->json();
+						return $json['package']['downloads'][$period] ?? 0;
+					}
+					return 0;
+				});
+		}
 }
