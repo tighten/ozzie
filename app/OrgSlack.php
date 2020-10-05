@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 
-class TightenSlack
+class OrgSlack
 {
     use Notifiable;
 

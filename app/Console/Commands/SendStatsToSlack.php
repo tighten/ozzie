@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Notifications\SendOzzieStats;
-use App\TightenSlack;
+use App\OrgSlack;
 use Illuminate\Console\Command;
 
 class SendStatsToSlack extends Command
@@ -14,6 +14,6 @@ class SendStatsToSlack extends Command
 
     public function handle()
     {
-        (new TightenSlack)->notify(new SendOzzieStats);
+        (new OrgSlack)->notify(new SendOzzieStats);
     }
 }
