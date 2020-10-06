@@ -20,6 +20,23 @@ class Projects
         });
     }
 
+    public function find(string $namespace, string $name)
+    {
+        return Cache::remember("{$namespace}.{$name}", 60 * 60, function () use ($namespace, $name) {
+            return $this->load()
+                ->where('namespace', $namespace)
+                ->where('name', $name)
+                ->map(function ($project) {
+                    return new Project(
+                        $project->namespace,
+                        $project->name,
+                        $project->maintainers
+                    );
+                })
+                ->first();
+        });
+    }
+
     public function load()
     {
         return collect(

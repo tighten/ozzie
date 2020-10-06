@@ -90,6 +90,18 @@ class Project
         return 'https://github.com/' . $this->namespace . '/' . $this->name;
     }
 
+    public function link()
+    {
+        if (config('app.paginate_projects')) {
+            return route('projects.show', [
+                'namespace' => $this->namespace,
+                'name' => $this->name,
+            ]);
+        }
+
+        return "#project-{$this->namespace}-{$this->name}";
+    }
+
     protected function hydrateIssues()
     {
         $this->issues = $this->github->projectIssues($this->namespace, $this->name);
