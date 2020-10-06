@@ -1,4 +1,19 @@
 module.exports = {
+
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
+  },
+
+  purge: {
+    enabled: true,
+    content: [
+      './storage/framework/views/*.php',
+      './resources/views/**/*.blade.php',
+      './resources/js/**/*.vue',
+    ]
+  },
+
   theme: {
     colors:{
       'transparent': 'transparent',
