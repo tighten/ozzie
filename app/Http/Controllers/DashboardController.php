@@ -14,6 +14,7 @@ class DashboardController extends Controller
         return view('dashboard', [
             'projects' => (new Projects)->all(),
             'hacktoberfest' => $hacktoberfest,
+            'paginated' => config('app.paginate_projects'),
         ]);
     }
 }
