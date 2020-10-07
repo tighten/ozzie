@@ -16,7 +16,7 @@ class PullRequest extends Component
     {
         $this->prData = $prData;
         $this->project = $project;
-        $this->prData->body = $parsedown->parse($this->prData->body);
+        //$this->prData->body = $parsedown->parse($this->prData->body);
     }
 
     public function render()
