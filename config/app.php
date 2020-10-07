@@ -28,6 +28,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Show projects on a separate page
+    |--------------------------------------------------------------------------
+    |
+    | Show all project repositories on a single page or each on a separate page.
+    | If the value is set to false, all projects are shown on a single page.
+    | If the value is set to true, each project will have a separate page.
+    |
+    */
+
+    'paginate_projects' => env('PAGINATE_PROJECTS', false),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |
