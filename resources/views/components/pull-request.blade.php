@@ -75,7 +75,7 @@
                 </div>
                 <div class="markdown-body mt-4 bg-white rounded">
                     @if (! empty($prData->body))
-                        {!! $prData->body !!}
+                        <span v-pre>{!! $prData->body !!}</span>
                     @else
                         <em class="text-grey-darker">No description provided.</em>
                     @endif
