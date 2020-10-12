@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\GitHub\GitHub;
 use App\Project;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class FetchProjectStats extends Command
 {
@@ -21,7 +22,11 @@ class FetchProjectStats extends Command
     {
         $projects = Project::all();
 
+        $this->createProgressBar($projects->count());
+
         foreach ($projects as $project) {
+            $this->updateProgressBar($project->name);
+
             $githubProject = new GitHub($project->namespace, $project->name);
             $issues = $this->getFilteredIssues($githubProject->projectIssues());
             $pullRequests = $this->getFilteredPullRequests($githubProject->projectPullRequests());
@@ -33,6 +38,8 @@ class FetchProjectStats extends Command
 
             $project->save();
         }
+
+        $this->bar->finish();
 
         return 0;
     }
@@ -53,5 +60,21 @@ class FetchProjectStats extends Command
                     && collect($pullRequest->labels)->contains('name', 'in progress')
                 );
         });
+    }
+
+    protected function createProgressBar($count)
+    {
+        $this->info("Fetching stats for {$count} " . Str::plural('project', $count));
+        $this->bar = $this->output->createProgressBar($count);
+    }
+
+    protected function updateProgressBar($current)
+    {
+        $this->bar->advance();
+
+        // Display current task context above the progress bar
+        $this->bar->clear();
+        $this->line("... {$current}");
+        $this->bar->display();
     }
 }

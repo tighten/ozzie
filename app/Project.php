@@ -58,4 +58,14 @@ class Project extends Model
     {
         return Carbon::parse($this->updated_at)->diffForHumans();
     }
+
+    public function snapshots()
+    {
+        return $this->hasMany(Snapshot::class);
+    }
+
+    public function snapshotToday()
+    {
+        return $this->hasMany(Snapshot::class)->today();
+    }
 }

@@ -3,14 +3,13 @@
 namespace App\Console\Commands;
 
 use App\Project;
-use App\Projects;
 use App\Snapshot;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
 class CreateProjectSnapshots extends Command
 {
-    protected $signature = 'snapshot:today {--f|force : Force an update of any snapshots captured today}';
+    protected $signature = 'stats:snapshot {--f|force : Force an update of any snapshots captured today}';
 
     protected $description = "Create a snapshot of the current status of all projects' scores.";
 
@@ -29,21 +28,20 @@ class CreateProjectSnapshots extends Command
         $this->createProgressBar($projects->count());
 
         $projects->each(function ($project) {
-            $project = new Project($project->namespace, $project->name, $project->maintainers);
-
             $this->updateProgressBar($project->name);
 
             Snapshot::updateOrCreate(
                 [
-                    'name' => $project->name,
+                    'project_id' => $project->id,
                     'snapshot_date' => now()->format('Y-m-d'),
                 ],
                 [
+                    'name' => $project->name,
                     'debt_score' => $project->debtScore(),
-                    'issue_count' => $project->issues()->count(),
+                    'issue_count' => $project->issues->count(),
                     'old_issue_count' => $project->oldIssues()->count(),
-                    'pull_request_count' => $project->prs()->count(),
-                    'old_pull_request_count' => $project->oldPrs()->count(),
+                    'pull_request_count' => $project->pull_requests->count(),
+                    'old_pull_request_count' => $project->oldPullRequests()->count(),
                 ]
             );
         });
@@ -55,12 +53,12 @@ class CreateProjectSnapshots extends Command
 
     protected function projectsToSnapshot()
     {
-        $projects = (new Projects)->all();
-
         if ($this->option('force')) {
             // Require updating for all projects, whether or not they've already had a snapshot captured today
-            return $projects;
+            return Project::all();
         }
+
+        $projects = Project::doesntHave('snapshotToday')->get();
 
         $completedSnapshots = Snapshot::today()->get()->pluck('name');
 
