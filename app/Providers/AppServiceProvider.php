@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\GitHub\GitHub;
+use App\Remotes\GitHub;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

@@ -1,5 +1,5 @@
 <li class="flex justify-between">
-    <div class="py-6 w-auto">
+    <div class="py-5 w-auto">
         <p>
             <a class="text-black-lighter font-medium no-underline leading-normal"
                href="{{ $issue->html_url }}"
@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <div class="py-6 w-auto">
+    <div class="py-5 w-auto">
         <a class="no-underline" href="{{ $issue->html_url }}" target="_blank" aria-label="Launch">
             @include('svg.launch')
         </a>

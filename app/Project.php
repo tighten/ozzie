@@ -68,4 +68,16 @@ class Project extends Model
     {
         return $this->hasMany(Snapshot::class)->today();
     }
+
+    public function getPackagistNameAttribute($value)
+    {
+        return $value ?? "{$this->namespace}/{$this->name}";
+    }
+
+    public function hasDownloads()
+    {
+        if ($this->downloads_total + $this->downloads_last_30_days > 0) {
+            return true;
+        }
+    }
 }

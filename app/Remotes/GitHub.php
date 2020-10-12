@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GitHub;
+namespace App\Remotes;
 
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
@@ -13,8 +13,8 @@ class GitHub
 
     public function __construct($namespace, $name)
     {
-       $this->namespace = $namespace;
-       $this->name = $name;
+        $this->namespace = $namespace;
+        $this->name = $name;
     }
 
     public function projectIssues()
