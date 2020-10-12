@@ -32,9 +32,9 @@
         </tr>
     </thead>
 
-    <tbody class="bg-white rounded-b-lg">
+    <tbody class="bg-white rounded-b-lg divide-y divide-smoke">
         @foreach ($projects->sortByDesc(function ($project) { return $project->debtScore(); }) as $project)
-            <tr class="border-t border-smoke">
+            <tr class="">
                 <td class="p-4">
                     <a class="text-indigo no-underline text-md p-2 -mx-2"
                        href="#project-{{ $project->namespace }}-{{ $project->name }}">

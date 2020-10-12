@@ -23,9 +23,11 @@
         <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">Pull Requests</h3>
 
         <ul class="w-2/3">
-            @foreach ($project->prs() as $pr)
+            @forelse ($project->prs() as $pr)
                 <x-pull-request :pr-data="$pr" :project="$project" />
-            @endforeach
+            @empty
+                <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">✅ None</h3>
+            @endforelse
         </ul>
     </section>
 
@@ -33,9 +35,11 @@
         <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">Issues</h3>
 
         <ul class="w-2/3 list-reset">
-            @foreach ($project->issues() as $issue)
+            @forelse ($project->issues() as $issue)
                 <x-issue :issue="$issue" :project="$project" />
-            @endforeach
+            @empty
+                <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">✅ None</h3>
+            @endforelse
         </ul>
     </section>
 

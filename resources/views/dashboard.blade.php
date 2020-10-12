@@ -27,6 +27,7 @@
         <meta name="twitter:image" content="https://ozzie.tighten.co/ozzie-opengraph.png">
 
         <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/vendor.css">
 
         <title>Ozzie - {{ config('app.organization') }}</title>
     </head>
