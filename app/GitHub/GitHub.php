@@ -4,6 +4,7 @@ namespace App\GitHub;
 
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\Pr;
+use App\GitHub\Dto\Repo;
 use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
 
 class GitHub
@@ -24,5 +25,23 @@ class GitHub
             ->map(function ($pr) {
                 return new Pr($pr);
             });
+    }
+
+    public function repositories($namespace, $type = 'public')
+    {
+        $repos = collect();
+
+        $page = 1;
+        do {
+            $results = GitHubClient::repositories()->org($namespace, ['type' => $type, 'page' => $page]);
+
+            $repos = $repos->merge($results);
+
+            $page = $results ? $page + 1 : null;
+        } while ($page);
+
+        return $repos->map(function ($repo) {
+            return new Repo($repo);
+        });
     }
 }

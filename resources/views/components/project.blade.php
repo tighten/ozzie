@@ -8,14 +8,16 @@
             </a>
         </h2>
 
-        <p class="w-1/2 text-right text-black-lightest">
-            Maintained by
+        @if($project->maintainers)
+            <p class="w-1/2 text-right text-black-lightest">
+                Maintained by
 
-            @foreach ($project->maintainers as $maintainer)
-                <a class="text-indigo no-underline" href="https://github.com/{{ $maintainer }}"
-                   target="_blank">{{ '@' . $maintainer }}</a>
-            @endforeach
-        </p>
+                @foreach ($project->maintainers as $maintainer)
+                    <a class="text-indigo no-underline" href="https://github.com/{{ $maintainer }}"
+                       target="_blank">{{ '@' . $maintainer }}</a>
+                @endforeach
+            </p>
+        @endif
     </section>
 
 

@@ -31,6 +31,14 @@ class Projects
         );
     }
 
+    public function write($projects)
+    {
+        file_put_contents(
+            base_path('projects.json'),
+            $projects
+        );
+    }
+
     public function path()
     {
         return Storage::disk('root')->exists('projects.json') ? base_path('projects.json') : base_path('projects.json.dist');
