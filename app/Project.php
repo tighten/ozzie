@@ -150,14 +150,4 @@ class Project extends Model
             return true;
         }
     }
-
-    public function snapshots()
-    {
-        return $this->hasMany(Snapshot::class);
-    }
-
-    public function snapshotToday()
-    {
-        return $this->hasMany(Snapshot::class)->today();
-    }
 }
