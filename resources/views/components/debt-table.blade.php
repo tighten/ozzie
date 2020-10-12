@@ -2,7 +2,7 @@
     <p class="mb-6 text-black-lighter">Projects in descending order of "debt" (how much attention it needs)</p>
 
     @if ($hacktoberfest)
-        <a href="https://github.com/search?o=desc&q=label%3Ahacktoberfest+is%3Aopen+type%3Aissue+user%3Atighten&s=created&type=Issues"
+        <a href="https://github.com/search?o=desc&q=label%3Ahacktoberfest+is%3Aopen+type%3Aissue+user%3A{{ config('app.organization') }}&s=created&type=Issues"
            target="_blank"
            class="mb-6 px-4 py-3 bg-grey-blue hover:bg-halloween-orange no-underline rounded-lg text-black-lighter hover:text-white hover-pop">
             Hacktoberfest is here! 👻

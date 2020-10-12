@@ -1,3 +1,3 @@
 <?php
 
-Route::get('/', 'DashboardController@show');
+Route::get('/', 'DashboardController@show')->name('dashboard');

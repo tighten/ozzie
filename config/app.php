@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Organization/Company Name
+    | Organization/Company Name and Twitter
     |--------------------------------------------------------------------------
     |
     | In our case, it's "Tighten". In your case it could be anything.
@@ -12,6 +12,8 @@ return [
     */
 
     'organization' => env('APP_ORG', 'Tighten'),
+
+    'twitter' => env('APP_TWITTER', 'tightenco'),
 
     /*
     |--------------------------------------------------------------------------
