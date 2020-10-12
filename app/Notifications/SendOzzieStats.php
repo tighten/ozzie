@@ -51,8 +51,9 @@ class SendOzzieStats extends Notification
                             ->text([
                                 'type' => 'mrkdwn',
                                 'text' => sprintf(
-                                    '*<%s|%s>*: *%s*',
+                                    '*<%s|%s / %s>*: *%s*',
                                     $project->url(),
+                                    ucwords($project->namespace),
                                     ucwords($project->name),
                                     $project->debtScore()
                                 ),
