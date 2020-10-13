@@ -103,18 +103,17 @@ class Project
         $this->prs = $this->github->projectPrs($this->namespace, $this->name);
     }
 
-		public function getDebtScoreHistory()
-		{
-
-				return Cache::remember('debt_score_history_' . $this->name, 60 * 60, function () {
-					$list = [];
-					$now = Carbon::now();
-					$period = new CarbonPeriod($now->parse()->subDays(7)->format('Y-m-d'), $now->format('Y-m-d'));
-					foreach ($period as $key => $date) {
-						$snapshot = Snapshot::where('name', $this->name)->where('snapshot_date', $date->format('Y-m-d'))->orderBy('snapshot_date')->first();
-						$list[] = $snapshot->debt_score ?? 0;
-					}
-					return $list;
-				});
-		}
-}
+    public function getDebtScoreHistory()
+    {
+        return Cache::remember('debt_score_history_' . $this->name, 60 * 60, function () {
+          $list = [];
+          $now = Carbon::now();
+          $period = new CarbonPeriod($now->parse()->subDays(7)->format('Y-m-d'), $now->format('Y-m-d'));
+          foreach ($period as $key => $date) {
+            $snapshot = Snapshot::where('name', $this->name)->where('snapshot_date', $date->format('Y-m-d'))->orderBy('snapshot_date')->first();
+            $list[] = $snapshot->debt_score ?? 0;
+          }
+          return $list;
+        });
+    }
+  }
