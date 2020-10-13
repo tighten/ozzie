@@ -6,6 +6,7 @@ use DateTime;
 use Exception;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\Cache;
 
 class Project
 {
@@ -104,13 +105,16 @@ class Project
 
 		public function getDebtScoreHistory()
 		{
-				$list = [];
-				$now = Carbon::now();
-				$period = new CarbonPeriod($now->parse()->subDays(7)->format('Y-m-d'), $now->format('Y-m-d'));
-				foreach ($period as $key => $date) {
-					$snapshot = Snapshot::where('name', $this->name)->where('snapshot_date', $date->format('Y-m-d'))->orderBy('snapshot_date')->first();
-					$list[] = $snapshot->debt_score ?? 0;
-				}
-				return $list;
+
+				return Cache::remember('debt_score_history_' . $this->name, 60 * 60, function () {
+					$list = [];
+					$now = Carbon::now();
+					$period = new CarbonPeriod($now->parse()->subDays(7)->format('Y-m-d'), $now->format('Y-m-d'));
+					foreach ($period as $key => $date) {
+						$snapshot = Snapshot::where('name', $this->name)->where('snapshot_date', $date->format('Y-m-d'))->orderBy('snapshot_date')->first();
+						$list[] = $snapshot->debt_score ?? 0;
+					}
+					return $list;
+				});
 		}
 }
