@@ -30,6 +30,7 @@
         <link rel="stylesheet" type="text/css" href="css/vendor.css">
 
         <title>Ozzie - {{ config('app.organization') }}</title>
+        <script>window.githubToken="{{ config('github.rateLimitToken') }}"</script>
     </head>
 
     <body>

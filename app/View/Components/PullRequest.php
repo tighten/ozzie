@@ -12,11 +12,10 @@ class PullRequest extends Component
     public $prData;
     public $project;
 
-    public function __construct(GitHubPr $prData, Project $project, Parsedown $parsedown)
+    public function __construct(GitHubPr $prData, Project $project)
     {
         $this->prData = $prData;
         $this->project = $project;
-        //$this->prData->body = $parsedown->parse($this->prData->body);
     }
 
     public function render()

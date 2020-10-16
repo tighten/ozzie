@@ -41,6 +41,7 @@ class Pr extends DataTransferObject
             'base' => $this->base->label,
             'head' => $this->head->label,
             'url' => $this->html_url,
+            'body' => $this->body,
         ];
     }
 }
