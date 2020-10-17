@@ -1,16 +1,25 @@
 <template>
-  <modal :name="pr.id" :scrollable="true" height="auto" width="980" :adaptive="true" @before-open="parseMarkdown">
-    <div class="flex flex-col p-6">
-      <h3 class="text-4xl text-black-lighter font-medium leading-none">
+  <layout :title="'Ozzie - ' + project.namespace + '/' + project.name + ' - pull request #' + pr.number">
+    <span class="inline-flex text-indigo">
+      <button type="button" class="-ml-2 inline-flex items-center text-sm leading-4 font-medium focus:outline-none focus:border-indigo" onclick="history.back()">
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+        back
+      </button>
+    </span>
+
+    <div class="flex flex-col px-6 pt-2 pb-6 bg-white rounded shadow">
+      <h2 class="w-1/2 mt-0 text-2xl text-black font-semibold tracking-wide">
         {{ pr.title }}
         <span class="ml-2 text-3xl text-grey-dark font-normal">#{{ pr.number }}</span>
-      </h3>
+      </h2>
       <p class="mt-2 text-black-lighter">
-        <a class="font-semibold text-indigo" :href="baseUrl('files')" target="_blank">{{ pr.user }}</a> wants to merge into
-        <span class="px-2 py-1 bg-indigo-lighter rounded font-mono text-sm text-indigo">{{ pr.base }}</span> from
-        <span class="px-2 py-1 bg-indigo-lighter rounded font-mono text-sm text-indigo">{{ pr.head }}</span>
+        <a class="font-semibold text-indigo" :href="baseUrl('files')" target="_blank">{{ pr.user.login }}</a> wants to merge into
+        <span class="px-2 py-1 bg-indigo-lighter rounded font-mono text-sm text-indigo">{{ pr.base.label }}</span> from
+        <span class="px-2 py-1 bg-indigo-lighter rounded font-mono text-sm text-indigo">{{ pr.head.label }}</span>
       </p>
-      <div class="mt-4 flex items-center text-black-lighter @if(! empty(pr.body)) border-b border-grey-blue-light pb-4 @endif">
+      <div class="mt-4 flex items-center text-black-lighter">
         <a class="flex items-center" :href="baseUrl()" target="_blank">
           <svg class="mr-1 h-6 w-6 inline" viewBox="0 0 16 16" version="1.1" width="128" aria-hidden="true">
             <path fill="currentColor"
@@ -39,17 +48,23 @@
           <span class="text-indigo">Files changed</span>
         </a>
       </div>
-      <div v-if="loaded" class="markdown-body mt-4 bg-white rounded">
-        <span v-if="prBody !== ''" v-html="prBody" />
+      <div v-if="loaded" class="mt-4 markdown-body">
+        <div v-if="prBody !== ''" class="pt-4 border-t border-clouds">
+          <article v-html="prBody" />
+        </div>
         <em v-else class="text-grey-darker">No description provided.</em>
       </div>
     </div>
-  </modal>
+  </layout>
 </template>
 
 <script>
+import Layout from '../Layout';
+
 export default {
-    name: 'PrModal',
+    components: {
+        Layout,
+    },
     props: {
         project: {
             required: true,
@@ -66,30 +81,29 @@ export default {
             loaded: false,
         };
     },
+    mounted() {
+        window.axios
+            .post('https://api.github.com/markdown',
+                {
+                    text: this.pr.body,
+                },
+                {
+                    headers: {
+                        Authorization: `token ${window.githubToken}`,
+                    },
+                },
+            )
+            .then(response => {
+                this.prBody = response.data;
+                this.loaded = true;
+            })
+            .catch(error => console.log(error.message));
+    },
     methods: {
         baseUrl(section) {
             return (section)
                 ? this.pr.url + '/' + section
                 :this.pr.url;
-        },
-        parseMarkdown() {
-            window.axios
-                .post('https://api.github.com/markdown',
-                    { 
-                        text: this.pr.body, 
-                    },
-                    {
-                        headers: { 
-                            Authorization: `token ${window.githubToken}`, 
-                        },
-                    },
-                )
-                .then(response => 
-                {
-                    this.prBody = response.data;
-                    this.loaded = true;
-                })
-                .catch(error => console.log(error.message));
         },
     },
 };

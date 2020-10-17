@@ -31,5 +31,12 @@
         "trailingComma": "es5",
         "tabWidth": 4,
         "printWidth": 80
+    },
+    "dependencies": {
+        "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+        "@inertiajs/inertia": "^0.4.3",
+        "@inertiajs/inertia-vue": "^0.3.2",
+        "@inertiajs/progress": "^0.1.2",
+        "luxon": "^1.25.0"
     }
 }
