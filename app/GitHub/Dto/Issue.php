@@ -14,6 +14,7 @@ class Issue extends DataTransferObject
         $this->toCarbon($this->created_at);
     }
 
+    public $body;
     public $created_at;
     public $html_url;
     public $pull_request;

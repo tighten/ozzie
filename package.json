@@ -37,6 +37,8 @@
         "@inertiajs/inertia": "^0.4.3",
         "@inertiajs/inertia-vue": "^0.3.2",
         "@inertiajs/progress": "^0.1.2",
+        "eslint": "^7.11.0",
+        "eslint-plugin-vue": "^7.0.1",
         "luxon": "^1.25.0"
     }
 }
