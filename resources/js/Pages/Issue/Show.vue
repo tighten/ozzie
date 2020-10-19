@@ -14,6 +14,9 @@
       <div class="px-6 py-2">
         <h2 class="mt-0 text-2xl text-black font-semibold tracking-wide">
           {{ issue.title }}
+          <span class="ml-2 text-grey-dark font-normal">
+            #{{ issue.number }}
+          </span>
         </h2>
         <div
           v-if="loaded"

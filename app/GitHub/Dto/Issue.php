@@ -19,6 +19,7 @@ class Issue extends DataTransferObject
     public $html_url;
     public $pull_request;
     public $title;
+    public $number;
 
     /** @var \App\GitHub\Dto\Label[] */
     public $labels;
