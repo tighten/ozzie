@@ -32,27 +32,27 @@
 import IconLaunch from '../../components/svg/Launch';
 
 export default {
-    name: 'ProjectHeader',
-    components: {
-        IconLaunch,
+  name: 'ProjectHeader',
+  components: {
+    IconLaunch,
+  },
+  props: {
+    namespace: {
+      type: String,
+      required: true,
     },
-    props: {
-        namespace: {
-            type: String,
-            required: true,
-        },
-        name: {
-            type: String,
-            required: true,
-        },
-        url: {
-            type: String,
-            required: true,
-        },
-        maintainers: {
-            type: Array,
-            required: true,
-        },
+    name: {
+      type: String,
+      required: true,
     },
+    url: {
+      type: String,
+      required: true,
+    },
+    maintainers: {
+      type: Array,
+      required: true,
+    },
+  },
 };
 </script>

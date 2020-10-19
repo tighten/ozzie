@@ -28,7 +28,6 @@
 
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/vendor.css">
-        @routes
         <title>Ozzie - {{ config('app.organization') }}</title>
         <script>window.githubToken="{{ config('github.rateLimitToken') }}"</script>
         <script src="{{ asset('js/app.js') }}" defer></script>
