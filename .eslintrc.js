@@ -32,17 +32,3 @@ module.exports = {
         }],
     },
 };
-
-
-/* env: {
-        "cypress/globals": true,
-},
-"plugins": [
-    "cypress"
-],
-rules: {
-    // Cypress -------------------------------------------------------------
-    "cypress/no-unnecessary-waiting": "error",
-    "cypress/assertion-before-screenshot": "warn",
-    "cypress/no-force": "warn",
-}, */
