@@ -3,7 +3,7 @@
     :id="'project-' + namespace + '-' + name"
     class="items-center pb-6"
   >
-    <h2 class="text-3xl  text-black-lightest  font-semibold tracking-wide">
+    <h2 class="text-3xl text-black-lightest font-semibold tracking-wide">
       <a
         :href="url"
         aria-label="Launch"

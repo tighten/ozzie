@@ -8,9 +8,9 @@
       :maintainers="project.maintainers"
     />
     <div class="flex flex-col bg-white rounded shadow">
-      <p class="bg-grey-blue-light p-4 text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide">
+      <span class="border-grey border-b-2 p-4 bg-grey-blue-light uppercase text-xs leading-none tracking-wide font-bold text-grey-darkest">
         Issue
-      </p>
+      </span>
       <div class="px-6 py-2">
         <h2 class="mt-0 text-2xl text-black font-semibold tracking-wide">
           {{ issue.title }}

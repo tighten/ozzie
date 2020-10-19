@@ -50,11 +50,12 @@
         </tbody>
       </table>
     </div>
+
     <section
       v-if="Object.keys(project.prs).length > 0"
       class="mt-8 flex flex-col bg-white rounded shadow"
     >
-      <h2 class="bg-grey-blue-light p-4 text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide">
+      <h2 class="border-grey border-b-2 p-4 bg-grey-blue-light uppercase text-xs leading-none tracking-wide font-bold text-grey-darkest">
         Pull Requests
       </h2>
       <ul class="px-6 pb-6">
@@ -122,7 +123,7 @@
       v-if="Object.keys(project.issues).length > 0"
       class="mt-8 flex flex-col bg-white rounded shadow"
     >
-      <h2 class="bg-grey-blue-light p-4 text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide">
+      <h2 class="border-grey border-b-2 p-4 bg-grey-blue-light uppercase text-xs leading-none tracking-wide font-bold text-grey-darkest">
         Issues
       </h2>
       <ul class="px-6 pb-6">

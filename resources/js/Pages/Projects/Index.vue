@@ -14,8 +14,8 @@
         Hacktoberfest is here! 👻
       </a>
     </div>
-    <div class="overflow-x-auto max-w-full">
-      <table class="table-auto rounded-lg shadow w-full">
+    <div class="overflow-x-auto max-w-full shadow rounded">
+      <table class="table-auto w-full">
         <thead class="bg-grey-blue-light border-grey border-b-2 text-left">
           <tr>
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">

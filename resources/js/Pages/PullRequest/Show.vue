@@ -8,11 +8,11 @@
       :maintainers="project.maintainers"
     />
     <div class="flex flex-col bg-white rounded shadow">
-      <p class="bg-grey-blue-light p-4 text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide">
+      <span class="border-grey border-b-2 p-4 bg-grey-blue-light uppercase text-xs leading-none tracking-wide font-bold text-grey-darkest">
         Pull Request
-      </p>
+      </span>
       <div class="px-6 py-2">
-        <h2 class="w-1/2 mt-0 text-2xl text-black font-semibold tracking-wide">
+        <h2 class="mt-0 text-2xl text-black font-semibold tracking-wide">
           {{ pr.title }}
           <span class="ml-2 text-3xl text-grey-dark font-normal">
             #{{ pr.number }}
@@ -23,11 +23,18 @@
             class="font-semibold text-indigo"
             :href="baseUrl('files')"
             target="_blank"
-          >{{ pr.user.login }}</a> wants to merge into
-          <span class="px-2 py-1 bg-indigo-lighter rounded font-mono text-sm text-indigo">
-            {{ pr.base.label }}
-          </span> from
-          <span class="px-2 py-1 bg-indigo-lighter rounded font-mono text-sm text-indigo">
+          >
+            {{ pr.user.login }}
+          </a>
+          wants to merge into
+          <span
+            class="px-2 py-1 bg-indigo-lighter rounded font-mono text-sm text-indigo"
+          >
+            {{ pr.base.label }}</span>
+          from
+          <span
+            class="px-2 py-1 bg-indigo-lighter rounded font-mono text-sm text-indigo"
+          >
             {{ pr.head.label }}
           </span>
         </p>
