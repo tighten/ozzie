@@ -135,8 +135,8 @@ export default {
   methods: {
     baseUrl(section) {
       return (section)
-        ? this.pr.url + '/' + section
-        :this.pr.url;
+        ? this.pr.html_url + '/' + section
+        :this.pr.html_url;
     },
   },
 };
