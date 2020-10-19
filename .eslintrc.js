@@ -8,7 +8,7 @@ module.exports = {
         'plugin:vue/recommended',
     ],
     rules: {
-        'indent': ['error', 4],
+        'indent': ['error', 2],
         'quotes': ['warn', 'single'],
         'semi': ['warn', 'always'],
         'comma-dangle': ['warn', {

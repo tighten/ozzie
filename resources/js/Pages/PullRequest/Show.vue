@@ -7,37 +7,20 @@
       :url="project.url"
       :maintainers="project.maintainers"
     />
-    <div class="flex flex-col bg-white rounded shadow">
-      <span class="border-grey border-b-2 p-4 bg-grey-blue-light uppercase text-xs leading-none tracking-wide font-bold text-grey-darkest">
-        Pull Request
-      </span>
-      <div class="px-6 py-2">
-        <h2 class="mt-0 text-2xl text-black font-semibold tracking-wide">
+    <card>
+      <card-header>
+        <div class="flex justify-between">
+          <span>Pull Request</span>
+          <opened-by :git-hub-item="pr" />
+        </div>
+      </card-header>
+      <card-body>
+        <h2 class="mt-0 text-2xl text-black font-semibold tracking-wide leading-none">
           {{ pr.title }}
-          <span class="ml-2 text-3xl text-grey-dark font-normal">
+          <span class="ml-2 text-grey-dark font-normal">
             #{{ pr.number }}
           </span>
         </h2>
-        <p class="text-black-lighter">
-          <a
-            class="font-semibold text-indigo"
-            :href="baseUrl('files')"
-            target="_blank"
-          >
-            {{ pr.user.login }}
-          </a>
-          wants to merge into
-          <span
-            class="px-2 py-1 bg-indigo-lighter rounded font-mono text-sm text-indigo"
-          >
-            {{ pr.base.label }}</span>
-          from
-          <span
-            class="px-2 py-1 bg-indigo-lighter rounded font-mono text-sm text-indigo"
-          >
-            {{ pr.head.label }}
-          </span>
-        </p>
         <div class="mt-4 flex items-center text-black-lighter">
           <a
             class="flex items-center"
@@ -85,8 +68,8 @@
             class="text-grey-darker"
           >No description provided.</em>
         </div>
-      </div>
-    </div>
+      </card-body>
+    </card>
   </layout>
 </template>
 
@@ -97,56 +80,64 @@ import IconCommit from '../../components/svg/Commit';
 import IconFileDiff from '../../components/svg/Conversation';
 import GoBack from '../../components/GoBack';
 import ProjectHeader from '../Partials/ProjectHeader';
+import Card from '../../components/Card';
+import CardBody from '../../components/CardBody';
+import CardHeader from '../../components/CardHeader';
+import OpenedBy from '../Partials/OpenedBy';
 
 export default {
-    components: {
-        GoBack,
-        IconFileDiff,
-        IconCommit,
-        IconConversation,
-        Layout,
-        ProjectHeader,
+  components: {
+    OpenedBy,
+    CardHeader,
+    CardBody,
+    Card,
+    GoBack,
+    IconFileDiff,
+    IconCommit,
+    IconConversation,
+    Layout,
+    ProjectHeader,
+  },
+  props: {
+    project: {
+      required: true,
+      type: Object,
     },
-    props: {
-        project: {
-            required: true,
-            type: Object,
+    pr: {
+      required: true,
+      type: Object,
+    },
+  },
+  data() {
+    return {
+      prBody: '',
+      loaded: false,
+    };
+  },
+  mounted() {
+    window.axios
+      .post('https://api.github.com/markdown',
+        {
+          text: this.pr.body,
         },
-        pr: {
-            required: true,
-            type: Object,
-        },
+        {
+          headers: {
+            Authorization: `token ${window.githubToken}`,
+          },
+        }
+      )
+      .then(response => {
+        this.prBody = response.data;
+        this.loaded = true;
+      })
+      .catch(error => console.log(error.message));
+  },
+  methods: {
+    baseUrl(section) {
+      return (section)
+        ? this.pr.url + '/' + section
+        :this.pr.url;
     },
-    data() {
-        return {
-            prBody: '',
-            loaded: false,
-        };
-    },
-    mounted() {
-        window.axios
-            .post('https://api.github.com/markdown',
-                {
-                    text: this.pr.body,
-                },
-                {
-                    headers: {
-                        Authorization: `token ${window.githubToken}`,
-                    },
-                }
-            )
-            .then(response => {
-                this.prBody = response.data;
-                this.loaded = true;
-            })
-            .catch(error => console.log(error.message));
-    },
-    methods: {
-        baseUrl(section) {
-            return (section)
-                ? this.pr.url + '/' + section
-                :this.pr.url;
-        },
-    },
+  },
 };
 </script>

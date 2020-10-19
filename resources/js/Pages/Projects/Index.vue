@@ -97,18 +97,18 @@
 <script>
 import Layout from '../Layout';
 export default {
-    components: {
-        Layout,
+  components: {
+    Layout,
+  },
+  props: {
+    projects: {
+      type: Array,
+      required: true,
     },
-    props: {
-        projects: {
-            type: Array,
-            required: true,
-        },
-        hacktoberfest: {
-            type: Boolean,
-            required: true,
-        },
+    hacktoberfest: {
+      type: Boolean,
+      required: true,
     },
+  },
 };
 </script>
