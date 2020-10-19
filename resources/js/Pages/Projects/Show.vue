@@ -50,8 +50,6 @@
         </tbody>
       </table>
     </div>
-
-
     <Card
       v-if="Object.keys(project.prs).length > 0"
       class="mt-8"
@@ -63,8 +61,12 @@
             v-for="pr in project.prs"
             :key="pr.node_id"
           >
-            <div class="flex flex-col w-auto">
-              <div class="flex items-baseline justify-between">
+            <github-list-item
+              :git-hub-item="pr"
+              :project-namespace="project.namespace"
+              :project-name="project.name"
+            >
+              <template slot="link">
                 <inertia-link
                   class="text-black-lighter font-medium no-underline leading-normal truncate flex-1"
                   href="/pr"
@@ -75,52 +77,12 @@
                 >
                   {{ pr.title }}
                 </inertia-link>
-                <a
-                  class="no-underline"
-                  :href="pr.html_url"
-                  target="_blank"
-                  aria-label="Launch"
-                >
-                  <IconLaunch />
-                </a>
-              </div>
-              <div>
-                <a
-                  class="text-indigo no-underline"
-                  :href="pr.user.html_url"
-                  target="_blank"
-                >
-                  @{{ pr.user.login }}
-                </a>
-                |
-                <span class="font-semibold text-grey-darkest">
-                  {{ $luxon.fromISO(pr.created_at).toRelative() }}
-                </span>
-                <div v-if="Object.keys(pr.labels).length > 0">
-                  <a
-                    v-for="label in pr.labels"
-                    :key="label.name"
-                    class="mr-2 mt-1 inline-flex items-center px-2 py-1 bg-grey-blue hover:bg-grey-blue-light text-grey-blue-darkest font-sans font-semibold no-underline leading-none text-xs capitalize rounded-lg"
-                    :href="'https://github.com/' + project.namespace + '/' + project.name + '/labels/' + label.name"
-                    target="_blank"
-                  >
-                    <span
-                      class="rounded-full w-3 h-3"
-                      :style="'background-color: #' + label.color"
-                    />
-                    <span class="ml-1">
-                      {{ label.name }}
-                    </span>
-                  </a>
-                </div>
-              </div>
-            </div>
+              </template>
+            </github-list-item>
           </li>
         </ul>
       </card-body>
     </card>
-
-
     <Card
       v-if="Object.keys(project.issues).length > 0"
       class="mt-8"
@@ -132,8 +94,12 @@
             v-for="issue in project.issues"
             :key="issue.node_id"
           >
-            <div class="flex flex-col w-auto">
-              <div class="flex items-baseline justify-between">
+            <github-list-item
+              :git-hub-item="issue"
+              :project-namespace="project.namespace"
+              :project-name="project.name"
+            >
+              <template slot="link">
                 <inertia-link
                   class="text-black-lighter font-medium no-underline leading-normal truncate flex-1"
                   href="/issue"
@@ -144,46 +110,8 @@
                 >
                   {{ issue.title }}
                 </inertia-link>
-                <a
-                  class="no-underline"
-                  :href="issue.html_url"
-                  target="_blank"
-                  aria-label="Launch"
-                >
-                  <IconLaunch />
-                </a>
-              </div>
-              <div>
-                <a
-                  class="text-indigo no-underline"
-                  :href="issue.user.html_url"
-                  target="_blank"
-                >
-                  @{{ issue.user.login }}
-                </a>
-                |
-                <span class="font-semibold text-grey-darkest">
-                  {{ $luxon.fromISO(issue.created_at).toRelative() }}
-                </span>
-                <div v-if="Object.keys(issue.labels).length > 0">
-                  <a
-                    v-for="label in issue.labels"
-                    :key="label.name"
-                    class="mr-2 mt-1 inline-flex items-center px-2 py-1 bg-grey-blue hover:bg-grey-blue-light text-grey-blue-darkest font-sans font-semibold no-underline leading-none text-xs capitalize rounded-lg"
-                    :href="'https://github.com/' + project.namespace + '/' + project.name + '/labels/' + label.name"
-                    target="_blank"
-                  >
-                    <span
-                      class="rounded-full w-3 h-3"
-                      :style="'background-color: #' + label.color"
-                    />
-                    <span class="ml-1">
-                      {{ label.name }}
-                    </span>
-                  </a>
-                </div>
-              </div>
-            </div>
+              </template>
+            </github-list-item>
           </li>
         </ul>
       </card-body>
@@ -193,21 +121,21 @@
 
 <script>
 import Layout from '../Layout';
-import IconLaunch from '../../components/svg/Launch';
 import GoBack from '../../components/GoBack';
 import ProjectHeader from '../Partials/ProjectHeader';
 import Card from '../../components/Card';
 import CardHeader from '../../components/CardHeader';
 import CardBody from '../../components/CardBody';
+import GithubListItem from '../Partials/GithubListItem';
 
 export default {
   components: {
+    GithubListItem,
     CardBody,
     CardHeader,
     Card,
     ProjectHeader,
     GoBack,
-    IconLaunch,
     Layout,
   },
   props: {
