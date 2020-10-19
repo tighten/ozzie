@@ -7,7 +7,7 @@
       :url="project.url"
       :maintainers="project.maintainers"
     />
-    <div class="overflow-x-auto max-w-full">
+    <div class="overflow-x-auto max-w-full shadow rounded">
       <table class="table-auto rounded-lg shadow w-full">
         <thead class="bg-grey-blue-light border-grey border-b-2 text-left">
           <tr>
@@ -50,6 +50,7 @@
         </tbody>
       </table>
     </div>
+
     <Card
       v-if="Object.keys(project.prs).length > 0"
       class="mt-8"
