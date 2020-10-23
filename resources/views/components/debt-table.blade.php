@@ -37,8 +37,9 @@
             <tr class="">
                 <td class="p-4">
                     <a class="text-indigo no-underline text-md p-2 -mx-2"
-                       href="#project-{{ $project->namespace }}-{{ $project->name }}">
-                        {{ $project->namespace }}/{{ $project->name }}
+                       href="#{{ $project->namespace }}-{{ $project->name }}">
+                        @include('svg.link')
+                        <span class="ml-1">{{ $project->namespace }}/{{ $project->name }}</span>
                     </a>
                 </td>
 
