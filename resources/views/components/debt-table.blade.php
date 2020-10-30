@@ -18,7 +18,7 @@
 
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Debt Score</th>
 
-            <th class="text-grey-darkest font-bold text-xs leading-none tracking-wide p-4">Old PRs</th>
+            <th class="text-grey-darkest font-bold text-xs leading-none tracking-wide p-4">OLD PRs</th>
 
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Old Issues</th>
 
