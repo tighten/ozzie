@@ -13,7 +13,7 @@
 
             @foreach ($project->maintainers as $maintainer)
                 <a class="text-indigo no-underline" href="https://github.com/{{ $maintainer }}"
-                   target="_blank">{{ '@' . $maintainer }}</a>
+                   target="_blank" rel="noopener noreferrer">{{ '@' . $maintainer }}</a>
             @endforeach
         </p>
     </section>
