@@ -18,7 +18,7 @@
 
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Debt Score</th>
 
-            <th class="text-grey-darkest font-bold text-xs leading-none tracking-wide p-4">Old PRs</th>
+            <th class="text-grey-darkest font-bold text-xs leading-none tracking-wide p-4">OLD PRs</th>
 
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Old Issues</th>
 
@@ -37,7 +37,7 @@
             <tr class="">
                 <td class="p-4">
                     <a class="text-indigo no-underline text-md p-2 -mx-2"
-                       href="#project-{{ $project->namespace }}-{{ $project->name }}">
+                       href="#{{ $project->namespace }}-{{ $project->name }}">
                         {{ $project->namespace }}/{{ $project->name }}
                     </a>
                 </td>
