@@ -38,8 +38,7 @@
                 <td class="p-4">
                     <a class="text-indigo no-underline text-md p-2 -mx-2"
                        href="#{{ $project->namespace }}-{{ $project->name }}">
-                        @include('svg.link')
-                        <span class="ml-1">{{ $project->namespace }}/{{ $project->name }}</span>
+                        {{ $project->namespace }}/{{ $project->name }}
                     </a>
                 </td>
 
