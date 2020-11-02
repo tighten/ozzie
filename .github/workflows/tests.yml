@@ -1,0 +1,41 @@
+name: Testing Ozzie
+
+on: [push, pull_request]
+
+jobs:
+  linux_tests:
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [7.3, 7.4, 8.0]
+        stability: [prefer-lowest, prefer-stable]
+    name: PHP ${{ matrix.php }} - ${{ matrix.stability }}
+
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: ozzieDb
+        ports:
+          - 33306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+
+      - name: Install dependencies
+        uses: nick-invision/retry@v1
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
+      - name: Execute tests
+        run: php artisan test
+        env:
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
+          DB_USERNAME: root
