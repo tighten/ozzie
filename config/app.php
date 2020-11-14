@@ -11,7 +11,7 @@ return [
     |
     */
 
-    'organization' => env('APP_ORG', 'Tighten'),
+    'organization' => env('APP_ORG', 'tighten'),
 
     /*
     |--------------------------------------------------------------------------
