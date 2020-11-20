@@ -4,10 +4,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Organization/Company Name
+    | Organization/Company GitHub Name
     |--------------------------------------------------------------------------
     |
-    | In our case, it's "Tighten". In your case it could be anything.
+    | In our case, it's "tighten". In your case it could be anything.
     |
     */
 
@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Ozzie'),
+    'name' => env('APP_NAME', 'Tighten'),
 
     /*
     |--------------------------------------------------------------------------
