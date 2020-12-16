@@ -6,15 +6,6 @@ on:
   pull_request:
 
 jobs:
-  phpcs:
-    name: PHPCS
-    runs-on: ubuntu-latest
-
-    steps:
-        - uses: actions/checkout@v2
-        - name: PHPCS check
-          uses: chekalsky/phpcs-action@v1
-
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -34,8 +25,20 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-source --no-interaction
 
+    - name: Install Assets
+      run: npm install
+
     - name: Build Assets
       run: npm run prod
 
     - name: Run Stylelint
       run: npx stylelint "**/*.css"
+
+  phpcs:
+    name: PHPCS
+    runs-on: ubuntu-latest
+
+    steps:
+        - uses: actions/checkout@v1
+        - name: PHPCS check
+          uses: chekalsky/phpcs-action@v1
