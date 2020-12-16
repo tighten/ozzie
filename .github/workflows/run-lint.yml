@@ -1,0 +1,38 @@
+name: Run Lint
+
+on:
+  push:
+    branches: [ krc/add-github-actions ]
+  pull_request:
+
+jobs:
+  phpcs:
+    name: PHPCS
+    runs-on: ubuntu-latest
+
+    steps:
+        - uses: actions/checkout@v2
+        - name: PHPCS check
+          uses: chekalsky/phpcs-action@v1
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v1
+
+    # This will setup php. You can replace the matrix declaration with a single php version.
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+          php-version: 7.2
+          extensions: posix, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+          coverage: none
+    
+    - name: Install dependencies
+      run: composer install --prefer-source --no-interaction
+
+    - name: Run Tlint
+      run: vendor/bin/tlint
