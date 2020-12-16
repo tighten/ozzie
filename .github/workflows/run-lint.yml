@@ -1,4 +1,4 @@
-name: Run Code Sniffer and Lint
+name: Lint
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   cs_lint:
-    name: Code Sniffer and Lint
+    name: Lint
     runs-on: ubuntu-latest
 
     steps:
@@ -24,11 +24,6 @@ jobs:
     
     - name: Install dependencies
       run: composer install --prefer-source --no-interaction
-
-    - name: PHPCS check
-      uses: chekalsky/phpcs-action@v1
-      with:
-        phpcs_bin_path: 'vendor/bin/phpcs'
 
     - name: Install Assets
       run: npm install
