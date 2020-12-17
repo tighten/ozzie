@@ -14,7 +14,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v1
 
-    # This will setup php. You can replace the matrix declaration with a single php version.
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
