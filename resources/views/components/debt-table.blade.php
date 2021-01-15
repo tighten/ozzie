@@ -18,7 +18,9 @@
 
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Debt Score</th>
 
-            <th class="text-grey-darkest font-bold text-xs leading-none tracking-wide p-4">OLD PRs</th>
+            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Debt Score Graph</th>
+
+            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Old Prs</th>
 
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Old Issues</th>
 
@@ -44,6 +46,14 @@
 
                 <td class="text-black-lightest p-4">{{ number_format($project->debtScore(), 2) }}</td>
 
+                <td class="text-black-lightest p-4">
+                  <?php
+                  $sparkline = new Davaxi\Sparkline();
+                  $sparkline->setData($project->getDebtScoreHistory());
+                  echo '<img src="data:image/jpeg;base64, ' . $sparkline->toBase64() . '" />';
+                  ?>
+                </td>
+
                 <td class="text-black-lightest p-4">{{ $project->oldPrs()->count() }}</td>
 
                 <td class="text-black-lightest p-4">{{ $project->oldIssues()->count() }}</td>
@@ -61,6 +71,7 @@
                         </a>
                     </td>
                 @endif
+
             </tr>
         @endforeach
     </tbody>

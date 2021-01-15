@@ -8,6 +8,7 @@
     "require": {
         "php": "^7.2",
         "ext-json": "*",
+        "davaxi/sparkline": "^1.2",
         "erusev/parsedown": "^1.7",
         "fideloper/proxy": "^4.0",
         "graham-campbell/github": "^8.6",
