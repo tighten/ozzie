@@ -1,6 +1,6 @@
 <div class="mt-16">
     <section class="flex justify-between items-center py-6 border-b-2 border-clouds"
-             id="project-{{ $project->namespace }}-{{ $project->name }}">
+             id="{{ $project->namespace }}-{{ $project->name }}">
         <h2 class="w-1/2 text-2xl text-black font-semibold tracking-wide">
             <a href="{{ $project->url() }}" aria-label="Launch">
                 {{ $project->namespace }} | {{ $project->name }}
@@ -13,7 +13,7 @@
 
             @foreach ($project->maintainers as $maintainer)
                 <a class="text-indigo no-underline" href="https://github.com/{{ $maintainer }}"
-                   target="_blank">{{ '@' . $maintainer }}</a>
+                   target="_blank" rel="noopener noreferrer">{{ '@' . $maintainer }}</a>
             @endforeach
         </p>
     </section>
@@ -23,9 +23,11 @@
         <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">Pull Requests</h3>
 
         <ul class="w-2/3">
-            @foreach ($project->prs() as $pr)
+            @forelse ($project->prs() as $pr)
                 <x-pull-request :pr-data="$pr" :project="$project" />
-            @endforeach
+            @empty
+                <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">✅ None</h3>
+            @endforelse
         </ul>
     </section>
 
@@ -33,9 +35,11 @@
         <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">Issues</h3>
 
         <ul class="w-2/3 list-reset">
-            @foreach ($project->issues() as $issue)
+            @forelse ($project->issues() as $issue)
                 <x-issue :issue="$issue" :project="$project" />
-            @endforeach
+            @empty
+                <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">✅ None</h3>
+            @endforelse
         </ul>
     </section>
 
