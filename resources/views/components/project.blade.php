@@ -9,8 +9,10 @@
                     @include('svg.launch')
                 </a>
             </h2>
-            <div class="text-grey-dark font-thin">{{ $project->updated_at->diffForHumans() }}</div>
-            <div class="text-right">{{ $downloads }}</div>
+            <div class="text-grey-dark font-thin">
+                Synced {{ $project->updated_at->diffForHumans() }}<br>
+                {{ $downloads }}
+            </div>
         </div>
 
         <p class="w-1/2 text-right text-black-lightest">
