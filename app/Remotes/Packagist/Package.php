@@ -6,7 +6,7 @@ use App\Project;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 
-class Project
+class Package
 {
     public $downloads;
     public $monthly = 0;
