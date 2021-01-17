@@ -20,7 +20,7 @@
 
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Debt Score Graph</th>
 
-            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Old Prs</th>
+            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Old PRs</th>
 
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Old Issues</th>
 
@@ -54,13 +54,13 @@
                   ?>
                 </td>
 
-                <td class="text-black-lightest p-4">{{ $project->oldPrs()->count() }}</td>
+                <td class="text-black-lightest p-4">{{ $project->oldPullRequests()->count() }}</td>
 
                 <td class="text-black-lightest p-4">{{ $project->oldIssues()->count() }}</td>
 
-                <td class="text-black-lightest p-4">{{ $project->prs()->count() }}</td>
+                <td class="text-black-lightest p-4">{{ $project->pull_requests_count }}</td>
 
-                <td class="text-black-lightest p-4">{{ $project->issues()->count() }}</td>
+                <td class="text-black-lightest p-4">{{ $project->issues_count }}</td>
 
                 @if ($hacktoberfest)
                     <td class="p-4">

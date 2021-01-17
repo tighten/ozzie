@@ -25,8 +25,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('snapshot:today')
+        $schedule->command('stats:snapshot')
             ->daily();
+
+        $schedule->command('stats:fetch')
+            ->hourly();
 
         $schedule->command('stats:slack')
             ->weekly()

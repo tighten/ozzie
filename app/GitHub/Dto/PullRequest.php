@@ -4,7 +4,7 @@ namespace App\GitHub\Dto;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
-class Pr extends DataTransferObject
+class PullRequest extends DataTransferObject
 {
     use CastDates;
 

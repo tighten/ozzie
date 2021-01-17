@@ -10,21 +10,21 @@
         <meta property="og:site_name" content="Ozzie">
         <meta property="og:locale" content="en_US">
         <meta property="og:title" content="Ozzie">
-        <meta property="og:url" content="https://ozzie.tighten.co/">
+        <meta property="og:url" content="{{ route('dashboard') }}">
         <meta property="og:type" content="website">
         <meta property="og:description" content="Ozzie - {{ config('app.name') }}'s Open Source Project Dashboard">
 
-        <meta property="og:image" content="https://ozzie.tighten.co/ozzie-opengraph.png">
+        <meta property="og:image" content="{{ url('ozzie-opengraph.png') }}">
         <meta property="og:image:height" content="630">
         <meta property="og:image:width" content="1200">
 
-        <meta name="twitter:site" content="@tightenco">
-        <meta name="twitter:creator" content="@tightenco">
+        <meta name="twitter:site" content="{{ '@' . config('app.twitter') }}">
+        <meta name="twitter:creator" content="{{ '@' . config('app.twitter') }}">
         <meta name="twitter:title" content="Ozzie">
         <meta name="twitter:description" content="Ozzie - {{ config('app.name') }}'s Open Source Project Dashboard">
 
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://ozzie.tighten.co/ozzie-opengraph.png">
+        <meta name="twitter:image" content="{{ url('ozzie-opengraph.png') }}">
 
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/vendor.css">

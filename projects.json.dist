@@ -82,6 +82,7 @@
         "name": "onramp",
         "namespace": "tighten",
         "maintainers": [
+            "tammytee",
             "mattstauffer"
         ]
     },
