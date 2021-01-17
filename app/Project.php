@@ -4,8 +4,10 @@ namespace App;
 
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
+use Carbon\CarbonPeriod;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 class Project extends Model
 {
@@ -16,6 +18,21 @@ class Project extends Model
         'issues' => 'collection',
         'pull_requests' => 'collection',
     ];
+
+    public function snapshots()
+    {
+        return $this->hasMany(Snapshot::class);
+    }
+
+    public function snapshotToday()
+    {
+        return $this->hasMany(Snapshot::class)->today();
+    }
+
+    public function getPackagistNameAttribute($value)
+    {
+        return $value ?? "{$this->namespace}/{$this->name}";
+    }
 
     public function hacktoberfestIssues()
     {
@@ -54,24 +71,25 @@ class Project extends Model
         return 'https://github.com/' . $this->namespace . '/' . $this->name;
     }
 
-    public function updatedAt()
+    public function getDebtScoreHistory()
     {
-        return Carbon::parse($this->updated_at)->diffForHumans();
-    }
+        return Cache::remember('debt_score_history_' . $this->name, 60 * 60, function () {
+            $list = [];
 
-    public function snapshots()
-    {
-        return $this->hasMany(Snapshot::class);
-    }
+            $now = Carbon::now();
+            $period = new CarbonPeriod($now->parse()->subDays(7)->format('Y-m-d'), $now->format('Y-m-d'));
 
-    public function snapshotToday()
-    {
-        return $this->hasMany(Snapshot::class)->today();
-    }
+            foreach ($period as $date) {
+                $snapshot = Snapshot::where('name', $this->name)
+                    ->where('snapshot_date', $date->format('Y-m-d'))
+                    ->orderBy('snapshot_date')
+                    ->first();
 
-    public function getPackagistNameAttribute($value)
-    {
-        return $value ?? "{$this->namespace}/{$this->name}";
+                $list[] = $snapshot->debt_score ?? 0;
+            }
+
+            return $list;
+        });
     }
 
     public function hasDownloads()

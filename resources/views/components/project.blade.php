@@ -1,31 +1,26 @@
 <div class="mt-16">
-    <section class="flex flex-col justify-between items-center py-6 border-b-2 border-clouds"
-             id="project-{{ $project->namespace }}-{{ $project->name }}">
-        <div class="w-full flex justify-between items-baseline">
-            <div>
-                <h2 class="text-2xl text-black font-semibold tracking-wide">
-                    <a href="{{ $project->url() }}" aria-label="Launch">
-                        {{ $project->namespace }} | {{ $project->name }}
-                        @include('svg.launch')
-                    </a>
-                </h2>
-            </div>
 
-            <div class="text-right">
-                <p class="text-black-lightest">
-                    Maintained by
-
-                    @foreach ($project->maintainers as $maintainer)
-                        <a class="text-indigo no-underline" href="https://github.com/{{ $maintainer }}"
-                        target="_blank">{{ '@' . $maintainer }}</a>
-                    @endforeach
-                </p>
-            </div>
-        </div>
-        <div class="w-full flex justify-between text-sm font-thin text-grey-dark">
-            <div>{{ $project->updatedAt() }}</div>
+    <section class="flex justify-between items-center py-6 border-b-2 border-clouds"
+             id="{{ $project->namespace }}-{{ $project->name }}">
+        <div class="w-1/2">
+            <h2 class="text-2xl text-black font-semibold tracking-wide">
+                <a href="{{ $project->url() }}" aria-label="Launch">
+                    {{ $project->namespace }} | {{ $project->name }}
+                    @include('svg.launch')
+                </a>
+            </h2>
+            <div class="text-grey-dark font-thin">{{ $project->updated_at->diffForHumans() }}</div>
             <div class="text-right">{{ $downloads }}</div>
         </div>
+
+        <p class="w-1/2 text-right text-black-lightest">
+            Maintained by
+
+            @foreach ($project->maintainers as $maintainer)
+                <a class="text-indigo no-underline" href="https://github.com/{{ $maintainer }}"
+                   target="_blank" rel="noopener noreferrer">{{ '@' . $maintainer }}</a>
+            @endforeach
+        </p>
     </section>
 
 

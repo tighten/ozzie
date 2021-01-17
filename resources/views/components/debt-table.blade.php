@@ -1,9 +1,10 @@
+<?php use Davaxi\Sparkline; ?>
 <div class="flex items-center justify-between">
     <p class="mb-6 text-black-lighter">Projects in descending order of "debt" (how much attention it needs)</p>
 
     @if ($hacktoberfest)
         <a href="https://github.com/search?o=desc&q=label%3Ahacktoberfest+is%3Aopen+type%3Aissue+user%3A{{ config('app.organization') }}&s=created&type=Issues"
-           target="_blank"
+           target="_blank" rel="noopener noreferrer"
            class="mb-6 px-4 py-3 bg-grey-blue hover:bg-halloween-orange no-underline rounded-lg text-black-lighter hover:text-white hover-pop">
             Hacktoberfest is here! 👻
         </a>
@@ -18,11 +19,13 @@
 
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Debt Score</th>
 
+            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Debt Score Graph</th>
+
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Old PRs</th>
 
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Old Issues</th>
 
-            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">PRs</th>
+            <th class="text-grey-darkest font-bold text-xs leading-none tracking-wide p-4">PRs</th>
 
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">Issues</th>
 
@@ -37,12 +40,21 @@
             <tr class="">
                 <td class="p-4">
                     <a class="text-indigo no-underline text-md p-2 -mx-2"
-                       href="#project-{{ $project->namespace }}-{{ $project->name }}">
+                       href="#{{ $project->namespace }}-{{ $project->name }}">
                         {{ $project->namespace }}/{{ $project->name }}
                     </a>
                 </td>
 
                 <td class="text-black-lightest p-4">{{ number_format($project->debtScore(), 2) }}</td>
+
+                <td class="text-black-lightest p-4">
+                <?php
+
+                    $sparkline = new Sparkline();
+                    $sparkline->setData($project->getDebtScoreHistory());
+                    echo '<img src="data:image/jpeg;base64, ' . $sparkline->toBase64() . '" />';
+                ?>
+                </td>
 
                 <td class="text-black-lightest p-4">{{ $project->oldPullRequests()->count() }}</td>
 
@@ -56,11 +68,12 @@
                     <td class="p-4">
                         <a class="text-indigo no-underline p-2 -mx-2"
                            href="https://github.com/{{ $project->namespace }}/{{ $project->name }}/labels/hacktoberfest"
-                           target="_blank">
+                           target="_blank" rel="noopener noreferrer">
                             {{ $project->hacktoberfestIssues()->count() }}
                         </a>
                     </td>
                 @endif
+
             </tr>
         @endforeach
     </tbody>

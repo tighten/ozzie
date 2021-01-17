@@ -4,14 +4,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Organization/Company Name and Twitter
+    | Organization/Company GitHub Name and Twitter
     |--------------------------------------------------------------------------
     |
-    | In our case, it's "Tighten". In your case it could be anything.
+    | In our case, it's "tighten". In your case it could be anything.
     |
     */
 
-    'organization' => env('APP_ORG', 'Tighten'),
+    'organization' => env('APP_ORG', 'tighten'),
 
     'twitter' => env('APP_TWITTER', 'tightenco'),
 
@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Ozzie'),
+    'name' => env('APP_NAME', 'Tighten'),
 
     /*
     |--------------------------------------------------------------------------

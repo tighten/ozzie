@@ -8,12 +8,6 @@ class Issue extends DataTransferObject
 {
     use CastDates;
 
-    public function __construct(array $parameters = [])
-    {
-        parent::__construct($parameters);
-        $this->toCarbon($this->created_at);
-    }
-
     public $created_at;
     public $html_url;
     public $pull_request;
@@ -26,4 +20,10 @@ class Issue extends DataTransferObject
     public $user;
 
     protected $ignoreMissing = true;
+
+    public function __construct(array $parameters = [])
+    {
+        parent::__construct($parameters);
+        $this->toCarbon($this->created_at);
+    }
 }
