@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Remotes;
+namespace App\Remotes\Packagist;
 
 use App\Project;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 
-class Packagist
+class Project
 {
     public $downloads;
     public $monthly = 0;

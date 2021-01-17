@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use App\GitHub\Repository;
 use App\Project;
-use App\Remotes\Packagist;
+use App\Remotes\Packagist\Package;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
@@ -45,7 +45,7 @@ class FetchProjectStats extends Command
         $project->pull_requests = $pullRequests;
 
         // Fetch download counts (if applicable)
-        $packagist = Packagist::make($project)->fetchDownloads();
+        $packagist = Package::make($project)->fetchDownloads();
         $project->downloads_total = $packagist->total;
         $project->downloads_last_30_days = $packagist->monthly;
 
