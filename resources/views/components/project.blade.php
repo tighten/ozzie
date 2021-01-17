@@ -1,6 +1,6 @@
 <div class="mt-16">
     <section class="flex justify-between items-center py-6 border-b-2 border-clouds"
-             id="project-{{ $project->namespace }}-{{ $project->name }}">
+             id="{{ $project->namespace }}-{{ $project->name }}">
         <div class="w-1/2">
             <h2 class="text-2xl text-black font-semibold tracking-wide">
                 <a href="{{ $project->url() }}" aria-label="Launch">
@@ -16,7 +16,7 @@
 
             @foreach ($project->maintainers as $maintainer)
                 <a class="text-indigo no-underline" href="https://github.com/{{ $maintainer }}"
-                   target="_blank">{{ '@' . $maintainer }}</a>
+                   target="_blank" rel="noopener noreferrer">{{ '@' . $maintainer }}</a>
             @endforeach
         </p>
     </section>
