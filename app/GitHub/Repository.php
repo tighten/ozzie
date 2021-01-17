@@ -6,7 +6,7 @@ use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
 use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
 
-class GitHub
+class Repository
 {
     public $name;
     public $namespace;
@@ -17,7 +17,7 @@ class GitHub
        $this->name = $name;
     }
 
-    public function projectIssues()
+    public function issues()
     {
         return collect(GitHubClient::issues()->all($this->namespace, $this->name))
             ->map(function ($issue) {
@@ -27,7 +27,7 @@ class GitHub
             });
     }
 
-    public function projectPullRequests()
+    public function pullRequests()
     {
         return collect(GitHubClient::pullRequests()->all($this->namespace, $this->name))
             ->map(function ($pullRequest) {

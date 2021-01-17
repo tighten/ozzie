@@ -9,13 +9,15 @@ class AddProjectIdToSnapshotsTable extends Migration
     public function up()
     {
         Schema::table('snapshots', function (Blueprint $table) {
-            $table->bigInteger('project_id')->unsigned()->after('id');
+            $table->foreignId('project_id');
+            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 
     public function down()
     {
         Schema::table('snapshots', function (Blueprint $table) {
+            $table->dropForeign(['project_id']);
             $table->dropColumn('project_id');
         });
     }

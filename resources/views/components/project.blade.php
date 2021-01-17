@@ -8,7 +8,7 @@
                     @include('svg.launch')
                 </a>
             </h2>
-            <div class="text-grey-dark font-thin">{{ $project->updatedAt() }}</div>
+            <div class="text-grey-dark font-thin">{{ $project->updated_at->diffForHumans() }}</div>
         </div>
 
         <p class="w-1/2 text-right text-black-lightest">

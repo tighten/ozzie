@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\GitHub\GitHub;
+use App\GitHub\Repository;
 use App\Project;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -13,11 +13,6 @@ class FetchProjectStats extends Command
 
     protected $description = "Fetch each project's stats from GitHub and store in the projects table.";
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function handle()
     {
         $projects = Project::all();
@@ -25,18 +20,7 @@ class FetchProjectStats extends Command
         $this->createProgressBar($projects->count());
 
         foreach ($projects as $project) {
-            $this->updateProgressBar($project->name);
-
-            $githubProject = new GitHub($project->namespace, $project->name);
-            $issues = $this->getFilteredIssues($githubProject->projectIssues());
-            $pullRequests = $this->getFilteredPullRequests($githubProject->projectPullRequests());
-
-            $project->issues_count = $issues->count();
-            $project->pull_requests_count = $pullRequests->count();
-            $project->issues = $issues;
-            $project->pull_requests = $pullRequests;
-
-            $project->save();
+            $this->fetchOneProject($project);
         }
 
         $this->bar->finish();
@@ -44,21 +28,34 @@ class FetchProjectStats extends Command
         return 0;
     }
 
-    public function getFilteredIssues($issues)
+    public function fetchOneProject(Project $project)
+    {
+        $this->updateProgressBar($project->name);
+
+        $githubProject = new Repository($project->namespace, $project->name);
+        $issues = $this->filterIssues($githubProject->issues());
+        $pullRequests = $this->filterPullRequests($githubProject->pullRequests());
+
+        $project->issues_count = $issues->count();
+        $project->pull_requests_count = $pullRequests->count();
+
+        $project->issues = $issues;
+        $project->pull_requests = $pullRequests;
+
+        $project->save();
+    }
+
+    public function filterIssues($issues)
     {
         return $issues->reject(function ($issue) {
-            return ! empty($issue->labels)
-                && collect($issue->labels)->contains('name', 'in progress');
+            return collect($issue->labels)->contains('name', 'in progress');
         });
     }
 
-    public function getFilteredPullRequests($pullRequests)
+    public function filterPullRequests($pullRequests)
     {
         return $pullRequests->reject(function ($pullRequest) {
-            return $pullRequest->draft || (
-                    ! empty($pullRequest->labels)
-                    && collect($pullRequest->labels)->contains('name', 'in progress')
-                );
+            return $pullRequest->draft || collect($pullRequest->labels)->contains('name', 'in progress');
         });
     }
 
