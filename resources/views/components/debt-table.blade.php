@@ -48,12 +48,11 @@
                 <td class="text-black-lightest p-4">{{ number_format($project->debtScore(), 2) }}</td>
 
                 <td class="text-black-lightest p-4">
-                <?php
-
-                    $sparkline = new Sparkline();
-                    $sparkline->setData($project->getDebtScoreHistory());
-                    echo '<img src="data:image/jpeg;base64, ' . $sparkline->toBase64() . '" />';
-                ?>
+                    @php
+                        $sparkline = new Sparkline();
+                        $sparkline->setData($project->getDebtScoreHistory());
+                    @endphp
+                    <img src="data:image/jpeg;base64, {{ $sparkline->toBase64() }}" />
                 </td>
 
                 <td class="text-black-lightest p-4">{{ $project->oldPullRequests()->count() }}</td>
