@@ -45,9 +45,9 @@ class FetchProjectStats extends Command
         $project->pull_requests = $pullRequests;
 
         // Fetch download counts (if applicable)
-        $packagist = Package::make($project)->fetchDownloads();
-        $project->downloads_total = $packagist->total;
-        $project->downloads_last_30_days = $packagist->monthly;
+        $packagist = Package::fromProject($project);
+        $project->downloads_total = $packagist->total_downloads;
+        $project->downloads_last_30_days = $packagist->monthly_downloads;
 
         $project->save();
     }

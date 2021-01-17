@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 class Package
 {
-    public $downloads;
+    public $downloadsData;
     public $monthly = 0;
     public $total = 0;
 
@@ -17,25 +17,13 @@ class Package
     public function __construct($namespace, $name)
     {
         $this->url = "https://packagist.org/packages/{$namespace}/{$name}.json";
+
+        $this->fetchDownloads();
     }
 
-    public static function make(Project $project)
+    public static function fromProject(Project $project): self
     {
         return new self(... explode('/', $project->packagist_name));
-    }
-
-    public function fetchDownloads()
-    {
-        $response = Http::get($this->url);
-
-        if ($response->ok()) {
-            $this->downloads = Arr::get($response->json(), 'package.downloads', 0);
-
-            $this->monthly = $this->downloads['monthly'];
-            $this->total = $this->downloads['total'];
-        }
-
-        return $this;
     }
 
     public function __get($key)
@@ -45,5 +33,16 @@ class Package
         }
 
         return $this->{$key};
+    }
+
+    protected function fetchDownloads()
+    {
+        $response = Http::get($this->url);
+
+        if ($response->ok()) {
+            $this->downloadsData = Arr::get($response->json(), 'package.downloads', 0);
+            $this->monthly_downloads = $this->downloadsData['monthly'];
+            $this->total_downloads = $this->downloadsData['total'];
+        }
     }
 }
