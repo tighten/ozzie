@@ -41,8 +41,8 @@ class Package
 
         if ($response->ok()) {
             $this->downloadsData = Arr::get($response->json(), 'package.downloads', 0);
-            $this->monthly_downloads = $this->downloadsData['monthly'];
-            $this->total_downloads = $this->downloadsData['total'];
+            $this->monthlyDownloads = $this->downloadsData['monthly'];
+            $this->totalDownloads = $this->downloadsData['total'];
         }
     }
 }
