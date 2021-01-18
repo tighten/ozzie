@@ -19,6 +19,7 @@ class ProjectsSeeder extends Seeder
                 Project::create([
                     'namespace' => $project['namespace'],
                     'name' => $project['name'],
+                    'packagist_name' => $project['packagist_name'] ?? null,
                     'maintainers' => $project['maintainers'],
                     'issues_count' => 0,
                     'pull_requests_count' => 0,

@@ -2,6 +2,7 @@
     {
         "name": "checkmate",
         "namespace": "tighten",
+        "packagist_name": "tightenco/checkmate",
         "maintainers": [
             "ctroms",
             "marcusmoore"
@@ -10,6 +11,7 @@
     {
         "name": "collect",
         "namespace": "tighten",
+        "packagist_name": "tightenco/collect",
         "maintainers": [
             "jamisonvalenta"
         ]
@@ -17,6 +19,7 @@
     {
         "name": "gistlog",
         "namespace": "tighten",
+        "packagist_name": "tightenco/gistlog",
         "maintainers": [
             "mattstauffer"
         ]
@@ -24,6 +27,7 @@
     {
         "name": "jigsaw",
         "namespace": "tighten",
+        "packagist_name": "tightenco/jigsaw",
         "maintainers": [
             "damiani",
             "bakerkretzmar",
@@ -33,6 +37,7 @@
     {
         "name": "jigsaw-blog-template",
         "namespace": "tighten",
+        "packagist_name": "tightenco/jigsaw-blog-template",
         "maintainers": [
             "damiani",
             "bakerkretzmar",
@@ -42,6 +47,7 @@
     {
         "name": "jigsaw-docs-template",
         "namespace": "tighten",
+        "packagist_name": "tightenco/jigsaw-docs-template",
         "maintainers": [
             "damiani",
             "bakerkretzmar",
@@ -51,6 +57,7 @@
     {
         "name": "jigsaw-site",
         "namespace": "tighten",
+        "packagist_name": "tightenco/jigsaw-site",
         "maintainers": [
             "damiani",
             "bakerkretzmar",
@@ -60,6 +67,7 @@
     {
         "name": "lambo",
         "namespace": "tighten",
+        "packagist_name": "tightenco/lambo",
         "maintainers": [
             "mattstauffer"
         ]
@@ -67,6 +75,7 @@
     {
         "name": "mailthief",
         "namespace": "tighten",
+        "packagist_name": "tightenco/mailthief",
         "maintainers": [
             "mattstauffer"
         ]
@@ -74,6 +83,7 @@
     {
         "name": "novapackages",
         "namespace": "tighten",
+        "packagist_name": "tightenco/novapackages",
         "maintainers": [
             "mattstauffer"
         ]
@@ -81,6 +91,7 @@
     {
         "name": "onramp",
         "namespace": "tighten",
+        "packagist_name": "tightenco/onramp",
         "maintainers": [
             "tammytee",
             "mattstauffer"
@@ -89,6 +100,7 @@
     {
         "name": "ozzie",
         "namespace": "tighten",
+        "packagist_name": "tightenco/ozzie",
         "maintainers": [
             "jakebathman",
             "sbine"
@@ -97,6 +109,7 @@
     {
         "name": "quicksand",
         "namespace": "tighten",
+        "packagist_name": "tightenco/quicksand",
         "maintainers": [
             "mattstauffer"
         ]
@@ -104,6 +117,7 @@
     {
         "name": "symposium",
         "namespace": "tighten",
+        "packagist_name": "tightenco/symposium",
         "maintainers": [
             "andrewmile",
             "sariyana"
@@ -112,6 +126,7 @@
     {
         "name": "tlint",
         "namespace": "tighten",
+        "packagist_name": "tightenco/tlint",
         "maintainers": [
             "loganhenson",
             "andrewmile"
@@ -120,6 +135,7 @@
     {
         "name": "ziggy",
         "namespace": "tighten",
+        "packagist_name": "tightenco/ziggy",
         "maintainers": [
             "jakebathman",
             "mattstauffer",
@@ -129,6 +145,7 @@
     {
         "name": "takeout",
         "namespace": "tighten",
+        "packagist_name": "tightenco/takeout",
         "maintainers": [
             "josecanhelp",
             "mattstauffer"
