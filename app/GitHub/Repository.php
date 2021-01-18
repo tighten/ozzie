@@ -13,8 +13,8 @@ class Repository
 
     public function __construct($namespace, $name)
     {
-       $this->namespace = $namespace;
-       $this->name = $name;
+        $this->namespace = $namespace;
+        $this->name = $name;
     }
 
     public function issues()

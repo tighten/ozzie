@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\GitHub\Repository;
 use App\Project;
+use App\Remotes\Packagist\Package;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
@@ -32,6 +33,7 @@ class FetchProjectStats extends Command
     {
         $this->updateProgressBar($project->name);
 
+        // Fetch GitHub project issues and pull requests
         $githubProject = new Repository($project->namespace, $project->name);
         $issues = $this->filterIssues($githubProject->issues());
         $pullRequests = $this->filterPullRequests($githubProject->pullRequests());
@@ -41,6 +43,11 @@ class FetchProjectStats extends Command
 
         $project->issues = $issues;
         $project->pull_requests = $pullRequests;
+
+        // Fetch download counts (if applicable)
+        $packagist = Package::fromProject($project);
+        $project->downloads_total = $packagist->totalDownloads;
+        $project->downloads_last_30_days = $packagist->monthlyDownloads;
 
         $project->save();
     }

@@ -8,12 +8,6 @@ class PullRequest extends DataTransferObject
 {
     use CastDates;
 
-    public function __construct(array $parameters = [])
-    {
-        parent::__construct($parameters);
-        $this->toCarbon($this->created_at);
-    }
-
     public $body;
     public $created_at;
     public $draft;
@@ -35,4 +29,10 @@ class PullRequest extends DataTransferObject
     public $user;
 
     protected $ignoreMissing = true;
+
+    public function __construct(array $parameters = [])
+    {
+        parent::__construct($parameters);
+        $this->toCarbon($this->created_at);
+    }
 }

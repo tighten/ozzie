@@ -1,4 +1,5 @@
 <div class="mt-16">
+
     <section class="flex justify-between items-center py-6 border-b-2 border-clouds"
              id="{{ $project->namespace }}-{{ $project->name }}">
         <div class="w-1/2">
@@ -8,7 +9,10 @@
                     @include('svg.launch')
                 </a>
             </h2>
-            <div class="text-grey-dark font-thin">{{ $project->updated_at->diffForHumans() }}</div>
+            <div class="text-grey-dark font-thin">
+                Synced {{ $project->updated_at->diffForHumans() }}<br>
+                {{ $downloads }}
+            </div>
         </div>
 
         <p class="w-1/2 text-right text-black-lightest">
@@ -23,25 +27,25 @@
 
 
     <section class="flex items-start border-b border-clouds">
-        <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">Pull Requests</h3>
+        <h3 class="w-1/3 text-lg text-black-lightest py-5 font-thin">Pull Requests</h3>
 
         <ul class="w-2/3">
             @forelse ($project->pull_requests as $pr)
                 <x-pull-request :pr-data="$pr" :project="$project" />
             @empty
-                <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">✅ None</h3>
+                <h3 class="w-1/3 text-lg text-black-lightest py-5 font-thin">✅ None</h3>
             @endforelse
         </ul>
     </section>
 
     <section class="flex items-start border-b-1 border-clouds">
-        <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">Issues</h3>
+        <h3 class="w-1/3 text-lg text-black-lightest py-5 font-thin">Issues</h3>
 
         <ul class="w-2/3 list-reset">
             @forelse ($project->issues as $issue)
                 <x-issue :issue="$issue" :project="$project" />
             @empty
-                <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">✅ None</h3>
+                <h3 class="w-1/3 text-lg text-black-lightest py-5 font-thin">✅ None</h3>
             @endforelse
         </ul>
     </section>

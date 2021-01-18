@@ -32,8 +32,9 @@ Here's what the structure of the file looks like:
 ```json
 [
     {
-        "name": "ozzie",
+        "name": "ziggy",
         "namespace": "tighten",
+        "packagist": "tightenco/ziggy",
         "maintainers": [
             "mattstauffer"
         ]

@@ -25,7 +25,7 @@
         </div>
         <div class="flex h-10 py-6 w-auto">
             <div v-cloak>
-                <modal-button  modal-id="{{ $prData->node_id }}"></modal-button>
+                <modal-button modal-id="{{ $prData->node_id }}"></modal-button>
             </div>
             <a class="no-underline" href="{{ $prData->html_url }}" target="_blank" rel="noopener noreferrer" aria-label="Launch">
                 @include('svg.launch')
@@ -50,7 +50,7 @@
                     from
                     <span class="font-semibold font-mono text-black-lighter">{{ $prData->head->label }}</span>
                 </p>
-                <div class="mt-4 flex items-center text-black-lighter @if(! empty($prData->body)) border-b border-grey-blue-light pb-4 @endif">
+                <div class="mt-4 flex items-center text-black-lighter @if (! empty($prData->body)) border-b border-grey-blue-light pb-4 @endif">
                     <a class="flex items-center" href="{{ $prData->html_url }}" target="_blank" rel="noopener noreferrer">
                         <svg class="mr-1 h-6 w-6 inline" viewBox="0 0 16 16" version="1.1" width="128" aria-hidden="true">
                             <path fill="currentColor" fill-rule="evenodd"
