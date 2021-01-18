@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "71c6cc18d76f5f0485bb6354bee7d52c",
+    "content-hash": "b339d97d530b5e0547b10cd74d2a707b",
     "packages": [
         {
             "name": "brick/math",
@@ -5958,6 +5958,60 @@
             "time": "2020-10-28T21:31:18+00:00"
         },
         {
+            "name": "tightenco/tlint",
+            "version": "v5.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tighten/tlint.git",
+                "reference": "96d314d77108d05e0918fe93b836eaa6c0b9ea96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tighten/tlint/zipball/96d314d77108d05e0918fe93b836eaa6c0b9ea96",
+                "reference": "96d314d77108d05e0918fe93b836eaa6c0b9ea96",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "^4.5",
+                "php": ">=7.3",
+                "symfony/console": "^4.3 || ^5.0",
+                "symfony/process": "^4.3 || ^5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.3"
+            },
+            "bin": [
+                "bin/tlint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tighten\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Logan Henson",
+                    "email": "logan@loganhenson.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tighten linter for Laravel conventions",
+            "homepage": "https://github.com/tighten/tlint",
+            "support": {
+                "issues": "https://github.com/tighten/tlint/issues",
+                "source": "https://github.com/tighten/tlint/tree/v5.0.9"
+            },
+            "time": "2021-01-13T13:59:26+00:00"
+        },
+        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "2.2.3",
             "source": {
@@ -9220,7 +9274,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3",
+        "php": "^7.4",
         "ext-json": "*"
     },
     "platform-dev": [],

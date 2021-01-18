@@ -1,4 +1,6 @@
-<?php use Davaxi\Sparkline; ?>
+<?php
+    use Davaxi\Sparkline;
+?>
 <div class="flex items-center justify-between">
     <p class="mb-6 text-black-lighter">Projects in descending order of "debt" (how much attention it needs)</p>
 
@@ -48,10 +50,10 @@
                 <td class="text-black-lightest p-4">{{ number_format($project->debtScore(), 2) }}</td>
 
                 <td class="text-black-lightest p-4">
-                    @php
+                    <?php
                         $sparkline = new Sparkline();
                         $sparkline->setData($project->getDebtScoreHistory());
-                    @endphp
+                    ?>
                     <img src="data:image/jpeg;base64, {{ $sparkline->toBase64() }}" />
                 </td>
 
