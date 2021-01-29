@@ -19,7 +19,7 @@ class Issue extends DataTransferObject
     /** @var \App\GitHub\Dto\User */
     public $user;
 
-    protected $ignoreMissing = true;
+    protected bool $ignoreMissing = true;
 
     public function __construct(array $parameters = [])
     {
