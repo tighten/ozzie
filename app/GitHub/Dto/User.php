@@ -9,5 +9,5 @@ class User extends DataTransferObject
     public $html_url;
     public $login;
 
-    protected $ignoreMissing = true;
+    protected bool $ignoreMissing = true;
 }

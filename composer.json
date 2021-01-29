@@ -17,7 +17,7 @@
         "laravel/ui": "^3.0",
         "nathanheffley/laravel-slack-blocks": "^2.1",
         "php-http/guzzle6-adapter": "^1.1",
-        "spatie/data-transfer-object": "^1.13",
+        "spatie/data-transfer-object": "^2.0",
         "tightenco/tlint": "^5.0"
     },
     "require-dev": {

@@ -9,5 +9,5 @@ class Label extends DataTransferObject
     public $color;
     public $name;
 
-    protected $ignoreMissing = true;
+    protected bool $ignoreMissing = true;
 }
