@@ -22,8 +22,8 @@
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
+        "fakerphp/faker": "^1.13",
         "friendsofphp/php-cs-fixer": "^2.16",
-        "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.0"
