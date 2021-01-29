@@ -10,7 +10,7 @@
     <card>
       <card-header>
         <div class="flex justify-between">
-          <!-- ITEM TYPR -->
+          <!-- ITEM TYPE -->
           <slot name="github-item-type" />
           <span class="normal-case font-normal">opened by <a
             class="font-semibold text-indigo"
