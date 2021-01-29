@@ -1,10 +1,5 @@
 module.exports = {
 
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
-
   purge: {
     content: [
       './storage/framework/views/*.php',
