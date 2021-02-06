@@ -5,6 +5,7 @@ use PhpCsFixer\Finder;
 
 $finder = Finder::create()
     ->exclude('bootstrap')
+    ->exclude('node_modules')
     ->exclude('storage')
     ->in(__DIR__);
 

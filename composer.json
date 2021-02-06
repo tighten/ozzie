@@ -19,6 +19,7 @@
         "laravel/ui": "^3.0",
         "nathanheffley/laravel-slack-blocks": "^2.1",
         "spatie/data-transfer-object": "^2.0",
+        "tightenco/duster": "^0.2.0@RC",
         "tightenco/tlint": "^5.0"
     },
     "require-dev": {
