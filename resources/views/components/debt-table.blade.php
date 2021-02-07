@@ -1,5 +1,6 @@
 <?php
     use Davaxi\Sparkline;
+
 ?>
 <div class="flex items-center justify-between">
     <p class="mb-6 text-black-lighter">Projects in descending order of "debt" (how much attention it needs)</p>

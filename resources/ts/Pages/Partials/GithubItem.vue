@@ -56,7 +56,7 @@
 <script>
 import Layout from '../Layout';
 import GoBack from '../../components/GoBack';
-import ProjectHeader from '../Partials/ProjectHeader';
+import ProjectHeader from './ProjectHeader';
 import Card from '../../components/Card';
 import CardBody from '../../components/CardBody';
 import CardHeader from '../../components/CardHeader';
@@ -123,28 +123,26 @@ export default {
     };
   },
   mounted() {
-    window.axios
-      .post('https://api.github.com/markdown',
-        {
-          text: this.githubItemBody,
+    this.$http.post('https://api.github.com/markdown',
+      {
+        text: this.githubItemBody,
+      },
+      {
+        headers: {
+          Authorization: `token ${window.githubToken}`,
         },
-        {
-          headers: {
-            Authorization: `token ${window.githubToken}`,
-          },
-        }
-      )
-      .then(response => {
+      })
+      .then((response) => {
         this.parsedGithubItemBody = response.data;
         this.loaded = true;
       })
-      .catch(error => console.log(error.message));
+      .catch((error) => console.log(error.message));
   },
   methods: {
     baseUrl(section) {
       return (section)
-        ? this.githubItemHtmlUrl + '/' + section
-        :this.githubItemHtmlUrl;
+        ? `${this.githubItemHtmlUrl}/${section}`
+        : this.githubItemHtmlUrl;
     },
   },
 };

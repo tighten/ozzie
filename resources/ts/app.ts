@@ -3,6 +3,9 @@ import { createApp, h } from 'vue';
 import { App, plugin } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import { DateTime } from 'luxon';
+import axios from 'axios';
+
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 InertiaProgress.init({
   color: '#ffaa30',
@@ -19,4 +22,5 @@ const app = createApp({
   }),
 });
 app.config.globalProperties.$luxon = DateTime;
+app.config.globalProperties.$http = axios;
 app.use(plugin).mount(el);

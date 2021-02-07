@@ -8,7 +8,7 @@
         target="_blank"
         aria-label="Launch"
       >
-        <icon-launch />
+        <IconLaunch />
       </a>
     </div>
     <div>
@@ -46,9 +46,10 @@
 
 <script>
 import IconLaunch from '../../components/svg/Launch';
+
 export default {
   name: 'GithubListItem',
-  components: {IconLaunch},
+  components: { IconLaunch },
   props: {
     projectName: {
       required: true,

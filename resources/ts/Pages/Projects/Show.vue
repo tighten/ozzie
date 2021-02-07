@@ -41,7 +41,7 @@
               {{ project.oldIssueCount }}
             </td>
             <td class="text-black-lightest p-4">
-              {{ project.prCount }}
+              {{ project.pullRequestCount }}
             </td>
             <td class="text-black-lightest p-4">
               {{ project.issueCount }}
@@ -52,40 +52,39 @@
     </div>
 
     <Card
-      v-if="Object.keys(project.prs).length > 0"
+      v-if="project.pullRequestCount > 0"
       class="mt-8"
     >
-      <card-header>Pull Requests</card-header>
-      <card-body>
+      <CardHeader>Pull Requests</CardHeader>
+      <CardBody>
         <ul class="space-y-6">
           <li
             v-for="pr in project.prs"
             :key="pr.node_id"
           >
-            <github-list-item
+            <GithubListItem
               :git-hub-item="pr"
               :project-namespace="project.namespace"
               :project-name="project.name"
             >
-              <template slot="link">
-                <inertia-link
+              <template #link>
+                <InertiaLink
                   class="text-black-lighter font-medium no-underline leading-normal truncate flex-1"
-                  href="/pr"
-                  method="post"
+                  :href="`/inertia/projects/${project.namespace}/${project.name}/prs/${pr.number}`"
+                  method="get"
                   target="_blank"
                   preserve-state
-                  :data="{ project: project, pr: pr }"
                 >
                   {{ pr.title }}
-                </inertia-link>
+                </InertiaLink>
               </template>
-            </github-list-item>
+            </GithubListItem>
           </li>
         </ul>
-      </card-body>
-    </card>
+      </CardBody>
+    </Card>
     <Card
-      v-if="Object.keys(project.issues).length > 0"
+      v-if="project.issueCount > 0"
       class="mt-8"
     >
       <card-header>Issues</card-header>
@@ -100,14 +99,13 @@
               :project-namespace="project.namespace"
               :project-name="project.name"
             >
-              <template slot="link">
+              <template #link>
                 <inertia-link
                   class="text-black-lighter font-medium no-underline leading-normal truncate flex-1"
-                  href="/issue"
-                  method="post"
+                  :href="`/inertia/projects/${project.namespace}/${project.name}/issues/${issue.number}`"
+                  method="get"
                   target="_blank"
                   preserve-state
-                  :data="{ project: project, issue: issue }"
                 >
                   {{ issue.title }}
                 </inertia-link>
