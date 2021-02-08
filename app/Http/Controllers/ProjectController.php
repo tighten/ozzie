@@ -9,6 +9,11 @@ class ProjectController extends Controller
 {
     public function index()
     {
+
+        //            $sparkline = new Sparkline();
+        //                        $sparkline->setData($project->getDebtScoreHistory());
+        //                    <img src="data:image/jpeg;base64, {{ $sparkline->toBase64() }}" />
+
         $projects = Project::all()->map(
             fn(Project $project) => $this->projectData(
                 $project,
@@ -33,6 +38,7 @@ class ProjectController extends Controller
     public function show(string $namespace, string $name)
     {
         $project = Project::where('namespace', $namespace)->where('name', $name)->firstOrFail();
+
         return inertia(
             'Projects/Show',
             [
