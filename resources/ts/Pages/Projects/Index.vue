@@ -51,13 +51,13 @@
             :key="project.name"
           >
             <td class="p-4">
-              <inertia-link
+              <InertiaLink
                 class="text-indigo no-underline p-2 -mx-2"
                 :href="'/inertia/projects/' + project.namespace + '/' + project.name"
                 method="get"
               >
                 {{ project.namespace }}/{{ project.name }}
-              </inertia-link>
+              </InertiaLink>
             </td>
             <td class="text-black-lightest p-4">
               {{ project.debtScore }}

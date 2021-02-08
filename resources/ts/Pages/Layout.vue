@@ -7,7 +7,9 @@
             <span class="font-light text-5xl text-indigo">O</span>
             <span class="uppercase text-2xl leading-normal text-black-light font-semibold font-sans tracking-wide">zzie</span>
           </h1>
-          <p class="font-sans italic font-normal leading-normal tracking-tight text-grey-blue-darkest">Addressing our open source debt</p>
+          <p class="font-sans italic font-normal leading-normal tracking-tight text-grey-blue-darkest">
+            Addressing our open source debt
+          </p>
         </div>
       </section>
     </div>
@@ -21,16 +23,20 @@
 
 <script>
 export default {
-    props: {
-        title: String,
+  name: 'Layout',
+  props: {
+    title: {
+      type: String,
+      default: 'Ozzie',
     },
-    watch: {
-        title: {
-            immediate: true,
-            handler(title) {
-                document.title = title;
-            },
-        },
+  },
+  watch: {
+    title: {
+      immediate: true,
+      handler(title) {
+        document.title = title;
+      },
     },
+  },
 };
 </script>

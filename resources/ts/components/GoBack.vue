@@ -13,10 +13,11 @@
 
 <script>
 import IconChevronLeft from './svg/ChevronLeft';
+
 export default {
-    name: 'GoBack',
-    components: {
-        IconChevronLeft,
-    },
+  name: 'GoBack',
+  components: {
+    IconChevronLeft,
+  },
 };
 </script>

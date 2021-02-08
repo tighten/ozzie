@@ -1,5 +1,5 @@
 <template>
-  <layout :title="'Ozzie - ' + project.namespace + '/' + project.name">
+  <Layout :title="'Ozzie - ' + project.namespace + '/' + project.name">
     <GoBack />
     <ProjectHeader
       :namespace="project.namespace"
@@ -87,20 +87,20 @@
       v-if="project.issueCount > 0"
       class="mt-8"
     >
-      <card-header>Issues</card-header>
-      <card-body>
+      <CardHeader>Issues</CardHeader>
+      <CardBody>
         <ul class="space-y-6">
           <li
             v-for="issue in project.issues"
             :key="issue.node_id"
           >
-            <github-list-item
+            <GithubListItem
               :git-hub-item="issue"
               :project-namespace="project.namespace"
               :project-name="project.name"
             >
               <template #link>
-                <inertia-link
+                <InertiaLink
                   class="text-black-lighter font-medium no-underline leading-normal truncate flex-1"
                   :href="`/inertia/projects/${project.namespace}/${project.name}/issues/${issue.number}`"
                   method="get"
@@ -108,14 +108,14 @@
                   preserve-state
                 >
                   {{ issue.title }}
-                </inertia-link>
+                </InertiaLink>
               </template>
-            </github-list-item>
+            </GithubListItem>
           </li>
         </ul>
-      </card-body>
-    </card>
-  </layout>
+      </CardBody>
+    </Card>
+  </Layout>
 </template>
 
 <script>

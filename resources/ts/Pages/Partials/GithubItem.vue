@@ -1,5 +1,5 @@
 <template>
-  <layout :title="'Ozzie - ' + projectNamespace + '/' + projectName + ' - #' + githubItemNumber">
+  <Layout :title="'Ozzie - ' + projectNamespace + '/' + projectName + ' - #' + githubItemNumber">
     <GoBack />
     <ProjectHeader
       :namespace="projectNamespace"
@@ -7,11 +7,11 @@
       :url="projectUrl"
       :maintainers="projectMaintainers"
     />
-    <card>
-      <card-header>
+    <Card>
+      <CardHeader>
         <div class="flex justify-between">
           <!-- ITEM TYPE -->
-          <slot name="github-item-type" />
+          <Slot name="github-item-type" />
           <span class="normal-case font-normal">opened by <a
             class="font-semibold text-indigo"
             :href="githubItemUserUrl"
@@ -21,8 +21,8 @@
           </a> {{ $luxon.fromISO(githubItemCreatedAt).toRelative() }}
           </span>
         </div>
-      </card-header>
-      <card-body>
+      </CardHeader>
+      <CardBody>
         <h2 class="mt-0 text-xl text-black font-semibold tracking-wide leading-none truncate">
           {{ githubItemTitle }}
           <span class="ml-2 text-grey-dark font-normal">
@@ -48,9 +48,9 @@
             class="text-grey-darker"
           >No description provided.</em>
         </div>
-      </card-body>
-    </card>
-  </layout>
+      </CardBody>
+    </Card>
+  </Layout>
 </template>
 
 <script>

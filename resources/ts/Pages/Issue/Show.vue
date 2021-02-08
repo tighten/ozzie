@@ -1,5 +1,5 @@
 <template>
-  <github-item
+  <GithubItem
     :project-namespace="project.namespace"
     :project-name="project.name"
     :project-maintainers="project.maintainers"
@@ -15,7 +15,7 @@
     <template #github-item-type>
       Issue
     </template>
-  </github-item>
+  </GithubItem>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <github-item
+  <GithubItem
     :project-namespace="project.namespace"
     :project-name="project.name"
     :project-maintainers="project.maintainers"
@@ -22,7 +22,7 @@
           :href="baseUrl()"
           target="_blank"
         >
-          <icon-conversation />
+          <IconConversation />
           <span class="text-indigo">
             Conversation
           </span>
@@ -32,7 +32,7 @@
           :href="baseUrl('commits')"
           target="_blank"
         >
-          <icon-commit />
+          <IconCommit />
           <span class="text-indigo">
             Commits
           </span>
@@ -42,14 +42,14 @@
           :href="baseUrl('files')"
           target="_blank"
         >
-          <icon-file-diff />
+          <IconFileDiff />
           <span class="text-indigo">
             Files changed
           </span>
         </a>
       </div>
     </template>
-  </github-item>
+  </GithubItem>
 </template>
 
 <script>

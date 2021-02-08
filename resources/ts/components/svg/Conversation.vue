@@ -1,3 +1,4 @@
+<!-- eslint-disable max-len -->
 <template>
   <span>
     <svg
@@ -17,6 +18,6 @@
 
 <script>
 export default {
-    name: 'IconFileDiff',
+  name: 'IconFileDiff',
 };
 </script>
