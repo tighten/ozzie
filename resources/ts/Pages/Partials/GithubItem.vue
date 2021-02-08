@@ -11,7 +11,7 @@
       <CardHeader>
         <div class="flex justify-between">
           <!-- ITEM TYPE -->
-          <Slot name="github-item-type" />
+          <slot name="github-item-type" />
           <span class="normal-case font-normal">opened by <a
             class="font-semibold text-indigo"
             :href="githubItemUserUrl"
