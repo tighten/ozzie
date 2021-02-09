@@ -7,23 +7,23 @@
       :url="project.url"
       :maintainers="project.maintainers"
     />
-    <div class="overflow-x-auto max-w-full shadow rounded">
-      <table class="table-auto rounded-lg shadow w-full">
-        <thead class="bg-grey-blue-light border-grey border-b-2 text-left">
+    <div class="overflow-x-auto max-w-full rounded">
+      <table class="w-full text-xs font-medium tracking-wide leading-none rounded-lg table-auto text-grey-darkest">
+        <thead class="text-left uppercase border-b-2 bg-grey-blue-light border-grey">
           <tr>
-            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
+            <th class="p-4">
               Debt Score
             </th>
-            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
+            <th class="p-4">
               Old Prs
             </th>
-            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
+            <th class="p-4">
               Old Issues
             </th>
-            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
+            <th class="p-4">
               Prs
             </th>
-            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
+            <th class="p-4">
               Issues
             </th>
           </tr>
@@ -31,19 +31,19 @@
 
         <tbody class="bg-white rounded-b-lg divide-y divide-smoke">
           <tr>
-            <td class="text-black-lightest p-4">
+            <td class="p-4 text-black-lightest">
               {{ project.debtScore }}
             </td>
-            <td class="text-black-lightest p-4">
+            <td class="p-4 text-black-lightest">
               {{ project.oldPrCount }}
             </td>
-            <td class="text-black-lightest p-4">
+            <td class="p-4 text-black-lightest">
               {{ project.oldIssueCount }}
             </td>
-            <td class="text-black-lightest p-4">
+            <td class="p-4 text-black-lightest">
               {{ project.pullRequestCount }}
             </td>
-            <td class="text-black-lightest p-4">
+            <td class="p-4 text-black-lightest">
               {{ project.issueCount }}
             </td>
           </tr>
@@ -69,7 +69,7 @@
             >
               <template #link>
                 <InertiaLink
-                  class="text-black-lighter font-medium no-underline leading-normal truncate flex-1"
+                  class="flex-1 font-medium leading-normal no-underline text-black-lighter truncate"
                   :href="`/inertia/projects/${project.namespace}/${project.name}/prs/${pr.number}`"
                   method="get"
                   target="_blank"
@@ -101,7 +101,7 @@
             >
               <template #link>
                 <InertiaLink
-                  class="text-black-lighter font-medium no-underline leading-normal truncate flex-1"
+                  class="flex-1 font-medium leading-normal no-underline text-black-lighter truncate"
                   :href="`/inertia/projects/${project.namespace}/${project.name}/issues/${issue.number}`"
                   method="get"
                   target="_blank"
