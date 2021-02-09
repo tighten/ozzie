@@ -4,15 +4,15 @@ module.exports = {
     content: [
       './storage/framework/views/*.php',
       './resources/views/**/*.blade.php',
-      './resources/js/**/*.vue',
-    ]
+      './resources/ts/**/*.vue',
+    ],
   },
 
   theme: {
-    colors:{
-      'transparent': 'transparent',
+    colors: {
+      transparent: 'transparent',
 
-      'black': '#313131',
+      black: '#313131',
       'black-light': '#353744',
       'black-lighter': '#393e43',
       'black-lightest': '#475509',
@@ -20,7 +20,7 @@ module.exports = {
       'grey-darkest': '#4b5c69',
       'grey-darker': '#606f7b',
       'grey-dark': '#8795a1',
-      'grey': '#dde1e5',
+      grey: '#dde1e5',
       'grey-light': '#dae1e7',
       'grey-lighter': '#f1f5f8',
       'grey-lightest': '#f8fafc',
@@ -31,15 +31,15 @@ module.exports = {
       'grey-blue': '#dce3e7',
       'grey-blue-light': '#e7ebef',
 
-      'white': '#ffffff',
+      white: '#ffffff',
 
-      'indigo': '#3f50bb',
+      indigo: '#3f50bb',
       'indigo-light': '#4650b6',
       'indigo-muted': '#9396ab',
 
-      'frost': '#f4f5f7',
-      'smoke': '#e7e8e8',
-      'clouds': '#d1d7da',
+      frost: '#f4f5f7',
+      smoke: '#e7e8e8',
+      clouds: '#d1d7da',
 
       'halloween-orange': '#e4730b',
     },

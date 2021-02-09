@@ -12,8 +12,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'Layout',
   props: {
-    title: String
+    title: {
+      type: String,
+      "default": 'Ozzie'
+    }
   },
   watch: {
     title: {
@@ -40,17 +44,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"bg-white border-t-4 border-indigo relative z-10 shadow\"><section class=\"max-w-4xl mx-auto px-2\"><div class=\"flex justify-between items-center\"><h1 class=\"flex items-center\"><span class=\"font-light text-5xl text-indigo\">O</span><span class=\"uppercase text-2xl leading-normal text-black-light font-semibold font-sans tracking-wide\">zzie</span></h1><p class=\"font-sans italic font-normal leading-normal tracking-tight text-grey-blue-darkest\">Addressing our open source debt</p></div></section></div>", 1);
-
+var _hoisted_1 = {
+  "class": "bg-white border-t-4 border-indigo relative z-10"
+};
 var _hoisted_2 = {
-  "class": "bg-frost font-sans relative overflow-x-auto z-0"
+  "class": "max-w-4xl mx-auto px-2"
 };
 var _hoisted_3 = {
+  "class": "flex justify-between items-center"
+};
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", {
+  "class": "flex items-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "font-light text-5xl text-indigo"
+}, "O"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "uppercase text-2xl leading-normal text-black-light font-semibold font-sans tracking-wide"
+}, "zzie")], -1
+/* HOISTED */
+);
+
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+  "class": "font-sans italic font-normal leading-normal tracking-tight text-grey-blue-darkest"
+}, " Addressing our open source debt ", -1
+/* HOISTED */
+);
+
+var _hoisted_6 = {
+  "class": "bg-frost font-sans relative overflow-x-auto z-0"
+};
+var _hoisted_7 = {
   "class": "max-w-4xl mx-auto px-2 py-6"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")])])]);
+  var _component_InertiaLink = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("InertiaLink");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InertiaLink, {
+    href: "/inertia",
+    method: "get"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_4];
+    }),
+    _: 1
+    /* STABLE */
+
+  }), _hoisted_5])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")])])]);
 }
 
 /***/ }),

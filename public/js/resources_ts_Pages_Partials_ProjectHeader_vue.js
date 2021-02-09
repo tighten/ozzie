@@ -19,20 +19,8 @@ __webpack_require__.r(__webpack_exports__);
     IconLaunch: _components_svg_Launch__WEBPACK_IMPORTED_MODULE_0__.default
   },
   props: {
-    namespace: {
-      type: String,
-      required: true
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    url: {
-      type: String,
-      required: true
-    },
-    maintainers: {
-      type: Array,
+    project: {
+      type: Object,
       required: true
     }
   }
@@ -71,39 +59,47 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "text-3xl text-black-lightest font-semibold tracking-wide"
+  "class": "flex justify-between items-center"
 };
 var _hoisted_2 = {
+  "class": "text-3xl text-black-lightest font-semibold tracking-wide"
+};
+var _hoisted_3 = {
   "class": "text-black-lightest"
 };
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Maintained by ");
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Maintained by ");
 
+var _hoisted_5 = {
+  "class": "mt-1 text-grey-dark font-light"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_IconLaunch = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IconLaunch");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("section", {
-    id: 'project-' + $props.namespace + '-' + $props.name,
+    id: "project-".concat($props.project.namespace, "-").concat($props.project.name),
     "class": "items-center pb-6"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
-    href: $props.url,
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+    href: $props.project.url,
     "aria-label": "Launch"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.namespace) + " | " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.name) + " ", 1
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.project.namespace) + " | " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.project.name) + " ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconLaunch)], 8
   /* PROPS */
-  , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_2, [_hoisted_3, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.maintainers, function (maintainer) {
+  , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_3, [_hoisted_4, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.project.maintainers, function (maintainer) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("a", {
       key: maintainer,
       "class": "text-indigo no-underline",
-      href: 'https://github.com/' + maintainer,
+      href: "https://github.com/".concat(maintainer),
       target: "_blank"
     }, " @" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(maintainer), 9
     /* TEXT, PROPS */
     , ["href"]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])], 8
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_5, " Synced " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$luxon.fromISO($props.project.updated_at).toRelative()), 1
+  /* TEXT */
+  )], 8
   /* PROPS */
   , ["id"]);
 }

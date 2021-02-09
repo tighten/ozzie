@@ -43,8 +43,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'Layout',
   props: {
-    title: String
+    title: {
+      type: String,
+      "default": 'Ozzie'
+    }
   },
   watch: {
     title: {
@@ -91,49 +95,13 @@ __webpack_require__.r(__webpack_exports__);
     ProjectHeader: _ProjectHeader__WEBPACK_IMPORTED_MODULE_2__.default
   },
   props: {
-    projectNamespace: {
-      required: true,
-      type: String
-    },
-    projectName: {
-      required: true,
-      type: String
-    },
-    projectUrl: {
-      required: true,
-      type: String
-    },
-    projectMaintainers: {
+    project: {
       required: true,
       type: Array
     },
-    githubItemTitle: {
+    issue: {
       required: true,
-      type: String
-    },
-    githubItemNumber: {
-      required: true,
-      type: Number
-    },
-    githubItemBody: {
-      required: true,
-      type: String
-    },
-    githubItemHtmlUrl: {
-      required: true,
-      type: String
-    },
-    githubItemUserUrl: {
-      required: true,
-      type: String
-    },
-    githubItemUserLogin: {
-      required: true,
-      type: String
-    },
-    githubItemCreatedAt: {
-      required: true,
-      type: String
+      type: Object
     }
   },
   data: function data() {
@@ -146,7 +114,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     this.$http.post('https://api.github.com/markdown', {
-      text: this.githubItemBody
+      text: this.issue.body
     }, {
       headers: {
         Authorization: "token ".concat(window.githubToken)
@@ -154,14 +122,7 @@ __webpack_require__.r(__webpack_exports__);
     }).then(function (response) {
       _this.parsedGithubItemBody = response.data;
       _this.loaded = true;
-    })["catch"](function (error) {
-      return console.log(error.message);
     });
-  },
-  methods: {
-    baseUrl: function baseUrl(section) {
-      return section ? "".concat(this.githubItemHtmlUrl, "/").concat(section) : this.githubItemHtmlUrl;
-    }
   }
 });
 
@@ -186,20 +147,8 @@ __webpack_require__.r(__webpack_exports__);
     IconLaunch: _components_svg_Launch__WEBPACK_IMPORTED_MODULE_0__.default
   },
   props: {
-    namespace: {
-      type: String,
-      required: true
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    url: {
-      type: String,
-      required: true
-    },
-    maintainers: {
-      type: Array,
+    project: {
+      type: Object,
       required: true
     }
   }
@@ -331,20 +280,11 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Issue ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_github_item = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("github-item");
+  var _component_GithubItem = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GithubItem");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_github_item, {
-    "project-namespace": $props.project.namespace,
-    "project-name": $props.project.name,
-    "project-maintainers": $props.project.maintainers,
-    "project-url": $props.project.url,
-    "github-item-title": $props.issue.title,
-    "github-item-number": $props.issue.number,
-    "github-item-body": $props.issue.body,
-    "github-item-html-url": $props.issue.html_url,
-    "github-item-user-url": $props.issue.user.html_url,
-    "github-item-user-login": $props.issue.user.login,
-    "github-item-created-at": $props.issue.created_at
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_GithubItem, {
+    project: $props.project,
+    issue: $props.issue
   }, {
     "github-item-type": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_1];
@@ -354,7 +294,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["project-namespace", "project-name", "project-maintainers", "project-url", "github-item-title", "github-item-number", "github-item-body", "github-item-html-url", "github-item-user-url", "github-item-user-login", "github-item-created-at"]);
+  , ["project", "issue"]);
 }
 
 /***/ }),
@@ -372,17 +312,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"bg-white border-t-4 border-indigo relative z-10 shadow\"><section class=\"max-w-4xl mx-auto px-2\"><div class=\"flex justify-between items-center\"><h1 class=\"flex items-center\"><span class=\"font-light text-5xl text-indigo\">O</span><span class=\"uppercase text-2xl leading-normal text-black-light font-semibold font-sans tracking-wide\">zzie</span></h1><p class=\"font-sans italic font-normal leading-normal tracking-tight text-grey-blue-darkest\">Addressing our open source debt</p></div></section></div>", 1);
-
+var _hoisted_1 = {
+  "class": "bg-white border-t-4 border-indigo relative z-10"
+};
 var _hoisted_2 = {
-  "class": "bg-frost font-sans relative overflow-x-auto z-0"
+  "class": "max-w-4xl mx-auto px-2"
 };
 var _hoisted_3 = {
+  "class": "flex justify-between items-center"
+};
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", {
+  "class": "flex items-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "font-light text-5xl text-indigo"
+}, "O"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "uppercase text-2xl leading-normal text-black-light font-semibold font-sans tracking-wide"
+}, "zzie")], -1
+/* HOISTED */
+);
+
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+  "class": "font-sans italic font-normal leading-normal tracking-tight text-grey-blue-darkest"
+}, " Addressing our open source debt ", -1
+/* HOISTED */
+);
+
+var _hoisted_6 = {
+  "class": "bg-frost font-sans relative overflow-x-auto z-0"
+};
+var _hoisted_7 = {
   "class": "max-w-4xl mx-auto px-2 py-6"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")])])]);
+  var _component_InertiaLink = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("InertiaLink");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InertiaLink, {
+    href: "/inertia",
+    method: "get"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_4];
+    }),
+    _: 1
+    /* STABLE */
+
+  }), _hoisted_5])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")])])]);
 }
 
 /***/ }),
@@ -432,49 +407,46 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_ProjectHeader = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ProjectHeader");
 
-  var _component_card_header = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("card-header");
+  var _component_CardHeader = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CardHeader");
 
-  var _component_card_body = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("card-body");
+  var _component_CardBody = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CardBody");
 
-  var _component_card = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("card");
+  var _component_Card = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Card");
 
-  var _component_layout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("layout");
+  var _component_Layout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Layout");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_layout, {
-    title: 'Ozzie - ' + $props.projectNamespace + '/' + $props.projectName + ' - #' + $props.githubItemNumber
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Layout, {
+    title: 'Ozzie - ' + $props.project.namespace + '/' + $props.project.name + ' - #' + $props.issue.number
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GoBack), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ProjectHeader, {
-        namespace: $props.projectNamespace,
-        name: $props.projectName,
-        url: $props.projectUrl,
-        maintainers: $props.projectMaintainers
+        project: $props.project
       }, null, 8
       /* PROPS */
-      , ["namespace", "name", "url", "maintainers"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_card, null, {
+      , ["project"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Card, null, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_card_header, null, {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CardHeader, null, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
               return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ITEM TYPE "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "github-item-type"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
                 "class": "font-semibold text-indigo",
-                href: $props.githubItemUserUrl,
+                href: $props.issue.user.login,
                 target: "_blank"
-              }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.githubItemUserLogin), 9
+              }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.issue.user.login), 9
               /* TEXT, PROPS */
-              , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$luxon.fromISO($props.githubItemCreatedAt).toRelative()), 1
+              , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$luxon.fromISO($props.issue.created_at).toRelative()), 1
               /* TEXT */
               )])])];
             }),
             _: 3
             /* FORWARDED */
 
-          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_card_body, null, {
+          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CardBody, null, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.githubItemTitle) + " ", 1
+              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.issue.title) + " ", 1
               /* TEXT */
-              ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_5, " #" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.githubItemNumber), 1
+              ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_5, " #" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.issue.number), 1
               /* TEXT */
-              )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" TITLE EXTRA "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "title-extra"), $data.loaded ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_6, [$props.githubItemBody !== '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("article", {
+              )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" TITLE EXTRA "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "title-extra"), $data.loaded ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_6, [$props.issue.body !== '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("article", {
                 innerHTML: $data.parsedGithubItemBody
               }, null, 8
               /* PROPS */
@@ -514,39 +486,47 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "text-3xl text-black-lightest font-semibold tracking-wide"
+  "class": "flex justify-between items-center"
 };
 var _hoisted_2 = {
+  "class": "text-3xl text-black-lightest font-semibold tracking-wide"
+};
+var _hoisted_3 = {
   "class": "text-black-lightest"
 };
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Maintained by ");
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Maintained by ");
 
+var _hoisted_5 = {
+  "class": "mt-1 text-grey-dark font-light"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_IconLaunch = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("IconLaunch");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("section", {
-    id: 'project-' + $props.namespace + '-' + $props.name,
+    id: "project-".concat($props.project.namespace, "-").concat($props.project.name),
     "class": "items-center pb-6"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
-    href: $props.url,
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+    href: $props.project.url,
     "aria-label": "Launch"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.namespace) + " | " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.name) + " ", 1
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.project.namespace) + " | " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.project.name) + " ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_IconLaunch)], 8
   /* PROPS */
-  , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_2, [_hoisted_3, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.maintainers, function (maintainer) {
+  , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_3, [_hoisted_4, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.project.maintainers, function (maintainer) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("a", {
       key: maintainer,
       "class": "text-indigo no-underline",
-      href: 'https://github.com/' + maintainer,
+      href: "https://github.com/".concat(maintainer),
       target: "_blank"
     }, " @" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(maintainer), 9
     /* TEXT, PROPS */
     , ["href"]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])], 8
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_5, " Synced " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$luxon.fromISO($props.project.updated_at).toRelative()), 1
+  /* TEXT */
+  )], 8
   /* PROPS */
   , ["id"]);
 }
@@ -567,7 +547,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "flex flex-col bg-white rounded shadow"
+  "class": "flex flex-col bg-white rounded"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")]);
@@ -611,7 +591,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "border-grey border-b-2 p-4 bg-grey-blue-light uppercase text-xs leading-none tracking-wide font-bold text-grey-darkest"
+  "class": "p-4 text-sm font-semibold tracking-wide leading-none uppercase border-b-2 border-grey bg-grey-blue-light text-grey-darkest"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")]);
