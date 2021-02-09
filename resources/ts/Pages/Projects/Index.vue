@@ -25,6 +25,9 @@
               Debt Score
             </th>
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
+              Debt Score Graph
+            </th>
+            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
               Old Prs
             </th>
             <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
@@ -61,6 +64,9 @@
             </td>
             <td class="text-black-lightest p-4">
               {{ project.debtScore }}
+            </td>
+            <td class="text-black-lightest p-4">
+              <img :src="`data:image/jpeg;base64, ${project.debtScoreGraph}`">
             </td>
             <td class="text-black-lightest p-4">
               {{ project.oldPrCount }}

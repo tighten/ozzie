@@ -3,25 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use Davaxi\Sparkline;
 use Illuminate\Support\Carbon;
 
 class ProjectController extends Controller
 {
     public function index()
     {
-
-        //            $sparkline = new Sparkline();
-        //                        $sparkline->setData($project->getDebtScoreHistory());
-        //                    <img src="data:image/jpeg;base64, {{ $sparkline->toBase64() }}" />
-
-        $projects = Project::all()->map(
-            fn(Project $project) => $this->projectData(
-                $project,
-                [
-                    'prCount' => $project->pull_requests_count,
-                    'hacktoberfestIssues' => $project->hacktoberfestIssues()->count(),
-                ]
-            )
+        $projects = Project::all()->map(function (Project $project) {
+            return $this->projectData($project, [
+                // FIXME make this pullRequestCount
+                'prCount' => $project->pull_requests_count,
+                'hacktoberfestIssues' => $project->hacktoberfestIssues()->count(),
+                'debtScoreGraph' => $this->getDebtScoreHistoryGraph($project->getDebtScoreHistory())
+            ]);
+        }
         )->sortByDesc(
             fn($project) => $project['debtScore']
         )->values();
@@ -68,5 +64,11 @@ class ProjectController extends Controller
         ];
 
         return array_merge($default, $overrides);
+    }
+
+    private function getDebtScoreHistoryGraph(array $debtScoreHistory): string {
+        $sparkline = new Sparkline();
+        $sparkline->setData($debtScoreHistory);
+        return $sparkline->toBase64();
     }
 }
