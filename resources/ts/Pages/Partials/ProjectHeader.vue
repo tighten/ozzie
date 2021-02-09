@@ -1,29 +1,33 @@
 <template>
   <section
-    :id="'project-' + namespace + '-' + name"
+    :id="`project-${project.namespace}-${project.name}`"
     class="items-center pb-6"
   >
-    <h2 class="text-3xl text-black-lightest font-semibold tracking-wide">
-      <a
-        :href="url"
-        aria-label="Launch"
-      >
-        {{ namespace }} | {{ name }}
-        <IconLaunch />
-      </a>
-    </h2>
-
-    <p class="text-black-lightest">
-      Maintained by
-      <a
-        v-for="maintainer in maintainers"
-        :key="maintainer"
-        class="text-indigo no-underline"
-        :href="'https://github.com/' + maintainer"
-        target="_blank"
-      >
-        @{{ maintainer }}
-      </a>
+    <div class="flex justify-between items-center">
+      <h2 class="text-3xl text-black-lightest font-semibold tracking-wide">
+        <a
+          :href="project.url"
+          aria-label="Launch"
+        >
+          {{ project.namespace }} | {{ project.name }}
+          <IconLaunch />
+        </a>
+      </h2>
+      <p class="text-black-lightest">
+        Maintained by
+        <a
+          v-for="maintainer in project.maintainers"
+          :key="maintainer"
+          class="text-indigo no-underline"
+          :href="`https://github.com/${maintainer}`"
+          target="_blank"
+        >
+          @{{ maintainer }}
+        </a>
+      </p>
+    </div>
+    <p class="mt-1 text-grey-dark font-light">
+      Synced {{ $luxon.fromISO(project.updated_at).toRelative() }}
     </p>
   </section>
 </template>
@@ -37,20 +41,8 @@ export default {
     IconLaunch,
   },
   props: {
-    namespace: {
-      type: String,
-      required: true,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    url: {
-      type: String,
-      required: true,
-    },
-    maintainers: {
-      type: Array,
+    project: {
+      type: Object,
       required: true,
     },
   },

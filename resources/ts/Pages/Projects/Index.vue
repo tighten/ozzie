@@ -14,96 +14,20 @@
         Hacktoberfest is here! 👻
       </a>
     </div>
-    <div class="overflow-x-auto max-w-full rounded">
-      <table class="table-auto w-full">
-        <thead class="bg-grey-blue-light border-grey border-b-2 text-left">
-          <tr>
-            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
-              Project Name
-            </th>
-            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
-              Debt Score
-            </th>
-            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
-              Debt Score Graph
-            </th>
-            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
-              Old Prs
-            </th>
-            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
-              Old Issues
-            </th>
-            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
-              Prs
-            </th>
-            <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
-              Issues
-            </th>
-            <th
-              v-if="hacktoberfest"
-              class="text-xs p-4"
-            >
-              🎃
-            </th>
-          </tr>
-        </thead>
-
-        <tbody class="bg-white rounded-b-lg divide-y divide-smoke">
-          <tr
-            v-for="project in projects"
-            :key="project.name"
-          >
-            <td class="p-4">
-              <InertiaLink
-                class="text-indigo no-underline p-2 -mx-2"
-                :href="'/inertia/projects/' + project.namespace + '/' + project.name"
-                method="get"
-              >
-                {{ project.namespace }}/{{ project.name }}
-              </InertiaLink>
-            </td>
-            <td class="text-black-lightest p-4">
-              {{ project.debtScore }}
-            </td>
-            <td class="text-black-lightest p-4">
-              <img :src="`data:image/jpeg;base64, ${project.debtScoreGraph}`">
-            </td>
-            <td class="text-black-lightest p-4">
-              {{ project.oldPrCount }}
-            </td>
-            <td class="text-black-lightest p-4">
-              {{ project.oldIssueCount }}
-            </td>
-            <td class="text-black-lightest p-4">
-              {{ project.prCount }}
-            </td>
-            <td class="text-black-lightest p-4">
-              {{ project.issueCount }}
-            </td>
-            <td
-              v-if="hacktoberfest"
-              class="p-4"
-            >
-              <a
-                class="text-indigo no-underline p-2 -mx-2"
-                :href="'https://github.com/' + project.namespace + '/' +project.name + '/labels/hacktoberfest'"
-                target="_blank"
-              >
-                {{ project.hacktoberfestIssues }}
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <DebtTable
+      :hacktoberfest="hacktoberfest"
+      :projects="projects"
+    />
   </layout>
 </template>
 
 <script>
 import Layout from '../Layout';
+import DebtTable from '../../components/DebtTable/DebtTable';
 
 export default {
   components: {
+    DebtTable,
     Layout,
   },
   props: {

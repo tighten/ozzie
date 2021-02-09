@@ -1,12 +1,7 @@
 <template>
-  <Layout :title="'Ozzie - ' + projectNamespace + '/' + projectName + ' - #' + githubItemNumber">
+  <Layout :title="'Ozzie - ' + project.namespace + '/' + project.name + ' - #' + issue.number">
     <GoBack />
-    <ProjectHeader
-      :namespace="projectNamespace"
-      :name="projectName"
-      :url="projectUrl"
-      :maintainers="projectMaintainers"
-    />
+    <ProjectHeader :project="project" />
     <Card>
       <CardHeader>
         <div class="flex justify-between">
@@ -14,19 +9,19 @@
           <slot name="github-item-type" />
           <span class="normal-case font-normal">opened by <a
             class="font-semibold text-indigo"
-            :href="githubItemUserUrl"
+            :href="issue.user.login"
             target="_blank"
           >
-            {{ githubItemUserLogin }}
-          </a> {{ $luxon.fromISO(githubItemCreatedAt).toRelative() }}
+            {{ issue.user.login }}
+          </a> {{ $luxon.fromISO(issue.created_at).toRelative() }}
           </span>
         </div>
       </CardHeader>
       <CardBody>
         <h2 class="mt-0 text-xl text-black font-semibold tracking-wide leading-none truncate">
-          {{ githubItemTitle }}
+          {{ issue.title }}
           <span class="ml-2 text-grey-dark font-normal">
-            #{{ githubItemNumber }}
+            #{{ issue.number }}
           </span>
         </h2>
 
@@ -38,7 +33,7 @@
           class="mt-4 markdown-body"
         >
           <div
-            v-if="githubItemBody !== ''"
+            v-if="issue.body !== ''"
             class="pt-4 border-t border-clouds"
           >
             <article v-html="parsedGithubItemBody" />
@@ -71,49 +66,13 @@ export default {
     ProjectHeader,
   },
   props: {
-    projectNamespace: {
-      required: true,
-      type: String,
-    },
-    projectName: {
-      required: true,
-      type: String,
-    },
-    projectUrl: {
-      required: true,
-      type: String,
-    },
-    projectMaintainers: {
+    project: {
       required: true,
       type: Array,
     },
-    githubItemTitle: {
+    issue: {
       required: true,
-      type: String,
-    },
-    githubItemNumber: {
-      required: true,
-      type: Number,
-    },
-    githubItemBody: {
-      required: true,
-      type: String,
-    },
-    githubItemHtmlUrl: {
-      required: true,
-      type: String,
-    },
-    githubItemUserUrl: {
-      required: true,
-      type: String,
-    },
-    githubItemUserLogin: {
-      required: true,
-      type: String,
-    },
-    githubItemCreatedAt: {
-      required: true,
-      type: String,
+      type: Object,
     },
   },
   data() {
@@ -125,7 +84,7 @@ export default {
   mounted() {
     this.$http.post('https://api.github.com/markdown',
       {
-        text: this.githubItemBody,
+        text: this.issue.body,
       },
       {
         headers: {
@@ -135,15 +94,7 @@ export default {
       .then((response) => {
         this.parsedGithubItemBody = response.data;
         this.loaded = true;
-      })
-      .catch((error) => console.log(error.message));
-  },
-  methods: {
-    baseUrl(section) {
-      return (section)
-        ? `${this.githubItemHtmlUrl}/${section}`
-        : this.githubItemHtmlUrl;
-    },
+      });
   },
 };
 </script>

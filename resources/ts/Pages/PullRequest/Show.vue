@@ -1,16 +1,7 @@
 <template>
   <GithubItem
-    :project-namespace="project.namespace"
-    :project-name="project.name"
-    :project-maintainers="project.maintainers"
-    :project-url="project.url"
-    :github-item-title="pullRequest.title"
-    :github-item-number="pullRequest.number"
-    :github-item-body="pullRequest.body"
-    :github-item-html-url="pullRequest.html_url"
-    :github-item-user-url="pullRequest.user.html_url"
-    :github-item-user-login="pullRequest.user.login"
-    :github-item-created-at="pullRequest.created_at"
+    :project="project"
+    :issue="pullRequest"
   >
     <template #github-item-type>
       Pull Request
