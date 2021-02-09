@@ -1,0 +1,66 @@
+<template>
+  <tr>
+    <td
+      v-if="showProjectName"
+      class="p-4"
+    >
+      <InertiaLink
+        class="text-indigo no-underline p-2 -mx-2"
+        :href="'/inertia/projects/' + project.namespace + '/' + project.name"
+        method="get"
+      >
+        {{ project.namespace }}/{{ project.name }}
+      </InertiaLink>
+    </td>
+    <td class="text-black-lightest p-4">
+      {{ project.debtScore }}
+    </td>
+    <td class="text-black-lightest p-4">
+      <img :src="`data:image/jpeg;base64, ${project.debtScoreGraph}`">
+    </td>
+    <td class="text-black-lightest p-4">
+      {{ project.oldPullRequestCount }}
+    </td>
+    <td class="text-black-lightest p-4">
+      {{ project.oldIssueCount }}
+    </td>
+    <td class="text-black-lightest p-4">
+      {{ project.pullRequestCount }}
+    </td>
+    <td class="text-black-lightest p-4">
+      {{ project.issueCount }}
+    </td>
+    <td
+      v-if="hacktoberfest"
+      class="p-4"
+    >
+      <a
+        class="text-indigo no-underline p-2 -mx-2"
+        :href="'https://github.com/' + project.namespace + '/' +project.name + '/labels/hacktoberfest'"
+        target="_blank"
+      >
+        {{ project.hacktoberfestIssues }}
+      </a>
+    </td>
+  </tr>
+</template>
+
+<script>
+export default {
+  name: 'DebtTableRow',
+  props: {
+    project: {
+      type: Object,
+      required: true,
+    },
+    hacktoberfest: {
+      type: Boolean,
+      default: false,
+    },
+    showProjectName: {
+      type: Boolean,
+      default: true,
+    },
+  },
+};
+</script>

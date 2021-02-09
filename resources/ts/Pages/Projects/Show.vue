@@ -7,50 +7,10 @@
       :url="project.url"
       :maintainers="project.maintainers"
     />
-    <div class="overflow-x-auto max-w-full rounded">
-      <table class="w-full text-xs font-medium tracking-wide leading-none rounded-lg table-auto text-grey-darkest">
-        <thead class="text-left uppercase border-b-2 bg-grey-blue-light border-grey">
-          <tr>
-            <th class="p-4">
-              Debt Score
-            </th>
-            <th class="p-4">
-              Old Prs
-            </th>
-            <th class="p-4">
-              Old Issues
-            </th>
-            <th class="p-4">
-              Prs
-            </th>
-            <th class="p-4">
-              Issues
-            </th>
-          </tr>
-        </thead>
-
-        <tbody class="bg-white rounded-b-lg divide-y divide-smoke">
-          <tr>
-            <td class="p-4 text-black-lightest">
-              {{ project.debtScore }}
-            </td>
-            <td class="p-4 text-black-lightest">
-              {{ project.oldPrCount }}
-            </td>
-            <td class="p-4 text-black-lightest">
-              {{ project.oldIssueCount }}
-            </td>
-            <td class="p-4 text-black-lightest">
-              {{ project.pullRequestCount }}
-            </td>
-            <td class="p-4 text-black-lightest">
-              {{ project.issueCount }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
+    <DebtTable
+      :show-project-name="false"
+      :projects="[project]"
+    />
     <Card
       v-if="project.pullRequestCount > 0"
       class="mt-8"
@@ -126,9 +86,11 @@ import Card from '../../components/Card';
 import CardHeader from '../../components/CardHeader';
 import CardBody from '../../components/CardBody';
 import GithubListItem from '../Partials/GithubListItem';
+import DebtTable from '../../components/DebtTable/DebtTable';
 
 export default {
   components: {
+    DebtTable,
     GithubListItem,
     CardBody,
     CardHeader,

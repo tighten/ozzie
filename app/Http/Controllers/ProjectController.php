@@ -12,7 +12,6 @@ class ProjectController extends Controller
     {
         $projects = Project::all()->map(function (Project $project) {
             return $this->projectData($project, [
-                // FIXME make this pullRequestCount
                 'hacktoberfestIssues' => $project->hacktoberfestIssues()->count(),
             ]);
         })->sortByDesc(
@@ -58,8 +57,8 @@ class ProjectController extends Controller
             'debtScoreGraph' => $this->getDebtScoreHistoryGraph($project->getDebtScoreHistory()),
             'oldIssueCount' => $project->oldIssues()->count(),
             'issueCount' => $project->issues_count,
-            'oldPrCount' => $project->oldPullRequests()->count(),
-            'prCount' => $project->pull_requests_count,
+            'oldPullRequestCount' => $project->oldPullRequests()->count(),
+            'pullRequestCount' => $project->pull_requests_count,
             'synced' => $project->updated_at,
         ];
 
