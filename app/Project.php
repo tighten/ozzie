@@ -5,6 +5,7 @@ namespace App;
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
 use Carbon\CarbonPeriod;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -27,6 +28,11 @@ class Project extends Model
     public function snapshotToday()
     {
         return $this->hasMany(Snapshot::class)->today();
+    }
+
+    public function scopeFromNamespaceAndName(Builder $query, string $projectNamespace, string $projectName): Builder
+    {
+        return $query->where('namespace', $projectNamespace)->where('name', $projectName);
     }
 
     public function getPackagistNameAttribute($value)
