@@ -1,11 +1,11 @@
 <template>
-  <div class="p-2 text-right text-xs leading-none tracking-wide text-grey-darker">
-    <slot />
-  </div>
+    <div class="p-2 text-right text-xs leading-none tracking-wide text-grey-darker">
+        <slot />
+    </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
-  name: 'CardFooter',
+    name: 'CardFooter',
 };
 </script>

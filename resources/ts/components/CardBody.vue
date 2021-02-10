@@ -1,11 +1,11 @@
 <template>
-  <div class="p-6">
-    <slot />
-  </div>
+    <div class="p-6">
+        <slot />
+    </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
-  name: 'CardBody',
+    name: 'CardBody',
 };
 </script>

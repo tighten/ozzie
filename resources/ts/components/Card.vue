@@ -1,11 +1,11 @@
 <template>
-  <div class="flex flex-col bg-white rounded">
-    <slot />
-  </div>
+    <div class="flex flex-col bg-white rounded">
+        <slot />
+    </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
-  name: 'Card',
+    name: 'Card',
 };
 </script>

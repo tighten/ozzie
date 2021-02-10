@@ -22,6 +22,7 @@ class ProjectResource extends JsonResource
                 'old_issues_count' => $this->oldIssues()->count(),
                 'old_pull_requests_count' => $this->oldPullRequests()->count(),
                 'hacktoberfestIssues' => $this->hacktoberfestIssues()->count(),
+                'hasDownloads' => $this->hasDownloads() ? true : false,
             ]
         );
     }

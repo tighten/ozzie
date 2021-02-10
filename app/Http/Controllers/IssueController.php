@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProjectResource;
 use App\Project;
 
 class IssueController extends Controller
@@ -10,10 +11,8 @@ class IssueController extends Controller
     {
         $project = Project::fromNamespaceAndName($projectNamespace, $projectName)->firstOrFail();
 
-        // TODO abstract some standard code for hydrating the project object for javascript
-        //   e.g. use Laravel / Inertia JSON factories...??
         return inertia('Issue/Show', [
-            'project' => $project,
+            'project' => new ProjectResource($project),
             'issue' => $project->issues->where('number', $issueNumber)->first(),
         ]);
     }

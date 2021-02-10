@@ -1,44 +1,46 @@
 <template>
-  <layout title="Ozzie">
-    <div class="flex items-center justify-between">
-      <p class="mb-6 text-black-lighter">
-        Projects in descending order of "debt" (how much attention it needs)
-      </p>
+    <layout title="Ozzie">
+        <div class="flex items-center justify-between">
+            <p class="mb-6 text-black-lighter">
+                Projects in descending order of "debt" (how much attention it needs)
+            </p>
 
-      <a
-        v-if="hacktoberfest"
-        href="https://github.com/search?o=desc&amp;q=label%3Ahacktoberfest+is%3Aopen+type%3Aissue+user%3Atighten&amp;s=created&amp;type=Issues"
-        target="_blank"
-        class="mb-6 px-4 py-3 bg-grey-blue hover:bg-halloween-orange no-underline rounded-lg text-black-lighter hover:text-white hover-pop"
-      >
-        Hacktoberfest is here! 👻
-      </a>
-    </div>
-    <DebtTable
-      :hacktoberfest="hacktoberfest"
-      :projects="projects"
-    />
-  </layout>
+            <a
+                v-if="hacktoberfest"
+                href="https://github.com/search?o=desc&amp;q=label%3Ahacktoberfest+is%3Aopen+type%3Aissue+user%3Atighten&amp;s=created&amp;type=Issues"
+                target="_blank"
+                class="mb-6 px-4 py-3 bg-grey-blue hover:bg-halloween-orange no-underline rounded-lg text-black-lighter hover:text-white hover-pop"
+            >
+                Hacktoberfest is here! 👻
+            </a>
+        </div>
+        <DebtTable
+            :hacktoberfest="hacktoberfest"
+            :projects="projects"
+        />
+    </layout>
 </template>
 
-<script>
+<script lang="ts">
+import { PropType } from 'vue';
+import { Project } from '../../ozzie.d.ts';
 import Layout from '../Layout';
 import DebtTable from '../../components/DebtTable/DebtTable';
 
 export default {
-  components: {
-    DebtTable,
-    Layout,
-  },
-  props: {
-    projects: {
-      type: Array,
-      required: true,
+    components: {
+        DebtTable,
+        Layout,
     },
-    hacktoberfest: {
-      type: Boolean,
-      required: true,
+    props: {
+        projects: {
+            type: Object as PropType<Project[]>,
+            required: true,
+        },
+        hacktoberfest: {
+            type: Boolean,
+            required: true,
+        },
     },
-  },
 };
 </script>
