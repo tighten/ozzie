@@ -41,7 +41,7 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import IconLaunch from '../../components/svg/Launch';
-import { Project } from '../../ozzie.d.ts';
+import { Project } from '../../ozzie.ts';
 
 export default {
     name: 'ProjectHeader',

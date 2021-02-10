@@ -1,5 +1,11 @@
 /* eslint-disable camelcase */
 
+declare global {
+    interface Window { githubToken: any; }
+}
+
+window.githubToken = window.githubToken || undefined;
+
 export declare type Label = {
     color: string,
     name: string,

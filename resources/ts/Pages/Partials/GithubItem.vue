@@ -50,7 +50,7 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Issue, Project, PullRequest } from '../../ozzie.d.ts';
+import { Issue, Project, PullRequest } from '../../ozzie';
 import Layout from '../Layout';
 import GoBack from '../../components/GoBack';
 import ProjectHeader from './ProjectHeader';
@@ -85,7 +85,7 @@ export default {
     },
     mounted() {
         const options = { headers: { Authorization: `token ${window.githubToken}` } };
-        const data = { text: this.issue.body };
+        const data = { text: this.props.issue.body };
         this.$http.post('https://api.github.com/markdown', data, options).then(
             (response) => {
                 this.parsedGithubItemBody = response.data;

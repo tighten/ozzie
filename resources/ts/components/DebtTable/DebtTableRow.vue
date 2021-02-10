@@ -47,7 +47,7 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Project } from '../../ozzie.d.ts';
+import { Project } from '../../ozzie.ts';
 
 export default {
     name: 'DebtTableRow',

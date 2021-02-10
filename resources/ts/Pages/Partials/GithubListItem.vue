@@ -46,7 +46,7 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Issue, PullRequest } from '../../ozzie.d.ts';
+import { Issue, PullRequest } from '../../ozzie.ts';
 import IconLaunch from '../../components/svg/Launch';
 
 export default {
