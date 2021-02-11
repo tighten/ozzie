@@ -2,6 +2,15 @@
     <div class="flex flex-col w-auto">
         <div class="flex items-baseline justify-between">
             <slot name="link" />
+            <InertiaLink
+                class="flex-1 font-medium leading-normal no-underline text-black-lighter truncate"
+                :href="ozzieUrl"
+                method="get"
+                target="_blank"
+                preserve-state
+            >
+                {{ gitHubItem.title }}
+            </InertiaLink>
             <a
                 class="no-underline"
                 :href="gitHubItem.html_url"
@@ -64,6 +73,10 @@ export default {
         gitHubItem: {
             type: Object as PropType<Issue|PullRequest>,
             required: true,
+        },
+        ozzieUrl: {
+            required: true,
+            type: String,
         },
     },
 };

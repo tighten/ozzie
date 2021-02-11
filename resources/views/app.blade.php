@@ -10,7 +10,7 @@
         <meta property="og:site_name" content="Ozzie">
         <meta property="og:locale" content="en_US">
         <meta property="og:title" content="Ozzie">
-        <meta property="og:url" content="{{ route('dashboard') }}">
+        <meta property="og:url" content="{{ route('projects.index') }}">
         <meta property="og:type" content="website">
         <meta property="og:description" content="Ozzie - {{ config('app.name') }}'s Open Source Project Dashboard">
 
@@ -30,11 +30,12 @@
         <link rel="stylesheet" type="text/css" href="/css/vendor.css">
 
         <title>Ozzie - {{ config('app.name') }}</title>
-        <script>window.githubToken="{{ config('github.rateLimitToken') }}"</script>
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        @routes
     </head>
 
     <body class="bg-frost">
         @inertia
+        <script>window.githubToken="{{ config('github.rateLimitToken') }}"</script>
+        <script src="{{ asset('js/app.js') }}" defer></script>
     </body>
 </html>

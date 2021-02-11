@@ -4,6 +4,7 @@ import { App, plugin } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import { DateTime } from 'luxon';
 import axios from 'axios';
+import route from 'ziggy-js';
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -23,4 +24,5 @@ const app = createApp({
 });
 app.config.globalProperties.$luxon = DateTime;
 app.config.globalProperties.$http = axios;
+app.config.globalProperties.$route = route;
 app.use(plugin).mount(el);

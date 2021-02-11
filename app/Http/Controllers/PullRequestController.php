@@ -7,9 +7,9 @@ use App\Project;
 
 class PullRequestController extends Controller
 {
-    public function show(string $projectNamespace, string $projectName, int $pullRequestNumber)
+    public function show(string $projectNamespace, string $name, int $pullRequestNumber)
     {
-        $project = Project::fromNamespaceAndName($projectNamespace, $projectName)->firstOrFail();
+        $project = Project::fromNamespaceAndName($projectNamespace, $name)->firstOrFail();
 
         return inertia('PullRequest/Show', [
             'project' => new ProjectResource($project),

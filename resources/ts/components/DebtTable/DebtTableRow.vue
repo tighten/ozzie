@@ -6,7 +6,10 @@
         >
             <InertiaLink
                 class="text-indigo no-underline p-2 -mx-2"
-                :href="'/inertia/projects/' + project.namespace + '/' + project.name"
+                :href="$route('projects.show', {
+                    namespace: project.namespace,
+                    name: project.name,
+                })"
                 method="get"
             >
                 {{ project.namespace }}/{{ project.name }}

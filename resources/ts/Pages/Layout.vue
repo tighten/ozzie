@@ -4,7 +4,7 @@
             <section class="max-w-4xl mx-auto px-2">
                 <div class="flex justify-between items-center">
                     <InertiaLink
-                        href="/inertia"
+                        :href="$route('projects.index')"
                         method="get"
                     >
                         <h1 class="flex items-center">

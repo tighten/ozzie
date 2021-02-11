@@ -21,19 +21,12 @@
                             :git-hub-item="pull_request"
                             :project-namespace="project.namespace"
                             :project-name="project.name"
-                        >
-                            <template #link>
-                                <InertiaLink
-                                    class="flex-1 font-medium leading-normal no-underline text-black-lighter truncate"
-                                    :href="`/inertia/projects/${project.namespace}/${project.name}/prs/${pull_request.number}`"
-                                    method="get"
-                                    target="_blank"
-                                    preserve-state
-                                >
-                                    {{ pull_request.title }}
-                                </InertiaLink>
-                            </template>
-                        </GithubListItem>
+                            :ozzie-url="$route('pull-request.show', {
+                                namespace: project.namespace,
+                                name: project.name,
+                                pullRequestNumber: pull_request.number
+                            })"
+                        />
                     </li>
                 </ul>
             </CardBody>
@@ -53,19 +46,12 @@
                             :git-hub-item="issue"
                             :project-namespace="project.namespace"
                             :project-name="project.name"
-                        >
-                            <template #link>
-                                <InertiaLink
-                                    class="flex-1 font-medium leading-normal no-underline text-black-lighter truncate"
-                                    :href="`/inertia/projects/${project.namespace}/${project.name}/issues/${issue.number}`"
-                                    method="get"
-                                    target="_blank"
-                                    preserve-state
-                                >
-                                    {{ issue.title }}
-                                </InertiaLink>
-                            </template>
-                        </GithubListItem>
+                            :ozzie-url="$route('issue.show', {
+                                namespace: project.namespace,
+                                name: project.name,
+                                issueNumber: issue.number
+                            })"
+                        />
                     </li>
                 </ul>
             </CardBody>

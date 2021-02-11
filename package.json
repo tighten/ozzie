@@ -50,5 +50,9 @@
         "trailingComma": "es5",
         "tabWidth": 4,
         "printWidth": 80
+    },
+    "dependencies": {
+        "@types/ziggy-js": "^1.0.0",
+        "ziggy-js": "^1.0.5"
     }
 }

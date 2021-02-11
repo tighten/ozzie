@@ -19,11 +19,11 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function show(string $projectNamespace, string $projectName)
+    public function show(string $projectNamespace, string $name)
     {
         return inertia('Projects/Show', [
             'project' => new ProjectResource(
-                Project::fromNamespaceAndName($projectNamespace, $projectName)->firstOrFail()
+                Project::fromNamespaceAndName($projectNamespace, $name)->firstOrFail()
             ),
         ]);
     }

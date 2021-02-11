@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Project } from '../../ozzie.ts';
+import { Project } from '../../ozzie';
 import Layout from '../Layout';
 import DebtTable from '../../components/DebtTable/DebtTable';
 
