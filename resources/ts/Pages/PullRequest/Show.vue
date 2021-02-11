@@ -45,7 +45,7 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Project, PullRequest } from '../../ozzie.ts';
+import { Project, PullRequest } from '../../ozzie';
 import GithubItem from '../Partials/GithubItem';
 import IconCommit from '../../components/svg/Commit';
 import IconFileDiff from '../../components/svg/FileDiff';
@@ -71,8 +71,8 @@ export default {
     methods: {
         baseUrl(section?: string) {
             return (section)
-                ? `${this.props.pullRequest.html_url}/${section}`
-                : this.props.pullRequest.html_url;
+                ? `${this.pullRequest.html_url}/${section}`
+                : this.pullRequest.html_url;
         },
     },
 };

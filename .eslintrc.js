@@ -24,6 +24,7 @@ module.exports = {
         indent: ['error', 4],
 
         'global-require': 'off',
+        'import/no-extraneous-dependencies': 'off',
         'import/extensions': 'off',
         'object-shorthand': 'off',
         'max-len': [

@@ -85,7 +85,7 @@ export default {
     },
     mounted() {
         const options = { headers: { Authorization: `token ${window.githubToken}` } };
-        const data = { text: this.props.issue.body };
+        const data = { text: this.issue.body };
         this.$http.post('https://api.github.com/markdown', data, options).then(
             (response) => {
                 this.parsedGithubItemBody = response.data;

@@ -22,4 +22,4 @@ mix.postCss('resources/css/main.css', 'public/css', [
     tailwindcss('tailwind.js'),
 ]);
 mix.combine(['resources/css/markdown.css'], 'public/css/vendor.css');
-mix.browserSync('http://127.0.0.1:8000');
+mix.browserSync('http://127.0.0.1:8000/inertia');
