@@ -21,16 +21,17 @@
         "laravel/ui": "^3.0",
         "nathanheffley/laravel-slack-blocks": "^2.1",
         "spatie/data-transfer-object": "^2.0",
-        "tightenco/duster": "^0.2.0@RC",
-        "tightenco/tlint": "^5.0"
+        "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
         "fakerphp/faker": "^1.13",
-        "friendsofphp/php-cs-fixer": "^2.16",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.0"
+        "phpunit/phpunit": "^9.0",
+        "squizlabs/php_codesniffer": "*",
+        "tightenco/duster": "^0.2.0@RC",
+        "tightenco/tlint": "^5.0"
     },
     "config": {
         "optimize-autoloader": true,
