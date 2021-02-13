@@ -10,51 +10,47 @@
             v-if="project.pull_requests_count > 0"
             class="mt-8"
         >
-            <CardHeader>Pull Requests</CardHeader>
-            <CardBody>
-                <ul class="space-y-6">
-                    <li
-                        v-for="pull_request in project.pull_requests"
-                        :key="pull_request.node_id"
-                    >
-                        <GithubListItem
-                            :git-hub-item="pull_request"
-                            :project-namespace="project.namespace"
-                            :project-name="project.name"
-                            :ozzie-url="$route('pull-request.show', {
-                                namespace: project.namespace,
-                                name: project.name,
-                                pullRequestNumber: pull_request.number
-                            })"
-                        />
-                    </li>
-                </ul>
-            </CardBody>
+            <CardHeader>{{ project.pull_requests_count }} open Pull Requests</CardHeader>
+            <ul class="divide-y divide-grey-blue">
+                <li
+                    v-for="pull_request in project.pull_requests"
+                    :key="pull_request.node_id"
+                >
+                    <GithubListItem
+                        :git-hub-item="pull_request"
+                        :project-namespace="project.namespace"
+                        :project-name="project.name"
+                        :ozzie-url="$route('pull-request.show', {
+                            namespace: project.namespace,
+                            name: project.name,
+                            pullRequestNumber: pull_request.number
+                        })"
+                    />
+                </li>
+            </ul>
         </Card>
         <Card
             v-if="project.issues_count > 0"
-            class="mt-8"
+            class="mt-8 border-b-2 border-grey"
         >
-            <CardHeader>Issues</CardHeader>
-            <CardBody>
-                <ul class="space-y-6">
-                    <li
-                        v-for="issue in project.issues"
-                        :key="issue.node_id"
-                    >
-                        <GithubListItem
-                            :git-hub-item="issue"
-                            :project-namespace="project.namespace"
-                            :project-name="project.name"
-                            :ozzie-url="$route('issue.show', {
-                                namespace: project.namespace,
-                                name: project.name,
-                                issueNumber: issue.number
-                            })"
-                        />
-                    </li>
-                </ul>
-            </CardBody>
+            <CardHeader>{{ project.issues_count }} open Issues </CardHeader>
+            <ul class="divide-y divide-grey-blue">
+                <li
+                    v-for="issue in project.issues"
+                    :key="issue.node_id"
+                >
+                    <GithubListItem
+                        :git-hub-item="issue"
+                        :project-namespace="project.namespace"
+                        :project-name="project.name"
+                        :ozzie-url="$route('issue.show', {
+                            namespace: project.namespace,
+                            name: project.name,
+                            issueNumber: issue.number
+                        })"
+                    />
+                </li>
+            </ul>
         </Card>
     </Layout>
 </template>

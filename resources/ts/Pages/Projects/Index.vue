@@ -6,10 +6,10 @@
             </p>
 
             <a
-                v-if="hacktoberfest"
+                v-if="true"
                 href="https://github.com/search?o=desc&amp;q=label%3Ahacktoberfest+is%3Aopen+type%3Aissue+user%3Atighten&amp;s=created&amp;type=Issues"
                 target="_blank"
-                class="mb-6 px-4 py-3 bg-grey-blue hover:bg-halloween-orange no-underline rounded-lg text-black-lighter hover:text-white hover-pop"
+                class="mb-6 px-4 py-3 bg-grey-blue hover:bg-halloween-orange no-underline text-black-lighter hover:text-white hover-pop"
             >
                 Hacktoberfest is here! 👻
             </a>

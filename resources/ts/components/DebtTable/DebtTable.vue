@@ -1,21 +1,19 @@
 <template>
-    <div class="overflow-x-auto max-w-full rounded">
-        <table class="table-auto w-full">
-            <DebtTableHeader
+    <table class="table-auto w-full">
+        <DebtTableHeader
+            :hacktoberfest="hacktoberfest"
+            :show-project-name="showProjectName"
+        />
+        <tbody class="bg-white divide-y divide-smoke">
+            <DebtTableRow
+                v-for="project in projects"
+                :key="project"
+                :project="project"
                 :hacktoberfest="hacktoberfest"
                 :show-project-name="showProjectName"
             />
-            <tbody class="bg-white rounded-b-lg divide-y divide-smoke">
-                <DebtTableRow
-                    v-for="project in projects"
-                    :key="project"
-                    :project="project"
-                    :hacktoberfest="hacktoberfest"
-                    :show-project-name="showProjectName"
-                />
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
 </template>
 <script lang="ts">
 import { PropType } from 'vue';

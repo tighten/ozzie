@@ -1,7 +1,5 @@
 <template>
-    <div class="p-6">
-        <slot />
-    </div>
+    <slot />
 </template>
 
 <script lang="ts">

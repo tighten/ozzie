@@ -15,4 +15,11 @@ mix.ts('resources/ts/app.ts', 'public/js').vue({ version: 3, options: {} })
         tailwindcss('tailwind.js'),
     ])
     .combine(['resources/css/markdown.css'], 'public/css/vendor.css')
-    .browserSync('http://127.0.0.1:8000');
+    .browserSync({
+        proxy: 'https://ozzie.test/',
+        notify: false,
+        open: false,
+        logLevel: 'info',
+        logPrefix: 'Ozzie',
+        logFileChanges: true,
+    });
