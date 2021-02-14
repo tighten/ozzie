@@ -31,7 +31,7 @@
         </Card>
         <Card
             v-if="project.issues_count > 0"
-            class="mt-8 border-b-2 border-grey"
+            class="mt-8"
         >
             <CardHeader>{{ project.issues_count }} open Issues </CardHeader>
             <ul class="divide-y divide-grey-blue">
