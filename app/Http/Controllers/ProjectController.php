@@ -16,6 +16,7 @@ class ProjectController extends Controller
                 ->sortByDesc(fn($project) => $project->resource->debtScore())
                 ->values(),
             'hacktoberfest' => Carbon::now()->isSameMonth(Carbon::parse('October')),
+            'organization' => config('app.organization'),
         ]);
     }
 

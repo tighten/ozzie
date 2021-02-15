@@ -261,8 +261,8 @@
 }
 
 .markdown-body p {
-    margin-top: 0;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 
 .markdown-body blockquote {

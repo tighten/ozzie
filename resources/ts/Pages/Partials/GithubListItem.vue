@@ -1,71 +1,74 @@
 <template>
-    <div class="flex items-start p-4 hover:bg-frost">
-        <a
-            class="no-underline"
-            :href="gitHubItem.html_url"
-            target="_blank"
-            aria-label="Launch"
-            :title="'open issue #' + gitHubItem.number + ' on github'"
-        >
-            <IconLaunch />
-        </a>
-        <div class="ml-2 flex flex-col">
-            <div class="flex items-center">
-                <InertiaLink
-                    class="flex-1 font-medium leading-normal no-underline text-black-lighter truncate"
-                    :href="ozzieUrl"
-                    method="get"
-                    target="_blank"
-                    preserve-state
-                >
-                    {{ gitHubItem.title }}
-                </InertiaLink>
-                <span
-                    v-if="Object.keys(gitHubItem.labels).length > 0"
-                    class="ml-2"
-                >
-                    <a
-                        v-for="label in gitHubItem.labels"
-                        :key="label.name"
-                        class="mr-1 mt-2 inline-flex items-center py-1 pl-1 pr-2 hover:bg-grey-blue-light font-sans font-semibold no-underline leading-none text-xs capitalize rounded-full"
-                        :href="'https://github.com/' + projectNamespace + '/' + projectName + '/labels/' + label.name"
+    <CardRow>
+        <div class="flex items-start">
+            <a
+                class="no-underline"
+                :href="gitHubItem.html_url"
+                target="_blank"
+                aria-label="Launch"
+                :title="'open issue #' + gitHubItem.number + ' on github'"
+            >
+                <IconLaunch />
+            </a>
+            <div class="ml-2 flex flex-col">
+                <div class="flex items-center">
+                    <InertiaLink
+                        class="flex-1 font-medium leading-normal no-underline text-black-lighter truncate"
+                        :href="ozzieUrl"
+                        method="get"
                         target="_blank"
-                        :style="`background-color: #${label.color};`"
+                        preserve-state
                     >
-                        <span
-                            class="ml-1"
-                            :style="'color: ' + getCorrectTextColor('#' + label.color)"
-                        >{{ label.name }}</span>
+                        {{ gitHubItem.title }}
+                    </InertiaLink>
+                    <span
+                        v-if="Object.keys(gitHubItem.labels).length > 0"
+                        class="ml-2"
+                    >
+                        <a
+                            v-for="label in gitHubItem.labels"
+                            :key="label.name"
+                            class="mr-1 mt-2 inline-flex items-center py-1 pl-1 pr-2 hover:bg-grey-blue-light font-sans font-semibold no-underline leading-none text-xs capitalize rounded-full"
+                            :href="'https://github.com/' + projectNamespace + '/' + projectName + '/labels/' + label.name"
+                            target="_blank"
+                            :style="`background-color: #${label.color};`"
+                        >
+                            <span
+                                class="ml-1"
+                                :style="'color: ' + getCorrectTextColor('#' + label.color)"
+                            >{{ label.name }}</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="text-grey-darkest text-sm">
+                    #{{ gitHubItem.number }}
+                    opened
+                    <span>
+                        {{ $luxon.fromISO(gitHubItem.created_at).toRelative() }}
+                    </span>
+                    by
+                    <a
+                        class="text-indigo no-underline"
+                        :href="gitHubItem.user.html_url"
+                        target="_blank"
+                    >
+                        @{{ gitHubItem.user.login }}
                     </a>
-                </span>
-            </div>
-            <div class="text-grey-darkest text-sm">
-                #{{ gitHubItem.number }}
-                opened
-                <span>
-                    {{ $luxon.fromISO(gitHubItem.created_at).toRelative() }}
-                </span>
-                by
-                <a
-                    class="text-indigo no-underline"
-                    :href="gitHubItem.user.html_url"
-                    target="_blank"
-                >
-                    @{{ gitHubItem.user.login }}
-                </a>
+                </div>
             </div>
         </div>
-    </div>
+    </CardRow>
 </template>
 
 <script lang="ts">
 import { PropType } from 'vue';
 import { Issue, PullRequest } from '../../ozzie.ts';
 import IconLaunch from '../../components/svg/Launch';
+import CardRow from '../../components/CardRow.vue';
 
 export default {
     name: 'GithubListItem',
-    components: { IconLaunch },
+    components: { CardRow, IconLaunch },
     props: {
         projectName: {
             required: true,
@@ -85,6 +88,7 @@ export default {
         },
     },
     methods: {
+        // REFACTOR : Extract this method to a mixin
         getCorrectTextColor(hex): string {
             function cutHex(h) { return (h.charAt(0) === '#') ? h.substring(1, 7) : h; }
             function hexToR(h) { return parseInt((cutHex(h)).substring(0, 2), 16); }

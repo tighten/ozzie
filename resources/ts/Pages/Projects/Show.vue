@@ -1,10 +1,11 @@
 <template>
     <Layout :title="'Ozzie - ' + project.namespace + '/' + project.name">
-        <GoBack />
+        <BreadCrumb :project="project" />
         <ProjectHeader :project="project" />
         <DebtTable
             :show-project-name="false"
             :projects="[project]"
+            class="mt-4"
         />
         <Card
             v-if="project.pull_requests_count > 0"
@@ -65,9 +66,11 @@ import Card from '../../components/Card';
 import CardHeader from '../../components/CardHeader';
 import GithubListItem from '../Partials/GithubListItem';
 import DebtTable from '../../components/DebtTable/DebtTable';
+import BreadCrumb from '../Partials/BreadCrumb.vue';
 
 export default {
     components: {
+        BreadCrumb,
         DebtTable,
         GithubListItem,
         CardHeader,
