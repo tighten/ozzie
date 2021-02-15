@@ -63,7 +63,6 @@ import GoBack from '../../components/GoBack';
 import ProjectHeader from '../Partials/ProjectHeader';
 import Card from '../../components/Card';
 import CardHeader from '../../components/CardHeader';
-import CardBody from '../../components/CardBody';
 import GithubListItem from '../Partials/GithubListItem';
 import DebtTable from '../../components/DebtTable/DebtTable';
 
@@ -71,7 +70,6 @@ export default {
     components: {
         DebtTable,
         GithubListItem,
-        CardBody,
         CardHeader,
         Card,
         ProjectHeader,
