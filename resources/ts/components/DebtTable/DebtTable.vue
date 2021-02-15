@@ -1,5 +1,5 @@
 <template>
-    <table class="table-auto w-full">
+    <table class="table-auto w-full border border-grey">
         <DebtTableHeader
             :hacktoberfest="hacktoberfest"
             :show-project-name="showProjectName"
@@ -11,6 +11,7 @@
                 :project="project"
                 :hacktoberfest="hacktoberfest"
                 :show-project-name="showProjectName"
+                class="hover:bg-frost"
             />
         </tbody>
     </table>

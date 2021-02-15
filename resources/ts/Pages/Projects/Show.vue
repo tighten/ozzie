@@ -1,10 +1,10 @@
 <template>
     <Layout :title="'Ozzie - ' + project.namespace + '/' + project.name">
-        <GoBack />
         <ProjectHeader :project="project" />
         <DebtTable
             :show-project-name="false"
             :projects="[project]"
+            class="mt-4"
         />
         <Card
             v-if="project.pull_requests_count > 0"
