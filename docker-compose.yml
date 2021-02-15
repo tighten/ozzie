@@ -1,0 +1,65 @@
+# https://docs.docker.com/compose/compose-file/#/versioning
+version: '3'
+
+services:
+    # https://hub.docker.com/_/nginx
+    nginx:
+        container_name: ozzie_nginx
+        build: ./docker/nginx
+        volumes:
+            - ./:/var/www/vhost:cached
+        ports:
+            - '80:80'
+            - '443:443'
+        networks:
+            docker_network:
+                aliases:
+                    - ozzie.test
+
+    # https://hub.docker.com/_/php
+    php:
+        container_name: ozzie_php
+        build: ./docker/php
+        environment:
+            PHP_MEMORY_LIMIT: '128M'
+            COMPOSER_MEMORY_LIMIT: '-1'
+            DB_HOST: 'mysql'
+        volumes:
+            - ./:/var/www/vhost/:cached
+        ports:
+            - '9000:9000'
+        networks:
+            - docker_network
+
+    # https://hub.docker.com/_/mysql
+    mysql:
+        container_name: ozzie_mysql
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: 'root'
+            MYSQL_USER: 'laravel'
+            MYSQL_PASSWORD: 'password'
+            MYSQL_DATABASE: 'ozzie'
+        volumes:
+            - ./docker/mysql/data:/var/lib/mysql:cached
+            - ./docker/mysql/seeds:/docker-entrypoint-initdb.d
+        ports:
+            - '3306:3306'
+        command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+        networks:
+            - docker_network
+
+    # https://hub.docker.com/_/redis/
+    redis:
+        container_name: ozzie_redis
+        build: ./docker/redis
+        volumes:
+            - ./docker/redis/data:/data
+        ports:
+            - '6390:6379'
+        networks:
+            - docker_network
+
+networks:
+    docker_network:
+        driver: bridge
