@@ -23,6 +23,45 @@
 
 > Note: If you're not using a tool like Laravel Valet, run `php artisan serve` and visit your site at http://127.0.0.1:8000; you'll also want to modify your GitHub app settings to use http://127.0.0.1:8000 instead of http://ozzie.test
 
+## Local Development with Docker
+
+Ozzie contains a full Docker configuration to get started quickly with Docker. For more information
+on Docker, [click here](https://www.docker.com/resources/what-container). To use Docker to host Ozzie
+you will need the following:
+* [Docker Desktop](https://docs.docker.com/get-docker/)
+* [docker-compose](https://docs.docker.com/compose/install/) (if not packaged with Docker desktop)
+
+The installation steps are as follows:
+1. Clone the repo (`git clone git@github.com:tighten/ozzie.git && cd ozzie`)
+2. Run docker-compose inside the repository root directory (`docker-compose up`) or (`docker-compose up -d` to run as daemon)
+3. Install dependencies inside the PHP container:
+    - SSH into the container with `docker exec -it ozzie_php`
+    - Once inside, run composer `composer install`
+4. From _outside the container_, in the repository root run Javascript dependencies (`npm install`)
+5. From _inside the container_, you need to generate a self-signed SSL certificate:
+    - Navigate to `./docker/nginx/ssl`
+    - Use openSSL to generate a new certificate that uses the config (`openssl req -config openssl.cnf -new -sha256 -newkey rsa:2048 -nodes -keyout self-signed.key -x509 -days 365 -out self-signed.crt`)
+    - The new certificate will be picked up by Nginx
+6. Create a [GitHub OAuth Application](https://github.com/settings/developers). If you use Valet to serve your application locally, you can use the following settings:
+    - Application Name: `Local Ozzie`
+    - Homepage URL: `http://ozzie.test`
+    - Application Description: `Local Version of Ozzie`
+    - Authorization Callback URL: `http://ozzie.test/callback`
+4. Copy the example `.env` file: `cp .env.example .env` and modify its settings to include the GitHub OAuth keys you created in the previous step.
+5. Change your `.env` file to point to the MySQL container settings:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=ozzie
+DB_USERNAME=laravel
+DB_PASSWORD=password
+```
+
+6. Run the migrations _inside the container_ (`php artisan migrate`)
+6. Copy `projects.json.dist` to `projects.json` and modify it for your organization. This list is used to initially seed the `projects` table
+7. Fetch your projects' stats for the first time using `php artisan stats:fetch`
+
 ## Projects and Daily Caching
 
 Your list of projects is initially defined by the `projects.json` file in your app root. If you don't create one, the system will fall back to `projects.json.dist`, which also serves as a helpful template for you to create your own `projects.json` file.
