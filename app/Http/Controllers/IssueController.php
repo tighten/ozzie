@@ -7,13 +7,13 @@ use App\Project;
 
 class IssueController extends Controller
 {
-    public function show(string $projectNamespace, string $name, int $issueNumber)
+    public function show(string $namespace, string $name, int $id)
     {
-        $project = Project::fromNamespaceAndName($projectNamespace, $name)->firstOrFail();
+        $project = Project::fromNamespaceAndName($namespace, $name)->firstOrFail();
 
         return inertia('Issue/Show', [
             'project' => new ProjectResource($project),
-            'issue' => $project->issues->where('number', $issueNumber)->first(),
+            'issue' => $project->issues->where('number', $id)->first(),
         ]);
     }
 }
