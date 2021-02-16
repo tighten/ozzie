@@ -1,7 +1,14 @@
 <template>
     <div class="mt-6 flex justify-between items-center">
         <h1 class="text-2xl text-black-lightest tracking-wide">
-            {{ project.namespace }}/{{ project.name }}
+            <a
+                :href="`https://github.com/${project.namespace}/${project.name}`"
+                :title="`open project ${project.namespace }/${ project.name } on GitHub`"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                {{ project.namespace }}/{{ project.name }}<IconGitHub class="ml-1" />
+            </a>
         </h1>
         <p class="text-black-lightest">
             Maintained by
@@ -31,10 +38,12 @@
 import { PropType } from 'vue';
 import { Issue, Project, PullRequest } from '../ozzie.ts';
 import BreadCrumb from './BreadCrumb.vue';
+import IconGitHub from './IconGitHub.vue';
 
 export default {
     name: 'ProjectHeader',
     components: {
+        IconGitHub,
         BreadCrumb,
     },
     props: {
