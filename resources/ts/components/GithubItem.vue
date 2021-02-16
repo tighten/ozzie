@@ -52,11 +52,11 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Issue, Project, PullRequest } from '../../ozzie';
-import Layout from '../Layout';
-import ProjectHeader from './ProjectHeader';
-import Card from '../../components/Card';
-import DebtTable from '../../components/DebtTable/DebtTable.vue';
+import { Issue, Project, PullRequest } from '../ozzie';
+import Layout from '../Pages/Layout.vue';
+import ProjectHeader from './ProjectHeader.vue';
+import Card from './Card.vue';
+import DebtTable from './DebtTable.vue';
 import BreadCrumb from './BreadCrumb.vue';
 
 export default {

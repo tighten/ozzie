@@ -8,7 +8,7 @@
                 aria-label="Launch"
                 :title="'open issue #' + gitHubItem.number + ' on github'"
             >
-                <IconLaunch />
+                <IconGitHub />
             </a>
             <div class="ml-2 flex flex-col">
                 <div class="flex items-center">
@@ -62,13 +62,13 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Issue, PullRequest } from '../../ozzie.ts';
-import IconLaunch from '../../components/svg/Launch';
-import CardRow from '../../components/CardRow.vue';
+import { Issue, PullRequest } from '../ozzie.ts';
+import IconGitHub from './IconGitHub.vue';
+import CardRow from './CardRow.vue';
 
 export default {
     name: 'GithubListItem',
-    components: { CardRow, IconLaunch },
+    components: { CardRow, IconGitHub },
     props: {
         projectName: {
             required: true,

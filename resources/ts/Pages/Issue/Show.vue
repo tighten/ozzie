@@ -12,7 +12,7 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { Issue, Project } from '../../ozzie';
-import GithubItem from '../Partials/GithubItem';
+import GithubItem from '../../components/GithubItem.vue';
 
 export default {
     components: {

@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Issue, Project, PullRequest } from '../../ozzie.ts';
+import { Issue, Project, PullRequest } from '../ozzie.ts';
 import BreadCrumb from './BreadCrumb.vue';
 
 export default {

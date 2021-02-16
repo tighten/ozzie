@@ -24,7 +24,7 @@
                         :ozzie-url="$route('pull-request.show', {
                             namespace: project.namespace,
                             name: project.name,
-                            pullRequestNumber: pull_request.number
+                            id: pull_request.number
                         })"
                     />
                 </li>
@@ -47,7 +47,7 @@
                         :ozzie-url="$route('issue.show', {
                             namespace: project.namespace,
                             name: project.name,
-                            issueNumber: issue.number
+                            id: issue.number
                         })"
                     />
                 </li>
@@ -60,13 +60,12 @@
 import { PropType } from 'vue';
 import { Project } from '../../ozzie.ts';
 import Layout from '../Layout';
-import GoBack from '../../components/GoBack';
-import ProjectHeader from '../Partials/ProjectHeader';
+import ProjectHeader from '../../components/ProjectHeader.vue';
 import Card from '../../components/Card';
 import CardHeader from '../../components/CardHeader';
-import GithubListItem from '../Partials/GithubListItem';
-import DebtTable from '../../components/DebtTable/DebtTable';
-import BreadCrumb from '../Partials/BreadCrumb.vue';
+import GithubListItem from '../../components/GithubListItem.vue';
+import DebtTable from '../../components/DebtTable.vue';
+import BreadCrumb from '../../components/BreadCrumb.vue';
 
 export default {
     components: {
@@ -76,7 +75,6 @@ export default {
         CardHeader,
         Card,
         ProjectHeader,
-        GoBack,
         Layout,
     },
     props: {

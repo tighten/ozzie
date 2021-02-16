@@ -25,8 +25,8 @@
 import { PropType } from 'vue';
 import { Project } from '../../ozzie';
 import Layout from '../Layout';
-import DebtTable from '../../components/DebtTable/DebtTable';
-import BreadCrumb from '../Partials/BreadCrumb.vue';
+import DebtTable from '../../components/DebtTable.vue';
+import BreadCrumb from '../../components/BreadCrumb.vue';
 
 export default {
     components: {
