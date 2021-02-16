@@ -1,17 +1,8 @@
 <template>
     <CardRow>
-        <div class="flex items-start">
-            <a
-                class="no-underline"
-                :href="gitHubItem.html_url"
-                target="_blank"
-                aria-label="Launch"
-                :title="'open issue #' + gitHubItem.number + ' on github'"
-            >
-                <IconGitHub />
-            </a>
-            <div class="ml-2 flex flex-col">
-                <div class="flex items-center">
+        <div class="ml-2 flex flex-col">
+            <div class="flex items-center justify-between">
+                <div>
                     <InertiaLink
                         class="flex-1 font-medium leading-normal no-underline text-black-lighter truncate"
                         :href="ozzieUrl"
@@ -40,21 +31,30 @@
                         </a>
                     </span>
                 </div>
-                <div class="text-grey-darkest text-sm">
-                    #{{ gitHubItem.number }}
-                    opened
-                    <span>
-                        {{ $luxon.fromISO(gitHubItem.created_at).toRelative() }}
-                    </span>
-                    by
-                    <a
-                        class="text-indigo no-underline"
-                        :href="gitHubItem.user.html_url"
-                        target="_blank"
-                    >
-                        @{{ gitHubItem.user.login }}
-                    </a>
-                </div>
+                <a
+                    class="no-underline"
+                    :href="gitHubItem.html_url"
+                    target="_blank"
+                    aria-label="Launch"
+                    :title="'open issue #' + gitHubItem.number + ' on github'"
+                >
+                    <IconGitHub />
+                </a>
+            </div>
+            <div class="text-grey-darkest text-sm">
+                #{{ gitHubItem.number }}
+                opened
+                <span>
+                    {{ $luxon.fromISO(gitHubItem.created_at).toRelative() }}
+                </span>
+                by
+                <a
+                    class="text-indigo no-underline"
+                    :href="gitHubItem.user.html_url"
+                    target="_blank"
+                >
+                    @{{ gitHubItem.user.login }}
+                </a>
             </div>
         </div>
     </CardRow>
