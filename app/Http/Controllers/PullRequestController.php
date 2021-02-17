@@ -4,16 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ProjectResource;
 use App\Project;
+use Illuminate\Support\Facades\Cache;
 
-class PullRequestController extends Controller
+class PullRequestController extends GithubIssueController
 {
     public function show(string $namespace, string $name, int $id)
     {
-        $project = Project::fromNamespaceAndName($namespace, $name)->firstOrFail();
-
-        return inertia('PullRequest/Show', [
-            'project' => new ProjectResource($project),
-            'pullRequest' => $project->pull_requests->where('number', $id)->first(),
-        ]);
+        return inertia(
+            'PullRequest/Show',
+            Cache::rememberForever(
+                "{$namespace}-{$name}-pull-request-{$id}",
+                function () use ($namespace, $name, $id) {
+                    $project = Project::fromNamespaceAndName($namespace, $name)->firstOrFail();
+                    return [
+                        'project' => new ProjectResource($project),
+                        'issue' =>  $project->pullRequest($id),
+                        'body' => $this->parseMarkdown($project->pullRequest($id)['body']),
+                    ];
+                }
+            )
+        );
     }
 }

@@ -1,7 +1,7 @@
 <template>
     <GitHubItem
         :project="project"
-        :issue="pullRequest">
+        :issue="issue">
         <template #github-item-type>
             Pull Request
         </template>
@@ -9,7 +9,7 @@
             <div class="mt-4 flex items-center text-black-lighter">
                 <a
                     :href="baseUrl()"
-                    :title="`View the conversation about pull request #${pullRequest.number} on GitHub`"
+                    :title="`View the conversation about pull request #${issue.number} on GitHub`"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="flex items-center">
@@ -20,7 +20,7 @@
                 </a>
                 <a
                     :href="baseUrl('commits')"
-                    :title="`View the commits of pull request #${pullRequest.number} on GitHub`"
+                    :title="`View the commits of pull request #${issue.number} on GitHub`"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="ml-8 flex items-center">
@@ -31,7 +31,7 @@
                 </a>
                 <a
                     :href="baseUrl('files')"
-                    :title="`View the file diffs for pull request #${pullRequest.number} on GitHub`"
+                    :title="`View the file diffs for pull request #${issue.number} on GitHub`"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="ml-8 flex items-center">
@@ -65,7 +65,7 @@ export default {
             type: Object as PropType<Project>,
             required: true,
         },
-        pullRequest: {
+        issue: {
             type: Object as PropType<PullRequest>,
             required: true,
         },
@@ -73,8 +73,8 @@ export default {
     methods: {
         baseUrl(section?: string) {
             return (section)
-                ? `${this.pullRequest.html_url}/${section}`
-                : this.pullRequest.html_url;
+                ? `${this.issue.html_url}/${section}`
+                : this.issue.html_url;
         },
     },
 };

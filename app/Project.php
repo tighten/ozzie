@@ -77,6 +77,16 @@ class Project extends Model
         return 'https://github.com/' . $this->namespace . '/' . $this->name;
     }
 
+    public function issue(int $id): array
+    {
+        return $this->issues->where('number', $id)->first();
+    }
+
+    public function pullRequest(int $id): array
+    {
+        return $this->pull_requests->where('number', $id)->first();
+    }
+
     public function getDebtScoreHistory()
     {
         return Cache::remember('debt_score_history_' . $this->name, 60 * 60, function () {

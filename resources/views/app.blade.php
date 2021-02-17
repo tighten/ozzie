@@ -35,7 +35,6 @@
 
     <body class="bg-frost">
         @inertia
-        <script>window.githubToken="{{ config('github.rateLimitToken') }}"</script>
         <script src="{{ asset('js/app.js') }}" defer></script>
     </body>
 </html>

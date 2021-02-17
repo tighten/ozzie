@@ -27,19 +27,8 @@
             <!-- TITLE EXTRA -->
             <slot name="title-extra" />
             <div
-                v-if="loaded"
-                class="mt-4 markdown-body">
-                <article
-                    v-if="issue.body !== ''"
-                    v-html="parsedGitHubItemBody" />
-                <div
-                    v-else
-                    class="pb-4 text-grey-darker">
-                    <em>
-                        No description provided.
-                    </em>
-                </div>
-            </div>
+                class="my-4 markdown-body"
+                v-html="body" />
         </Card>
     </Layout>
 </template>
@@ -70,22 +59,16 @@ export default {
             required: true,
             type: Object as PropType<Issue|PullRequest>,
         },
+        body: {
+            type: String,
+            required: true,
+        },
     },
     data() {
         return {
             parsedGitHubItemBody: '',
             loaded: false,
         };
-    },
-    mounted() {
-        const options = { headers: { Authorization: `token ${window.githubToken}` } };
-        const data = { text: this.issue.body };
-        this.$http.post('https://api.github.com/markdown', data, options).then(
-            (response) => {
-                this.parsedGitHubItemBody = response.data;
-                this.loaded = true;
-            },
-        );
     },
 };
 </script>
