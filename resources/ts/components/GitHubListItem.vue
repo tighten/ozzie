@@ -24,7 +24,7 @@
                 </div>
                 <a
                     :href="gitHubItem.html_url"
-                    :title="'open issue #' + gitHubItem.number + ' on github'"
+                    :title="'View issue #' + gitHubItem.number + ' on github'"
                     class="no-underline"
                     aria-label="Launch"
                     target="_blank"

@@ -3,7 +3,7 @@
         <h1 class="text-2xl text-black-lightest tracking-wide">
             <a
                 :href="`https://github.com/${project.namespace}/${project.name}`"
-                :title="`open project ${project.namespace }/${ project.name } on GitHub`"
+                :title="`View project ${project.namespace }/${ project.name } on GitHub`"
                 target="_blank"
                 rel="noopener noreferrer">
                 {{ project.namespace }}/{{ project.name }}<IconGitHub class="ml-1" />
