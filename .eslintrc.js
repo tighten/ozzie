@@ -71,6 +71,8 @@ module.exports = {
 
         // Vue 3 ---------------------------------------------------------------
 
+        'vue/no-multiple-template-root': 'off',
+
         'vue/html-indent': ['error', 4, {
             attribute: 1,
             baseIndent: 1,
@@ -79,7 +81,9 @@ module.exports = {
             ignores: [],
         }],
 
-        'vue/no-multiple-template-root': 'off',
+        'vue/html-closing-bracket-newline': ['error', {
+            multiline: 'never',
+        }],
 
         'vue/max-len': ['error', {
             code: 120,
