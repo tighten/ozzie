@@ -42,6 +42,10 @@ module.exports = {
             smoke: '#e7e8e8',
             clouds: '#d1d7da',
 
+            red: '#DC2626',
+            orange: '#F59E0B',
+            green: '#16A34A',
+
             'halloween-orange': '#e4730b',
         },
         extend: {},

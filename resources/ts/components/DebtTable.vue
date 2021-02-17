@@ -40,7 +40,7 @@
                     v-if="showProjectName"
                     class="p-4">
                     <InertiaLink
-                        class="text-indigo no-underline p-2 -mx-2"
+                        class="ml-1 text-indigo no-underline"
                         :href="$route('projects.show', {
                             namespace: project.namespace,
                             name: project.name,
@@ -50,7 +50,12 @@
                     </InertiaLink>
                 </td>
                 <td class="text-black-lightest p-4">
-                    {{ project.debt_score }}
+                    <div class="flex items-baseline">
+                        <span
+                            :class="debtScoreClass(project.debt_score)"
+                            class="mr-1 inline-block h-3 w-3 rounded-full" />
+                        {{ project.debt_score }}
+                    </div>
                 </td>
                 <td class="text-black-lightest p-4">
                     <img :src="`data:image/jpeg;base64, ${project.debt_score_graph}`">
@@ -99,6 +104,17 @@ export default {
         showProjectName: {
             type: Boolean,
             default: true,
+        },
+    },
+    methods: {
+        debtScoreClass(debtScore: number) {
+            if (debtScore > 5) {
+                return 'bg-red';
+            }
+            if (debtScore > 1) {
+                return 'bg-orange';
+            }
+            return '';
         },
     },
 };
