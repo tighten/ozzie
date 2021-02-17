@@ -6,6 +6,10 @@
     list-style-type: disc;
 }
 
+.markdown-body ol {
+    list-style-type: decimal;
+}
+
 .hover-pop {
     transition: transform 0.3s ease;
 }
