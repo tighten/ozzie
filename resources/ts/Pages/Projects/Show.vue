@@ -5,19 +5,16 @@
         <DebtTable
             :show-project-name="false"
             :projects="[project]"
-            class="mt-4"
-        />
+            class="mt-4" />
         <Card
             v-if="project.pull_requests_count > 0"
-            class="mt-8"
-        >
+            class="mt-8">
             <CardHeader>{{ project.pull_requests_count }} open Pull Requests</CardHeader>
             <ul class="divide-y divide-grey-blue">
                 <li
                     v-for="pull_request in project.pull_requests"
-                    :key="pull_request.node_id"
-                >
-                    <GithubListItem
+                    :key="pull_request.node_id">
+                    <GitHubListItem
                         :git-hub-item="pull_request"
                         :project-namespace="project.namespace"
                         :project-name="project.name"
@@ -25,22 +22,19 @@
                             namespace: project.namespace,
                             name: project.name,
                             id: pull_request.number
-                        })"
-                    />
+                        })" />
                 </li>
             </ul>
         </Card>
         <Card
             v-if="project.issues_count > 0"
-            class="mt-8"
-        >
+            class="mt-8">
             <CardHeader>{{ project.issues_count }} open Issues </CardHeader>
             <ul class="divide-y divide-grey-blue">
                 <li
                     v-for="issue in project.issues"
-                    :key="issue.node_id"
-                >
-                    <GithubListItem
+                    :key="issue.node_id">
+                    <GitHubListItem
                         :git-hub-item="issue"
                         :project-namespace="project.namespace"
                         :project-name="project.name"
@@ -48,8 +42,7 @@
                             namespace: project.namespace,
                             name: project.name,
                             id: issue.number
-                        })"
-                    />
+                        })" />
                 </li>
             </ul>
         </Card>
@@ -63,7 +56,7 @@ import Layout from '../Layout';
 import ProjectHeader from '../../components/ProjectHeader.vue';
 import Card from '../../components/Card';
 import CardHeader from '../../components/CardHeader';
-import GithubListItem from '../../components/GithubListItem.vue';
+import GitHubListItem from '../../components/GitHubListItem.vue';
 import DebtTable from '../../components/DebtTable.vue';
 import BreadCrumb from '../../components/BreadCrumb.vue';
 
@@ -71,7 +64,7 @@ export default {
     components: {
         BreadCrumb,
         DebtTable,
-        GithubListItem,
+        GitHubListItem,
         CardHeader,
         Card,
         ProjectHeader,

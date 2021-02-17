@@ -3,26 +3,22 @@
         <InertiaLink
             class="text-indigo"
             :href="$route('projects.index')"
-            method="get"
-        >
+            method="get">
             Home
         </InertiaLink>
         <span
             v-if="project"
-            class="mx-1"
-        >&gt;</span>
+            class="mx-1">&gt;</span>
         <InertiaLink
             v-if="project"
             class="text-indigo"
             :href="$route('projects.show', { namespace: project.namespace, name: project.name, })"
-            method="get"
-        >
+            method="get">
             {{ project.namespace }}/{{ project.name }}
         </InertiaLink>
         <span
             v-if="issue"
-            class="mx-1"
-        >&gt;</span>
+            class="mx-1">&gt;</span>
         <span v-if="issue">#{{ issue.number }}</span>
     </div>
 </template>

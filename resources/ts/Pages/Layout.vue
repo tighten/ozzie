@@ -5,8 +5,7 @@
                 <div class="flex justify-between items-center">
                     <InertiaLink
                         :href="$route('projects.index')"
-                        method="get"
-                    >
+                        method="get">
                         <h1 class="flex items-center">
                             <span class="font-light text-5xl text-indigo">O</span>
                             <span class="uppercase text-2xl leading-normal text-black-light font-semibold font-sans tracking-wide">zzie</span>

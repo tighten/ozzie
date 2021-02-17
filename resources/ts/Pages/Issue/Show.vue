@@ -1,22 +1,21 @@
 <template>
-    <GithubItem
+    <GitHubItem
         :project="project"
-        :issue="issue"
-    >
+        :issue="issue">
         <template #github-item-type>
             Issue
         </template>
-    </GithubItem>
+    </GitHubItem>
 </template>
 
 <script lang="ts">
 import { PropType } from 'vue';
 import { Issue, Project } from '../../ozzie';
-import GithubItem from '../../components/GithubItem.vue';
+import GitHubItem from '../../components/GitHubItem.vue';
 
 export default {
     components: {
-        GithubItem,
+        GitHubItem,
     },
     props: {
         project: {

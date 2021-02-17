@@ -5,8 +5,7 @@
                 :href="`https://github.com/${project.namespace}/${project.name}`"
                 :title="`open project ${project.namespace }/${ project.name } on GitHub`"
                 target="_blank"
-                rel="noopener noreferrer"
-            >
+                rel="noopener noreferrer">
                 {{ project.namespace }}/{{ project.name }}<IconGitHub class="ml-1" />
             </a>
         </h1>
@@ -29,8 +28,7 @@
     </p>
     <p
         v-if="project.hasDownloads"
-        class="text-grey-dark font-light"
-    >
+        class="text-grey-dark font-light">
         {{ new Intl.NumberFormat().format(project.downloads_total) }} downloads ({{ new Intl.NumberFormat().format(project.downloads_last_30_days) }}  per month)
     </p>
 </template>
@@ -38,14 +36,12 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { Issue, Project, PullRequest } from '../ozzie.ts';
-import BreadCrumb from './BreadCrumb.vue';
 import IconGitHub from './IconGitHub.vue';
 
 export default {
     name: 'ProjectHeader',
     components: {
         IconGitHub,
-        BreadCrumb,
     },
     props: {
         project: {
