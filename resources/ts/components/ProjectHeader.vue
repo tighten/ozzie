@@ -15,10 +15,11 @@
             <a
                 v-for="maintainer in project.maintainers"
                 :key="maintainer"
-                class="text-indigo no-underline"
                 :href="`https://github.com/${maintainer}`"
+                :title="`View ${maintainer}'s profile overview on GitHub`"
                 target="_blank"
-            >
+                rel="noopener noreferrer"
+                class="text-indigo no-underline">
                 @{{ maintainer }}
             </a>
         </p>

@@ -1,11 +1,10 @@
 <template>
-    <table class="table-auto w-full border border-grey">
+    <table class="mt-6 table-auto w-full border border-grey">
         <thead class="bg-grey-blue-light border-grey border-b-2 text-left">
             <tr>
                 <th
                     v-if="showProjectName"
-                    class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4"
-                >
+                    class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
                     Project Name
                 </th>
                 <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
@@ -28,8 +27,7 @@
                 </th>
                 <th
                     v-if="hacktoberfest"
-                    class="text-xs p-4"
-                >
+                    class="text-xs p-4">
                     🎃
                 </th>
             </tr>
@@ -37,20 +35,17 @@
         <tbody class="bg-white divide-y divide-smoke">
             <tr
                 v-for="project in projects"
-                :key="project.id"
-            >
+                :key="project.id">
                 <td
                     v-if="showProjectName"
-                    class="p-4"
-                >
+                    class="p-4">
                     <InertiaLink
                         class="text-indigo no-underline p-2 -mx-2"
                         :href="$route('projects.show', {
                             namespace: project.namespace,
                             name: project.name,
                         })"
-                        method="get"
-                    >
+                        method="get">
                         {{ project.namespace }}/{{ project.name }}
                     </InertiaLink>
                 </td>
@@ -74,13 +69,11 @@
                 </td>
                 <td
                     v-if="hacktoberfest"
-                    class="p-4"
-                >
+                    class="p-4">
                     <a
                         class="text-indigo no-underline p-2 -mx-2"
                         :href="'https://github.com/' + project.namespace + '/' +project.name + '/labels/hacktoberfest'"
-                        target="_blank"
-                    >
+                        target="_blank">
                         {{ project.hacktoberfestIssues }}
                     </a>
                 </td>

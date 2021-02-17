@@ -8,17 +8,18 @@
             :issue="issue" />
         <DebtTable
             :show-project-name="false"
-            :projects="[project]"
-            class="mt-4" />
+            :projects="[project]" />
         <Card class="mt-4 px-4 pt-4">
             <h2 class="text-3xl">
                 {{ issue.title }}<span class="ml-2 font-thin text-grey-dark">#{{ issue.number }}</span>
             </h2>
             <p class="mt-1">
                 <a
-                    class="font-semibold text-grey-blue-darkest"
-                    :href="issue.user.login"
-                    target="_blank">
+                    :href="`https://github.com/${issue.user.login}`"
+                    :title="`View ${issue.user.login}'s profile overview on GitHub`"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-indigo">
                     {{ issue.user.login }}
                 </a>
                 <span class="text-grey-blue-dark"> opened this issue {{ $luxon.fromISO(issue.created_at).toRelative() }}</span>
@@ -30,7 +31,7 @@
                 class="mt-4 markdown-body">
                 <article
                     v-if="issue.body !== ''"
-                    v-html="parsedGithubItemBody" />
+                    v-html="parsedGitHubItemBody" />
                 <div
                     v-else
                     class="pb-4 text-grey-darker">
@@ -72,7 +73,7 @@ export default {
     },
     data() {
         return {
-            parsedGithubItemBody: '',
+            parsedGitHubItemBody: '',
             loaded: false,
         };
     },
@@ -81,7 +82,7 @@ export default {
         const data = { text: this.issue.body };
         this.$http.post('https://api.github.com/markdown', data, options).then(
             (response) => {
-                this.parsedGithubItemBody = response.data;
+                this.parsedGitHubItemBody = response.data;
                 this.loaded = true;
             },
         );
