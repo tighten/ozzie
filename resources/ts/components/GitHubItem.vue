@@ -2,17 +2,14 @@
     <Layout :title="'Ozzie - ' + project.namespace + '/' + project.name + ' - #' + issue.number">
         <BreadCrumb
             :project="project"
-            :issue="issue"
-        />
+            :issue="issue" />
         <ProjectHeader
             :project="project"
-            :issue="issue"
-        />
+            :issue="issue" />
         <DebtTable
             :show-project-name="false"
             :projects="[project]"
-            class="mt-4"
-        />
+            class="mt-4" />
         <Card class="mt-4 px-4 pt-4">
             <h2 class="text-3xl">
                 {{ issue.title }}<span class="ml-2 font-thin text-grey-dark">#{{ issue.number }}</span>
@@ -21,8 +18,7 @@
                 <a
                     class="font-semibold text-grey-blue-darkest"
                     :href="issue.user.login"
-                    target="_blank"
-                >
+                    target="_blank">
                     {{ issue.user.login }}
                 </a>
                 <span class="text-grey-blue-dark"> opened this issue {{ $luxon.fromISO(issue.created_at).toRelative() }}</span>
@@ -31,16 +27,13 @@
             <slot name="title-extra" />
             <div
                 v-if="loaded"
-                class="mt-4 markdown-body"
-            >
+                class="mt-4 markdown-body">
                 <article
                     v-if="issue.body !== ''"
-                    v-html="parsedGithubItemBody"
-                />
+                    v-html="parsedGithubItemBody" />
                 <div
                     v-else
-                    class="pb-4 text-grey-darker"
-                >
+                    class="pb-4 text-grey-darker">
                     <em>
                         No description provided.
                     </em>
