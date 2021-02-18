@@ -79,12 +79,12 @@ class Project extends Model
 
     public function issue(int $id): array
     {
-        return $this->issues->where('number', $id)->first();
+        return $this->issues->where('number', $id)->first() ?: abort(404);
     }
 
     public function pullRequest(int $id): array
     {
-        return $this->pull_requests->where('number', $id)->first();
+        return $this->pull_requests->where('number', $id)->first() ?: abort(404);
     }
 
     public function getDebtScoreHistory()
