@@ -8,7 +8,14 @@ class GithubIssueController extends Controller
 {
     protected function parseMarkdown(string $markdown): string
     {
-        return Http::withHeaders(['Authorization' => config('github.rateLimitToken')])
-            ->post('https://api.github.com/markdown', ['text' => $markdown])->body();
+        $response = Http::post('https://api.github.com/markdown', ['text' => $markdown]);
+        if ($response->failed()) {
+            return sprintf(
+                'Something went wrong. Unable to parse markdown. <!-- (%s) %s-->',
+                $response->status(),
+                optional($response->object())->message
+            );
+        }
+        return $response->body();
     }
 }
