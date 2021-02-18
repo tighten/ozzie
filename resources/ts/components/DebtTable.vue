@@ -58,7 +58,11 @@
                     </div>
                 </td>
                 <td class="text-black-lightest p-4">
-                    <img :src="`data:image/jpeg;base64, ${project.debt_score_graph}`">
+                    <img
+                        :src="`data:image/jpeg;base64, ${project.debt_score_graph}`"
+                        :alt="`debt score graph for project ${project.namespace}/${project.name}`"
+                        width="80"
+                        height="20">
                 </td>
                 <td class="text-black-lightest p-4">
                     {{ project.old_pull_requests_count }}
