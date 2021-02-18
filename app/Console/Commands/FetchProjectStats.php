@@ -6,6 +6,7 @@ use App\GitHub\Repository;
 use App\Project;
 use App\Remotes\Packagist\Package;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class FetchProjectStats extends Command
@@ -16,6 +17,8 @@ class FetchProjectStats extends Command
 
     public function handle()
     {
+        cache()->clear();
+
         $projects = Project::all();
 
         $this->createProgressBar($projects->count());
