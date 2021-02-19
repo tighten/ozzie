@@ -4,7 +4,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <InertiaLink
-                        class="flex-1 font-medium leading-normal no-underline text-black-lighter truncate"
+                        class="flex-1 font-medium leading-normal no-underline text-black-lighter break-words"
                         :href="ozzieUrl"
                         method="get"
                         target="_blank"
@@ -13,7 +13,7 @@
                     </InertiaLink>
                     <span
                         v-if="Object.keys(gitHubItem.labels).length > 0"
-                        class="ml-2">
+                        class="hidden md:inline ml-2">
                         <GitHubLabel
                             v-for="label in gitHubItem.labels"
                             :key="label.name"

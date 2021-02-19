@@ -1,46 +1,48 @@
 <template>
-    <table class="mt-6 table-auto w-full border border-grey">
-        <thead class="bg-grey-blue-light border-grey border-b-2 text-left">
-            <tr>
+    <!-- -->
+    <table class="block mt-6 w-full md:table md:table-auto">
+        <thead class="block absolute text-left border-b-2 md:relative md:table-row-group md:top-0 md:left-0 top-hidden left-hidden bg-grey-blue-light border-grey">
+            <tr class="block md:table-row">
                 <th
                     v-if="showProjectName"
-                    class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
+                    class="block p-4 text-xs font-bold tracking-wide leading-none uppercase md:table-cell text-grey-darkest">
                     Project Name
                 </th>
-                <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
+                <th class="block p-4 text-xs font-bold tracking-wide leading-none uppercase md:table-cell text-grey-darkest">
                     Debt Score
                 </th>
-                <th class="text-grey-darkest hidden md:table-cell font-bold uppercase text-xs leading-none tracking-wide p-4">
+                <th class="block p-4 text-xs font-bold tracking-wide leading-none uppercase md:table-cell text-grey-darkest">
                     Debt Score Graph
                 </th>
-                <th class="text-grey-darkest hidden md:table-cell font-bold uppercase text-xs leading-none tracking-wide p-4">
+                <th class="block p-4 text-xs font-bold tracking-wide leading-none uppercase md:table-cell text-grey-darkest">
                     Old Prs
                 </th>
-                <th class="text-grey-darkest hidden md:table-cell font-bold uppercase text-xs leading-none tracking-wide p-4">
+                <th class="block p-4 text-xs font-bold tracking-wide leading-none uppercase md:table-cell text-grey-darkest">
                     Old Issues
                 </th>
-                <th class="text-grey-darkest hidden md:table-cell font-bold uppercase text-xs leading-none tracking-wide p-4">
+                <th class="block p-4 text-xs font-bold tracking-wide leading-none uppercase md:table-cell text-grey-darkest">
                     Prs
                 </th>
-                <th class="text-grey-darkest hidden md:table-cell font-bold uppercase text-xs leading-none tracking-wide p-4">
+                <th class="block p-4 text-xs font-bold tracking-wide leading-none uppercase md:table-cell text-grey-darkest">
                     Issues
                 </th>
                 <th
                     v-if="hacktoberfest"
-                    class="text-xs p-4 hidden md:table-cell">
+                    class="block p-4 text-xs md:table-cell">
                     🎃
                 </th>
             </tr>
         </thead>
-        <tbody class="bg-white divide-y divide-smoke">
+        <tbody class="block divide-y bg-frost divide-smoke md:table-row-group">
             <tr
                 v-for="project in projects"
-                :key="project.id">
+                :key="project.id"
+                class="block mt-4 bg-white border divide-y md:table-row border-grey divide-smoke">
                 <td
                     v-if="showProjectName"
-                    class="p-4">
+                    class="flex p-4 md:table-cell">
                     <InertiaLink
-                        class="text-indigo no-underline"
+                        class="font-semibold no-underline text-indigo"
                         :href="$route('projects.show', {
                             namespace: project.namespace,
                             name: project.name,
@@ -49,35 +51,44 @@
                         {{ project.namespace }}/{{ project.name }}
                     </InertiaLink>
                 </td>
-                <td class="text-black-lightest p-4">
+                <td class="flex p-4 md:table-cell">
+                    <span class="w-1/2 md:hidden">Debt score</span>
                     <div class="flex items-baseline">
+                        <span
+                            :class="debtScoreClass(project.debt_score)"
+                            class="inline-block hidden mr-1 w-3 h-3 rounded-full" />
                         {{ project.debt_score }}
                     </div>
                 </td>
-                <td class="text-black-lightest hidden md:table-cell p-4">
+                <td class="hidden p-4 text-black-lightest">
                     <img
                         :src="`data:image/jpeg;base64, ${project.debt_score_graph}`"
                         :alt="`debt score graph for project ${project.namespace}/${project.name}`"
                         width="80"
                         height="20">
                 </td>
-                <td class="text-black-lightest hidden md:table-cell p-4">
+                <td class="flex p-4 md:table-cell">
+                    <span class="w-1/2 md:hidden">Old Pull Requests</span>
                     {{ project.old_pull_requests_count }}
                 </td>
-                <td class="text-black-lightest hidden md:table-cell p-4">
+                <td class="flex p-4 md:table-cell">
+                    <span class="w-1/2 md:hidden">Old Issues</span>
                     {{ project.old_issues_count }}
                 </td>
-                <td class="text-black-lightest hidden md:table-cell p-4">
+                <td class="flex p-4 md:table-cell">
+                    <span class="w-1/2 md:hidden">Pull Requests</span>
                     {{ project.pull_requests_count }}
                 </td>
-                <td class="text-black-lightest hidden md:table-cell p-4">
+                <td class="flex p-4 md:table-cell">
+                    <span class="w-1/2 md:hidden">Issues</span>
                     {{ project.issues_count }}
                 </td>
                 <td
-                    v-if="hacktoberfest"
-                    class="p-4 hidden md:table-cell">
+                    v-if="true"
+                    class="flex p-4 md:table-cell">
+                    <span class="w-1/2 md:hidden">Hacktoberfest<br>Issues</span>
                     <a
-                        class="text-indigo no-underline p-2 -mx-2"
+                        class="no-underline text-indigo"
                         :href="'https://github.com/' + project.namespace + '/' +project.name + '/labels/hacktoberfest'"
                         target="_blank">
                         {{ project.hacktoberfestIssues }}

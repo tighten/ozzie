@@ -8,10 +8,11 @@
             :issue="issue" />
         <DebtTable
             :show-project-name="false"
-            :projects="[project]" />
-        <Card class="mt-4 px-4 pt-4">
-            <h2 class="text-3xl">
-                {{ issue.title }}<span class="ml-2 font-thin text-grey-dark">#{{ issue.number }}</span>
+            :projects="[project]"
+            class="hidden md:table" />
+        <Card class="mt-4 px-2 pt-2 md:px-4 md:pt-4">
+            <h2 class="flex flex-col md:flex-row text-2xl md:text-3xl">
+                {{ issue.title }}<span class="ml-1 md:ml-2 text-xl md:text-3xl font-thin text-grey-dark">#{{ issue.number }}</span>
             </h2>
             <p class="mt-1">
                 <a

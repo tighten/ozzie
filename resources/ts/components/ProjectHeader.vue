@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-6 flex justify-between items-center">
+    <div class="mt-2 md:mt-6 flex flex-col md:flex-rows justify-between">
         <h1 class="text-2xl text-black-lightest tracking-wide">
             <a
                 :href="`https://github.com/${project.namespace}/${project.name}`"
@@ -23,7 +23,7 @@
             </a>
         </p>
     </div>
-    <p class="mt-1 text-grey-dark font-light">
+    <p class="md:mt-1 text-grey-dark font-light">
         Synced {{ $luxon.fromISO(project.updated_at).toRelative() }}
     </p>
     <p
