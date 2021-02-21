@@ -1,7 +1,8 @@
 <template>
     <GitHubItem
         :project="project"
-        :issue="issue">
+        :issue="issue"
+        :body="body">
         <template #github-item-type>
             Pull Request
         </template>
@@ -67,6 +68,10 @@ export default {
         },
         issue: {
             type: Object as PropType<PullRequest>,
+            required: true,
+        },
+        body: {
+            type: String,
             required: true,
         },
     },

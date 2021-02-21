@@ -1,7 +1,8 @@
 <template>
     <GitHubItem
         :project="project"
-        :issue="issue">
+        :issue="issue"
+        :body="body">
         <template #github-item-type>
             Issue
         </template>
@@ -24,6 +25,10 @@ export default {
         },
         issue: {
             type: Object as PropType<Issue>,
+            required: true,
+        },
+        body: {
+            type: String,
             required: true,
         },
     },
