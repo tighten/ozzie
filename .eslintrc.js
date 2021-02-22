@@ -55,7 +55,7 @@ module.exports = {
             ignoreTemplateLiterals: true,
             ignoreRegExpLiterals: true,
             ignoreHTMLAttributeValues: true,
-            ignoreHTMLTextContents: false,
+            ignoreHTMLTextContents: true,
         }],
     },
 
