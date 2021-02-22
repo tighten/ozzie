@@ -48,11 +48,11 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Project, PullRequest } from '../../ozzie';
-import IconCommit from '../../components/IconCommit.vue';
-import IconFileDiff from '../../components/IconFileDiff.vue';
-import IconConversation from '../../components/IconConversation.vue';
-import GitHubItem from '../../components/GitHubItem.vue';
+import { Project, PullRequest } from '@/ozzie.ts';
+import IconCommit from '@/components/IconCommit.vue';
+import IconFileDiff from '@/components/IconFileDiff.vue';
+import IconConversation from '@/components/IconConversation.vue';
+import GitHubItem from '@/components/GitHubItem.vue';
 
 export default {
     components: {

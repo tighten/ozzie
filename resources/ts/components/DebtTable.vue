@@ -89,7 +89,7 @@
 </template>
 <script lang="ts">
 import { PropType } from 'vue';
-import { Project } from '../ozzie.ts';
+import { Project } from '@/ozzie.ts';
 
 export default {
     name: 'DebtTable',

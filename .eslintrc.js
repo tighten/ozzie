@@ -1,22 +1,25 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require('path');
+
 module.exports = {
     env: {
         browser: true,
         es2021: true,
     },
+    parser: 'vue-eslint-parser',
     extends: [
-        'eslint:recommended',
-        'plugin:vue/recommended',
         'airbnb-base',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:vue/vue3-recommended',
+        'plugin:import/errors',
+        'plugin:import/warnings',
+        'plugin:import/typescript',
     ],
     parserOptions: {
-        ecmaVersion: 12,
         parser: '@typescript-eslint/parser',
+        ecmaVersion: 2020,
         sourceType: 'module',
     },
-    plugins: [
-        'vue',
-        '@typescript-eslint',
-    ],
     rules: {
 
         // ESLint -----------------------------------------------------------------
@@ -100,8 +103,8 @@ module.exports = {
 
     settings: {
         'import/resolver': {
-            node: {
-                extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
+            webpack: {
+                config: path.join(__dirname, 'webpack.config.js'),
             },
         },
     },

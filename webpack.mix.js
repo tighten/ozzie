@@ -1,14 +1,9 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const mix = require('laravel-mix');
 const tailwindcss = require('tailwindcss');
-const webpack = require('webpack');
-
-const webpackConfig = {
-    output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
-    plugins: [new webpack.DefinePlugin({ __VUE_OPTIONS_API__: true, __VUE_PROD_DEVTOOLS__: false })],
-};
 
 mix.ts('resources/ts/app.ts', 'public/js').vue({ version: 3, options: {} })
-    .webpackConfig(webpackConfig)
+    .webpackConfig(require('./webpack.config.js'))
     .version()
     .sourceMaps(false)
     .postCss('resources/css/main.css', 'public/css', [

@@ -54,10 +54,10 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Issue, PullRequest } from '../ozzie.ts';
-import IconGitHub from './IconGitHub.vue';
-import CardRow from './CardRow.vue';
-import GitHubLabel from './GitHubLabel.vue';
+import { Issue, PullRequest } from '@/ozzie.ts';
+import IconGitHub from '@/components/IconGitHub.vue';
+import CardRow from '@/components/CardRow.vue';
+import GitHubLabel from '@/components/GitHubLabel.vue';
 
 export default {
     name: 'GithubListItem',

@@ -51,14 +51,14 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Project } from '../../ozzie.ts';
-import Layout from '../Layout';
-import ProjectHeader from '../../components/ProjectHeader.vue';
-import Card from '../../components/Card';
-import CardHeader from '../../components/CardHeader';
-import GitHubListItem from '../../components/GitHubListItem.vue';
-import DebtTable from '../../components/DebtTable.vue';
-import BreadCrumb from '../../components/BreadCrumb.vue';
+import { Project } from '@/ozzie.ts';
+import Layout from '@/Pages/Layout.vue';
+import ProjectHeader from '@/components/ProjectHeader.vue';
+import Card from '@/components/Card.vue';
+import CardHeader from '@/components/CardHeader.vue';
+import GitHubListItem from '@/components/GitHubListItem.vue';
+import DebtTable from '@/components/DebtTable.vue';
+import BreadCrumb from '@/components/BreadCrumb.vue';
 
 export default {
     components: {

@@ -21,10 +21,10 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Project } from '../../ozzie';
-import Layout from '../Layout';
-import DebtTable from '../../components/DebtTable.vue';
-import BreadCrumb from '../../components/BreadCrumb.vue';
+import { Project } from '@/ozzie.ts';
+import Layout from '@/Pages/Layout.vue';
+import DebtTable from '@/components/DebtTable.vue';
+import BreadCrumb from '@/components/BreadCrumb.vue';
 
 export default {
     components: {

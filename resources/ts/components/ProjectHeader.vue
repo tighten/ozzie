@@ -35,8 +35,8 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Issue, Project, PullRequest } from '../ozzie.ts';
-import IconGitHub from './IconGitHub.vue';
+import { Issue, Project, PullRequest } from '@/ozzie.ts';
+import IconGitHub from '@/components/IconGitHub.vue';
 
 export default {
     name: 'ProjectHeader',

@@ -13,7 +13,7 @@
 </template>
 <script lang="ts">
 import { PropType } from 'vue';
-import { Label } from '../ozzie';
+import { Label } from '@/ozzie.ts';
 
 export default {
     name: 'GitHubLabel',

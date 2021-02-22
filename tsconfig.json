@@ -12,6 +12,10 @@
         "moduleResolution": "node",
         "sourceMap": true,
         "noImplicitAny": false,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["resources/ts/*"]
+        },
     },
     "exclude": [
         "node_modules",

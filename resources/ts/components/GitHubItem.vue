@@ -36,12 +36,12 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Issue, Project, PullRequest } from '../ozzie';
-import Layout from '../Pages/Layout.vue';
-import ProjectHeader from './ProjectHeader.vue';
-import Card from './Card.vue';
-import DebtTable from './DebtTable.vue';
-import BreadCrumb from './BreadCrumb.vue';
+import { Issue, Project, PullRequest } from '@/ozzie.ts';
+import Layout from '@/Pages/Layout.vue';
+import ProjectHeader from '@/components/ProjectHeader.vue';
+import Card from '@/components/Card.vue';
+import DebtTable from '@/components/DebtTable.vue';
+import BreadCrumb from '@/components/BreadCrumb.vue';
 
 export default {
     components: {

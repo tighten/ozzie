@@ -11,8 +11,8 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Issue, Project } from '../../ozzie';
-import GitHubItem from '../../components/GitHubItem.vue';
+import { Issue, Project } from '@/ozzie.ts';
+import GitHubItem from '@/components/GitHubItem.vue';
 
 export default {
     components: {
