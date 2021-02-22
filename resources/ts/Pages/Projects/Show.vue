@@ -5,7 +5,7 @@
         <DebtTable
             :show-project-name="false"
             :projects="[project]"
-            class="mt-4 hidden md:table" />
+            class="hidden mt-4 md:table" />
         <Card
             v-if="project.pull_requests_count > 0"
             class="mt-4 md:mt-8">

@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-v-html -->
 <template>
     <Layout :title="'Ozzie - ' + project.namespace + '/' + project.name + ' - #' + issue.number">
         <BreadCrumb
@@ -65,7 +66,7 @@ export default {
             required: true,
         },
     },
-    data() {
+    data(): Record<string, unknown> {
         return {
             parsedGitHubItemBody: '',
             loaded: false,

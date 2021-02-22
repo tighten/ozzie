@@ -29,7 +29,8 @@
     <p
         v-if="project.hasDownloads"
         class="text-grey-dark font-light">
-        {{ new Intl.NumberFormat().format(project.downloads_total) }} downloads ({{ new Intl.NumberFormat().format(project.downloads_last_30_days) }}  per month)
+        {{ new Intl.NumberFormat().format(project.downloads_total) }} downloads
+        ({{ new Intl.NumberFormat().format(project.downloads_last_30_days) }}  per month)
     </p>
 </template>
 

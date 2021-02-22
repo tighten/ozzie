@@ -76,7 +76,7 @@ export default {
         },
     },
     methods: {
-        baseUrl(section?: string) {
+        baseUrl(section?: string): string {
             return (section)
                 ? `${this.issue.html_url}/${section}`
                 : this.issue.html_url;

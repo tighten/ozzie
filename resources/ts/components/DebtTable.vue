@@ -108,7 +108,7 @@ export default {
         },
     },
     methods: {
-        debtScoreClass(debtScore: number) {
+        debtScoreClass(debtScore: number): string {
             if (debtScore > 5) {
                 return 'bg-red';
             }

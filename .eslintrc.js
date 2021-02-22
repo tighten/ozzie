@@ -24,76 +24,34 @@ module.exports = {
 
         // ESLint -----------------------------------------------------------------
 
-        indent: ['error', 4],
+        indent: ['error', 4], // compatibility with .editorconfig
 
-        'global-require': 'off',
-        'import/no-extraneous-dependencies': 'off',
-        'import/extensions': 'off',
-        'object-shorthand': 'off',
+        'import/no-extraneous-dependencies': 'off', // allow packages in devDependencies
+
         'max-len': [
-            'error', {
+            'warn', {
                 code: 120,
                 ignoreComments: true,
                 ignoreTrailingComments: true,
                 ignoreUrls: true,
-                ignoreStrings: true,
-                ignoreTemplateLiterals: false,
-                ignoreRegExpLiterals: false,
-                ignorePattern: 'class=".+"',
+                ignoreTemplateLiterals: true,
+                ignoreRegExpLiterals: true,
+                ignorePattern: '(class|d)=".+',
             },
         ],
-
-        // TypeScript -------------------------------------------------------------
-
-        'no-shadow': 'off',
-        '@typescript-eslint/no-shadow': 'error',
-
-        'no-unused-vars': 'off',
-        '@typescript-eslint/no-unused-vars-experimental': 'error',
-        '@typescript-eslint/no-unused-vars': 'off',
-
-        'no-empty-function': 'off',
-        '@typescript-eslint/no-empty-function': [
-            'error', {
-                allow: ['private-constructors'],
-            },
-        ],
-
-        'no-redeclare': 'off',
-        '@typescript-eslint/no-redeclare': 'error',
-
-        // Classes ----------------------------------------------------------------
-
-        'class-methods-use-this': 'off',
-        'no-useless-constructor': 'off',
-        '@typescript-eslint/no-useless-constructor': 'error',
-
-        'max-classes-per-file': 'warn',
-        'lines-between-class-members': 'off',
-        'no-underscore-dangle': 'off',
 
         // Vue 3 ---------------------------------------------------------------
 
-        'vue/no-multiple-template-root': 'off',
-
-        'vue/html-indent': ['error', 4, {
-            attribute: 1,
-            baseIndent: 1,
-            closeBracket: 0,
-            alignAttributesVertically: true,
-            ignores: [],
-        }],
-
-        'vue/html-closing-bracket-newline': ['error', {
+        'vue/html-indent': ['warn', 4],
+        'vue/html-closing-bracket-newline': ['warn', {
             multiline: 'never',
         }],
 
-        'vue/max-len': ['error', {
+        'vue/max-len': ['warn', {
             code: 120,
             ignoreComments: true,
             ignoreTrailingComments: true,
             ignoreUrls: true,
-            ignoreStrings: true,
             ignoreTemplateLiterals: true,
             ignoreRegExpLiterals: true,
             ignoreHTMLAttributeValues: true,
