@@ -13,6 +13,10 @@ class Project extends Model
 {
     protected $guarded = [];
 
+    protected $appends = [
+        'debt_score',
+    ];
+
     protected $casts = [
         'maintainers' => 'array',
         'issues' => 'collection',
@@ -29,9 +33,32 @@ class Project extends Model
         return $this->hasMany(Snapshot::class)->today();
     }
 
+    public function scopeForPackagist($query, $vendor, $name = null)
+    {
+        // @todo test this
+        if (! $name) {
+            [$vendor, $name] = explode('/', $vendor);
+        }
+
+        $query->where([
+            'packagist_name' => $vendor . '/' . $name,
+        ])->orWhere(function ($query) use ($vendor, $name) {
+            $query->where([
+                'packagist_name' => null,
+                'namespace' => $vendor,
+                'name' => $name,
+            ]);
+        });
+    }
+
     public function getPackagistNameAttribute($value)
     {
         return $value ?? "{$this->namespace}/{$this->name}";
+    }
+
+    public function getDebtScoreAttribute()
+    {
+        return $this->debtScore();
     }
 
     public function hacktoberfestIssues()
