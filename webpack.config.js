@@ -10,5 +10,10 @@ module.exports = {
         },
     },
     output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
-    plugins: [new webpack.DefinePlugin({ __VUE_OPTIONS_API__: true, __VUE_PROD_DEVTOOLS__: false })],
+    plugins: [
+        new webpack.DefinePlugin({
+            __VUE_OPTIONS_API__: true,
+            __VUE_PROD_DEVTOOLS__: false,
+        }),
+    ],
 };

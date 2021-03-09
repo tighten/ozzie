@@ -29,9 +29,7 @@
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.0",
-        "squizlabs/php_codesniffer": "*",
-        "tightenco/duster": "^0.2.0@RC",
-        "tightenco/tlint": "^5.0"
+        "tightenco/duster": "^0.2.1"
     },
     "config": {
         "optimize-autoloader": true,
