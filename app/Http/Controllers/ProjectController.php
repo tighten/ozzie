@@ -31,7 +31,6 @@ class ProjectController extends Controller
 
     public function show(string $vendor, string $name)
     {
-        ray(['vendor' => $vendor, 'name' => $name]);
         return inertia(
             'Projects/Show',
             Cache::rememberForever(
