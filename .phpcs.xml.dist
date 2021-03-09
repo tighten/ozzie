@@ -31,7 +31,7 @@
       patterns on the command line.
    -->
    <exclude-pattern>*/cache/*</exclude-pattern>
-<!--   <exclude-pattern>*/*.js</exclude-pattern>-->
+   <exclude-pattern>*/*.js</exclude-pattern>
    <exclude-pattern>*/*.css</exclude-pattern>
    <exclude-pattern>*/*.xml</exclude-pattern>
    <exclude-pattern>*/*.blade.php</exclude-pattern>
