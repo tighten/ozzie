@@ -37,7 +37,7 @@ export default {
     watch: {
         title: {
             immediate: true,
-            handler(title: string): string {
+            handler(title: string): void {
                 document.title = title;
             },
         },

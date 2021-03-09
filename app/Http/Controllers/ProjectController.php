@@ -17,27 +17,28 @@ class ProjectController extends Controller
                 'projects',
                 function () {
                     return [
-                    'projects' => Project::all()
-                        ->transform(fn($project) => new ProjectResource($project))
-                        ->sortByDesc(fn($project) => $project->resource->debtScore())
-                        ->values(),
-                    'hacktoberfest' => Carbon::now()->isSameMonth(Carbon::parse('October')),
-                    'organization' => config('app.organization'),
+                        'projects' => Project::all()
+                            ->transform(fn($project) => new ProjectResource($project))
+                            ->sortByDesc(fn($project) => $project->resource->debtScore())
+                            ->values(),
+                        'hacktoberfest' => Carbon::now()->isSameMonth(Carbon::parse('October')),
+                        'organization' => config('app.organization'),
                     ];
                 }
             )
         );
     }
 
-    public function show(string $projectNamespace, string $name)
+    public function show(string $vendor, string $name)
     {
+        ray(['vendor' => $vendor, 'name' => $name]);
         return inertia(
             'Projects/Show',
             Cache::rememberForever(
-                "{$projectNamespace}-{$name}",
-                function () use ($projectNamespace, $name) {
-                    $project = Project::fromNamespaceAndName($projectNamespace, $name)->firstOrFail();
-                    return  ['project' => new ProjectResource($project)];
+                "{$vendor}-{$name}",
+                function () use ($vendor, $name) {
+                    $project = Project::fromVendorAndName($vendor, $name)->firstOrFail();
+                    return ['project' => new ProjectResource($project)];
                 }
             )
         );

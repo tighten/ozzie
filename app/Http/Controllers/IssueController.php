@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Cache;
 
 class IssueController extends GithubIssueController
 {
-    public function show(string $namespace, string $name, int $id)
+    public function show(string $vendor, string $name, int $id)
     {
         return inertia(
             'Issue/Show',
             Cache::rememberForever(
-                "{$namespace}-{$name}-issue-{$id}",
-                function () use ($namespace, $name, $id) {
-                    $project = Project::fromNamespaceAndName($namespace, $name)->firstOrFail();
+                "{$vendor}-{$name}-issue-{$id}",
+                function () use ($vendor, $name, $id) {
+                    $project = Project::fromVendorAndName($vendor, $name)->firstOrFail();
                     return [
                        'project' => new ProjectResource($project),
                        'issue' =>  $project->issue($id),
