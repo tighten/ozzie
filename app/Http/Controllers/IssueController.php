@@ -2,27 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ProjectResource;
-use App\Project;
-use Illuminate\Support\Facades\Cache;
+use App\CachedIssue;
 
-class IssueController extends GithubIssueController
+class IssueController extends Controller
 {
     public function show(string $vendor, string $name, int $id)
     {
         return inertia(
             'Issue/Show',
-            Cache::rememberForever(
-                "{$vendor}-{$name}-issue-{$id}",
-                function () use ($vendor, $name, $id) {
-                    $project = Project::fromVendorAndName($vendor, $name)->firstOrFail();
-                    return [
-                       'project' => new ProjectResource($project),
-                       'issue' =>  $project->issue($id),
-                       'body' => $this->parseMarkdown($project->issue($id)['body']),
-                    ];
-                }
-            )
+            app(CachedIssue::class)($vendor, $name, 'issue', $id),
         );
     }
 }

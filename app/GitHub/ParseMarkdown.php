@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\GitHub;
 
 use Illuminate\Support\Facades\Http;
 
-class GithubIssueController extends Controller
+class ParseMarkdown
 {
-    protected function parseMarkdown(string $markdown): string
+    public function __invoke(string $markdown): string
     {
         $response = Http::post('https://api.github.com/markdown', ['text' => $markdown]);
         if ($response->failed()) {
