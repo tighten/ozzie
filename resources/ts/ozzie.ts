@@ -48,6 +48,6 @@ export declare type Project = {
     debt_score_graph: string,
     old_issues_count: number,
     old_pull_requests_count: number,
-    hacktoberfestIssues: number,
-    hasDownloads: boolean,
+    hacktoberfest_issues: number,
+    has_downloads: boolean,
 }

@@ -27,7 +27,7 @@
         Synced {{ $luxon.fromISO(project.updated_at).toRelative() }}
     </p>
     <p
-        v-if="project.hasDownloads"
+        v-if="project.has_downloads"
         class="text-grey-dark font-light">
         {{ new Intl.NumberFormat().format(project.downloads_total) }} downloads
         ({{ new Intl.NumberFormat().format(project.downloads_last_30_days) }}  per month)

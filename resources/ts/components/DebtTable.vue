@@ -80,7 +80,7 @@
                         class="text-indigo no-underline p-2 -mx-2"
                         :href="'https://github.com/' + project.namespace + '/' +project.name + '/labels/hacktoberfest'"
                         target="_blank">
-                        {{ project.hacktoberfestIssues }}
+                        {{ project.hacktoberfest_issues }}
                     </a>
                 </td>
             </tr>
