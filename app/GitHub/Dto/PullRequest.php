@@ -16,12 +16,6 @@ class PullRequest extends DataTransferObject
     public $number;
     public $title;
 
-    ///** @var \App\GitHub\Dto\Branch */
-    //public $base;
-
-    ///** @var \App\GitHub\Dto\Branch */
-    //public $head;
-
     /** @var \App\GitHub\Dto\Label[] */
     public $labels;
 
