@@ -41,10 +41,6 @@ export default {
             type: Boolean,
             required: true,
         },
-        organization: {
-            type: String,
-            required: true,
-        },
     },
 };
 </script>
