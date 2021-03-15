@@ -1,9 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Cache;
 
 use App\GitHub\ParseMarkdown;
-use App\Http\Resources\ProjectResource;
 use Illuminate\Support\Facades\Cache;
 
 class CachedIssue
@@ -13,9 +12,9 @@ class CachedIssue
         return Cache::rememberForever(
             "{$vendor}-{$name}-{$type}-{$id}",
             function () use ($vendor, $name, $type, $id) {
-                $project = Project::fromVendorAndName($vendor, $name)->firstOrFail();
+                $project = app(CachedProjectResource::class)("{$vendor}/{$name}");
                 return [
-                    'project' => new ProjectResource($project),
+                    'project' => $project,
                     'issue' => $project->$type($id),
                     'body' => app(ParseMarkdown::class)($project->$type($id)['body']),
                 ];

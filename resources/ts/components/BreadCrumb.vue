@@ -12,9 +12,9 @@
         <InertiaLink
             v-if="project"
             class="text-indigo"
-            :href="$route('projects.show', { namespace: project.namespace, name: project.name, })"
+            :href="ozzieUrl(project.packagist_name)"
             method="get">
-            {{ project.namespace }}/{{ project.name }}
+            {{ project.packagist_name }}
         </InertiaLink>
         <span
             v-if="issue"
@@ -36,6 +36,12 @@ export default {
         issue: {
             type: Object as PropType<Issue|PullRequest>,
             default: null,
+        },
+    },
+    methods: {
+        ozzieUrl(packageName: string): {vendor: string, name: string} {
+            const [vendor, name] = packageName.split('/');
+            return this.$route('projects.show', { vendor, name });
         },
     },
 };

@@ -41,10 +41,7 @@
                     class="p-4">
                     <InertiaLink
                         class="text-indigo no-underline"
-                        :href="$route('projects.show', {
-                            namespace: project.namespace,
-                            name: project.name,
-                        })"
+                        :href="ozzieUrl(project.packagist_name)"
                         method="get">
                         {{ project.namespace }}/{{ project.name }}
                     </InertiaLink>
@@ -73,6 +70,7 @@
                 <td class="text-black-lightest hidden md:table-cell p-4">
                     {{ project.issues_count }}
                 </td>
+
                 <td
                     v-if="hacktoberfest"
                     class="p-4 hidden md:table-cell">
@@ -116,6 +114,10 @@ export default {
                 return 'bg-orange';
             }
             return '';
+        },
+        ozzieUrl(packageName: string): {vendor: string, name: string} {
+            const [vendor, name] = packageName.split('/');
+            return this.$route('projects.show', { vendor, name });
         },
     },
 };

@@ -18,11 +18,7 @@
                         :git-hub-item="pull_request"
                         :project-namespace="project.namespace"
                         :project-name="project.name"
-                        :ozzie-url="$route('pull-request.show', {
-                            namespace: project.namespace,
-                            name: project.name,
-                            id: pull_request.number
-                        })" />
+                        :ozzie-url="ozzieUrl(project.packagist_name, 'pull-request', pull_request.number)" />
                 </li>
             </ul>
         </Card>
@@ -38,11 +34,7 @@
                         :git-hub-item="issue"
                         :project-namespace="project.namespace"
                         :project-name="project.name"
-                        :ozzie-url="$route('issue.show', {
-                            namespace: project.namespace,
-                            name: project.name,
-                            id: issue.number
-                        })" />
+                        :ozzie-url="ozzieUrl(project.packagist_name, 'issue', issue.number)" />
                 </li>
             </ul>
         </Card>
@@ -74,6 +66,12 @@ export default {
         project: {
             type: Object as PropType<Project>,
             required: true,
+        },
+    },
+    methods: {
+        ozzieUrl(packageName: string, type: string, id: number): string {
+            const [vendor, name] = packageName.split('/');
+            return this.$route(`${type}.show`, { vendor, name, id });
         },
     },
 };
