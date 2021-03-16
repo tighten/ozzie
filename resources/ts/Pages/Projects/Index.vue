@@ -7,7 +7,7 @@
             </p>
             <a
                 v-if="hacktoberfest"
-                href="https://github.com/search?o=desc&amp;q=label%3Ahacktoberfest+is%3Aopen+type%3Aissue+user%3Atighten&amp;s=created&amp;type=Issues"
+                :href="hactoberfestQuery()"
                 target="_blank"
                 class="px-4 py-3 bg-grey-blue hover:bg-halloween-orange no-underline text-black-lighter hover:text-white hover-pop">
                 Hacktoberfest is here! 👻
@@ -40,6 +40,15 @@ export default {
         hacktoberfest: {
             type: Boolean,
             required: true,
+        },
+        organization: {
+            type: String,
+            required: true,
+        },
+    },
+    methods: {
+        hactoberfestQuery(): string {
+            return `https://github.com/search?o=desc&amp;q=label%3Ahacktoberfest+is%3Aopen+type%3Aissue+user%3A${this.organization}&amp;s=created&amp;type=Issues`;
         },
     },
 };
