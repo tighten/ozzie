@@ -70,8 +70,7 @@ class Project extends Model
     public function hacktoberfestIssues()
     {
         return $this->issues->filter(function ($issue) {
-            return ! empty($issue->labels)
-                && collect($issue->labels)->contains('name', 'hacktoberfest');
+            return collect($issue['labels'])->contains('name', 'hacktoberfest');
         });
     }
 
