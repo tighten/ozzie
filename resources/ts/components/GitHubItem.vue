@@ -12,9 +12,17 @@
             :projects="[project]"
             class="hidden md:table" />
         <Card class="mt-4 px-2 pt-2 md:px-4 md:pt-4">
-            <h2 class="flex flex-col md:flex-row text-2xl md:text-3xl">
-                {{ issue.title }}<span class="ml-1 md:ml-2 text-xl md:text-3xl font-thin text-grey-dark">#{{ issue.number }}</span>
-            </h2>
+            <a
+                :href="issue.html_url"
+                :title="'View #' + issue.number + ' on GitHub'"
+                class="no-underline"
+                aria-label="Launch"
+                target="_blank"
+                rel="noopener noreferrer">
+                <h2 class="flex flex-col md:flex-row text-2xl md:text-3xl text-indigo">
+                    {{ issue.title }}<span class="ml-1 md:ml-2 text-xl md:text-3xl font-thin text-grey-dark">#{{ issue.number }}</span>
+                </h2>
+            </a>
             <p class="mt-1">
                 <a
                     :href="`https://github.com/${issue.user.login}`"
@@ -26,7 +34,6 @@
                 </a>
                 <span class="text-grey-blue-dark"> opened this issue {{ $luxon.fromISO(issue.created_at).toRelative() }}</span>
             </p>
-            <!-- TITLE EXTRA -->
             <slot name="title-extra" />
             <div
                 class="my-4 markdown-body"
