@@ -24,7 +24,7 @@
 </template>
 <script lang="ts">
 import { PropType } from 'vue';
-import { Issue, Project, PullRequest } from '@/ozzie.ts';
+import { Issue, Project, PullRequest } from '@/ozzie';
 
 export default {
     name: 'BreadCrumb',
