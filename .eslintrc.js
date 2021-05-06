@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const path = require('path');
-
 module.exports = {
     env: {
         browser: true,
@@ -57,12 +54,17 @@ module.exports = {
             ignoreHTMLAttributeValues: true,
             ignoreHTMLTextContents: true,
         }],
+
+        // Plugin Import ---------------------------------------------------------
+
+        'import/no-unresolved': 'error',
+        'import/extensions': ['error', 'never', { vue: 'always' }],
     },
 
     settings: {
         'import/resolver': {
-            webpack: {
-                config: path.join(__dirname, 'webpack.config.js'),
+            typescript: {
+                alwaysTryTypes: true,
             },
         },
     },

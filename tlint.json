@@ -1,7 +1,7 @@
 {
     "preset": "tighten",
-    "disabled": [],
     "excluded": [
-        "node_modules"
+        "node_modules",
+        "vendor"
     ]
 }

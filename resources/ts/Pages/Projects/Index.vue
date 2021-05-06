@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Project } from '@/ozzie.ts';
+import { Project } from '@/ozzie';
 import Layout from '@/Pages/Layout.vue';
 import DebtTable from '@/components/DebtTable.vue';
 import BreadCrumb from '@/components/BreadCrumb.vue';

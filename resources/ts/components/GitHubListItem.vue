@@ -54,7 +54,7 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Issue, PullRequest } from '@/ozzie.ts';
+import { Issue, PullRequest } from '@/ozzie';
 import IconGitHub from '@/components/IconGitHub.vue';
 import CardRow from '@/components/CardRow.vue';
 import GitHubLabel from '@/components/GitHubLabel.vue';

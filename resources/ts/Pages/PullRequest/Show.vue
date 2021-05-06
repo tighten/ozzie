@@ -48,7 +48,7 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Project, PullRequest } from '@/ozzie.ts';
+import { Project, PullRequest } from '@/ozzie';
 import IconCommit from '@/components/IconCommit.vue';
 import IconFileDiff from '@/components/IconFileDiff.vue';
 import IconConversation from '@/components/IconConversation.vue';
