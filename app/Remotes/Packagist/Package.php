@@ -26,15 +26,6 @@ class Package
         return new self(... explode('/', $project->packagist_name));
     }
 
-    public function __get($key)
-    {
-        if (! isset($this->{$key})) {
-            return null;
-        }
-
-        return $this->{$key};
-    }
-
     protected function fetchDownloads()
     {
         $response = Http::get($this->url);
@@ -44,5 +35,14 @@ class Package
             $this->monthlyDownloads = $this->downloadsData['monthly'];
             $this->totalDownloads = $this->downloadsData['total'];
         }
+    }
+
+    public function __get($key)
+    {
+        if (! isset($this->{$key})) {
+            return null;
+        }
+
+        return $this->{$key};
     }
 }
