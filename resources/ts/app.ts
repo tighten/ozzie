@@ -1,6 +1,7 @@
-/* eslint-disable import/no-dynamic-require */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { createApp, h } from 'vue';
-import { App, plugin } from '@inertiajs/inertia-vue3';
+// @ts-ignore
+import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import { DateTime } from 'luxon';
 import axios from 'axios';
@@ -14,15 +15,16 @@ InertiaProgress.init({
     showSpinner: true,
 });
 
-const el = document.getElementById('app') as HTMLDivElement;
-
-const app = createApp({
-    render: () => h(App, {
-        initialPage: JSON.parse(<string>el.dataset.page),
-        resolveComponent: (name: string) => import(`./Pages/${name}`).then((module) => module.default),
-    }),
+createInertiaApp({
+    resolve: (name) => import(`./Pages/${name}`),
+    setup({
+        el, app, props, plugin,
+    }) {
+        const ozzie = createApp({ render: () => h(app, props) });
+        ozzie.config.globalProperties.$luxon = DateTime;
+        ozzie.config.globalProperties.$http = axios;
+        ozzie.config.globalProperties.$route = route;
+        ozzie.use(plugin);
+        ozzie.mount(el);
+    },
 });
-app.config.globalProperties.$luxon = DateTime;
-app.config.globalProperties.$http = axios;
-app.config.globalProperties.$route = route;
-app.use(plugin).mount(el);

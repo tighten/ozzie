@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const mix = require('laravel-mix');
-const tailwindcss = require('@tailwindcss/jit');
+const tailwindcss = require('tailwindcss');
 
 mix.ts('resources/ts/app.ts', 'public/js').vue({ version: 3, options: {} })
     .webpackConfig(require('./webpack.config.js'))

@@ -15,7 +15,7 @@
         "graham-campbell/github": "^10.0",
         "guzzlehttp/guzzle": "^7.2",
         "http-interop/http-factory-guzzle": "^1.0",
-        "inertiajs/inertia-laravel": "^0.3.6",
+        "inertiajs/inertia-laravel": "v0.4.2",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
