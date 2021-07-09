@@ -39,6 +39,7 @@ module.exports = {
             indigo: '#3f50bb',
             'indigo-light': '#4650b6',
             'indigo-muted': '#9396ab',
+            'indigo-hover': '#EEF2FF',
 
             frost: '#f4f5f7',
             smoke: '#e7e8e8',
@@ -52,6 +53,11 @@ module.exports = {
         },
         extend: {},
     },
-    variants: {},
+    variants: {
+        extend: {
+            // ...
+            borderColor: ['hover'],
+        },
+    },
     plugins: [],
 };

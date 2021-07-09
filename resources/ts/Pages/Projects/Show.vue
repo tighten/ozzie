@@ -14,11 +14,15 @@
                 <li
                     v-for="pull_request in project.pull_requests"
                     :key="pull_request.node_id">
-                    <GitHubListItem
-                        :git-hub-item="pull_request"
-                        :project-namespace="project.namespace"
-                        :project-name="project.name"
-                        :ozzie-url="ozzieUrl(project.packagist_name, 'pull-request', pull_request.number)" />
+                    <CardRow
+                        class="cursor-pointer"
+                        @click="$inertia.visit(ozzieUrl(project.packagist_name, 'pull-request', pull_request.number))">
+                        <GitHubListItem
+                            :git-hub-item="pull_request"
+                            :project-namespace="project.namespace"
+                            :project-name="project.name"
+                            :ozzie-url="ozzieUrl(project.packagist_name, 'pull-request', pull_request.number)" />
+                    </CardRow>
                 </li>
             </ul>
         </Card>
@@ -30,11 +34,15 @@
                 <li
                     v-for="issue in project.issues"
                     :key="issue.node_id">
-                    <GitHubListItem
-                        :git-hub-item="issue"
-                        :project-namespace="project.namespace"
-                        :project-name="project.name"
-                        :ozzie-url="ozzieUrl(project.packagist_name, 'issue', issue.number)" />
+                    <CardRow
+                        class="cursor-pointer"
+                        @click="$inertia.visit(ozzieUrl(project.packagist_name, 'issue', issue.number))">
+                        <GitHubListItem
+                            :git-hub-item="issue"
+                            :project-namespace="project.namespace"
+                            :project-name="project.name"
+                            :ozzie-url="ozzieUrl(project.packagist_name, 'issue', issue.number)" />
+                    </CardRow>
                 </li>
             </ul>
         </Card>
@@ -51,6 +59,7 @@ import CardHeader from '@/components/CardHeader.vue';
 import GitHubListItem from '@/components/GitHubListItem.vue';
 import DebtTable from '@/components/DebtTable.vue';
 import BreadCrumb from '@/components/BreadCrumb.vue';
+import CardRow from '@/components/CardRow.vue';
 
 export default {
     components: {
@@ -61,6 +70,7 @@ export default {
         Card,
         ProjectHeader,
         Layout,
+        CardRow,
     },
     props: {
         project: {

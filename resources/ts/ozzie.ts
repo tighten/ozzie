@@ -22,6 +22,7 @@ export declare type BaseIssue = {
 
 export declare interface Issue extends BaseIssue {
     pull_request: string,
+    node_id: number,
 }
 
 export declare interface PullRequest extends BaseIssue{

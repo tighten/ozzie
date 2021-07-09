@@ -1,5 +1,5 @@
 <template>
-    <div class="p-4 hover:bg-frost min-w-full">
+    <div class="p-4 hover:bg-indigo-hover min-w-full">
         <slot />
     </div>
 </template>

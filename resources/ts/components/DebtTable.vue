@@ -35,7 +35,9 @@
         <tbody class="bg-white divide-y divide-smoke">
             <tr
                 v-for="project in projects"
-                :key="project.id">
+                :key="project.id"
+                class="hover:bg-indigo-hover cursor-pointer"
+                @click="$inertia.visit(ozzieUrl(project.packagist_name));">
                 <td
                     v-if="showProjectName"
                     class="p-4">
