@@ -30,7 +30,7 @@
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.0",
         "spatie/laravel-ray": "^1.14",
-        "tightenco/duster": "^0.2.1"
+        "tightenco/duster": "0.3.0"
     },
     "config": {
         "optimize-autoloader": true,

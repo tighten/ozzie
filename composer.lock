@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e5127a47a132f94cdf3dcf6c72e83490",
+    "content-hash": "4cea45e74a42bd07b3b7ba127b1e6b56",
     "packages": [
         {
             "name": "brick/math",
@@ -9442,16 +9442,16 @@
         },
         {
             "name": "tightenco/duster",
-            "version": "v0.2.1",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tighten/duster.git",
-                "reference": "5edae567216bf4ebef7c42e2de39036a1bb04cee"
+                "reference": "c26f0a0888509ac890dc9eb5a9b34ebf3cdd0a5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tighten/duster/zipball/5edae567216bf4ebef7c42e2de39036a1bb04cee",
-                "reference": "5edae567216bf4ebef7c42e2de39036a1bb04cee",
+                "url": "https://api.github.com/repos/tighten/duster/zipball/c26f0a0888509ac890dc9eb5a9b34ebf3cdd0a5e",
+                "reference": "c26f0a0888509ac890dc9eb5a9b34ebf3cdd0a5e",
                 "shasum": ""
             },
             "require": {
@@ -9459,7 +9459,7 @@
                 "phpunit/phpunit": "^9.0",
                 "squizlabs/php_codesniffer": "^3.5",
                 "tightenco/tighten-coding-standard": "^1.0",
-                "tightenco/tlint": "^5.0"
+                "tightenco/tlint": "^6.0"
             },
             "bin": [
                 "bin/duster"
@@ -9489,9 +9489,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tighten/duster/issues",
-                "source": "https://github.com/tighten/duster/tree/v0.2.1"
+                "source": "https://github.com/tighten/duster/tree/v0.3.0"
             },
-            "time": "2021-02-13T21:34:10+00:00"
+            "time": "2021-07-08T19:47:42+00:00"
         },
         {
             "name": "tightenco/tighten-coding-standard",
@@ -9549,16 +9549,16 @@
         },
         {
             "name": "tightenco/tlint",
-            "version": "v5.0.16",
+            "version": "v6.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tighten/tlint.git",
-                "reference": "5f406e888725ba93a8452826321b5f01f7d7e7b2"
+                "reference": "8dc334749d249d3798afbe3b5d0a5fcfbf832776"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tighten/tlint/zipball/5f406e888725ba93a8452826321b5f01f7d7e7b2",
-                "reference": "5f406e888725ba93a8452826321b5f01f7d7e7b2",
+                "url": "https://api.github.com/repos/tighten/tlint/zipball/8dc334749d249d3798afbe3b5d0a5fcfbf832776",
+                "reference": "8dc334749d249d3798afbe3b5d0a5fcfbf832776",
                 "shasum": ""
             },
             "require": {
@@ -9577,11 +9577,8 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Tighten\\": "src/"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
+                    "Tighten\\TLint\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -9598,9 +9595,9 @@
             "homepage": "https://github.com/tighten/tlint",
             "support": {
                 "issues": "https://github.com/tighten/tlint/issues",
-                "source": "https://github.com/tighten/tlint/tree/v5.0.16"
+                "source": "https://github.com/tighten/tlint/tree/v6.0.2"
             },
-            "time": "2021-03-26T14:39:01+00:00"
+            "time": "2021-06-14T14:43:49+00:00"
         },
         {
             "name": "zbateson/mail-mime-parser",
