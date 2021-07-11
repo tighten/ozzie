@@ -80,4 +80,6 @@ return [
 
     ],
 
+    'rateLimitToken' => env('GITHUB_API_RATE_LIMIT_TOKEN', ''),
+
 ];

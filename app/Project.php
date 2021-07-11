@@ -5,6 +5,7 @@ namespace App;
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
 use Carbon\CarbonPeriod;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -31,6 +32,11 @@ class Project extends Model
     public function snapshotToday()
     {
         return $this->hasMany(Snapshot::class)->today();
+    }
+
+    public function scopeFromVendorAndName(Builder $query, string $projectNamespace, string $projectName): Builder
+    {
+        return $query->where('namespace', $projectNamespace)->where('name', $projectName);
     }
 
     public function scopeForPackagist($query, $vendor, $name = null)
@@ -64,8 +70,7 @@ class Project extends Model
     public function hacktoberfestIssues()
     {
         return $this->issues->filter(function ($issue) {
-            return ! empty($issue->labels)
-                && collect($issue->labels)->contains('name', 'hacktoberfest');
+            return collect($issue['labels'])->contains('name', 'hacktoberfest');
         });
     }
 
@@ -96,6 +101,16 @@ class Project extends Model
     public function url()
     {
         return 'https://github.com/' . $this->namespace . '/' . $this->name;
+    }
+
+    public function issue(int $id): array
+    {
+        return $this->issues->where('number', $id)->first() ?: abort(404);
+    }
+
+    public function pullRequest(int $id): array
+    {
+        return $this->pull_requests->where('number', $id)->first() ?: abort(404);
     }
 
     public function getDebtScoreHistory()

@@ -40,6 +40,7 @@
    <exclude-pattern>*/docs/*</exclude-pattern>
    <exclude-pattern>*/vendor/*</exclude-pattern>
    <exclude-pattern>*/migrations/*</exclude-pattern>
+   <exclude-pattern>public/index.php</exclude-pattern>
 
    <!--
       You can hard-code command line values into your custom standard.
