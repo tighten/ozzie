@@ -9,6 +9,7 @@ class ParseMarkdown
     public function __invoke(string $markdown): string
     {
         $response = Http::post('https://api.github.com/markdown', ['text' => $markdown]);
+
         if ($response->failed()) {
             return sprintf(
                 'Something went wrong. Unable to parse markdown. <!-- (%s) %s-->',
@@ -16,6 +17,7 @@ class ParseMarkdown
                 optional($response->object())->message
             );
         }
+
         return $response->body();
     }
 }

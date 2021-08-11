@@ -13,6 +13,7 @@ class CachedIssue
             "{$vendor}-{$name}-{$type}-{$id}",
             function () use ($vendor, $name, $type, $id) {
                 $project = app(CachedProjectResource::class)("{$vendor}/{$name}");
+
                 return [
                     'project' => $project,
                     'issue' => $project->$type($id),

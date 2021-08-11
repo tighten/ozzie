@@ -11,6 +11,7 @@ class CachedProjectResource
     public function __invoke(string $packagistName)
     {
         [$vendor, $name] = explode('/', $packagistName);
+
         return Cache::rememberForever(
             "{$vendor}-{$name}",
             function () use ($packagistName) {
