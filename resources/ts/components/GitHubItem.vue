@@ -65,8 +65,8 @@ export default {
             required: true,
         },
         issue: {
-            required: true,
             type: Object as PropType<Issue|PullRequest>,
+            required: true,
         },
         body: {
             type: String,

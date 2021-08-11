@@ -63,20 +63,20 @@ export default {
     components: { GitHubLabel, IconGitHub },
     props: {
         projectName: {
-            required: true,
             type: String,
+            required: true,
         },
         projectNamespace: {
-            required: true,
             type: String,
+            required: true,
         },
         gitHubItem: {
-            type: Object as PropType<Issue|PullRequest>,
             required: true,
+            type: Object as PropType<Issue|PullRequest>,
         },
         ozzieUrl: {
-            required: true,
             type: String,
+            required: true,
         },
     },
 };
