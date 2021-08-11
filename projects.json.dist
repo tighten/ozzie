@@ -20,9 +20,7 @@
         "name": "gistlog",
         "namespace": "tighten",
         "packagist_name": "tightenco/gistlog",
-        "maintainers": [
-            "mattstauffer"
-        ]
+        "maintainers": []
     },
     {
         "name": "jigsaw",
@@ -30,8 +28,7 @@
         "packagist_name": "tightenco/jigsaw",
         "maintainers": [
             "damiani",
-            "bakerkretzmar",
-            "darkboywonder"
+            "bakerkretzmar"
         ]
     },
     {
@@ -40,8 +37,7 @@
         "packagist_name": "tightenco/jigsaw-blog-template",
         "maintainers": [
             "damiani",
-            "bakerkretzmar",
-            "darkboywonder"
+            "bakerkretzmar"
         ]
     },
     {
@@ -50,8 +46,7 @@
         "packagist_name": "tightenco/jigsaw-docs-template",
         "maintainers": [
             "damiani",
-            "bakerkretzmar",
-            "darkboywonder"
+            "bakerkretzmar"
         ]
     },
     {
@@ -60,8 +55,7 @@
         "packagist_name": "tightenco/jigsaw-site",
         "maintainers": [
             "damiani",
-            "bakerkretzmar",
-            "darkboywonder"
+            "bakerkretzmar"
         ]
     },
     {
@@ -76,16 +70,16 @@
         "name": "mailthief",
         "namespace": "tighten",
         "packagist_name": "tightenco/mailthief",
-        "maintainers": [
-            "mattstauffer"
-        ]
+        "maintainers": []
     },
     {
         "name": "novapackages",
         "namespace": "tighten",
         "packagist_name": "tightenco/novapackages",
         "maintainers": [
-            "mattstauffer"
+            "marcusmoore",
+            "darkboywonder"
+
         ]
     },
     {
@@ -93,7 +87,6 @@
         "namespace": "tighten",
         "packagist_name": "tightenco/onramp",
         "maintainers": [
-            "tammytee",
             "mattstauffer"
         ]
     },
@@ -103,16 +96,16 @@
         "packagist_name": "tightenco/ozzie",
         "maintainers": [
             "jakebathman",
-            "sbine"
+            "sbine",
+            "jonsugar"
+
         ]
     },
     {
         "name": "quicksand",
         "namespace": "tighten",
         "packagist_name": "tightenco/quicksand",
-        "maintainers": [
-            "mattstauffer"
-        ]
+        "maintainers": []
     },
     {
         "name": "symposium",
@@ -128,8 +121,8 @@
         "namespace": "tighten",
         "packagist_name": "tightenco/tlint",
         "maintainers": [
-            "loganhenson",
-            "andrewmile"
+            "andrewmile",
+            "driftingly"
         ]
     },
     {
@@ -147,8 +140,8 @@
         "namespace": "tighten",
         "packagist_name": "tightenco/takeout",
         "maintainers": [
-            "josecanhelp",
-            "mattstauffer"
+            "mattstauffer",
+            "tonysm"
         ]
     }
 ]
