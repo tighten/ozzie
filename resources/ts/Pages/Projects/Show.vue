@@ -16,12 +16,12 @@
                     :key="pull_request.node_id">
                     <CardRow
                         class="cursor-pointer"
-                        @click="$inertia.visit(ozzieUrl(project.packagist_name, 'pull-request', pull_request.number))">
+                        @click="$inertia.visit(urlForType(project.packagist_name, 'pull-request', pull_request.number))">
                         <GitHubListItem
                             :git-hub-item="pull_request"
                             :project-namespace="project.namespace"
                             :project-name="project.name"
-                            :ozzie-url="ozzieUrl(project.packagist_name, 'pull-request', pull_request.number)" />
+                            :ozzie-url="urlForType(project.packagist_name, 'pull-request', pull_request.number)" />
                     </CardRow>
                 </li>
             </ul>
@@ -36,12 +36,12 @@
                     :key="issue.node_id">
                     <CardRow
                         class="cursor-pointer"
-                        @click="$inertia.visit(ozzieUrl(project.packagist_name, 'issue', issue.number))">
+                        @click="$inertia.visit(urlForType(project.packagist_name, 'issue', issue.number))">
                         <GitHubListItem
                             :git-hub-item="issue"
                             :project-namespace="project.namespace"
                             :project-name="project.name"
-                            :ozzie-url="ozzieUrl(project.packagist_name, 'issue', issue.number)" />
+                            :ozzie-url="urlForType(project.packagist_name, 'issue', issue.number)" />
                     </CardRow>
                 </li>
             </ul>
@@ -60,6 +60,7 @@ import GitHubListItem from '@/components/GitHubListItem.vue';
 import DebtTable from '@/components/DebtTable.vue';
 import BreadCrumb from '@/components/BreadCrumb.vue';
 import CardRow from '@/components/CardRow.vue';
+import { urlForType } from '@/functions/url';
 
 export default {
     components: {
@@ -79,10 +80,7 @@ export default {
         },
     },
     methods: {
-        ozzieUrl(packageName: string, type: string, id: number): string {
-            const [vendor, name] = packageName.split('/');
-            return this.$route(`${type}.show`, { vendor, name, id });
-        },
+        urlForType,
     },
 };
 </script>

@@ -12,7 +12,7 @@
         <InertiaLink
             v-if="project"
             class="text-indigo"
-            :href="ozzieUrl(project.packagist_name)"
+            :href="ozzieProjectUrl(project.packagist_name)"
             method="get">
             {{ project.packagist_name }}
         </InertiaLink>
@@ -25,6 +25,7 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { Issue, Project, PullRequest } from '@/ozzie';
+import { ozzieProjectUrl } from '@/functions/url';
 
 export default {
     name: 'BreadCrumb',
@@ -39,10 +40,7 @@ export default {
         },
     },
     methods: {
-        ozzieUrl(packageName: string): {vendor: string, name: string} {
-            const [vendor, name] = packageName.split('/');
-            return this.$route('projects.show', { vendor, name });
-        },
+        ozzieProjectUrl,
     },
 };
 </script>

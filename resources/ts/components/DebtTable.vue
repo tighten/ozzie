@@ -37,13 +37,13 @@
                 v-for="project in projects"
                 :key="project.id"
                 class="hover:bg-indigo-hover cursor-pointer"
-                @click="$inertia.visit(ozzieUrl(project.packagist_name));">
+                @click="$inertia.visit(ozzieProjectUrl(project.packagist_name));">
                 <td
                     v-if="showProjectName"
                     class="p-4">
                     <InertiaLink
                         class="text-indigo no-underline"
-                        :href="ozzieUrl(project.packagist_name)"
+                        :href="ozzieProjectUrl(project.packagist_name)"
                         method="get">
                         {{ project.namespace }}/{{ project.name }}
                     </InertiaLink>
@@ -90,6 +90,7 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { Project } from '@/ozzie';
+import { ozzieProjectUrl } from '@/functions/url';
 
 export default {
     name: 'DebtTable',
@@ -117,10 +118,7 @@ export default {
             }
             return '';
         },
-        ozzieUrl(packageName: string): {vendor: string, name: string} {
-            const [vendor, name] = packageName.split('/');
-            return this.$route('projects.show', { vendor, name });
-        },
+        ozzieProjectUrl,
     },
 };
 </script>
