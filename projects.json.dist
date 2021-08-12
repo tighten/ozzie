@@ -21,7 +21,7 @@
         "namespace": "tighten",
         "packagist_name": "tightenco/gistlog",
         "maintainers": [
-        "mattstauffer"
+            "mattstauffer"
         ]
     },
     {
@@ -65,7 +65,17 @@
         "namespace": "tighten",
         "packagist_name": "tightenco/lambo",
         "maintainers": [
-            "mattstauffer"
+            "mattstauffer",
+            "jonsugar"
+        ]
+    },
+    {
+        "name": "laravelversions",
+        "namespace": "tighten",
+        "packagist_name": "tightenco/laravelversions",
+        "maintainers": [
+            "mattstauffer",
+            "driftingly"
         ]
     },
     {
@@ -81,7 +91,32 @@
         "maintainers": [
             "marcusmoore",
             "darkboywonder"
-
+        ]
+    },
+    {
+        "name": "nova-google-analytics",
+        "namespace": "tighten",
+        "packagist_name": "tightenco/nova-google-analytics",
+        "maintainers": [
+            "mattstauffer",
+            "krievley"
+        ]
+    },
+    {
+        "name": "nova-package-discovery",
+        "namespace": "tighten",
+        "packagist_name": "tightenco/nova-package-discovery",
+        "maintainers": [
+            "mattstauffer"
+        ]
+    },
+    {
+        "name": "nova-stripe",
+        "namespace": "tighten",
+        "packagist_name": "tightenco/nova-stripe",
+        "maintainers": [
+            "faxblaster",
+            "rissajackson"
         ]
     },
     {
@@ -119,6 +154,15 @@
         ]
     },
     {
+        "name": "takeout",
+        "namespace": "tighten",
+        "packagist_name": "tightenco/takeout",
+        "maintainers": [
+            "mattstauffer",
+            "tonysm"
+        ]
+    },
+    {
         "name": "tlint",
         "namespace": "tighten",
         "packagist_name": "tightenco/tlint",
@@ -128,6 +172,22 @@
         ]
     },
     {
+        "name": "tlint-plugin",
+        "namespace": "tighten",
+        "packagist_name": "tightenco/tlint-plugin",
+        "maintainers": [
+            "bakerkretzmar",
+            "faxblaster",
+            "rissajackson"
+        ]
+    },
+    {
+        "name": "tlint-sublime-plugin",
+        "namespace": "tighten",
+        "packagist_name": "tightenco/tlint-sublime-plugin",
+        "maintainers": []
+    },
+    {
         "name": "ziggy",
         "namespace": "tighten",
         "packagist_name": "tightenco/ziggy",
@@ -135,15 +195,6 @@
             "jakebathman",
             "mattstauffer",
             "bakerkretzmar"
-        ]
-    },
-    {
-        "name": "takeout",
-        "namespace": "tighten",
-        "packagist_name": "tightenco/takeout",
-        "maintainers": [
-            "mattstauffer",
-            "tonysm"
         ]
     }
 ]
