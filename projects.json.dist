@@ -65,7 +65,8 @@
         "namespace": "tighten",
         "packagist_name": "tightenco/lambo",
         "maintainers": [
-            "mattstauffer"
+            "mattstauffer",
+            "jonsugar"
         ]
     },
     {
@@ -119,6 +120,15 @@
         ]
     },
     {
+            "name": "takeout",
+            "namespace": "tighten",
+            "packagist_name": "tightenco/takeout",
+            "maintainers": [
+                "mattstauffer",
+                "tonysm"
+            ]
+    },
+    {
         "name": "tlint",
         "namespace": "tighten",
         "packagist_name": "tightenco/tlint",
@@ -135,15 +145,6 @@
             "jakebathman",
             "mattstauffer",
             "bakerkretzmar"
-        ]
-    },
-    {
-        "name": "takeout",
-        "namespace": "tighten",
-        "packagist_name": "tightenco/takeout",
-        "maintainers": [
-            "mattstauffer",
-            "tonysm"
         ]
     }
 ]
