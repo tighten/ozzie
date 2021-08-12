@@ -70,7 +70,7 @@
         ]
     },
     {
-        "name": "laravel versions",
+        "name": "laravelversions",
         "namespace": "tighten",
         "packagist_name": "tightenco/laravelversions",
         "maintainers": [
@@ -91,7 +91,6 @@
         "maintainers": [
             "marcusmoore",
             "darkboywonder"
-
         ]
     },
     {
@@ -101,7 +100,6 @@
         "maintainers": [
             "mattstauffer",
             "krievley"
-
         ]
     },
     {
@@ -110,7 +108,6 @@
         "packagist_name": "tightenco/nova-package-discovery",
         "maintainers": [
             "mattstauffer"
-
         ]
     },
     {
@@ -120,7 +117,6 @@
         "maintainers": [
             "faxblaster",
             "rissajackson"
-
         ]
     },
     {
