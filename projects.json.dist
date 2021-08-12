@@ -172,6 +172,16 @@
         ]
     },
     {
+        "name": "tlint-plugin",
+        "namespace": "tighten",
+        "packagist_name": "tightenco/tlint-plugin",
+        "maintainers": [
+            "bakerkretzmar",
+            "faxblaster",
+            "rissajackson"
+        ]
+    },
+    {
         "name": "tlint-sublime-plugin",
         "namespace": "tighten",
         "packagist_name": "tightenco/tlint-sublime-plugin",
