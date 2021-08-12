@@ -20,7 +20,9 @@
         "name": "gistlog",
         "namespace": "tighten",
         "packagist_name": "tightenco/gistlog",
-        "maintainers": []
+        "maintainers": [
+        "mattstauffer"
+        ]
     },
     {
         "name": "jigsaw",
