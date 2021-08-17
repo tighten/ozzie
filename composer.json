@@ -8,6 +8,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "ext-json": "*",
+        "bugsnag/bugsnag-laravel": "^2.0",
         "davaxi/sparkline": "^1.2",
         "erusev/parsedown": "^1.7",
         "fideloper/proxy": "^4.0",
