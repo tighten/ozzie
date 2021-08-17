@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Project extends Model
 {
@@ -105,12 +106,20 @@ class Project extends Model
 
     public function issue(int $id): array
     {
-        return $this->issues->where('number', $id)->first() ?: abort(404);
+        $issue = $this->issues->where('number', $id)->first();
+        if (is_null($issue)) {
+            throw new NotFoundHttpException("Issue number {$id} does not exist");
+        }
+        return $issue;
     }
 
     public function pullRequest(int $id): array
     {
-        return $this->pull_requests->where('number', $id)->first() ?: abort(404);
+        $pullRequest = $this->pull_requests->where('number', $id)->first();
+        if (is_null($pullRequest)) {
+            throw new NotFoundHttpException("Pull request number {$id} does not exist");
+        }
+        return $pullRequest;
     }
 
     public function getDebtScoreHistory()
