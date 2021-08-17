@@ -15,7 +15,7 @@ class CachedProjectResource
         return Cache::rememberForever(
             "{$vendor}-{$name}",
             function () use ($packagistName) {
-                return new ProjectResource(Project::forPackagist($packagistName)->firstOrFail());
+                return (new ProjectResource(Project::forPackagist($packagistName)->firstOrFail()))->jsonSerialize();
             }
         );
     }

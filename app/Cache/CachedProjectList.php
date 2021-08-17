@@ -16,7 +16,7 @@ class CachedProjectList
                 return [
                     'projects' => Project::all()
                         ->transform(fn($project) => app(CachedProjectResource::class)($project->packagist_name))
-                        ->sortByDesc(fn($project) => $project->resource->debtScore())
+                        ->sortByDesc(fn($project) => $project['debt_score'])
                         ->values(),
                     'hacktoberfest' => Carbon::now()->isSameMonth(Carbon::parse('October')),
                     'organization' => config('app.organization'),

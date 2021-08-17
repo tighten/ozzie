@@ -3,6 +3,8 @@
 namespace App\Cache;
 
 use App\GitHub\ParseMarkdown;
+use App\Http\Resources\ProjectResource;
+use App\Project;
 use Illuminate\Support\Facades\Cache;
 
 class CachedIssue
@@ -12,10 +14,10 @@ class CachedIssue
         return Cache::rememberForever(
             "{$vendor}-{$name}-{$type}-{$id}",
             function () use ($vendor, $name, $type, $id) {
-                $project = app(CachedProjectResource::class)("{$vendor}/{$name}");
+                $project = new ProjectResource(Project::forPackagist("{$vendor}/{$name}")->firstOrFail());
 
                 return [
-                    'project' => $project,
+                    'project' => $project->jsonSerialize(),
                     'issue' => $project->$type($id),
                     'body' => app(ParseMarkdown::class)($project->$type($id)['body']),
                 ];
