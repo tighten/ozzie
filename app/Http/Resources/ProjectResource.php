@@ -11,6 +11,8 @@ class ProjectResource extends JsonResource
     {
         self::withoutWrapping();
         $sparkline = new Sparkline();
+        $sparkline->setLineColorRGB(67, 79, 181);
+        $sparkline->deactivateBackgroundColor();
         $sparkline->setData($this->getDebtScoreHistory());
 
         return array_merge(
