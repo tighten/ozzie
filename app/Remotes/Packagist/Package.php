@@ -23,7 +23,7 @@ class Package
 
     public static function fromProject(Project $project): self
     {
-        return new self(... explode('/', $project->packagist_name));
+        return new self(...explode('/', $project->packagist_name));
     }
 
     protected function fetchDownloads()
