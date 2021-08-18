@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "lib": [
+            "ESNext",
+            "dom"
+        ],
+        // this enables stricter inference for data properties on `this`
+        "strict": false,
+        "jsx": "preserve",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["resources/ts/*"]
+        },
+    },
+    "exclude": [
+        "node_modules",
+        "vendor"
+    ]
+}

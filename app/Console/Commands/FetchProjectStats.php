@@ -16,6 +16,8 @@ class FetchProjectStats extends Command
 
     public function handle()
     {
+        cache()->clear();
+
         $projects = Project::all();
 
         $this->createProgressBar($projects->count());

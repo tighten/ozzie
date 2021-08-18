@@ -7,6 +7,7 @@
     "type": "project",
     "require": {
         "php": "^7.4|^8.0",
+        "ext-gd": "*",
         "ext-json": "*",
         "bugsnag/bugsnag-laravel": "^2.0",
         "davaxi/sparkline": "^1.2",
@@ -15,21 +16,22 @@
         "graham-campbell/github": "^10.0",
         "guzzlehttp/guzzle": "^7.2",
         "http-interop/http-factory-guzzle": "^1.0",
+        "inertiajs/inertia-laravel": "v0.4.2",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "nathanheffley/laravel-slack-blocks": "^2.1",
         "spatie/data-transfer-object": "^2.0",
-        "tightenco/tlint": "^5.0"
+        "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
         "fakerphp/faker": "^1.13",
-        "friendsofphp/php-cs-fixer": "^2.16",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.0",
-        "spatie/laravel-ray": "^1.14"
+        "spatie/laravel-ray": "^1.14",
+        "tightenco/duster": "^0.3.0"
     },
     "config": {
         "optimize-autoloader": true,
@@ -70,9 +72,6 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ],
-        "fix": [
-            "vendor/bin/php-cs-fixer fix"
         ]
     }
 }

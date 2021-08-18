@@ -1,0 +1,7 @@
+{
+    "preset": "tighten",
+    "excluded": [
+        "node_modules",
+        "vendor"
+    ]
+}

@@ -5,9 +5,11 @@ namespace App;
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
 use Carbon\CarbonPeriod;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Project extends Model
 {
@@ -31,6 +33,11 @@ class Project extends Model
     public function snapshotToday()
     {
         return $this->hasMany(Snapshot::class)->today();
+    }
+
+    public function scopeFromVendorAndName(Builder $query, string $projectNamespace, string $projectName): Builder
+    {
+        return $query->where('namespace', $projectNamespace)->where('name', $projectName);
     }
 
     public function scopeForPackagist($query, $vendor, $name = null)
@@ -64,8 +71,7 @@ class Project extends Model
     public function hacktoberfestIssues()
     {
         return $this->issues->filter(function ($issue) {
-            return ! empty($issue->labels)
-                && collect($issue->labels)->contains('name', 'hacktoberfest');
+            return collect($issue['labels'])->contains('name', 'hacktoberfest');
         });
     }
 
@@ -96,6 +102,24 @@ class Project extends Model
     public function url()
     {
         return 'https://github.com/' . $this->namespace . '/' . $this->name;
+    }
+
+    public function issue(int $id): array
+    {
+        $issue = $this->issues->where('number', $id)->first();
+        if (is_null($issue)) {
+            throw new NotFoundHttpException("Issue number {$id} does not exist");
+        }
+        return $issue;
+    }
+
+    public function pullRequest(int $id): array
+    {
+        $pullRequest = $this->pull_requests->where('number', $id)->first();
+        if (is_null($pullRequest)) {
+            throw new NotFoundHttpException("Pull request number {$id} does not exist");
+        }
+        return $pullRequest;
     }
 
     public function getDebtScoreHistory()
