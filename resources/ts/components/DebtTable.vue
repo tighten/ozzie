@@ -36,8 +36,8 @@
             <tr
                 v-for="project in projects"
                 :key="project.id"
-                class="hover:bg-indigo-hover cursor-pointer"
-                @click="$inertia.visit(ozzieProjectUrl(project.packagist_name));">
+                :class="linkProjects ? ['hover:bg-indigo-hover', 'cursor-pointer'] : []"
+                @click="linkProjects ? $inertia.visit(ozzieProjectUrl(project.packagist_name)) : null">
                 <td
                     v-if="showProjectName"
                     class="p-4">
@@ -104,6 +104,10 @@ export default {
             default: false,
         },
         showProjectName: {
+            type: Boolean,
+            default: true,
+        },
+        linkProjects: {
             type: Boolean,
             default: true,
         },

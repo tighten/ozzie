@@ -4,6 +4,7 @@
         <ProjectHeader :project="project" />
         <DebtTable
             :show-project-name="false"
+            :link-projects="false"
             :projects="[project]"
             class="hidden mt-4 md:table" />
         <Card

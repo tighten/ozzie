@@ -5,6 +5,7 @@
                 :href="`https://github.com/${project.namespace}/${project.name}`"
                 :title="`View project ${project.namespace }/${ project.name } on GitHub`"
                 target="_blank"
+                class="hover:text-black"
                 rel="noopener noreferrer">
                 {{ project.namespace }}/{{ project.name }}<IconGitHub class="ml-1" />
             </a>
