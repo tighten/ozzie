@@ -35,7 +35,7 @@ jobs:
                   coverage: none
 
             - name: Install dependencies
-              run: composer install --prefer-dist --no-interaction --no-progress
+              run: composer update --prefer-dist --no-interaction --no-progress
 
             - name: Run Tlint
               run: vendor/bin/tlint
