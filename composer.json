@@ -13,7 +13,7 @@
         "php": "^7.4|^8.0",
         "ext-gd": "*",
         "ext-json": "*",
-        "bugsnag/bugsnag-laravel": "^2.0",
+        "bugsnag/bugsnag-laravel": "^2.22",
         "davaxi/sparkline": "^1.2",
         "erusev/parsedown": "^1.7",
         "fideloper/proxy": "^4.0",
@@ -23,10 +23,10 @@
         "inertiajs/inertia-laravel": "v0.4.2",
         "laravel/framework": "^8.59",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.0",
+        "laravel/ui": "^3.3",
         "nathanheffley/laravel-slack-blocks": "^2.1",
-        "spatie/data-transfer-object": "^2.0",
-        "tightenco/ziggy": "^1.0"
+        "spatie/data-transfer-object": "^2.8",
+        "tightenco/ziggy": "^1.4"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
