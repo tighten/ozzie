@@ -1,7 +1,11 @@
 {
     "name": "tighten/ozzie",
     "description": "A dashboard to manage open source projects.",
-    "keywords": ["open source", "laravel", "tighten"],
+    "keywords": [
+        "open source",
+        "laravel",
+        "tighten"
+    ],
     "homepage": "https://github.com/tighten/ozzie",
     "license": "MIT",
     "type": "project",
@@ -17,7 +21,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "http-interop/http-factory-guzzle": "^1.0",
         "inertiajs/inertia-laravel": "v0.4.2",
-        "laravel/framework": "^8.0",
+        "laravel/framework": "^8.60",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "nathanheffley/laravel-slack-blocks": "^2.1",
