@@ -1,7 +1,11 @@
 {
     "name": "tighten/ozzie",
     "description": "A dashboard to manage open source projects.",
-    "keywords": ["open source", "laravel", "tighten"],
+    "keywords": [
+        "open source",
+        "laravel",
+        "tighten"
+    ],
     "homepage": "https://github.com/tighten/ozzie",
     "license": "MIT",
     "type": "project",
@@ -9,7 +13,7 @@
         "php": "^7.4|^8.0",
         "ext-gd": "*",
         "ext-json": "*",
-        "bugsnag/bugsnag-laravel": "^2.0",
+        "bugsnag/bugsnag-laravel": "^2.22",
         "davaxi/sparkline": "^1.2",
         "erusev/parsedown": "^1.7",
         "fideloper/proxy": "^4.0",
@@ -17,19 +21,19 @@
         "guzzlehttp/guzzle": "^7.2",
         "http-interop/http-factory-guzzle": "^1.0",
         "inertiajs/inertia-laravel": "v0.4.2",
-        "laravel/framework": "^8.0",
-        "laravel/tinker": "^2.0",
-        "laravel/ui": "^3.0",
+        "laravel/framework": "^8.62",
+        "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.3",
         "nathanheffley/laravel-slack-blocks": "^2.1",
-        "spatie/data-transfer-object": "^2.0",
-        "tightenco/ziggy": "^1.0"
+        "spatie/data-transfer-object": "^2.8",
+        "tightenco/ziggy": "^1.4"
     },
     "require-dev": {
-        "facade/ignition": "^2.3.6",
+        "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.13",
-        "mockery/mockery": "^1.0",
+        "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.0",
+        "phpunit/phpunit": "^9.3.3",
         "spatie/laravel-ray": "^1.14",
         "tightenco/duster": "^0.3.0"
     },
