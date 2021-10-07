@@ -14,7 +14,7 @@
         "ext-gd": "*",
         "ext-json": "*",
         "bugsnag/bugsnag-laravel": "^2.22",
-        "davaxi/sparkline": "^1.2",
+        "davaxi/sparkline": "^2.0.0",
         "erusev/parsedown": "^1.7",
         "fideloper/proxy": "^4.0",
         "graham-campbell/github": "^10.0",
