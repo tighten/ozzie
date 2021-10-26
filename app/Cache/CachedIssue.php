@@ -19,7 +19,7 @@ class CachedIssue
                 return [
                     'project' => $project->jsonSerialize(),
                     'issue' => $project->$type($id),
-                    'body' => app(ParseMarkdown::class)($project->$type($id)['body']),
+                    'body' => app(ParseMarkdown::class)($project->$type($id)['body'] ? $project->$type($id)['body'] : ''),
                 ];
             }
         );
