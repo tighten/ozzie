@@ -75,7 +75,7 @@ You can see you'll define the GitHub namespace, the GitHub project name, and the
 The list of projects resides in `projects.json`, and is seeded to the `projects` table using `database/seeds/ProjectsSeeder.php`. This means that any changes to projects needs to happen in `projects.json` _first_. Migrating and seeding tables fresh will update the `projects` table with the new info, and the next call of `php artisan stats:fetch` will re-populate project stats.
 
 1. Make a change to `projects.json`
-2. Drop and re-migrate all tables: `php artisan migrate:fresh --seed`
+2. Re-run the seeder: `php artisan db:seed`
 3. Fetch all project stats: `php artisan stats:fetch`
 
 ### Daily Caching
