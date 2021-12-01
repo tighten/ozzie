@@ -16,16 +16,22 @@ class ProjectsSeeder extends Seeder
 
         collect(json_decode($projectsJson, true))
             ->each(function ($project) {
-                Project::create([
+                $project = Project::updateOrCreate([
                     'namespace' => $project['namespace'],
                     'name' => $project['name'],
+                ], [
                     'packagist_name' => $project['packagist_name'] ?? null,
-                    'maintainers' => $project['maintainers'],
-                    'issues_count' => 0,
-                    'pull_requests_count' => 0,
-                    'issues' => [],
-                    'pull_requests' => [],
+                    'maintainers' => $project['maintainers'] ?? [],
                 ]);
+
+                if ($project->wasRecentlyCreated) {
+                    $project->update([
+                        'issues_count' => 0,
+                        'pull_requests_count' => 0,
+                        'issues' => [],
+                        'pull_requests' => [],
+                    ]);
+                }
             });
     }
 }
