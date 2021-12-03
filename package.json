@@ -22,7 +22,7 @@
         "@typescript-eslint/parser": "^4.28.2",
         "@vue/compiler-sfc": "^3.1.4",
         "autoprefixer": "^10.2.6",
-        "axios": "^0.21.1",
+        "axios": "^0.21.2",
         "browser-sync": "^2.27.4",
         "browser-sync-webpack-plugin": "^2.3.0",
         "cross-env": "^5.1",
