@@ -19,11 +19,11 @@
         "fideloper/proxy": "^4.0",
         "graham-campbell/github": "^10.0",
         "guzzlehttp/guzzle": "^7.2",
-        "http-interop/http-factory-guzzle": "^1.0",
+        "http-interop/http-factory-guzzle": "^1.2",
         "inertiajs/inertia-laravel": "v0.4.2",
         "laravel/framework": "^8.77",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.3",
+        "laravel/ui": "^3.4",
         "nathanheffley/laravel-slack-blocks": "^2.1",
         "spatie/data-transfer-object": "^2.8",
         "tightenco/ziggy": "^1.4"
