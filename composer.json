@@ -17,7 +17,7 @@
         "davaxi/sparkline": "^2.0.0",
         "erusev/parsedown": "^1.7",
         "fideloper/proxy": "^4.0",
-        "graham-campbell/github": "^10.0",
+        "graham-campbell/github": "^10.5",
         "guzzlehttp/guzzle": "^7.2",
         "http-interop/http-factory-guzzle": "^1.2",
         "inertiajs/inertia-laravel": "v0.4.2",
