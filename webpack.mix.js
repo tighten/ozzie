@@ -11,7 +11,7 @@ mix.ts('resources/ts/app.ts', 'public/js').vue({ version: 3, options: {} })
     ])
     .combine(['resources/css/markdown.css'], 'public/css/vendor.css')
     .browserSync({
-        proxy: 'http://ozzie.test/',
+        proxy: 'https://ozzie.test/',
         notify: false,
         open: false,
         logLevel: 'info',
