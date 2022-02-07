@@ -1,14 +1,10 @@
 module.exports = {
 
-    mode: 'jit',
-
-    purge: {
-        content: [
-            './storage/framework/views/*.php',
-            './resources/views/**/*.blade.php',
-            './resources/ts/**/*.vue',
-        ],
-    },
+    content: [
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
+        './resources/ts/**/*.vue',
+    ],
 
     theme: {
         colors: {
@@ -51,13 +47,5 @@ module.exports = {
 
             'halloween-orange': '#e4730b',
         },
-        extend: {},
     },
-    variants: {
-        extend: {
-            // ...
-            borderColor: ['hover'],
-        },
-    },
-    plugins: [],
 };
