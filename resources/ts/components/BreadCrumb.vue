@@ -1,5 +1,5 @@
 <template>
-    <div class="flex mt-2">
+    <div class="mt-2 flex">
         <InertiaLink
             class="text-indigo"
             :href="$route('projects.index')"

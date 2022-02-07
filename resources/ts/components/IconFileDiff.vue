@@ -1,7 +1,7 @@
 <template>
     <span>
         <svg
-            class="mr-1 h-6 w-6 inline"
+            class="mr-1 inline h-6 w-6"
             viewBox="0 0 13 16"
             aria-hidden="true">
             <path

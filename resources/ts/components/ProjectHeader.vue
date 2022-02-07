@@ -1,6 +1,6 @@
 <template>
-    <div class="mt-2 md:mt-6 flex flex-col md:flex-rows justify-between">
-        <h1 class="text-2xl text-black-lightest tracking-wide">
+    <div class="md:flex-rows mt-2 flex flex-col justify-between md:mt-6">
+        <h1 class="text-2xl tracking-wide text-black-lightest">
             <a
                 :href="`https://github.com/${project.namespace}/${project.name}`"
                 :title="`View project ${project.namespace }/${ project.name } on GitHub`"
@@ -24,14 +24,14 @@
             </a>
         </p>
     </div>
-    <p class="md:mt-1 text-grey-dark font-light">
+    <p class="font-light text-grey-dark md:mt-1">
         Synced {{ $luxon.fromISO(project.updated_at).toRelative() }}
     </p>
     <p
         v-if="project.has_downloads"
-        class="text-grey-dark font-light">
+        class="font-light text-grey-dark">
         {{ new Intl.NumberFormat().format(project.downloads_total) }} downloads
-        ({{ new Intl.NumberFormat().format(project.downloads_last_30_days) }}  per month)
+        ({{ new Intl.NumberFormat().format(project.downloads_last_30_days) }} per month)
     </p>
 </template>
 
