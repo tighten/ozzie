@@ -19,8 +19,8 @@
                 aria-label="Launch"
                 target="_blank"
                 rel="noopener noreferrer">
-                <h2 class="flex flex-col md:flex-row text-2xl md:text-3xl text-indigo">
-                    {{ issue.title }}<span class="ml-1 md:ml-2 text-xl md:text-3xl font-thin text-grey-dark">#{{ issue.number }}</span>
+                <h2 class="flex flex-col text-2xl text-indigo md:flex-row md:text-3xl">
+                    {{ issue.title }}<span class="ml-1 text-xl font-thin text-grey-dark md:ml-2 md:text-3xl">#{{ issue.number }}</span>
                 </h2>
             </a>
             <p class="mt-1">
@@ -36,7 +36,7 @@
             </p>
             <slot name="title-extra" />
             <div
-                class="my-4 markdown-body"
+                class="markdown-body my-4"
                 v-html="body" />
         </Card>
     </Layout>

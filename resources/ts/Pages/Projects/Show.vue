@@ -6,7 +6,7 @@
             :show-project-name="false"
             :link-projects="false"
             :projects="[project]"
-            class="hidden mt-4 md:table" />
+            class="hidden md:table" />
         <Card
             v-if="project.pull_requests_count > 0"
             class="mt-4 md:mt-8">
