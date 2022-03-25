@@ -1,5 +1,5 @@
 <template>
-    <div class="table table-auto w-full border border-grey flex flex-col bg-white">
+    <div class="flex table w-full table-auto flex-col border border-grey bg-white">
         <slot />
     </div>
 </template>

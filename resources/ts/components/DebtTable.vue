@@ -1,38 +1,38 @@
 <template>
-    <table class="mt-6 table-auto w-full border border-grey">
-        <thead class="bg-grey-blue-light border-grey border-b-2 text-left">
+    <table class="mt-6 w-full table-auto border border-grey">
+        <thead class="border-b-2 border-grey bg-grey-blue-light text-left">
             <tr>
                 <th
                     v-if="showProjectName"
-                    class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
+                    class="p-4 text-xs font-bold uppercase leading-none tracking-wide text-grey-darkest">
                     Project Name
                 </th>
-                <th class="text-grey-darkest font-bold uppercase text-xs leading-none tracking-wide p-4">
+                <th class="p-4 text-xs font-bold uppercase leading-none tracking-wide text-grey-darkest">
                     Debt Score
                 </th>
-                <th class="text-grey-darkest hidden md:table-cell font-bold uppercase text-xs leading-none tracking-wide p-4">
+                <th class="hidden p-4 text-xs font-bold uppercase leading-none tracking-wide text-grey-darkest md:table-cell">
                     Debt Score Graph
                 </th>
-                <th class="text-grey-darkest hidden md:table-cell font-bold uppercase text-xs leading-none tracking-wide p-4">
+                <th class="hidden p-4 text-xs font-bold uppercase leading-none tracking-wide text-grey-darkest md:table-cell">
                     Old Prs
                 </th>
-                <th class="text-grey-darkest hidden md:table-cell font-bold uppercase text-xs leading-none tracking-wide p-4">
+                <th class="hidden p-4 text-xs font-bold uppercase leading-none tracking-wide text-grey-darkest md:table-cell">
                     Old Issues
                 </th>
-                <th class="text-grey-darkest hidden md:table-cell font-bold uppercase text-xs leading-none tracking-wide p-4">
+                <th class="hidden p-4 text-xs font-bold uppercase leading-none tracking-wide text-grey-darkest md:table-cell">
                     Prs
                 </th>
-                <th class="text-grey-darkest hidden md:table-cell font-bold uppercase text-xs leading-none tracking-wide p-4">
+                <th class="hidden p-4 text-xs font-bold uppercase leading-none tracking-wide text-grey-darkest md:table-cell">
                     Issues
                 </th>
                 <th
                     v-if="hacktoberfest"
-                    class="text-xs p-4 hidden md:table-cell">
+                    class="hidden p-4 text-xs md:table-cell">
                     🎃
                 </th>
             </tr>
         </thead>
-        <tbody class="bg-white divide-y divide-smoke">
+        <tbody class="divide-y divide-smoke bg-white">
             <tr
                 v-for="project in projects"
                 :key="project.id"
@@ -48,37 +48,37 @@
                         {{ project.namespace }}/{{ project.name }}
                     </InertiaLink>
                 </td>
-                <td class="text-black-lightest p-4">
+                <td class="p-4 text-black-lightest">
                     <div class="flex items-baseline">
                         {{ project.debt_score }}
                     </div>
                 </td>
-                <td class="text-black-lightest hidden md:table-cell p-4">
+                <td class="hidden p-4 text-black-lightest md:table-cell">
                     <img
                         :src="`data:image/jpeg;base64, ${project.debt_score_graph}`"
                         :alt="`debt score graph for project ${project.namespace}/${project.name}`"
                         width="80"
                         height="20">
                 </td>
-                <td class="text-black-lightest hidden md:table-cell p-4">
+                <td class="hidden p-4 text-black-lightest md:table-cell">
                     {{ project.old_pull_requests_count }}
                 </td>
-                <td class="text-black-lightest hidden md:table-cell p-4">
+                <td class="hidden p-4 text-black-lightest md:table-cell">
                     {{ project.old_issues_count }}
                 </td>
-                <td class="text-black-lightest hidden md:table-cell p-4">
+                <td class="hidden p-4 text-black-lightest md:table-cell">
                     {{ project.pull_requests_count }}
                 </td>
-                <td class="text-black-lightest hidden md:table-cell p-4">
+                <td class="hidden p-4 text-black-lightest md:table-cell">
                     {{ project.issues_count }}
                 </td>
 
                 <td
                     v-if="hacktoberfest"
-                    class="p-4 hidden md:table-cell">
+                    class="hidden p-4 md:table-cell">
                     <a
-                        class="text-indigo no-underline p-2 -mx-2"
-                        :href="'https://github.com/' + project.namespace + '/' +project.name + '/labels/hacktoberfest'"
+                        class="-mx-2 p-2 text-indigo no-underline"
+                        :href="'https://github.com/' + project.namespace + '/' + project.name + '/labels/hacktoberfest'"
                         target="_blank">
                         {{ project.hacktoberfest_issues }}
                     </a>

@@ -7,7 +7,7 @@ mix.ts('resources/ts/app.ts', 'public/js').vue({ version: 3, options: {} })
     .version()
     .sourceMaps(false)
     .postCss('resources/css/main.css', 'public/css', [
-        tailwindcss('tailwind.js'),
+        tailwindcss(),
     ])
     .combine(['resources/css/markdown.css'], 'public/css/vendor.css')
     .browserSync({
