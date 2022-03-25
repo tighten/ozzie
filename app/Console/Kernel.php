@@ -25,6 +25,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('projects:fetch')
+            ->daily();
+
         $schedule->command('stats:snapshot')
             ->daily();
 
