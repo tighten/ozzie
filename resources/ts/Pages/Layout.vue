@@ -1,13 +1,13 @@
 <template>
     <div>
-        <div class="relative z-10 border-t-4 border-indigo bg-white">
+        <div class="relative z-10 border-t-4 border-indigo-600 bg-white">
             <section class="mx-auto max-w-4xl px-2">
                 <div class="flex items-center justify-between">
                     <InertiaLink
                         :href="$route('projects.index')"
                         method="get">
                         <h1 class="flex items-center">
-                            <span class="text-5xl font-light text-indigo">O</span>
+                            <span class="text-5xl font-light text-indigo-600">O</span>
                             <span class="font-sans text-2xl font-semibold uppercase leading-normal tracking-wide text-black-light">zzie</span>
                         </h1>
                     </InertiaLink>

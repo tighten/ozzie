@@ -1,7 +1,7 @@
 <template>
     <div class="mt-2 flex">
         <InertiaLink
-            class="text-indigo"
+            class="text-indigo-600"
             :href="$route('projects.index')"
             method="get">
             Home
@@ -11,7 +11,7 @@
             class="mx-1">&gt;</span>
         <InertiaLink
             v-if="project"
-            class="text-indigo"
+            class="text-indigo-600"
             :href="ozzieProjectUrl(project.packagist_name)"
             method="get">
             {{ project.packagist_name }}

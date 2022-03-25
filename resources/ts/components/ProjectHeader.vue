@@ -19,7 +19,7 @@
                 :title="`View ${maintainer}'s profile overview on GitHub`"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-indigo no-underline">
+                class="text-indigo-600 no-underline">
                 @{{ maintainer }}
             </a>
         </p>

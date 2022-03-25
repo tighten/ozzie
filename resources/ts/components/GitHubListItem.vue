@@ -44,7 +44,7 @@
                 :title="`View ${gitHubItem.user.login}'s profile overview on GitHub`"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-indigo no-underline"
+                class="text-indigo-600 no-underline"
                 @click.stop>
                 @{{ gitHubItem.user.login }}
             </a>

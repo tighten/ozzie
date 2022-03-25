@@ -19,7 +19,7 @@
                 aria-label="Launch"
                 target="_blank"
                 rel="noopener noreferrer">
-                <h2 class="flex flex-col text-2xl text-indigo md:flex-row md:text-3xl">
+                <h2 class="flex flex-col text-2xl text-indigo-600 md:flex-row md:text-3xl">
                     {{ issue.title }}<span class="ml-1 text-xl font-thin text-gray-dark md:ml-2 md:text-3xl">#{{ issue.number }}</span>
                 </h2>
             </a>
@@ -29,7 +29,7 @@
                     :title="`View ${issue.user.login}'s profile overview on GitHub`"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-indigo">
+                    class="text-indigo-600">
                     {{ issue.user.login }}
                 </a>
                 <span class="text-gray-blue-dark"> opened this issue {{ $luxon.fromISO(issue.created_at).toRelative() }}</span>

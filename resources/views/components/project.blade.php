@@ -13,7 +13,7 @@
                 Maintained by
 
                 @foreach ($project->maintainers as $maintainer)
-                    <a class="text-indigo no-underline" href="https://github.com/{{ $maintainer }}"
+                    <a class="text-indigo-600 no-underline" href="https://github.com/{{ $maintainer }}"
                        target="_blank">{{ '@' . $maintainer }}</a>
                 @endforeach
             </p>
@@ -42,6 +42,6 @@
     </section>
 
     <section class="flex flex-col items-end mt-6">
-        <a class="text-indigo no-underline" href="#">&#8593; Back to top</a>
+        <a class="text-indigo-600 no-underline" href="#">&#8593; Back to top</a>
     </section>
 </div>

@@ -15,7 +15,7 @@
                     rel="noopener noreferrer"
                     class="flex items-center">
                     <IconConversation />
-                    <span class="text-indigo">
+                    <span class="text-indigo-600">
                         Conversation
                     </span>
                 </a>
@@ -26,7 +26,7 @@
                     rel="noopener noreferrer"
                     class="flex items-center md:ml-8">
                     <IconCommit />
-                    <span class="text-indigo">
+                    <span class="text-indigo-600">
                         Commits
                     </span>
                 </a>
@@ -37,7 +37,7 @@
                     rel="noopener noreferrer"
                     class="flex items-center md:ml-8">
                     <IconFileDiff />
-                    <span class="text-indigo">
+                    <span class="text-indigo-600">
                         Files changed
                     </span>
                 </a>

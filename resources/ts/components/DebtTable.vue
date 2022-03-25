@@ -36,13 +36,13 @@
             <tr
                 v-for="project in projects"
                 :key="project.id"
-                :class="linkProjects ? ['hover:bg-indigo-hover', 'cursor-pointer'] : []"
+                :class="linkProjects ? ['hover:bg-indigo-50', 'cursor-pointer'] : []"
                 @click="linkProjects ? $inertia.visit(ozzieProjectUrl(project.packagist_name)) : null">
                 <td
                     v-if="showProjectName"
                     class="p-4">
                     <InertiaLink
-                        class="text-indigo no-underline"
+                        class="text-indigo-600 no-underline"
                         :href="ozzieProjectUrl(project.packagist_name)"
                         method="get">
                         {{ project.namespace }}/{{ project.name }}
@@ -77,7 +77,7 @@
                     v-if="hacktoberfest"
                     class="hidden p-4 md:table-cell">
                     <a
-                        class="-mx-2 p-2 text-indigo no-underline"
+                        class="-mx-2 p-2 text-indigo-600 no-underline"
                         :href="'https://github.com/' + project.namespace + '/' + project.name + '/labels/hacktoberfest'"
                         target="_blank">
                         {{ project.hacktoberfest_issues }}
