@@ -16,8 +16,6 @@ class FetchProjectStats extends Command
 
     public function handle()
     {
-        cache()->clear();
-
         $projects = Project::all();
 
         $this->createProgressBar($projects->count());
@@ -27,6 +25,9 @@ class FetchProjectStats extends Command
         }
 
         $this->bar->finish();
+
+        // Clear frontend cache
+        cache()->clear();
 
         return 0;
     }

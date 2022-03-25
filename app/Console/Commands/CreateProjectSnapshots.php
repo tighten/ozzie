@@ -50,6 +50,9 @@ class CreateProjectSnapshots extends Command
 
         $this->bar->finish();
 
+        // Clear frontend cache
+        cache()->clear();
+
         return 0;
     }
 

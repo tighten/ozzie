@@ -8,7 +8,11 @@ class Repo extends DataTransferObject
 {
     public $namespace;
     public $name;
+    public $full_name;
     public $archived;
+    public $fork;
+
+    protected bool $ignoreMissing = true;
 
     public function __construct(array $parameters)
     {
@@ -17,9 +21,9 @@ class Repo extends DataTransferObject
         parent::__construct([
             'namespace' => $namespace,
             'name' => $name,
+            'full_name' => $parameters['full_name'],
             'archived' => $parameters['archived'],
+            'fork' => $parameters['fork'],
         ]);
     }
-
-    protected $ignoreMissing = true;
 }
