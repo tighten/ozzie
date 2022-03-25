@@ -32,10 +32,12 @@ module.exports = {
 
             white: '#ffffff',
 
-            indigo: '#3f50bb',
-            'indigo-light': '#4650b6',
-            'indigo-muted': '#9396ab',
-            'indigo-hover': '#EEF2FF',
+            indigo: {
+                600: '#3f50bb',
+                'light': '#4650b6',
+                'muted': '#9396ab',
+                50: '#EEF2FF',
+            },
 
             frost: '#f4f5f7',
             smoke: '#e7e8e8',
