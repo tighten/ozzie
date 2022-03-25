@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="relative z-10 border-t-4 border-indigo-600 bg-white">
+        <div class="relative z-10 border-t-4 border-indigo-600 bg-white shadow">
             <section class="mx-auto max-w-4xl px-2">
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-between h-16">
                     <InertiaLink
                         :href="$route('projects.index')"
                         method="get">
