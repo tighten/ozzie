@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
 
     content: [
@@ -9,26 +11,31 @@ module.exports = {
     theme: {
         colors: {
             transparent: 'transparent',
+            current: 'currentColor',
 
             black: '#313131',
             'black-light': '#353744',
             'black-lighter': '#393e43',
             'black-lightest': '#475509',
 
-            'gray-darkest': '#4b5c69',
-            'gray-darker': '#606f7b',
-            'gray-dark': '#8795a1',
-            gray: '#dde1e5',
-            'gray-light': '#dae1e7',
-            'gray-lighter': '#f1f5f8',
-            'gray-lightest': '#f8fafc',
+            gray: {
+                ...colors.slate,
+                'darkest': '#4b5c69',
+                'darker': '#606f7b',
+                'dark': '#8795a1',
+                DEFAULT: '#dde1e5',
+                'light': '#dae1e7',
+                'lighter': '#f1f5f8',
+                'lightest': '#f8fafc',
+            },
 
-            'gray-blue-darkest': '#4b5f77',
-            'gray-blue-darker': '#83909d',
-            'gray-blue-dark': '#616f75',
-
-            'gray-blue': '#dce3e7',
-            'gray-blue-light': '#e7ebef',
+            'gray-blue': {
+                'darkest': '#4b5f77',
+                'darker': '#83909d',
+                'dark': '#616f75',
+                DEFAULT: '#dce3e7',
+                'light': '#e7ebef',
+            },
 
             white: '#ffffff',
 
