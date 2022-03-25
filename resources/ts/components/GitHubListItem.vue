@@ -32,7 +32,7 @@
                 <IconGitHub />
             </a>
         </div>
-        <div class="text-sm text-grey-darkest">
+        <div class="text-sm text-gray-darkest">
             #{{ gitHubItem.number }}
             opened
             <span>

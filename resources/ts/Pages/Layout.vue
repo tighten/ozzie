@@ -11,7 +11,7 @@
                             <span class="font-sans text-2xl font-semibold uppercase leading-normal tracking-wide text-black-light">zzie</span>
                         </h1>
                     </InertiaLink>
-                    <p class="font-sans font-normal italic leading-normal tracking-tight text-grey-blue-darkest">
+                    <p class="font-sans font-normal italic leading-normal tracking-tight text-gray-blue-darkest">
                         Addressing our open source debt
                     </p>
                 </div>

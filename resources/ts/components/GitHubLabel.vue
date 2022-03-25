@@ -5,7 +5,7 @@
         :title="`View all items labelled '${label.name}' on GitHub`"
         target="_blank"
         rel="noopener noreferrer"
-        class="mr-1 mt-2 inline-flex items-center rounded-full py-1 pl-1 pr-2 font-sans text-xs font-semibold leading-none no-underline hover:bg-grey-blue-light">
+        class="mr-1 mt-2 inline-flex items-center rounded-full py-1 pl-1 pr-2 font-sans text-xs font-semibold leading-none no-underline hover:bg-gray-blue-light">
         <span
             class="ml-1"
             :style="'color: ' + getCorrectTextColor(label.color)">{{ label.name }}</span>

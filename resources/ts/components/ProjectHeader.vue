@@ -24,12 +24,12 @@
             </a>
         </p>
     </div>
-    <p class="font-light text-grey-dark md:mt-1">
+    <p class="font-light text-gray-dark md:mt-1">
         Synced {{ $luxon.fromISO(project.updated_at).toRelative() }}
     </p>
     <p
         v-if="project.has_downloads"
-        class="font-light text-grey-dark">
+        class="font-light text-gray-dark">
         {{ new Intl.NumberFormat().format(project.downloads_total) }} downloads
         ({{ new Intl.NumberFormat().format(project.downloads_last_30_days) }} per month)
     </p>

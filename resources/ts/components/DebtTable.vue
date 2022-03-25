@@ -1,28 +1,28 @@
 <template>
-    <table class="mt-6 w-full table-auto border border-grey">
-        <thead class="border-b-2 border-grey bg-grey-blue-light text-left">
+    <table class="mt-6 w-full table-auto border border-gray">
+        <thead class="border-b-2 border-gray bg-gray-blue-light text-left">
             <tr>
                 <th
                     v-if="showProjectName"
-                    class="p-4 text-xs font-bold uppercase leading-none tracking-wide text-grey-darkest">
+                    class="p-4 text-xs font-bold uppercase leading-none tracking-wide text-gray-darkest">
                     Project Name
                 </th>
-                <th class="p-4 text-xs font-bold uppercase leading-none tracking-wide text-grey-darkest">
+                <th class="p-4 text-xs font-bold uppercase leading-none tracking-wide text-gray-darkest">
                     Debt Score
                 </th>
-                <th class="hidden p-4 text-xs font-bold uppercase leading-none tracking-wide text-grey-darkest md:table-cell">
+                <th class="hidden p-4 text-xs font-bold uppercase leading-none tracking-wide text-gray-darkest md:table-cell">
                     Debt Score Graph
                 </th>
-                <th class="hidden p-4 text-xs font-bold uppercase leading-none tracking-wide text-grey-darkest md:table-cell">
+                <th class="hidden p-4 text-xs font-bold uppercase leading-none tracking-wide text-gray-darkest md:table-cell">
                     Old Prs
                 </th>
-                <th class="hidden p-4 text-xs font-bold uppercase leading-none tracking-wide text-grey-darkest md:table-cell">
+                <th class="hidden p-4 text-xs font-bold uppercase leading-none tracking-wide text-gray-darkest md:table-cell">
                     Old Issues
                 </th>
-                <th class="hidden p-4 text-xs font-bold uppercase leading-none tracking-wide text-grey-darkest md:table-cell">
+                <th class="hidden p-4 text-xs font-bold uppercase leading-none tracking-wide text-gray-darkest md:table-cell">
                     Prs
                 </th>
-                <th class="hidden p-4 text-xs font-bold uppercase leading-none tracking-wide text-grey-darkest md:table-cell">
+                <th class="hidden p-4 text-xs font-bold uppercase leading-none tracking-wide text-gray-darkest md:table-cell">
                     Issues
                 </th>
                 <th

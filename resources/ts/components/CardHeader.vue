@@ -1,5 +1,5 @@
 <template>
-    <span class="table-row border-b-2 border-grey bg-grey-blue-light text-sm font-semibold capitalize leading-none tracking-wide text-grey-darkest">
+    <span class="table-row border-b-2 border-gray bg-gray-blue-light text-sm font-semibold capitalize leading-none tracking-wide text-gray-darkest">
         <span class="table-cell p-4">
             <slot />
         </span>

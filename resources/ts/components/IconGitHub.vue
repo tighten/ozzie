@@ -1,7 +1,7 @@
 <template>
     <span>
         <svg
-            class="fill-current inline-block h-5 w-5 text-grey-blue-darkest"
+            class="fill-current inline-block h-5 w-5 text-gray-blue-darkest"
             height="32"
             viewBox="0 0 16 16"
             width="32"

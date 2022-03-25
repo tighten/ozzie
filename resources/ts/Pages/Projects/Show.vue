@@ -11,7 +11,7 @@
             v-if="project.pull_requests_count > 0"
             class="mt-4 md:mt-8">
             <CardHeader>{{ project.pull_requests_count }} open Pull Requests</CardHeader>
-            <ul class="divide-y divide-grey-blue">
+            <ul class="divide-y divide-gray-blue">
                 <li
                     v-for="pull_request in project.pull_requests"
                     :key="pull_request.node_id">
@@ -31,7 +31,7 @@
             v-if="project.issues_count > 0"
             class="mt-4 md:mt-8">
             <CardHeader>{{ project.issues_count }} open Issues </CardHeader>
-            <ul class="divide-y divide-grey-blue">
+            <ul class="divide-y divide-gray-blue">
                 <li
                     v-for="issue in project.issues"
                     :key="issue.node_id">
