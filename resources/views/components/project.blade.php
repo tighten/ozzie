@@ -8,7 +8,7 @@
             </a>
         </h2>
 
-        @if($project->maintainers)
+        @if ($project->maintainers)
             <p class="w-1/2 text-right text-black-lightest">
                 Maintained by
 
