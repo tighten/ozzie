@@ -1,6 +1,6 @@
 <template>
-    <nav class="flex mt-2" aria-label="Breadcrumb">
-        <ol role="list" class="flex items-center space-x-2">
+    <nav class="flex" aria-label="Breadcrumb">
+        <ol role="list" class="flex items-center px-3 pt-3 pb-2 space-x-2 bg-white shadow rounded-b-md">
             <li>
                 <div>
                     <InertiaLink
@@ -8,7 +8,7 @@
                         class="text-gray-500 hover:text-indigo-600"
                     >
                         <HomeIcon
-                            class="flex-shrink-0 h-5 w-5"
+                            class="flex-shrink-0 w-5 h-5"
                             aria-hidden="true"
                         />
                         <span class="sr-only">Home</span>
@@ -18,7 +18,7 @@
             <li v-if="project">
                 <div class="flex items-center">
                     <ChevronRightIcon
-                        class="flex-shrink-0 h-5 w-5 text-gray-400"
+                        class="flex-shrink-0 w-5 h-5 text-gray-400"
                         aria-hidden="true"
                     />
                     <InertiaLink
@@ -32,7 +32,7 @@
             <li v-if="issue">
                 <div class="flex items-center">
                     <ChevronRightIcon
-                        class="flex-shrink-0 h-5 w-5 text-gray-400"
+                        class="flex-shrink-0 w-5 h-5 text-gray-400"
                         aria-hidden="true"
                     />
                     <span class="ml-2 text-sm font-medium text-gray-500">
