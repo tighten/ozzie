@@ -1,35 +1,10 @@
 ![Ozzie logo](https://raw.githubusercontent.com/tighten/ozzie/main/ozzie-banner.png)
 
------
-
-# Headless refactor
-
-## Immediate goals
-
-- [ ] Optionally remove the DB requirement
-- [ ] Drop the frontend
-- [ ] Consider adding the concept of "stale" issues and PRs, based on activity, as compared to "old"
-- [x] Build rudimentary API strucutre
-- [ ] Consider renaming "namespace" to "vendor"
-
-## Longer-term goals, via @gummibeer
-
-- "JAMstack"/static site compatible
-- work without database - DTOs only
-- have a preload command - cache or JSON files
-- have a "repository" class that wraps the GitHub API
-- GitHub client https://github.com/KnpLabs/php-github-api
-- Packagist client https://github.com/KnpLabs/packagist-api
-- work with GitHub PAT instead of oAuth only
-- allow wildcards for projects and load them from packagist (get all `tighten/*` packages)
-- only packagist & maintainers should be required - everything else is computable
-
 ----
 
 # Ozzie
 
 [![Run tests](https://github.com/tighten/takeout/workflows/Run%20tests/badge.svg?branch=main)](https://github.com/tighten/ozzie/actions?query=workflow%3A%22Run+Tests%22)
-
 
 **Ozzie** is Tighten's open source projects monitor. Each project is assigned a "debt score" based on how many open issues/PRs there are, and how old they are.
 
