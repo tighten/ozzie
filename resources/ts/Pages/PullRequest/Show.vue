@@ -7,7 +7,7 @@
             Pull Request
         </template>
         <template #title-extra>
-            <div class="mt-4 flex flex-col text-black-lighter md:flex-row md:items-center">
+            <div class="flex flex-col mt-4 text-black-lighter md:flex-row md:items-center">
                 <a
                     :href="baseUrl()"
                     :title="`View the conversation about pull request #${issue.number} on GitHub`"
@@ -15,7 +15,7 @@
                     rel="noopener noreferrer"
                     class="flex items-center">
                     <IconConversation />
-                    <span class="text-indigo-600">
+                    <span class="text-indigo-600 dark:text-indigo-400">
                         Conversation
                     </span>
                 </a>
@@ -26,7 +26,7 @@
                     rel="noopener noreferrer"
                     class="flex items-center md:ml-8">
                     <IconCommit />
-                    <span class="text-indigo-600">
+                    <span class="text-indigo-600 dark:text-indigo-400">
                         Commits
                     </span>
                 </a>
@@ -37,7 +37,7 @@
                     rel="noopener noreferrer"
                     class="flex items-center md:ml-8">
                     <IconFileDiff />
-                    <span class="text-indigo-600">
+                    <span class="text-indigo-600 dark:text-indigo-400">
                         Files changed
                     </span>
                 </a>

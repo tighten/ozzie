@@ -9,9 +9,9 @@
             class="hidden md:table" />
         <Card
             v-if="project.pull_requests_count > 0"
-            class="mt-4 md:mt-8">
+            class="mt-8 md:mt-12">
             <CardHeader>{{ project.pull_requests_count }} open Pull Requests</CardHeader>
-            <ul class="divide-y divide-gray-blue">
+            <ul class="divide-y divide-gray-300 dark:divide-gray-700">
                 <li
                     v-for="pull_request in project.pull_requests"
                     :key="pull_request.node_id">
@@ -29,9 +29,9 @@
         </Card>
         <Card
             v-if="project.issues_count > 0"
-            class="mt-4 md:mt-8">
+            class="mt-8 md:mt-12">
             <CardHeader>{{ project.issues_count }} open Issues </CardHeader>
-            <ul class="divide-y divide-gray-blue">
+            <ul class="divide-y divide-gray-300 dark:divide-gray-700">
                 <li
                     v-for="issue in project.issues"
                     :key="issue.node_id">
