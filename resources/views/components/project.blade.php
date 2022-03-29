@@ -1,7 +1,7 @@
 <div class="mt-16">
-    <section class="flex justify-between items-center py-6 border-b-2 border-clouds"
+    <section class="flex items-center justify-between py-6 border-b-2 border-gray-300 dark:border-gray-700"
              id="project-{{ $project->namespace }}-{{ $project->name }}">
-        <h2 class="w-1/2 text-2xl text-black font-semibold tracking-wide">
+        <h2 class="w-1/2 text-2xl font-semibold tracking-wide text-gray-900">
             <a href="{{ $project->url() }}" aria-label="Launch">
                 {{ $project->namespace }} | {{ $project->name }}
                 @include('svg.launch')
@@ -9,7 +9,7 @@
         </h2>
 
         @if ($project->maintainers)
-            <p class="w-1/2 text-right text-black-lightest">
+            <p class="w-1/2 text-right text-gray-700 dark:text-gray-400">
                 Maintained by
 
                 @foreach ($project->maintainers as $maintainer)
@@ -21,8 +21,8 @@
     </section>
 
 
-    <section class="flex items-start border-b border-clouds">
-        <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">Pull Requests</h3>
+    <section class="flex items-start border-b border-gray-300 dark:border-gray-700">
+        <h3 class="w-1/3 py-6 text-lg font-thin text-gray-700 dark:text-gray-400">Pull Requests</h3>
 
         <ul class="w-2/3">
             @foreach ($project->prs() as $pr)
@@ -31,8 +31,8 @@
         </ul>
     </section>
 
-    <section class="flex items-start border-b-1 border-clouds">
-        <h3 class="w-1/3 text-lg text-black-lightest py-6 font-thin">Issues</h3>
+    <section class="flex items-start border-gray-300 border-b-1 dark:border-gray-700">
+        <h3 class="w-1/3 py-6 text-lg font-thin text-gray-700 dark:text-gray-400">Issues</h3>
 
         <ul class="w-2/3 list-reset">
             @foreach ($project->issues() as $issue)

@@ -9,7 +9,7 @@
                 v-if="hacktoberfest"
                 :href="hactoberfestQuery()"
                 target="_blank"
-                class="px-4 py-3 no-underline hover-pop bg-gray-blue text-black-lighter hover:bg-halloween-orange hover:text-white"> Hacktoberfest is here! 👻
+                class="px-4 py-3 text-gray-900 no-underline bg-gray-400 hover-pop hover:bg-halloween-orange hover:text-white"> Hacktoberfest is here! 👻
             </a>
         </div>
         <DebtTable

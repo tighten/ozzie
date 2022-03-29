@@ -7,7 +7,7 @@
             Pull Request
         </template>
         <template #title-extra>
-            <div class="flex flex-col mt-4 text-black-lighter md:flex-row md:items-center">
+            <div class="flex flex-col mt-4 text-gray-700 dark:text-gray-400 md:flex-row md:items-center">
                 <a
                     :href="baseUrl()"
                     :title="`View the conversation about pull request #${issue.number} on GitHub`"
