@@ -20,6 +20,7 @@ module.exports = {
 
             gray: {
                 ...colors.slate,
+                '850': '#172033',
                 'darkest': '#4b5c69',
                 'darker': '#606f7b',
                 'dark': '#8795a1',
@@ -40,6 +41,7 @@ module.exports = {
             white: '#ffffff',
 
             indigo: {
+                ...colors.indigo,
                 600: '#3f50bb',
                 'light': '#4650b6',
                 'muted': '#9396ab',
@@ -57,4 +59,8 @@ module.exports = {
             'halloween-orange': '#e4730b',
         },
     },
+
+    plugins: [
+        require('@tailwindcss/typography'),
+    ],
 };

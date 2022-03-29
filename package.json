@@ -17,6 +17,7 @@
         "@inertiajs/inertia": "^0.10.1",
         "@inertiajs/inertia-vue3": "^0.5.2",
         "@inertiajs/progress": "^0.2.5",
+        "@tailwindcss/typography": "^0.5.2",
         "@types/ziggy-js": "^1.0.2",
         "@typescript-eslint/eslint-plugin": "^4.28.2",
         "@typescript-eslint/parser": "^4.28.2",
@@ -54,5 +55,8 @@
         "trailingComma": "es5",
         "tabWidth": 4,
         "printWidth": 80
+    },
+    "dependencies": {
+        "@heroicons/vue": "^1.0.6"
     }
 }
