@@ -1,9 +1,9 @@
 <template>
-    <div class="ml-2 flex flex-col">
+    <div class="flex flex-col ml-2">
         <div class="flex items-center justify-between">
             <div>
                 <InertiaLink
-                    class="flex-1 break-words font-medium leading-normal text-black-lighter no-underline"
+                    class="flex-1 font-medium leading-normal text-gray-900 no-underline break-words dark:text-gray-200"
                     :href="ozzieUrl"
                     method="get"
                     target="_blank"
@@ -12,7 +12,7 @@
                 </InertiaLink>
                 <span
                     v-if="Object.keys(gitHubItem.labels).length > 0"
-                    class="ml-2 hidden md:inline">
+                    class="hidden ml-2 md:inline">
                     <GitHubLabel
                         v-for="label in gitHubItem.labels"
                         :key="label.name"
@@ -32,7 +32,7 @@
                 <IconGitHub />
             </a>
         </div>
-        <div class="text-sm text-gray-darkest">
+        <div class="text-sm text-gray-700 dark:text-gray-400">
             #{{ gitHubItem.number }}
             opened
             <span>
@@ -44,7 +44,7 @@
                 :title="`View ${gitHubItem.user.login}'s profile overview on GitHub`"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-indigo-600 no-underline"
+                class="text-indigo-600 no-underline dark:text-indigo-400"
                 @click.stop>
                 @{{ gitHubItem.user.login }}
             </a>

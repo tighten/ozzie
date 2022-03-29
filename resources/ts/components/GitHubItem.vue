@@ -11,7 +11,7 @@
             :show-project-name="false"
             :projects="[project]"
             class="hidden md:table" />
-        <Card class="mt-4 px-2 pt-2 md:px-4 md:pt-4">
+        <Card class="mt-4">
             <a
                 :href="issue.html_url"
                 :title="'View #' + issue.number + ' on GitHub'"
@@ -19,8 +19,8 @@
                 aria-label="Launch"
                 target="_blank"
                 rel="noopener noreferrer">
-                <h2 class="flex flex-col text-2xl text-indigo-600 md:flex-row md:text-3xl">
-                    {{ issue.title }}<span class="ml-1 text-xl font-thin text-gray-dark md:ml-2 md:text-3xl">#{{ issue.number }}</span>
+                <h2 class="flex flex-col text-2xl text-indigo-600 dark:text-indigo-400 md:flex-row md:text-3xl">
+                    {{ issue.title }}<span class="ml-1 text-xl font-thin text-gray-900 dark:text-gray-200 md:ml-2 md:text-3xl">#{{ issue.number }}</span>
                 </h2>
             </a>
             <p class="mt-1">
@@ -29,14 +29,14 @@
                     :title="`View ${issue.user.login}'s profile overview on GitHub`"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-indigo-600">
+                    class="text-indigo-600 dark:text-indigo-400">
                     {{ issue.user.login }}
                 </a>
-                <span class="text-gray-blue-dark"> opened this issue {{ $luxon.fromISO(issue.created_at).toRelative() }}</span>
+                <span class="text-gray-700 dark:text-gray-400"> opened this issue {{ $luxon.fromISO(issue.created_at).toRelative() }}</span>
             </p>
             <slot name="title-extra" />
             <div
-                class="markdown-body my-4"
+                class="my-4 prose dark:prose-invert"
                 v-html="body" />
         </Card>
     </Layout>
