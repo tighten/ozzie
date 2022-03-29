@@ -33,7 +33,7 @@
         @routes
     </head>
 
-    <body class="bg-frost">
+    <body class="bg-gray-100 dark:bg-gray-900">
         @inertia
         <script src="{{ asset('js/app.js') }}" defer></script>
     </body>
