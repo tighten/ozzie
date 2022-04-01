@@ -11,8 +11,9 @@
             v-if="project.pull_requests_count > 0"
             class="mt-8 md:mt-12">
             <CardHeader>{{ project.pull_requests_count }} open Pull Requests</CardHeader>
-            <ul class="divide-y divide-gray-300 dark:divide-gray-700">
+            <ul class="mt-2 divide-y divide-gray-200 dark:divide-gray-700">
                 <li
+                    class="overflow-hidden first:rounded-t-md last:rounded-b-md"
                     v-for="pull_request in project.pull_requests"
                     :key="pull_request.node_id">
                     <CardRow
@@ -31,8 +32,9 @@
             v-if="project.issues_count > 0"
             class="mt-8 md:mt-12">
             <CardHeader>{{ project.issues_count }} open Issues </CardHeader>
-            <ul class="divide-y divide-gray-300 dark:divide-gray-700">
+            <ul class="mt-2 divide-y divide-gray-200 dark:divide-gray-700">
                 <li
+                    class="overflow-hidden first:rounded-t-md last:rounded-b-md"
                     v-for="issue in project.issues"
                     :key="issue.node_id">
                     <CardRow
