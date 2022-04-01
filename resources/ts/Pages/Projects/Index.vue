@@ -1,6 +1,5 @@
 <template>
     <layout title="Ozzie">
-        <BreadCrumb />
         <div class="flex items-start justify-between">
             <p class="mt-6 text-gray-700 dark:text-gray-400">
                 Projects in descending order of "debt" (how much attention it needs)
@@ -23,11 +22,9 @@ import { PropType } from 'vue';
 import { Project } from '@/ozzie';
 import Layout from '@/Pages/Layout.vue';
 import DebtTable from '@/components/DebtTable.vue';
-import BreadCrumb from '@/components/BreadCrumb.vue';
 
 export default {
     components: {
-        BreadCrumb,
         DebtTable,
         Layout,
     },

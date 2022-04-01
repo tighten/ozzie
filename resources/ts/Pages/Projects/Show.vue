@@ -1,6 +1,5 @@
 <template>
     <Layout :title="'Ozzie - ' + project.namespace + '/' + project.name">
-        <BreadCrumb :project="project" />
         <ProjectHeader :project="project" />
         <DebtTable
             :show-project-name="false"
@@ -61,13 +60,11 @@ import Card from '@/components/Card.vue';
 import CardHeader from '@/components/CardHeader.vue';
 import GitHubListItem from '@/components/GitHubListItem.vue';
 import DebtTable from '@/components/DebtTable.vue';
-import BreadCrumb from '@/components/BreadCrumb.vue';
 import CardRow from '@/components/CardRow.vue';
 import { urlForType } from '@/functions/url';
 
 export default {
     components: {
-        BreadCrumb,
         DebtTable,
         GitHubListItem,
         CardHeader,

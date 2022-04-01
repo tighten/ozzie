@@ -1,9 +1,6 @@
 <!-- eslint-disable vue/no-v-html -->
 <template>
     <Layout :title="'Ozzie - ' + project.namespace + '/' + project.name + ' - #' + issue.number">
-        <BreadCrumb
-            :project="project"
-            :issue="issue" />
         <ProjectHeader
             :project="project"
             :issue="issue" />
@@ -49,11 +46,9 @@ import Layout from '@/Pages/Layout.vue';
 import ProjectHeader from '@/components/ProjectHeader.vue';
 import Card from '@/components/Card.vue';
 import DebtTable from '@/components/DebtTable.vue';
-import BreadCrumb from '@/components/BreadCrumb.vue';
 
 export default {
     components: {
-        BreadCrumb,
         Card,
         Layout,
         ProjectHeader,
