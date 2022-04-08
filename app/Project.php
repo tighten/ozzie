@@ -20,8 +20,9 @@ class Project extends Model
     ];
 
     protected $casts = [
-        'maintainers' => 'array',
         'issues' => 'collection',
+        'is_hidden' => 'boolean',
+        'maintainers' => 'array',
         'pull_requests' => 'collection',
     ];
 
