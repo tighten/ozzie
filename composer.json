@@ -25,7 +25,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "nathanheffley/laravel-slack-blocks": "^2.1",
-        "spatie/data-transfer-object": "^2.8",
+        "spatie/data-transfer-object": "^3.7",
         "tightenco/ziggy": "^1.4"
     },
     "require-dev": {
