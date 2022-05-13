@@ -34,7 +34,7 @@
         </thead>
         <tbody class="divide-y divide-smoke bg-white">
             <tr
-                v-for="project in projects"
+                v-for="project in projects.filter(project => project.debt_score > 0)"
                 :key="project.id"
                 :class="linkProjects ? ['hover:bg-indigo-hover', 'cursor-pointer'] : []"
                 @click="linkProjects ? $inertia.visit(ozzieProjectUrl(project.packagist_name)) : null">
