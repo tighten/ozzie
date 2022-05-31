@@ -13,7 +13,7 @@
         "php": "^8.0",
         "ext-gd": "*",
         "ext-json": "*",
-        "bugsnag/bugsnag-laravel": "^2.23",
+        "bugsnag/bugsnag-laravel": "^2.24",
         "davaxi/sparkline": "^2.0.0",
         "erusev/parsedown": "^1.7",
         "fideloper/proxy": "^4.0",
