@@ -1,5 +1,5 @@
 <template>
-    <div class="md:flex-rows mt-2 flex flex-col justify-between md:mt-6">
+    <div class="flex flex-col justify-between mt-2 md:flex-rows md:mt-6">
         <h1 class="text-2xl tracking-wide text-black-lightest">
             <a
                 :href="`https://github.com/${project.namespace}/${project.name}`"
@@ -9,6 +9,11 @@
                 rel="noopener noreferrer">
                 {{ project.namespace }}/{{ project.name }}<IconGitHub class="ml-1" />
             </a>
+            <span
+                v-show="project.is_hidden"
+                class="inline-flex items-center ml-2 px-2.5 py-0.5 rounded-full text-xs font-medium bg-grey-blue text-black">
+                Hidden
+            </span>
         </h1>
         <p class="text-black-lightest">
             Maintained by
@@ -19,7 +24,7 @@
                 :title="`View ${maintainer}'s profile overview on GitHub`"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-indigo no-underline">
+                class="no-underline text-indigo">
                 @{{ maintainer }}
             </a>
         </p>
