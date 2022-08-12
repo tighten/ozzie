@@ -18,10 +18,11 @@
     - Application Description: `Local Version of Ozzie`
     - Authorization Callback URL: `http://ozzie.test/callback`
 4. Copy the example `.env` file: `cp .env.example .env` and modify its settings to match your local install, including the client ID and secret from the previous step
-5. Create a database table (by default `.env` looks for one named `ozzie`) and run the migrations (`php artisan migrate`)
-6. Copy `projects.json.dist` to `projects.json` and modify it for your organization. This list is used to initially seed the `projects` table
-7. Seed the projects into the database (`php artisan db:seed`)
-8. Fetch your projects' stats for the first time using `php artisan stats:fetch`
+5. Run `php artisan key:generate`
+6. Create a database table (by default `.env` looks for one named `ozzie`) and run the migrations (`php artisan migrate`)
+7. Copy `projects.json.dist` to `projects.json` and modify it for your organization. This list is used to initially seed the `projects` table
+8. Seed the projects into the database (`php artisan db:seed`)
+9. Fetch your projects' stats for the first time using `php artisan stats:fetch`
 
 > Note: If you're not using a tool like Laravel Valet, run `php artisan serve` and visit your site at http://127.0.0.1:8000; you'll also want to modify your GitHub app settings to use http://127.0.0.1:8000 instead of http://ozzie.test
 
