@@ -20,6 +20,7 @@ class ProjectResource extends JsonResource
                 'name',
                 'packagist_name',
                 'maintainers',
+                'is_hidden',
                 'issues',
                 'pull_requests',
                 'downloads_total',
