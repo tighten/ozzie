@@ -9,6 +9,12 @@
     "homepage": "https://github.com/tighten/ozzie",
     "license": "MIT",
     "type": "project",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
     "require": {
         "php": "^8.0",
         "ext-gd": "*",
@@ -22,6 +28,7 @@
         "http-interop/http-factory-guzzle": "^1.2",
         "inertiajs/inertia-laravel": "^0.6.9",
         "laravel/framework": "^8.83",
+        "laravel/nova": "~4.0",
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
