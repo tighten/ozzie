@@ -2,23 +2,21 @@
 
 namespace App\Nova;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rules;
-use Laravel\Nova\Fields\Avatar;
-use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class User extends Resource
+class Maintainer extends Resource
 {
-    public static $model = \App\User::class;
+    public static $model = \App\Maintainer::class;
 
-    public static $title = 'name';
+    public static $title = 'github_username';
 
     public static $search = [
-        'id', 'name', 'email',
+        'github_username',
     ];
 
     public function menu(Request $request)
@@ -32,18 +30,16 @@ class User extends Resource
     {
         return [
             ID::make()->sortable(),
-
-            Gravatar::make()->maxWidth(50),
-
-            Text::make('Name')->sortable(),
-
-            Text::make('Email')->readonly(),
-
-            Text::make('GitHub Username', 'github_username')->readonly(),
-
-            Text::make('GitHub ID', 'github_id')->readonly(),
+            Text::make('GitHub Username', 'github_username')->sortable(),
+            BelongsToMany::make('Projects'),
         ];
     }
+
+    public static function afterCreate(NovaRequest $request, Model $model)
+    {
+        $model->user_id = 5;
+    }
+
 
     public function cards(NovaRequest $request)
     {

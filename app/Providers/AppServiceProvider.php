@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Maintainer;
+use App\Observers\MaintainerObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Maintainer::observe(MaintainerObserver::class);
     }
 }

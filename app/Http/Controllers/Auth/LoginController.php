@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Maintainer;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -25,8 +26,6 @@ class LoginController
             return $org['login'] === config('app.organization');
         }), 403);
 
-
-
         $user = User::updateOrCreate([
             'github_id' => $githubUser->id,
         ], [
@@ -37,6 +36,13 @@ class LoginController
             'avatar_url' => $githubUser->avatar,
         ]);
 
+        // If the username is also in the maintainers table, associate the user with the maintainer,
+        // or create a new maintainer record for this user
+        Maintainer::updateOrCreate([
+            'github_username' => $githubUser->nickname,
+        ], [
+            'user_id' => $user->id,
+        ]);
 
         Auth::login($user, remember: true);
 

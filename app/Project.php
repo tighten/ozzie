@@ -4,6 +4,7 @@ namespace App;
 
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
+use App\Maintainer;
 use Carbon\CarbonPeriod;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -23,7 +24,6 @@ class Project extends Model
     protected $casts = [
         'issues' => 'collection',
         'is_hidden' => 'boolean',
-        'maintainers' => 'array',
         'pull_requests' => 'collection',
     ];
 
@@ -35,6 +35,11 @@ class Project extends Model
     public function snapshotToday()
     {
         return $this->hasMany(Snapshot::class)->today();
+    }
+
+    public function maintainers()
+    {
+        return $this->belongsToMany(Maintainer::class);
     }
 
     public function scopeFromVendorAndName(Builder $query, string $projectNamespace, string $projectName): Builder
