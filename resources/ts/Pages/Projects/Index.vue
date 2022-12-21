@@ -5,6 +5,9 @@
             <p class="mt-6 text-black-lighter">
                 Projects in descending order of "debt" (how much attention it needs)
             </p>
+            <a class="button" href="/auth/redirect">Login</a>
+            <a class="button" href="/logout">Logout</a>
+            <div>{{user?.name ?? 'guest'}}</div>
             <a
                 v-if="hacktoberfest"
                 :href="hactoberfestQuery()"
@@ -21,6 +24,7 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { Project } from '@/ozzie';
+import { User } from '@/ozzie';
 import Layout from '@/components/Layout.vue';
 import DebtTable from '@/components/DebtTable.vue';
 import BreadCrumb from '@/components/BreadCrumb.vue';
@@ -42,6 +46,10 @@ export default {
         },
         organization: {
             type: String,
+            required: true,
+        },
+        user: {
+            type: Object as PropType<User>|null,
             required: true,
         },
     },

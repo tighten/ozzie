@@ -2,38 +2,51 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Providers\RouteServiceProvider;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Laravel\Socialite\Facades\Socialite;
 
-class LoginController extends Controller
+class LoginController
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function redirectToProvider()
     {
-        $this->middleware('guest')->except('logout');
+        return Socialite::driver('github')->scopes(['read:org'])->redirect();
+    }
+
+    public function handleProviderCallback()
+    {
+        $githubUser = Socialite::driver('github')->user();
+
+        $orgs = Http::withToken($githubUser->token)->get('https://api.github.com/user/orgs');
+
+        abort_unless(collect($orgs->json())->contains(function ($org) {
+            return $org['login'] === config('app.organization');
+        }), 403);
+
+
+
+        $user = User::updateOrCreate([
+            'github_id' => $githubUser->id,
+        ], [
+            'name' => $githubUser->name,
+            'email' => $githubUser->email,
+            'github_username' => $githubUser->nickname,
+            'github_id' => $githubUser->id,
+            'avatar_url' => $githubUser->avatar,
+        ]);
+
+
+        Auth::login($user, remember: true);
+
+        return redirect()->intended('/');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->intended('/');
     }
 }

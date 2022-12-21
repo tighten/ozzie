@@ -8,6 +8,9 @@ export declare type Label = {
 export declare type User = {
     html_url: URL,
     login: string,
+    avatar_url: URL,
+    username: string,
+    name: string,
 }
 
 export declare type BaseIssue = {

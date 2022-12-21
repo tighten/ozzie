@@ -22,6 +22,7 @@
         "http-interop/http-factory-guzzle": "^1.2",
         "inertiajs/inertia-laravel": "^0.6.9",
         "laravel/framework": "^8.83",
+        "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "nathanheffley/laravel-slack-blocks": "^2.1",

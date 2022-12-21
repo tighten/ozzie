@@ -7,6 +7,7 @@ use App\GitHub\Dto\PullRequest;
 use Carbon\CarbonPeriod;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -44,7 +45,7 @@ class Project extends Model
     public function scopeForPackagist($query, $vendor, $name = null)
     {
         // @todo test this
-        if (! $name) {
+        if (!$name) {
             [$vendor, $name] = explode('/', $vendor);
         }
 
@@ -107,7 +108,7 @@ class Project extends Model
 
     public function issue(int $id): array
     {
-        if (! ($issue = $this->issues->where('number', $id)->first())) {
+        if (!($issue = $this->issues->where('number', $id)->first())) {
             throw new NotFoundHttpException("Issue number {$id} does not exist");
         }
 
@@ -116,7 +117,7 @@ class Project extends Model
 
     public function pullRequest(int $id): array
     {
-        if (! ($pullRequest = $this->pull_requests->where('number', $id)->first())) {
+        if (!($pullRequest = $this->pull_requests->where('number', $id)->first())) {
             throw new NotFoundHttpException("Pull request number {$id} does not exist");
         }
 
@@ -149,5 +150,13 @@ class Project extends Model
         if ($this->downloads_total + $this->downloads_last_30_days > 0) {
             return true;
         }
+    }
+
+    public function scopeExclude($query, $value = [])
+    {
+        return $query->select(array_diff(
+            $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable()),
+            Arr::wrap($value)
+        ));
     }
 }
