@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Maintainer;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Laravel\Socialite\Facades\Socialite;
@@ -18,13 +19,18 @@ class LoginController
 
     public function handleProviderCallback()
     {
+        // First, check query string for any callback errors from GitHub
+        if (request()->has('error')) {
+            return redirect()->route('projects.index');
+        }
+
         $githubUser = Socialite::driver('github')->user();
 
         $orgs = Http::withToken($githubUser->token)->get('https://api.github.com/user/orgs');
 
         abort_unless(collect($orgs->json())->contains(function ($org) {
             return $org['login'] === config('app.organization');
-        }), 403);
+        }), 403, 'Only members of the ' . config('app.organization') . ' GitHub organization can login to this site');
 
         $user = User::updateOrCreate([
             'github_id' => $githubUser->id,
@@ -53,6 +59,6 @@ class LoginController
     {
         Auth::logout();
 
-        return redirect()->intended('/');
+        return redirect()->to('/');
     }
 }

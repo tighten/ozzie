@@ -3,16 +3,23 @@
         <BreadCrumb />
         <div class="flex items-start justify-between">
             <p class="mt-6 text-black-lighter">
-                Projects in descending order of "debt" (how much attention it needs)
+                Projects in descending order of "debt" (how much attention it
+                needs)
             </p>
-            <a class="button" href="/auth/redirect">Login</a>
-            <a class="button" href="/logout">Logout</a>
-            <div>{{user?.name ?? 'guest'}}</div>
             <a
                 v-if="hacktoberfest"
                 :href="hactoberfestQuery()"
                 target="_blank"
-                class="hover-pop bg-grey-blue px-4 py-3 text-black-lighter no-underline hover:bg-halloween-orange hover:text-white"> Hacktoberfest is here! 👻
+                class="
+                    hover-pop
+                    bg-grey-blue
+                    px-4
+                    py-3
+                    text-black-lighter
+                    no-underline
+                    hover:bg-halloween-orange hover:text-white
+                ">
+                Hacktoberfest is here! 👻
             </a>
         </div>
         <DebtTable
@@ -49,7 +56,7 @@ export default {
             required: true,
         },
         user: {
-            type: Object as PropType<User>|null,
+            type: Object as PropType<User> | null,
             required: true,
         },
     },

@@ -18,3 +18,11 @@ Route::group(['namespace' => 'Auth'], function () {
 });
 
 Route::any('logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::get('nova/login', function () {
+    return redirect()->route('auth.github');
+})->name('nova.login');
+
+Route::any('nova/logout', function () {
+    return redirect()->route('logout');
+})->name('nova.logout');

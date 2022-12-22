@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
+use Laravel\Nova\Menu\Menu;
+use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
@@ -16,6 +18,29 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+
+        // Use our login controller instead of Nova's
+        $this->app->alias(
+            \App\Http\Controllers\Auth\LoginController::class,
+            \Laravel\Nova\Http\Controllers\LoginController::class
+        );
+
+        Nova::userMenu(function (Request $request, Menu $menu) {
+            $menu->prepend(
+                MenuItem::externalLink(
+                    'Go to Public Site',
+                    route('projects.index')
+                )
+            );
+            $menu->append(
+                MenuItem::externalLink(
+                    'Logout',
+                    route('logout')
+                )
+            );
+
+            return $menu;
+        });
     }
 
     /**
@@ -26,8 +51,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function routes()
     {
         Nova::routes()
-            ->withAuthenticationRoutes()
-            ->withPasswordResetRoutes()
             ->register();
     }
 

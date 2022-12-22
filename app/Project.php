@@ -164,4 +164,9 @@ class Project extends Model
             Arr::wrap($value)
         ));
     }
+
+    public function scopeNotHidden($query)
+    {
+        return $query->where('is_hidden', false);
+    }
 }
