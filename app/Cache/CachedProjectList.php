@@ -15,9 +15,9 @@ class CachedProjectList
             function () {
                 return [
                     'projects' => Project::all()
-                        ->filter(fn($project) => ! $project->is_hidden)
-                        ->transform(fn($project) => app(CachedProjectResource::class)($project->packagist_name))
-                        ->sortByDesc(fn($project) => $project['debt_score'])
+                        ->filter(fn ($project) => ! $project->is_hidden)
+                        ->transform(fn ($project) => app(CachedProjectResource::class)($project->packagist_name))
+                        ->sortByDesc(fn ($project) => $project['debt_score'])
                         ->values(),
                     'hacktoberfest' => Carbon::now()->isSameMonth(Carbon::parse('October')),
                     'organization' => config('app.organization'),
