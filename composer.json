@@ -76,6 +76,12 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "lint": [
+            "vendor/bin/duster"
+        ],
+        "fix": [
+            "vendor/bin/duster --fix"
         ]
     }
 }
