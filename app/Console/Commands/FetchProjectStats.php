@@ -41,7 +41,6 @@ class FetchProjectStats extends Command
 
         $issues = $this->filterIssues($githubProject->issues());
         $pullRequests = $this->filterPullRequests($githubProject->pullRequests());
-        $isArchived = $githubProject->isArchived();
 
         $project->issues_count = $issues->count();
         $project->pull_requests_count = $pullRequests->count();
