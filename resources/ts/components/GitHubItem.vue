@@ -11,7 +11,7 @@
             :show-project-name="false"
             :projects="[project]"
             class="hidden md:table" />
-        <Card class="mt-4 px-2 pt-2 md:px-4 md:pt-4">
+        <Card class="px-2 pt-2 mt-4 md:px-4 md:pt-4">
             <a
                 :href="issue.html_url"
                 :title="'View #' + issue.number + ' on GitHub'"
@@ -36,7 +36,7 @@
             </p>
             <slot name="title-extra" />
             <div
-                class="markdown-body my-4"
+                class="my-4 markdown-body"
                 v-html="body" />
         </Card>
     </Layout>
@@ -45,7 +45,7 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { Issue, Project, PullRequest } from '@/ozzie';
-import Layout from '@/Pages/Layout.vue';
+import * as Layout from '@/Pages/Layout.vue';
 import ProjectHeader from '@/components/ProjectHeader.vue';
 import Card from '@/components/Card.vue';
 import DebtTable from '@/components/DebtTable.vue';
