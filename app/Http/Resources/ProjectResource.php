@@ -10,7 +10,7 @@ class ProjectResource extends JsonResource
     public function toArray($request)
     {
         self::withoutWrapping();
-        $sparkline = new Sparkline();
+        $sparkline = new Sparkline;
         $sparkline->setLineColorRGB(67, 79, 181);
         $sparkline->deactivateBackgroundColor();
         $sparkline->setData($this->getDebtScoreHistory());
