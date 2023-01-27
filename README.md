@@ -71,7 +71,7 @@ php artisan stats:snapshot -f
 
 ### Compiling the Frontend Assets
 
-Use Laravel Mix to automatically compile JS/CSS on save:
+Use Vite to automatically compile JS/CSS on save:
 
 ```bash
 npm run dev
@@ -79,7 +79,7 @@ npm run dev
 
 ### Running the Linter Tools
 
-This project uses [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) to fix PHP, [Prettier](https://prettier.io/) to fix JS, and [StyleLint](https://stylelint.io/) to lint & fix CSS.
+This project uses [Duster](https://github.com/tighten/duster) to fix PHP, [Prettier](https://prettier.io/) to fix JS, and [StyleLint](https://stylelint.io/) to lint & fix CSS.
 
 To automatically fix PHP:
 
