@@ -1,5 +1,5 @@
 <template>
-    <layout title="Ozzie">
+    <Layout title="Ozzie">
         <BreadCrumb />
         <div class="flex items-start justify-between">
             <p class="mt-6 text-black-lighter">
@@ -15,13 +15,13 @@
         <DebtTable
             :hacktoberfest="hacktoberfest"
             :projects="projects" />
-    </layout>
+    </Layout>
 </template>
 
 <script lang="ts">
 import { PropType } from 'vue';
 import { Project } from '@/ozzie';
-import Layout from '@/Pages/Layout.vue';
+import Layout from '@/components/Layout.vue';
 import DebtTable from '@/components/DebtTable.vue';
 import BreadCrumb from '@/components/BreadCrumb.vue';
 

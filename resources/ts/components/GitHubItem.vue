@@ -45,7 +45,7 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { Issue, Project, PullRequest } from '@/ozzie';
-import * as Layout from '@/Pages/Layout.vue';
+import Layout from '@/components/Layout.vue';
 import ProjectHeader from '@/components/ProjectHeader.vue';
 import Card from '@/components/Card.vue';
 import DebtTable from '@/components/DebtTable.vue';
