@@ -10,7 +10,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^8.0",
+        "php": "^8.0.2",
         "ext-gd": "*",
         "ext-json": "*",
         "bugsnag/bugsnag-laravel": "^2.24",
@@ -41,7 +41,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": "8.0"
+            "php": "8.0.2"
         }
     },
     "extra": {
