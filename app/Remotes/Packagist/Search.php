@@ -10,9 +10,13 @@ use Illuminate\Support\Facades\Http;
 class Search
 {
     protected $namespace;
+
     protected $name;
+
     protected $packagistName;
+
     protected $repoUrl;
+
     protected $url;
 
     public function __construct($namespace, $name)

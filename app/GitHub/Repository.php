@@ -9,6 +9,7 @@ use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
 class Repository
 {
     public $name;
+
     public $namespace;
 
     public function __construct($namespace, $name)

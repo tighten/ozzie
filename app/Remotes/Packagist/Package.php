@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Http;
 class Package
 {
     public $downloadsData;
+
     public $monthlyDownloads = 0;
+
     public $totalDownloads = 0;
 
     protected $url;
