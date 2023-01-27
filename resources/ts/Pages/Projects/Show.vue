@@ -53,7 +53,7 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { Project } from '@/ozzie';
-import Layout from '@/Pages/Layout.vue';
+import Layout from '@/components/Layout.vue';
 import ProjectHeader from '@/components/ProjectHeader.vue';
 import Card from '@/components/Card.vue';
 import CardHeader from '@/components/CardHeader.vue';
