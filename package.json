@@ -1,15 +1,10 @@
 {
     "private": true,
     "scripts": {
-        "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
-        "production": "mix --production",
         "fix-css": "npx stylelint  --fix resources/css/main.css",
-        "fix-js": "npx prettier --write resources/js/app.js"
+        "fix-js": "npx prettier --write resources/js/app.js",
+        "dev": "vite",
+        "build": "vite build"
     },
     "devDependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.8.3",

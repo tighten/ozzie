@@ -74,7 +74,7 @@ php artisan stats:snapshot -f
 Use Laravel Mix to automatically compile JS/CSS on save:
 
 ```bash
-npm run watch
+npm run dev
 ```
 
 ### Running the Linter Tools
