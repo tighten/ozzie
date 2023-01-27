@@ -20,7 +20,7 @@ class CreateProjectSnapshots extends Command
         $projects = $this->projectsToSnapshot();
 
         if ($projects->isEmpty()) {
-            $this->line('No projects need snapshots for '.now()->format('Y-m-d'));
+            $this->line('No projects need snapshots for ' . now()->format('Y-m-d'));
 
             return 0;
         }
@@ -75,7 +75,7 @@ class CreateProjectSnapshots extends Command
 
     protected function createProgressBar($count)
     {
-        $this->line("Getting snapshot for {$count} ".Str::plural('project', $count));
+        $this->line("Getting snapshot for {$count} " . Str::plural('project', $count));
         $this->bar = $this->output->createProgressBar($count);
     }
 
