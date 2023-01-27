@@ -2,7 +2,7 @@
 
 namespace App\Remotes\Packagist;
 
-use App\Project;
+use App\Models\Project;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
