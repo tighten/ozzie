@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\GitHub\Organization;
-use App\Project;
+use App\Models\Project;
 use App\Remotes\Packagist\Search;
 use Illuminate\Console\Command;
 
