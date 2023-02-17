@@ -18,6 +18,11 @@ class Repository
         $this->name = $name;
     }
 
+    public function isArchived()
+    {
+        return GitHubClient::repo()->show($this->namespace, $this->name)['archived'];
+    }
+
     public function issues()
     {
         return collect(GitHubClient::issues()->all($this->namespace, $this->name))

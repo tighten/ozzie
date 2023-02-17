@@ -38,6 +38,7 @@ class FetchProjectStats extends Command
 
         // Fetch GitHub project issues and pull requests
         $githubProject = new Repository($project->namespace, $project->name);
+
         $issues = $this->filterIssues($githubProject->issues());
         $pullRequests = $this->filterPullRequests($githubProject->pullRequests());
 
@@ -51,6 +52,8 @@ class FetchProjectStats extends Command
         $packagist = Package::fromProject($project);
         $project->downloads_total = $packagist->totalDownloads;
         $project->downloads_last_30_days = $packagist->monthlyDownloads;
+
+        $project->is_hidden = $githubProject->isArchived();
 
         $project->save();
     }
