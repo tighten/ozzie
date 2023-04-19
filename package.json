@@ -20,7 +20,7 @@
         "@typescript-eslint/parser": "^4.28.2",
         "@vue/compiler-sfc": "^3.1.4",
         "autoprefixer": "^10.4.2",
-        "browser-sync": "^2.27.5",
+        "browser-sync": "^2.29.1",
         "browser-sync-webpack-plugin": "^2.3.0",
         "cross-env": "^5.1",
         "eslint": "^7.30.0",
