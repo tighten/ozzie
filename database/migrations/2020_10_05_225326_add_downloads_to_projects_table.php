@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDownloadsToProjectsTable extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -20,4 +20,4 @@ class AddDownloadsToProjectsTable extends Migration
             $table->dropColumn(['downloads_total', 'downloads_last_30_days']);
         });
     }
-}
+};

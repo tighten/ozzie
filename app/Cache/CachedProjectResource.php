@@ -3,7 +3,7 @@
 namespace App\Cache;
 
 use App\Http\Resources\ProjectResource;
-use App\Project;
+use App\Models\Project;
 use Illuminate\Support\Facades\Cache;
 
 class CachedProjectResource
