@@ -12,9 +12,11 @@
 
 1. Clone the repo (`git clone git@github.com:tighten/ozzie.git && cd ozzie`)
 2. Install dependencies (`composer install && npm install`)
+3. Run `valet secure` to use `https` for the local domain
+4. Update `APP_URL` in `.env` to use your local valet TLD. By default, it will use `https://ozzie.test`
 3. Create a [GitHub OAuth Application](https://github.com/settings/developers). If you use Valet to serve your application locally, you can use the following settings:
     - Application Name: `Local Ozzie`
-    - Homepage URL: `http://ozzie.test`
+    - Homepage URL: `https://ozzie.test`
     - Application Description: `Local Version of Ozzie`
     - Authorization Callback URL: `http://ozzie.test/callback`
 4. Copy the example `.env` file: `cp .env.example .env` and modify its settings to match your local install, including the client ID and secret from the previous step
