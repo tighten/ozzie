@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class AddDownloadsToSnapshotsTable extends Migration
 {
     public function up()
     {
@@ -20,4 +20,4 @@ return new class extends Migration
             $table->dropColumn(['downloads_total', 'downloads_last_30_days']);
         });
     }
-};
+}

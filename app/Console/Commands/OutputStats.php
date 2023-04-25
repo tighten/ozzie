@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Project;
+use App\Project;
 use Illuminate\Console\Command;
 
 class OutputStats extends Command

@@ -14,7 +14,7 @@ class ParseMarkdown
             return sprintf(
                 'Something went wrong. Unable to parse markdown. <!-- (%s) %s-->',
                 $response->status(),
-                $response->object()?->message
+                optional($response->object())->message
             );
         }
 

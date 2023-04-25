@@ -5,11 +5,7 @@ export function ozzieProjectUrl(packageName: string): string {
     return route('projects.show', { vendor, name });
 }
 
-export function urlForType(
-    packageName: string,
-    type: string,
-    id: number
-): string {
+export function urlForType(packageName: string, type: string, id: number): string {
     const [vendor, name] = packageName.split('/');
     return route(`${type}.show`, { vendor, name, id });
 }

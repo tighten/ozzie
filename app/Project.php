@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;

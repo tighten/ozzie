@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class AddPackagistNameToProjectsTable extends Migration
 {
     public function up()
     {
@@ -19,4 +19,4 @@ return new class extends Migration
             $table->dropColumn('packagist_name');
         });
     }
-};
+}
