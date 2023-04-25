@@ -2,7 +2,7 @@
 
 namespace App\Cache;
 
-use App\Models\Project;
+use App\Project;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 

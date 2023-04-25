@@ -2,16 +2,14 @@
 
 namespace App\Remotes\Packagist;
 
-use App\Models\Project;
+use App\Project;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 
 class Package
 {
     public $downloadsData;
-
     public $monthlyDownloads = 0;
-
     public $totalDownloads = 0;
 
     protected $url;

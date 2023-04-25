@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\GitHub\Repository;
-use App\Models\Project;
+use App\Project;
 use App\Remotes\Packagist\Package;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;

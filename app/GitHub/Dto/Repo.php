@@ -7,13 +7,9 @@ use Spatie\DataTransferObject\DataTransferObject;
 class Repo extends DataTransferObject
 {
     public $namespace;
-
     public $name;
-
     public $full_name;
-
     public $archived;
-
     public $fork;
 
     protected bool $ignoreMissing = true;

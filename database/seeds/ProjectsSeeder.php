@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Project;
+use App\Project;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 

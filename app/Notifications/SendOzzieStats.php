@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\Models\Project;
+use App\Project;
 use Illuminate\Notifications\Notification;
 use NathanHeffley\LaravelSlackBlocks\Messages\SlackMessage;
 
