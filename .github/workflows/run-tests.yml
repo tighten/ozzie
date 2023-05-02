@@ -1,21 +1,3 @@
-# ------------------------------------------------------------------------------
-#  Run Ozzie's tests using PHP 7.4 and 8.0 on macOS, Ubuntu and Windows.
-# ------------------------------------------------------------------------------
-#
-#  Test Environments (correct at 13-Apr-2021):
-#    ubuntu-latest = Ubuntu 20.04 (Current LTS)
-#    ubuntu-18.04 = Ubuntu 18.04 (Last LTS)
-#    macos-latest = macOS Catalina 10.15
-#    windows-latest = Windows Server 2019
-#
-#  Note:
-#    The current macOS version (Big Sur 11.0) is not a supported GitHub runner.
-#
-#  Credits:
-#    https://github.com/shivammathur/setup-php/blob/master/examples/laravel.yml
-#
-# ------------------------------------------------------------------------------
-
 name: Run Tests
 
 on:
@@ -30,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        operating-system: [ubuntu-18.04, ubuntu-latest, windows-latest, macos-latest]
+        operating-system: [ubuntu-latest, windows-latest, macos-latest]
         php-versions: ['8.0']
 
     steps:
