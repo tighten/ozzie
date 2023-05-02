@@ -18,6 +18,7 @@ return [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
+        'scheme' => 'https',
     ],
 
     'postmark' => [
@@ -33,4 +34,5 @@ return [
     'slack' => [
         'webhook_url' => env('SLACK_WEBHOOK_URL'),
     ],
+
 ];

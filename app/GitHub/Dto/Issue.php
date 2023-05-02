@@ -9,10 +9,15 @@ class Issue extends DataTransferObject
     use CastDates;
 
     public $created_at;
+
     public $html_url;
+
     public $pull_request;
+
     public $title;
+
     public $number;
+
     public $body;
 
     /** @var \App\GitHub\Dto\Label[] */
