@@ -14,7 +14,7 @@ class CachedProjectList
             'projects',
             function () {
                 return [
-                    'projects' => Project::all()
+                    'projects' => Project::visible()->get()
                         ->transform(fn ($project) => app(CachedProjectResource::class)($project->packagist_name))
                         ->sortByDesc(fn ($project) => $project['debt_score'])
                         ->values(),

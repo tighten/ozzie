@@ -16,7 +16,7 @@ class FetchProjectStats extends Command
 
     public function handle()
     {
-        $projects = Project::withOutGlobalScope('hidden')->get();
+        $projects = Project::all();
 
         $this->createProgressBar($projects->count());
 
