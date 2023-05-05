@@ -36,6 +36,11 @@ class Project extends Model
         return $this->hasMany(Snapshot::class)->today();
     }
 
+    public function scopeVisible(Builder $query): Builder
+    {
+        return $query->where('is_hidden', false);
+    }
+
     public function scopeFromVendorAndName(Builder $query, string $projectNamespace, string $projectName): Builder
     {
         return $query->where('namespace', $projectNamespace)->where('name', $projectName);
