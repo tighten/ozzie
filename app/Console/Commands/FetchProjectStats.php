@@ -16,7 +16,7 @@ class FetchProjectStats extends Command
 
     public function handle()
     {
-        $projects = Project::all();
+        $projects = Project::withOutGlobalScope('hidden')->get();
 
         $this->createProgressBar($projects->count());
 
@@ -53,7 +53,7 @@ class FetchProjectStats extends Command
         $project->downloads_total = $packagist->totalDownloads;
         $project->downloads_last_30_days = $packagist->monthlyDownloads;
 
-        $project->is_hidden = $githubProject->isArchived();
+        $project->is_hidden = $githubProject->isArchived() || $project->is_hidden;
 
         $project->save();
     }

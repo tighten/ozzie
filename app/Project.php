@@ -26,6 +26,13 @@ class Project extends Model
         'pull_requests' => 'collection',
     ];
 
+    protected static function booted(): void
+    {
+        static::addGlobalScope('hidden', function (Builder $builder) {
+            $builder->where('is_hidden', false);
+        });
+    }
+
     public function snapshots()
     {
         return $this->hasMany(Snapshot::class);
