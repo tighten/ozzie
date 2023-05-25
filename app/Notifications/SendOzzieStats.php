@@ -8,7 +8,7 @@ use NathanHeffley\LaravelSlackBlocks\Messages\SlackMessage;
 
 class SendOzzieStats extends Notification
 {
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['slack'];
     }

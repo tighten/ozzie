@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::table('snapshots', function (Blueprint $table) {
             $table->foreignId('project_id');
@@ -14,7 +14,7 @@ return new class extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::table('snapshots', function (Blueprint $table) {
             $table->dropForeign(['project_id']);

@@ -11,7 +11,7 @@ class OutputStats extends Command
 
     protected $description = 'Output project stats to the console';
 
-    public function handle()
+    public function handle(): int
     {
         $this->info("\n");
 

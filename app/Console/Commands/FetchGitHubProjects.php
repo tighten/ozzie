@@ -23,7 +23,7 @@ class FetchGitHubProjects extends Command
 
     protected $added = 0;
 
-    public function handle()
+    public function handle(): int
     {
         $orgName = config('app.organization');
         $org = new Organization($orgName);

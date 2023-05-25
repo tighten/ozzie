@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
             $table->integer('downloads_total')->unsigned()->default(0)->after('pull_requests');
@@ -14,7 +14,7 @@ return new class extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::table('projects', function (Blueprint $table) {
             $table->dropColumn(['downloads_total', 'downloads_last_30_days']);

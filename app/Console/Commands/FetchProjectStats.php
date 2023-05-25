@@ -14,7 +14,7 @@ class FetchProjectStats extends Command
 
     protected $description = "Fetch each project's stats from GitHub and store in the projects table.";
 
-    public function handle()
+    public function handle(): int
     {
         $projects = Project::all();
 
