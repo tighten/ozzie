@@ -13,5 +13,6 @@ npm-debug.log
 yarn-error.log
 .env
 /.phpunit.cache
+/.phpunit.result.cache
 .php_cs.cache
 projects.json
