@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Project;
-use App\Snapshot;
+use App\Models\Project;
+use App\Models\Snapshot;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 

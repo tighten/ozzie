@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\GitHub\Organization;
-use App\Project;
+use App\Models\Project;
 use App\Remotes\Packagist\Search;
 use Illuminate\Console\Command;
 
@@ -18,7 +18,9 @@ class FetchGitHubProjects extends Command
     - public
     - not archived
     - not a fork";
+
     protected $projects;
+
     protected $added = 0;
 
     public function handle()
