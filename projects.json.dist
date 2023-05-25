@@ -17,14 +17,6 @@
         ]
     },
     {
-        "name": "gistlog",
-        "namespace": "tighten",
-        "packagist_name": "tightenco/gistlog",
-        "maintainers": [
-            "mattstauffer"
-        ]
-    },
-    {
         "name": "jigsaw",
         "namespace": "tighten",
         "packagist_name": "tightenco/jigsaw",
@@ -83,15 +75,6 @@
         "namespace": "tighten",
         "packagist_name": "tightenco/mailthief",
         "maintainers": []
-    },
-    {
-        "name": "novapackages",
-        "namespace": "tighten",
-        "packagist_name": "tightenco/novapackages",
-        "maintainers": [
-            "marcusmoore",
-            "darkboywonder"
-        ]
     },
     {
         "name": "nova-google-analytics",

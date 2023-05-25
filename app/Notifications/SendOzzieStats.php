@@ -37,8 +37,7 @@ class SendOzzieStats extends Notification
                     ]);
             });
 
-        Project::all()
-            ->filter(fn ($project) => ! $project->is_hidden)
+        Project::visible()->get()
             ->filter(fn ($project) => $project->debtScore() > 0)
             ->sortByDesc(function ($project) {
                 return $project->debtScore();
