@@ -22,7 +22,6 @@
         "inertiajs/inertia-laravel": "^0.6.9",
         "laravel/framework": "^10.12",
         "laravel/tinker": "^2.8",
-        "laravel/ui": "^4.2",
         "nathanheffley/laravel-slack-blocks": "^2.3",
         "spatie/data-transfer-object": "^3.8",
         "tightenco/ziggy": "^1.4"
