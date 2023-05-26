@@ -28,6 +28,8 @@ class OutputStats extends Command
         );
 
         $this->info("\n");
+
+        return 0;
     }
 
     protected function formatDebtScore(float $debtScore): string
