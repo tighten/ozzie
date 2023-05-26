@@ -20,16 +20,22 @@ class Maintainer extends Resource
         'github_username',
     ];
 
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        // adds a `projects_count` column to the query result
+        return $query->withCount('projects');
+    }
+
+    public static function afterCreate(NovaRequest $request, Model $model)
+    {
+        $model->user_id = 5;
+    }
+
     public function menu(Request $request)
     {
         return parent::menu($request)->withBadge(function () {
             return static::$model::count();
         });
-    }
-
-    public static function indexQuery(NovaRequest $request, $query) {
-        // adds a `projects_count` column to the query result
-        return $query->withCount('projects');
     }
 
     public function fields(NovaRequest $request)
@@ -41,12 +47,6 @@ class Maintainer extends Resource
             BelongsToMany::make('Projects'),
         ];
     }
-
-    public static function afterCreate(NovaRequest $request, Model $model)
-    {
-        $model->user_id = 5;
-    }
-
 
     public function cards(NovaRequest $request)
     {

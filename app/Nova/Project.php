@@ -17,7 +17,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Project extends Resource
 {
-    public static $model = \App\Project::class;
+    public static $model = \App\Models\Project::class;
 
     public static $title = 'name';
 
@@ -25,17 +25,17 @@ class Project extends Resource
         'name',
     ];
 
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        // adds a `maintainers_count` column to the query result
+        return $query->withCount('maintainers');
+    }
+
     public function menu(Request $request)
     {
         return parent::menu($request)->withBadge(function () {
             return static::$model::count();
         });
-    }
-
-    public static function indexQuery(NovaRequest $request, $query)
-    {
-        // adds a `maintainers_count` column to the query result
-        return $query->withCount('maintainers');
     }
 
     public function fields(NovaRequest $request)
@@ -72,6 +72,7 @@ class Project extends Resource
                     if ($updatedAt === null) {
                         return null;
                     }
+
                     return $updatedAt->diffForHumans();
                 }),
 

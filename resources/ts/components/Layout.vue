@@ -25,10 +25,14 @@
                         <UserMenu :user="user" />
                     </div>
                     <div v-else>
-                        <a :href="$route('auth.github')">
+                        <a
+                            :href="$route('auth.github')"
+                            @click="loading = true">
                             <div class="flex h-6 items-center">
                                 <div><IconGitHub /></div>
-                                <div class="pl-2 pt-1">Tighten Login</div>
+                                <div class="pl-2 pt-1">
+                                    {{ loginButtonText }}
+                                </div>
                             </div>
                         </a>
                     </div>
@@ -44,7 +48,6 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
 import { User } from '@/ozzie';
 import UserMenu from '@/components/UserMenu.vue';
 import IconGitHub from '@/components/IconGitHub.vue';
@@ -60,9 +63,18 @@ export default {
             type: String,
             default: 'Ozzie',
         },
-        user: {
-            type: Object as PropType<User> | null,
-            required: true,
+    },
+    data(): { loading: boolean } {
+        return {
+            loading: false,
+        };
+    },
+    computed: {
+        user(): User | null {
+            return this.$page.props.user;
+        },
+        loginButtonText(): string {
+            return this.loading ? 'Loading...' : 'Tighten Login';
         },
     },
     watch: {

@@ -6,11 +6,10 @@ export declare type Label = {
 };
 
 export declare type User = {
-    html_url: URL,
-    login: string,
-    avatar_url: URL,
-    username: string,
     name: string,
+    email: string,
+    github_username: string,
+    avatar_url: URL,
 }
 
 export declare type BaseIssue = {

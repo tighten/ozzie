@@ -40,7 +40,7 @@ class Project extends Model
     public function scopeVisible(Builder $query): Builder
     {
         return $query->where('is_hidden', false);
-	}
+    }
 
     public function maintainers()
     {
@@ -55,7 +55,7 @@ class Project extends Model
     public function scopeForPackagist($query, $vendor, $name = null)
     {
         // @todo test this
-        if (!$name) {
+        if (! $name) {
             [$vendor, $name] = explode('/', $vendor);
         }
 
@@ -118,7 +118,7 @@ class Project extends Model
 
     public function issue(int $id): array
     {
-        if (!($issue = $this->issues->where('number', $id)->first())) {
+        if (! ($issue = $this->issues->where('number', $id)->first())) {
             throw new NotFoundHttpException("Issue number {$id} does not exist");
         }
 
@@ -127,7 +127,7 @@ class Project extends Model
 
     public function pullRequest(int $id): array
     {
-        if (!($pullRequest = $this->pull_requests->where('number', $id)->first())) {
+        if (! ($pullRequest = $this->pull_requests->where('number', $id)->first())) {
             throw new NotFoundHttpException("Pull request number {$id} does not exist");
         }
 

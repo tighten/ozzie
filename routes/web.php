@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\IssueController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\PullRequestController;
@@ -12,12 +13,10 @@ Route::prefix('projects/{vendor}/{name}')->group(function () {
     Route::get('prs/{id}', [PullRequestController::class, 'show'])->name('pull-request.show');
 });
 
-Route::group(['namespace' => 'Auth'], function () {
-    Route::get('auth/redirect', 'LoginController@redirectToProvider')->name('auth.github');
-    Route::get('auth/callback', 'LoginController@handleProviderCallback');
-});
+Route::get('auth/redirect', [LoginController::class, 'redirectToProvider'])->name('auth.github');
+Route::get('auth/callback', [LoginController::class, 'handleProviderCallback']);
 
-Route::any('logout', 'Auth\LoginController@logout')->name('logout');
+Route::any('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('nova/login', function () {
     return redirect()->route('auth.github');

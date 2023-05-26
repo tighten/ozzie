@@ -2,7 +2,7 @@
 
 namespace App\Nova\Metrics;
 
-use App\Project;
+use App\Models\Project;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Partition;
 

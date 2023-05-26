@@ -15,7 +15,7 @@ class MaintainerObserver
     public function updated(Maintainer $maintainer)
     {
         // Make sure we don't get in a loop
-        if (!$maintainer->isDirty('user_id')) {
+        if (! $maintainer->isDirty('user_id')) {
             $this->updateMatchingUser($maintainer);
         }
     }

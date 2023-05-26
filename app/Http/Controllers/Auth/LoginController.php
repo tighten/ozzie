@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Maintainer;
-use App\Providers\RouteServiceProvider;
 use App\User;
-use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Laravel\Socialite\Facades\Socialite;
@@ -14,6 +12,9 @@ class LoginController
 {
     public function redirectToProvider()
     {
+        // Store current URL in session to redirect the user back after auth
+        session()->put('url.intended', url()->previous());
+
         return Socialite::driver('github')->scopes(['read:org'])->redirect();
     }
 
@@ -52,13 +53,13 @@ class LoginController
 
         Auth::login($user, remember: true);
 
-        return redirect()->intended('/');
+        return redirect()->intended();
     }
 
     public function logout()
     {
         Auth::logout();
 
-        return redirect()->to('/');
+        return redirect()->back();
     }
 }

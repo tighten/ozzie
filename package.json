@@ -48,7 +48,7 @@
         "printWidth": 80
     },
     "dependencies": {
-        "dotenv": "^16.0.3"
+        "dotenv": "^16.0.3",
         "@headlessui/vue": "^1.7.7",
         "@heroicons/vue": "^2.0.13"
     }

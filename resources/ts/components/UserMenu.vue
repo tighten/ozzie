@@ -23,7 +23,7 @@
                 ">
                 <div>
                     <img
-                        class="inline-block h-9 w-9 rounded-full"
+                        class="inline-block h-8 w-8 rounded-full"
                         :src="user.avatar_url"
                         alt="">
                 </div>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="py-1">
                     <MenuItem v-slot="{ active }">
-                        <a href="nova">
+                        <a href="/nova">
                             <div
                                 :class="[
                                     active

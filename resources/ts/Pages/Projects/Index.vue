@@ -10,28 +10,17 @@
                 v-if="hacktoberfest"
                 :href="hactoberfestQuery()"
                 target="_blank"
-                class="
-                    hover-pop
-                    bg-grey-blue
-                    px-4
-                    py-3
-                    text-black-lighter
-                    no-underline
-                    hover:bg-halloween-orange hover:text-white
-                ">
+                class="hover-pop bg-grey-blue px-4 py-3 text-black-lighter no-underline hover:bg-halloween-orange hover:text-white">
                 Hacktoberfest is here! 👻
             </a>
         </div>
-        <DebtTable
-            :hacktoberfest="hacktoberfest"
-            :projects="projects" />
+        <DebtTable :hacktoberfest="hacktoberfest" :projects="projects" />
     </Layout>
 </template>
 
 <script lang="ts">
 import { PropType } from 'vue';
 import { Project } from '@/ozzie';
-import { User } from '@/ozzie';
 import Layout from '@/components/Layout.vue';
 import DebtTable from '@/components/DebtTable.vue';
 import BreadCrumb from '@/components/BreadCrumb.vue';
@@ -53,10 +42,6 @@ export default {
         },
         organization: {
             type: String,
-            required: true,
-        },
-        user: {
-            type: Object as PropType<User> | null,
             required: true,
         },
     },

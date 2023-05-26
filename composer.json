@@ -31,7 +31,7 @@
         "nathanheffley/laravel-slack-blocks": "^2.3",
         "laravel/nova": "~4.0",
         "laravel/socialite": "^5.5",
-        "laravel/ui": "^3.4",
+        "laravel/ui": "^4.0",
         "spatie/data-transfer-object": "^3.8",
         "tightenco/ziggy": "^1.4"
     },
