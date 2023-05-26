@@ -13,21 +13,33 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest, windows-latest, macos-latest]
-        php-versions: ['8.0']
+        php-versions: ['8.2']
 
     steps:
-    - name: Checkout code
+    - name: Checkout Code
       uses: actions/checkout@v2
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
           php-version: ${{ matrix.php-versions }}
-          extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, fileinfo
+          extensions: posix, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, fileinfo, sodium
           coverage: none
 
-    - name: Install dependencies
+    - name: Install Composer Dependencies
       run: composer install --prefer-dist --no-interaction --no-progress
 
-    - name: Run PHP tests
+    - name: Install Frontend Dependencies
+      run: npm install
+
+    - name: Build Assets
+      run: npm run build
+
+    - name: Copy .env
+      run: cp .env.example .env
+
+    - name: Generate Key
+      run: php artisan key:generate
+
+    - name: Run PHP Tests
       run: vendor/bin/phpunit

@@ -12,8 +12,10 @@ class SendStatsToSlack extends Command
 
     protected $description = 'Send Ozzie stats to Slack';
 
-    public function handle()
+    public function handle(): int
     {
         (new OrgSlack)->notify(new SendOzzieStats);
+
+        return 0;
     }
 }

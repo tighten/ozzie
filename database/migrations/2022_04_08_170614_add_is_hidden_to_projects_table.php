@@ -6,14 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
             $table->boolean('is_hidden')->default(false)->after('packagist_name');
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::table('projects', function (Blueprint $table) {
             $table->dropColumn('is_hidden');

@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProjectResource extends JsonResource
 {
-    public function toArray($request)
+    public function toArray($request): array
     {
         self::withoutWrapping();
         $sparkline = new Sparkline;

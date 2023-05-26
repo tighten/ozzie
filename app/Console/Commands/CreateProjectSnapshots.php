@@ -15,7 +15,7 @@ class CreateProjectSnapshots extends Command
 
     protected $bar;
 
-    public function handle()
+    public function handle(): int
     {
         $projects = $this->projectsToSnapshot();
 
