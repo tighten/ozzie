@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Project;
+use App\Models\Project;
 use Illuminate\Console\Command;
 
 class OutputStats extends Command
@@ -11,7 +11,7 @@ class OutputStats extends Command
 
     protected $description = 'Output project stats to the console';
 
-    public function handle()
+    public function handle(): int
     {
         $this->info("\n");
 
@@ -28,6 +28,8 @@ class OutputStats extends Command
         );
 
         $this->info("\n");
+
+        return 0;
     }
 
     protected function formatDebtScore(float $debtScore): string

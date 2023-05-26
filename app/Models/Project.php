@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
@@ -36,6 +36,11 @@ class Project extends Model
     {
         return $this->hasMany(Snapshot::class)->today();
     }
+
+    public function scopeVisible(Builder $query): Builder
+    {
+        return $query->where('is_hidden', false);
+	}
 
     public function maintainers()
     {

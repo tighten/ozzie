@@ -31,10 +31,10 @@
 
         <title>Ozzie - {{ config('app.name') }}</title>
         @routes
+        @vite('resources/ts/app.ts')
     </head>
 
     <body class="bg-frost">
         @inertia
-        <script src="{{ asset('js/app.js') }}" defer></script>
     </body>
 </html>

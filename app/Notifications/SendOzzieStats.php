@@ -2,13 +2,13 @@
 
 namespace App\Notifications;
 
-use App\Project;
+use App\Models\Project;
 use Illuminate\Notifications\Notification;
 use NathanHeffley\LaravelSlackBlocks\Messages\SlackMessage;
 
 class SendOzzieStats extends Notification
 {
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['slack'];
     }
@@ -37,8 +37,7 @@ class SendOzzieStats extends Notification
                     ]);
             });
 
-        Project::all()
-            ->filter(fn ($project) => ! $project->is_hidden)
+        Project::visible()->get()
             ->filter(fn ($project) => $project->debtScore() > 0)
             ->sortByDesc(function ($project) {
                 return $project->debtScore();

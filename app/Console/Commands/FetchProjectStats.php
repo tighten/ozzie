@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\GitHub\Repository;
-use App\Project;
+use App\Models\Project;
 use App\Remotes\Packagist\Package;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -14,7 +14,7 @@ class FetchProjectStats extends Command
 
     protected $description = "Fetch each project's stats from GitHub and store in the projects table.";
 
-    public function handle()
+    public function handle(): int
     {
         $projects = Project::all();
 
@@ -53,7 +53,7 @@ class FetchProjectStats extends Command
         $project->downloads_total = $packagist->totalDownloads;
         $project->downloads_last_30_days = $packagist->monthlyDownloads;
 
-        $project->is_hidden = $githubProject->isArchived();
+        $project->is_hidden = $githubProject->isArchived() || $project->is_hidden;
 
         $project->save();
     }
