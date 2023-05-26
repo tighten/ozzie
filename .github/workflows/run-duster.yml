@@ -1,4 +1,4 @@
-name: Duster Lint
+name: Run Duster
 
 on:
     push:
