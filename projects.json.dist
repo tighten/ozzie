@@ -1,39 +1,12 @@
 [
     {
-        "name": ".github",
+        "name": "checkmate",
         "namespace": "tighten",
-        "packagist_name": "tighten/.github",
-        "maintainers": []
-    },
-    {
-        "name": "audiovisual",
-        "namespace": "tighten",
-        "packagist_name": "tighten/audiovisual",
-        "maintainers": []
-    },
-    {
-        "name": "automation-scripts",
-        "namespace": "tighten",
-        "packagist_name": "tighten/automation-scripts",
-        "maintainers": []
-    },
-    {
-        "name": "blade-style-guide",
-        "namespace": "tighten",
-        "packagist_name": "tighten/blade-style-guide",
-        "maintainers": []
-    },
-    {
-        "name": "borsh-php",
-        "namespace": "tighten",
-        "packagist_name": "tighten/borsh-php",
-        "maintainers": []
-    },
-    {
-        "name": "builtwithjigsaw",
-        "namespace": "tighten",
-        "packagist_name": "tighten/builtwithjigsaw",
-        "maintainers": []
+        "packagist_name": "tightenco/checkmate",
+        "maintainers": [
+            "ctroms",
+            "marcusmoore"
+        ]
     },
     {
         "name": "collect",
@@ -44,85 +17,12 @@
         ]
     },
     {
-        "name": "configs",
-        "namespace": "tighten",
-        "packagist_name": "tighten/configs",
-        "maintainers": []
-    },
-    {
-        "name": "consoles",
-        "namespace": "tighten",
-        "packagist_name": "tighten/consoles",
-        "maintainers": []
-    },
-    {
-        "name": "craft-build-query",
-        "namespace": "tighten",
-        "packagist_name": "tighten/craft-build-query",
-        "maintainers": []
-    },
-    {
-        "name": "dev-battle-landing",
-        "namespace": "tighten",
-        "packagist_name": "tighten/dev-battle-landing",
-        "maintainers": []
-    },
-    {
-        "name": "duster",
-        "namespace": "tighten",
-        "packagist_name": "tightenco/duster",
-        "maintainers": []
-    },
-    {
-        "name": "duster-action",
-        "namespace": "tighten",
-        "packagist_name": "tighten/duster-action",
-        "maintainers": []
-    },
-    {
-        "name": "easy-embeddable-polls",
-        "namespace": "tighten",
-        "packagist_name": "tighten/easy-embeddable-polls",
-        "maintainers": []
-    },
-    {
-        "name": "entirely-for-test-purposes",
-        "namespace": "tighten",
-        "packagist_name": "tighten/entirely-for-test-purposes",
-        "maintainers": []
-    },
-    {
-        "name": "giscus",
-        "namespace": "tighten",
-        "packagist_name": "tighten/giscus",
-        "maintainers": []
-    },
-    {
-        "name": "hyperspoon",
-        "namespace": "tighten",
-        "packagist_name": "tighten/hyperspoon",
-        "maintainers": []
-    },
-    {
-        "name": "intro-to-react",
-        "namespace": "tighten",
-        "packagist_name": "tighten/intro-to-react",
-        "maintainers": []
-    },
-    {
-        "name": "jazz",
-        "namespace": "tighten",
-        "packagist_name": "tighten/jazz",
-        "maintainers": []
-    },
-    {
         "name": "jigsaw",
         "namespace": "tighten",
         "packagist_name": "tightenco/jigsaw",
         "maintainers": [
             "damiani",
-            "bakerkretzmar",
-            "darkboywonder"
+            "bakerkretzmar"
         ]
     },
     {
@@ -131,15 +31,8 @@
         "packagist_name": "tightenco/jigsaw-blog-template",
         "maintainers": [
             "damiani",
-            "bakerkretzmar",
-            "darkboywonder"
+            "bakerkretzmar"
         ]
-    },
-    {
-        "name": "jigsaw-collections-demo",
-        "namespace": "tighten",
-        "packagist_name": "tighten/jigsaw-collections-demo",
-        "maintainers": []
     },
     {
         "name": "jigsaw-docs-template",
@@ -147,8 +40,7 @@
         "packagist_name": "tightenco/jigsaw-docs-template",
         "maintainers": [
             "damiani",
-            "bakerkretzmar",
-            "darkboywonder"
+            "bakerkretzmar"
         ]
     },
     {
@@ -157,148 +49,66 @@
         "packagist_name": "tightenco/jigsaw-site",
         "maintainers": [
             "damiani",
-            "bakerkretzmar",
-            "darkboywonder"
+            "bakerkretzmar"
         ]
-    },
-    {
-        "name": "json-api-examples",
-        "namespace": "tighten",
-        "packagist_name": "tighten/json-api-examples",
-        "maintainers": []
     },
     {
         "name": "lambo",
         "namespace": "tighten",
         "packagist_name": "tightenco/lambo",
         "maintainers": [
-            "mattstauffer"
+            "mattstauffer",
+            "jonsugar"
         ]
-    },
-    {
-        "name": "laravel-deploy-preview",
-        "namespace": "tighten",
-        "packagist_name": "tighten/laravel-deploy-preview",
-        "maintainers": []
-    },
-    {
-        "name": "laravel-mix-jigsaw",
-        "namespace": "tighten",
-        "packagist_name": "tighten/laravel-mix-jigsaw",
-        "maintainers": []
-    },
-    {
-        "name": "laravel-preset-jest",
-        "namespace": "tighten",
-        "packagist_name": "tighten/laravel-preset-jest",
-        "maintainers": []
-    },
-    {
-        "name": "laravelm1",
-        "namespace": "tighten",
-        "packagist_name": "tighten/laravelm1",
-        "maintainers": []
     },
     {
         "name": "laravelversions",
         "namespace": "tighten",
-        "packagist_name": "tighten/laravelversions",
-        "maintainers": []
-    },
-    {
-        "name": "learning-laravel",
-        "namespace": "tighten",
-        "packagist_name": "tighten/learning-laravel",
-        "maintainers": []
-    },
-    {
-        "name": "learnwebdevelopment",
-        "namespace": "tighten",
-        "packagist_name": "tighten/learnwebdevelopment",
-        "maintainers": []
-    },
-    {
-        "name": "liftoff",
-        "namespace": "tighten",
-        "packagist_name": "tighten/liftoff",
-        "maintainers": []
+        "packagist_name": "tightenco/laravelversions",
+        "maintainers": [
+            "mattstauffer",
+            "driftingly"
+        ]
     },
     {
         "name": "mailthief",
         "namespace": "tighten",
         "packagist_name": "tightenco/mailthief",
-        "maintainers": [
-            "mattstauffer"
-        ]
-    },
-    {
-        "name": "mon-petit",
-        "namespace": "tighten",
-        "packagist_name": "tighten/mon-petit",
-        "maintainers": []
-    },
-    {
-        "name": "new-php-web-site",
-        "namespace": "tighten",
-        "packagist_name": "tighten/new-php-web-site",
         "maintainers": []
     },
     {
         "name": "nova-google-analytics",
         "namespace": "tighten",
         "packagist_name": "tightenco/nova-google-analytics",
-        "maintainers": []
-    },
-    {
-        "name": "nova-package-development",
-        "namespace": "tighten",
-        "packagist_name": "tighten/nova-package-development",
-        "maintainers": []
+        "maintainers": [
+            "mattstauffer",
+            "krievley"
+        ]
     },
     {
         "name": "nova-package-discovery",
         "namespace": "tighten",
         "packagist_name": "tightenco/nova-package-discovery",
-        "maintainers": []
-    },
-    {
-        "name": "nova-releases",
-        "namespace": "tighten",
-        "packagist_name": "tightenco/nova-releases",
-        "maintainers": []
+        "maintainers": [
+            "mattstauffer"
+        ]
     },
     {
         "name": "nova-stripe",
         "namespace": "tighten",
         "packagist_name": "tightenco/nova-stripe",
-        "maintainers": []
-    },
-    {
-        "name": "nova-tighten-themes",
-        "namespace": "tighten",
-        "packagist_name": "tighten/nova-tighten-themes",
-        "maintainers": []
-    },
-    {
-        "name": "omgphp",
-        "namespace": "tighten",
-        "packagist_name": "tighten/omgphp",
-        "maintainers": []
+        "maintainers": [
+            "faxblaster",
+            "rissajackson"
+        ]
     },
     {
         "name": "onramp",
         "namespace": "tighten",
         "packagist_name": "tightenco/onramp",
         "maintainers": [
-            "mattstauffer",
-            "tammytee"
+            "mattstauffer"
         ]
-    },
-    {
-        "name": "overload",
-        "namespace": "tighten",
-        "packagist_name": "tightenco/overload",
-        "maintainers": []
     },
     {
         "name": "ozzie",
@@ -306,81 +116,15 @@
         "packagist_name": "tightenco/ozzie",
         "maintainers": [
             "jakebathman",
-            "sbine"
+            "sbine",
+            "jonsugar"
+
         ]
-    },
-    {
-        "name": "parental",
-        "namespace": "tighten",
-        "packagist_name": "tighten/parental",
-        "maintainers": []
-    },
-    {
-        "name": "php-package-skeleton",
-        "namespace": "tighten",
-        "packagist_name": "tighten/php-package-skeleton",
-        "maintainers": []
-    },
-    {
-        "name": "phpreleases",
-        "namespace": "tighten",
-        "packagist_name": "tighten/phpreleases",
-        "maintainers": []
-    },
-    {
-        "name": "phpreleases-action",
-        "namespace": "tighten",
-        "packagist_name": "tighten/phpreleases-action",
-        "maintainers": []
-    },
-    {
-        "name": "postit",
-        "namespace": "tighten",
-        "packagist_name": "tighten/postit",
-        "maintainers": []
     },
     {
         "name": "quicksand",
         "namespace": "tighten",
         "packagist_name": "tightenco/quicksand",
-        "maintainers": [
-            "mattstauffer"
-        ]
-    },
-    {
-        "name": "react-gif-search-engine",
-        "namespace": "tighten",
-        "packagist_name": "tighten/react-gif-search-engine",
-        "maintainers": []
-    },
-    {
-        "name": "react-gif-search-engine-old",
-        "namespace": "tighten",
-        "packagist_name": "tighten/react-gif-search-engine-old",
-        "maintainers": []
-    },
-    {
-        "name": "react-native-time-input",
-        "namespace": "tighten",
-        "packagist_name": "tighten/react-native-time-input",
-        "maintainers": []
-    },
-    {
-        "name": "search",
-        "namespace": "tighten",
-        "packagist_name": "tighten/search",
-        "maintainers": []
-    },
-    {
-        "name": "simplecast-php",
-        "namespace": "tighten",
-        "packagist_name": "tightenco/simplecast",
-        "maintainers": []
-    },
-    {
-        "name": "stage5",
-        "namespace": "tighten",
-        "packagist_name": "tighten/stage5",
         "maintainers": []
     },
     {
@@ -402,48 +146,28 @@
         ]
     },
     {
-        "name": "tallstack",
-        "namespace": "tighten",
-        "packagist_name": "tighten/tallstack",
-        "maintainers": []
-    },
-    {
-        "name": "tighten-coding-standard",
-        "namespace": "tighten",
-        "packagist_name": "tightenco/tighten-coding-standard",
-        "maintainers": []
-    },
-    {
         "name": "tlint",
         "namespace": "tighten",
         "packagist_name": "tightenco/tlint",
         "maintainers": [
             "andrewmile",
-            "loganhenson"
+            "driftingly"
         ]
     },
     {
         "name": "tlint-plugin",
         "namespace": "tighten",
-        "packagist_name": "tighten/tlint-plugin",
-        "maintainers": []
+        "packagist_name": "tightenco/tlint-plugin",
+        "maintainers": [
+            "bakerkretzmar",
+            "faxblaster",
+            "rissajackson"
+        ]
     },
     {
         "name": "tlint-sublime-plugin",
         "namespace": "tighten",
-        "packagist_name": "tighten/tlint-sublime-plugin",
-        "maintainers": []
-    },
-    {
-        "name": "valet-fallback",
-        "namespace": "tighten",
-        "packagist_name": "tighten/valet-fallback",
-        "maintainers": []
-    },
-    {
-        "name": "whyphp",
-        "namespace": "tighten",
-        "packagist_name": "tighten/whyphp",
+        "packagist_name": "tightenco/tlint-sublime-plugin",
         "maintainers": []
     },
     {
@@ -451,9 +175,9 @@
         "namespace": "tighten",
         "packagist_name": "tightenco/ziggy",
         "maintainers": [
+            "jakebathman",
             "mattstauffer",
-            "bakerkretzmar",
-            "jakebathman"
+            "bakerkretzmar"
         ]
     }
 ]

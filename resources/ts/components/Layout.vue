@@ -11,21 +11,9 @@
                             <span class="font-sans text-2xl font-semibold uppercase leading-normal tracking-wide text-black-light">zzie</span>
                         </h1>
                     </InertiaLink>
-                    <div v-if="user">
-                        <UserMenu :user="user" />
-                    </div>
-                    <div v-else>
-                        <a
-                            :href="$route('auth.github')"
-                            @click="loading = true">
-                            <div class="flex h-6 items-center">
-                                <div><IconGitHub /></div>
-                                <div class="pl-2 pt-1">
-                                    {{ loginButtonText }}
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                    <p class="font-sans font-normal italic leading-normal tracking-tight text-grey-blue-darkest">
+                        Addressing our open source debt
+                    </p>
                 </div>
             </section>
         </div>
@@ -38,33 +26,12 @@
 </template>
 
 <script lang="ts">
-import { User } from '@/ozzie';
-import UserMenu from '@/components/UserMenu.vue';
-import IconGitHub from '@/components/IconGitHub.vue';
-
 export default {
     name: 'Layout',
-    components: {
-        UserMenu,
-        IconGitHub,
-    },
     props: {
         title: {
             type: String,
             default: 'Ozzie',
-        },
-    },
-    data(): { loading: boolean } {
-        return {
-            loading: false,
-        };
-    },
-    computed: {
-        user(): User | null {
-            return this.$page.props.user;
-        },
-        loginButtonText(): string {
-            return this.loading ? 'Loading...' : 'Tighten Login';
         },
     },
     watch: {

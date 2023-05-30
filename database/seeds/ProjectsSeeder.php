@@ -21,6 +21,7 @@ class ProjectsSeeder extends Seeder
                     'name' => $project['name'],
                 ], [
                     'packagist_name' => $project['packagist_name'] ?? null,
+                    'maintainers' => $project['maintainers'] ?? [],
                 ]);
 
                 if ($project->wasRecentlyCreated) {
