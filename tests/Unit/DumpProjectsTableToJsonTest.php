@@ -11,11 +11,10 @@ use Tests\TestCase;
 
 class DumpProjectsTableToJsonTest extends TestCase
 {
-
     use RefreshDatabase;
 
     /** @test */
-    function it_dumps_non_hidden_projects_to_json(): void
+    public function it_dumps_non_hidden_projects_to_json(): void
     {
         Storage::fake('root');
 
@@ -54,7 +53,7 @@ class DumpProjectsTableToJsonTest extends TestCase
     }
 
     /** @test */
-    function using_all_flag_dumps_all_projects(): void
+    public function using_all_flag_dumps_all_projects(): void
     {
         Storage::fake('root');
 
