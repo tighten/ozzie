@@ -7,6 +7,7 @@ use App\GitHub\Dto\PullRequest;
 use App\Maintainer;
 use Carbon\CarbonPeriod;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
@@ -15,6 +16,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Project extends Model
 {
+    use HasFactory;
+
     protected $guarded = [];
 
     protected $appends = [
