@@ -3,7 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -30,7 +30,9 @@ class User extends Resource
         return [
             ID::make()->sortable(),
 
-            Gravatar::make()->maxWidth(50),
+            Avatar::make('avatar_url')->disableDownload()->maxWidth(50)->thumbnail(function () {
+                return $this->avatar_url ?? 'https://www.gravatar.com/avatar/' . md5($this->email) . '?s=50&d=mm';
+            }),
 
             Text::make('Name')->sortable(),
 

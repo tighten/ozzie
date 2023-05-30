@@ -3,8 +3,7 @@
         <BreadCrumb />
         <div class="flex items-start justify-between">
             <p class="mt-6 text-black-lighter">
-                Projects in descending order of "debt" (how much attention it
-                needs)
+                Projects in descending order of "debt" (how much attention it needs)
             </p>
             <a
                 v-if="hacktoberfest"
@@ -14,7 +13,9 @@
                 Hacktoberfest is here! 👻
             </a>
         </div>
-        <DebtTable :hacktoberfest="hacktoberfest" :projects="projects" />
+        <DebtTable
+            :hacktoberfest="hacktoberfest"
+            :projects="projects" />
     </Layout>
 </template>
 

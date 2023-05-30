@@ -14,7 +14,6 @@ class CachedProjectList
             'projects' => $this->getProjects(),
             'hacktoberfest' => Carbon::now()->isSameMonth(Carbon::parse('October')),
             'organization' => config('app.organization'),
-            'user' => auth()->user(),
         ];
     }
 

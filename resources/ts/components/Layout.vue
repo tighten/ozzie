@@ -7,18 +7,8 @@
                         :href="$route('projects.index')"
                         method="get">
                         <h1 class="flex items-center">
-                            <span
-                                class="text-5xl font-light text-indigo">O</span>
-                            <span
-                                class="
-                                    font-sans
-                                    text-2xl
-                                    font-semibold
-                                    uppercase
-                                    leading-normal
-                                    tracking-wide
-                                    text-black-light
-                                ">zzie</span>
+                            <span class="text-5xl font-light text-indigo">O</span>
+                            <span class="font-sans text-2xl font-semibold uppercase leading-normal tracking-wide text-black-light">zzie</span>
                         </h1>
                     </InertiaLink>
                     <div v-if="user">

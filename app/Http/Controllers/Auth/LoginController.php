@@ -6,6 +6,7 @@ use App\Maintainer;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginController
@@ -59,6 +60,11 @@ class LoginController
     public function logout()
     {
         Auth::logout();
+
+        // If logging out from Nova, redirect to public root
+        if (Str::contains(url()->previous(), url('nova'))) {
+            return redirect()->route('projects.index');
+        }
 
         return redirect()->back();
     }

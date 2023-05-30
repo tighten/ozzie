@@ -75,7 +75,6 @@ class Project extends Resource
 
                     return $updatedAt->diffForHumans();
                 }),
-
         ];
     }
 
