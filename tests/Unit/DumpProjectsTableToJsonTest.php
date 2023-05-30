@@ -18,14 +18,14 @@ class DumpProjectsTableToJsonTest extends TestCase
     {
         Storage::fake('root');
 
-        $project = Project::factory()->create();
-        $maintainer = Maintainer::factory()->create();
+        $project = Project::factory()->create(['name' => 'Whistling']);
+        $maintainer = Maintainer::factory()->create(['github_username' => 'Suzy Sheep']);
         $project->maintainers()->attach($maintainer);
 
         // Seed an extra (unattached) maintainer and a hidden project,
         // neither of which should be included in the output JSON
-        $otherMaintainer = Maintainer::factory()->create();
-        $otherProject = Project::factory()->hidden()->create();
+        $otherProject = Project::factory()->hidden()->create(['name' => 'ChopTheTreeDown']);
+        $otherMaintainer = Maintainer::factory()->create(['github_username' => 'Zoë Zebra']);
 
         Artisan::call('projects:json');
 
