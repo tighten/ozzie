@@ -10,11 +10,13 @@ class ExampleTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    /**
+     * A basic test example.
+     *
+     * @test
+     */
     public function the_application_returns_a_successful_response(): void
     {
-        $this->withoutVite();
-
         $response = $this->get('/');
 
         $response->assertStatus(200);

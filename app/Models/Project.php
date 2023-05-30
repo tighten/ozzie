@@ -4,20 +4,15 @@ namespace App\Models;
 
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
-use App\Maintainer;
 use Carbon\CarbonPeriod;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Project extends Model
 {
-    use HasFactory;
-
     protected $guarded = [];
 
     protected $appends = [
@@ -27,6 +22,7 @@ class Project extends Model
     protected $casts = [
         'issues' => 'collection',
         'is_hidden' => 'boolean',
+        'maintainers' => 'array',
         'pull_requests' => 'collection',
     ];
 
@@ -43,11 +39,6 @@ class Project extends Model
     public function scopeVisible(Builder $query): Builder
     {
         return $query->where('is_hidden', false);
-    }
-
-    public function maintainers()
-    {
-        return $this->belongsToMany(Maintainer::class);
     }
 
     public function scopeFromVendorAndName(Builder $query, string $projectNamespace, string $projectName): Builder
@@ -163,18 +154,5 @@ class Project extends Model
         if ($this->downloads_total + $this->downloads_last_30_days > 0) {
             return true;
         }
-    }
-
-    public function scopeExclude($query, $value = [])
-    {
-        return $query->select(array_diff(
-            $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable()),
-            Arr::wrap($value)
-        ));
-    }
-
-    public function scopeNotHidden($query)
-    {
-        return $query->where('is_hidden', false);
     }
 }

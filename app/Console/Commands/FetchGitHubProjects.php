@@ -51,6 +51,7 @@ class FetchGitHubProjects extends Command
                         'namespace' => $repo->namespace,
                         'name' => $repo->name,
                         'packagist_name' => null,
+                        'maintainers' => [],
                         'issues' => [],
                         'pull_requests' => [],
                     ]);

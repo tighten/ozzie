@@ -26,19 +26,17 @@ jobs:
           extensions: posix, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, fileinfo, sodium
           coverage: none
 
-    - name: Copy .env
-      run: cp .env.example .env
-
     - name: Install Composer Dependencies
-      run: |
-        composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
-        composer install --no-interaction
+      run: composer install --prefer-dist --no-interaction --no-progress
 
     - name: Install Frontend Dependencies
       run: npm install
 
     - name: Build Assets
       run: npm run build
+
+    - name: Copy .env
+      run: cp .env.example .env
 
     - name: Generate Key
       run: php artisan key:generate
