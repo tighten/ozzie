@@ -26,12 +26,9 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:image" content="{{ url('ozzie-opengraph.png') }}">
 
-        <link rel="stylesheet" type="text/css" href="/css/main.css">
-        <link rel="stylesheet" type="text/css" href="/css/vendor.css">
-
         <title>Ozzie - {{ config('app.name') }}</title>
         @routes
-        @vite('resources/ts/app.ts')
+        @vite(['resources/ts/app.css', 'resources/ts/app.ts'])
     </head>
 
     <body class="bg-frost">

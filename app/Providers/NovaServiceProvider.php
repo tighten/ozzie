@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Menu\Menu;
 use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Nova;
@@ -58,7 +59,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         // All users that are in the database can access Nova, since their
         // GitHub account is associated to the organization in config/app.php
-        return true;
+        Gate::define('viewNova', function ($user) {
+            return true;
+        });
     }
 
     protected function dashboards()
