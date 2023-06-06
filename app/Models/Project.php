@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
-use App\Maintainer;
+use App\Models\Maintainer;
 use Carbon\CarbonPeriod;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

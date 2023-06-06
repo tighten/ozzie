@@ -10,7 +10,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class User extends Resource
 {
-    public static $model = \App\User::class;
+    public static $model = \App\Models\User::class;
 
     public static $title = 'name';
 

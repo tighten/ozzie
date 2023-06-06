@@ -12,7 +12,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Maintainer extends Resource
 {
-    public static $model = \App\Maintainer::class;
+    public static $model = \App\Models\Maintainer::class;
 
     public static $title = 'github_username';
 
