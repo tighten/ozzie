@@ -18,7 +18,7 @@ class ProjectResource extends JsonResource
         return array_merge(
             $this->resource->toArray(),
             [
-                'maintainers' => $this->resource->maintainers->pluck('github_username')
+                'maintainers' => $this->resource->maintainers->pluck('github_username'),
             ],
             [
                 'url' => $this->resource->url(),
