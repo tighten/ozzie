@@ -13,7 +13,7 @@ class ProjectFactory extends Factory
         return [
             'name' => $name,
             'namespace' => config('app.organization'),
-            'packagist_name' => config('app.organization') . '/' . $name,
+            'packagist_name' => config('app.organization').'/'.$name,
             'is_hidden' => false,
             'issues_count' => fake()->numberBetween(0, 5),
             'pull_requests_count' => fake()->numberBetween(0, 5),
