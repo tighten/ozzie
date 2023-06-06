@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Cache\CachedProjectList;
 use App\Models\Project;
 use App\Models\Snapshot;
 use Illuminate\Console\Command;
@@ -52,6 +53,9 @@ class CreateProjectSnapshots extends Command
 
         // Clear frontend cache
         cache()->clear();
+
+        // Rebuild cache of projects
+        app(CachedProjectList::class)();
 
         return 0;
     }
