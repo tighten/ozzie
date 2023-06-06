@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Cache\CachedProjectList;
 use App\GitHub\Repository;
 use App\Models\Project;
 use App\Remotes\Packagist\Package;

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Cache\CachedProjectList;
 use App\Models\Project;
 use App\Models\Snapshot;
 use Illuminate\Console\Command;
