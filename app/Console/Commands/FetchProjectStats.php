@@ -29,6 +29,9 @@ class FetchProjectStats extends Command
         // Clear frontend cache
         cache()->clear();
 
+        // Rebuild cache of projects
+        app(CachedProjectList::class)();
+
         return 0;
     }
 
