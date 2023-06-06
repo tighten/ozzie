@@ -86,6 +86,7 @@
             "@php artisan key:generate --ansi"
         ],
         "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
             "@php artisan nova:publish"
         ],
         "lint": [
@@ -93,9 +94,6 @@
         ],
         "fix": [
             "vendor/bin/duster fix"
-        ],
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ]
     }
 }

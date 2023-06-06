@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Cache\CachedProjectList;
 use App\GitHub\Organization;
 use App\Models\Project;
 use App\Remotes\Packagist\Search;
@@ -67,6 +68,9 @@ class FetchGitHubProjects extends Command
 
         // Clear frontend cache
         cache()->clear();
+
+        // Rebuild cache of projects
+        app(CachedProjectList::class)();
 
         return 0;
     }
