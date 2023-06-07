@@ -18,6 +18,9 @@ class ProjectResource extends JsonResource
         return array_merge(
             $this->resource->toArray(),
             [
+                'maintainers' => $this->resource->maintainers->pluck('github_username'),
+            ],
+            [
                 'url' => $this->resource->url(),
                 'debt_score' => $this->debtScore(),
                 'debt_score_graph' => $sparkline->toBase64(),
