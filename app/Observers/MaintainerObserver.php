@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\Maintainer;
-use App\User;
+use App\Models\Maintainer;
+use App\Models\User;
 
 class MaintainerObserver
 {

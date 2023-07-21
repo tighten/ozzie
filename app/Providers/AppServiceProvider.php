@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Maintainer;
+use App\Models\Maintainer;
 use App\Observers\MaintainerObserver;
 use Illuminate\Support\ServiceProvider;
 
