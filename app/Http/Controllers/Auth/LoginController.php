@@ -52,14 +52,14 @@ class LoginController
             'user_id' => $user->id,
         ]);
 
-        Auth::login($user, remember: true);
+        auth()->login($user, remember: true);
 
         return redirect()->intended();
     }
 
     public function logout()
     {
-        Auth::logout();
+        auth()->logout();
 
         // If logging out from Nova, redirect to public root
         if (Str::contains(url()->previous(), url('nova'))) {
