@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => {
             laravel({
                 input: ['resources/ts/app.ts'],
                 refresh: true,
-                valetTls: envAppUrl.hostname,
+                valetTls: !envConfig?.parsed?.APP_SAIL_MODE ?? envAppUrl.hostname,
             }),
             vue({
                 template: {
