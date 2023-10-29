@@ -37,6 +37,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.13",
+        "laravel/sail": "^1.26",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
         "phpunit/phpunit": "^10.1",
