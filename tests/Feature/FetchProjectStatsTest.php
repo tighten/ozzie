@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Cache\CachedProjectList;
 use App\Models\Maintainer;
 use App\Models\Project;
 use Github\Api\Issue;
