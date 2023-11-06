@@ -35,34 +35,32 @@ class FetchProjectStatsTest extends TestCase
             ]),
         ]);
 
-        $issueMock = Mockery::mock(Issue::class);
-        $issueMock->shouldReceive('all')
+        $issuesMock = Mockery::mock(Issue::class);
+        $issuesMock->shouldReceive('all')
             ->with('tighten', 'bar')
             ->once()
             ->andReturn([]);
+        GitHubClient::shouldReceive('issues')
+            ->once()
+            ->andReturn($issuesMock);
 
-        $moc = Mockery::mock(PullRequest::class);
-        $moc->shouldReceive('all')
+        $pullRequestsMock = Mockery::mock(PullRequest::class);
+        $pullRequestsMock->shouldReceive('all')
             ->with('tighten', 'bar')
             ->once()
             ->andReturn([]);
+        GitHubClient::shouldReceive('pullRequests')
+            ->once()
+            ->andReturn($pullRequestsMock);
 
-        $repoMock = Mockery::mock(Repo::class);
-        $repoMock->shouldReceive('show')
+        $reposMock = Mockery::mock(Repo::class);
+        $reposMock->shouldReceive('show')
             ->with('tighten', 'bar')
             ->once()
             ->andReturn(['archived' => false]);
-
-        GitHubClient::shouldReceive('issues')
-            ->once()
-            ->andReturn($issueMock);
-        GitHubClient::shouldReceive('pullRequests')
-            ->once()
-            ->andReturn($moc);
-
         GitHubClient::shouldReceive('repo')
             ->once()
-            ->andReturn($repoMock);
+            ->andReturn($reposMock);
 
         $project = Project::factory()->create([
             'namespace' => 'tighten',
