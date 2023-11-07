@@ -24,7 +24,7 @@ class FetchProjectStatsTest extends TestCase
         Http::preventStrayRequests();
 
         Http::fake([
-            'packagist.org/packages/tighten/bar.json' => Http::response([
+            'packagist.org/packages/tighten/existing_package.json' => Http::response([
                 'package' => [
                     'downloads' => [
                         'total' => 1000,
@@ -34,36 +34,11 @@ class FetchProjectStatsTest extends TestCase
             ]),
         ]);
 
-        $issuesMock = Mockery::mock(Issue::class);
-        $issuesMock->shouldReceive('all')
-            ->with('tighten', 'bar')
-            ->once()
-            ->andReturn([]);
-        GitHubClient::shouldReceive('issues')
-            ->once()
-            ->andReturn($issuesMock);
-
-        $pullRequestsMock = Mockery::mock(PullRequest::class);
-        $pullRequestsMock->shouldReceive('all')
-            ->with('tighten', 'bar')
-            ->once()
-            ->andReturn([]);
-        GitHubClient::shouldReceive('pullRequests')
-            ->once()
-            ->andReturn($pullRequestsMock);
-
-        $reposMock = Mockery::mock(Repo::class);
-        $reposMock->shouldReceive('show')
-            ->with('tighten', 'bar')
-            ->once()
-            ->andReturn(['archived' => false]);
-        GitHubClient::shouldReceive('repo')
-            ->once()
-            ->andReturn($reposMock);
+        $this->mockGithubClient('tighten', 'existing_package');
 
         $project = Project::factory()->create([
             'namespace' => 'tighten',
-            'name' => 'bar',
+            'name' => 'existing_package',
             'packagist_name' => null,
         ]);
         $maintainer = Maintainer::factory()->create([
@@ -76,16 +51,82 @@ class FetchProjectStatsTest extends TestCase
 
         $this->assertEquals($project->downloads_total, 1000);
         $this->assertEquals($project->downloads_last_30_days, 100);
+
         $this->assertEquals($project->issues_count, 0);
         $this->assertEquals($project->pull_requests_count, 0);
         $this->assertEquals($project->issues, collect([]));
         $this->assertEquals($project->pull_requests, collect([]));
+
+        $this->assertEquals($project->is_hidden, false);
         $this->assertNotEmpty(Cache::get('projects'));
     }
 
     /** @test */
-    public function report_errors_if_fetching_fails(): void
+    public function fetch_stats_does_not_overwrite_packagist_stats(): void
     {
-        $this->markTestIncomplete();
+        Http::preventStrayRequests();
+
+        Http::fake([
+            'packagist.org/packages/tighten/404_package.json' => Http::response([], 404),
+        ]);
+
+        $this->mockGithubClient('tighten', '404_package');
+
+        $project = Project::factory()->create([
+            'namespace' => 'tighten',
+            'name' => '404_package',
+            'packagist_name' => null,
+            'downloads_total' => 100,
+            'downloads_last_30_days' => 10,
+        ]);
+        $maintainer = Maintainer::factory()->create([
+            'github_username' => 'Baz',
+        ]);
+        $project->maintainers()->attach($maintainer);
+
+        $this->artisan('stats:fetch')->assertSuccessful();
+
+        $project->refresh();
+
+        $this->assertEquals($project->downloads_total, 100);
+        $this->assertEquals($project->downloads_last_30_days, 10);
+
+        $this->assertEquals($project->issues_count, 0);
+        $this->assertEquals($project->pull_requests_count, 0);
+        $this->assertEquals($project->issues, collect([]));
+        $this->assertEquals($project->pull_requests, collect([]));
+
+        $this->assertEquals($project->is_hidden, false);
+        $this->assertNotEmpty(Cache::get('projects'));
+    }
+
+    public function mockGithubClient($namespace, $repo): void
+    {
+        $issuesMock = Mockery::mock(Issue::class);
+        $issuesMock->shouldReceive('all')
+            ->with($namespace, $repo)
+            ->once()
+            ->andReturn([]);
+        GitHubClient::shouldReceive('issues')
+            ->once()
+            ->andReturn($issuesMock);
+
+        $pullRequestsMock = Mockery::mock(PullRequest::class);
+        $pullRequestsMock->shouldReceive('all')
+            ->with($namespace, $repo)
+            ->once()
+            ->andReturn([]);
+        GitHubClient::shouldReceive('pullRequests')
+            ->once()
+            ->andReturn($pullRequestsMock);
+
+        $reposMock = Mockery::mock(Repo::class);
+        $reposMock->shouldReceive('show')
+            ->with($namespace, $repo)
+            ->once()
+            ->andReturn(['archived' => false]);
+        GitHubClient::shouldReceive('repo')
+            ->once()
+            ->andReturn($reposMock);
     }
 }
