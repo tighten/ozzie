@@ -54,8 +54,11 @@ class FetchProjectStats extends Command
 
         // Fetch download counts (if applicable)
         $packagist = Package::fromProject($project);
-        $project->downloads_total = $packagist->totalDownloads;
-        $project->downloads_last_30_days = $packagist->monthlyDownloads;
+
+        if ($packagist->requestOk) {
+            $project->downloads_total = $packagist->totalDownloads;
+            $project->downloads_last_30_days = $packagist->monthlyDownloads;
+        }
 
         $project->is_hidden = $githubProject->isArchived() || $project->is_hidden;
 

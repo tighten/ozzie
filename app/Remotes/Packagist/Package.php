@@ -14,6 +14,8 @@ class Package
 
     public $totalDownloads = 0;
 
+    public $requestOk = false;
+
     protected $url;
 
     public function __construct($namespace, $name)
@@ -32,7 +34,13 @@ class Package
     {
         $response = Http::get($this->url);
 
+        report_if(
+            $response->serverError(),
+            "HTTP Error: Was unable to fetch from packagist {$this->url}"
+        );
+
         if ($response->ok()) {
+            $this->requestOk = true;
             $this->downloadsData = Arr::get($response->json(), 'package.downloads', 0);
             $this->monthlyDownloads = $this->downloadsData['monthly'];
             $this->totalDownloads = $this->downloadsData['total'];
