@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Maintainer;
 use App\Models\Project;
 use Github\Api\Issue;
 use Github\Api\PullRequest;
@@ -41,10 +40,6 @@ class FetchProjectStatsTest extends TestCase
             'name' => 'existing_package',
             'packagist_name' => null,
         ]);
-        $maintainer = Maintainer::factory()->create([
-            'github_username' => 'Baz',
-        ]);
-        $project->maintainers()->attach($maintainer);
 
         $this->artisan('stats:fetch')->assertSuccessful();
         $project->refresh();
@@ -62,7 +57,7 @@ class FetchProjectStatsTest extends TestCase
     }
 
     /** @test */
-    public function fetch_stats_does_not_overwrite_packagist_stats(): void
+    public function failed_stats_fetch_does_not_overwrite_packagist_stats(): void
     {
         Http::preventStrayRequests();
 
@@ -79,10 +74,6 @@ class FetchProjectStatsTest extends TestCase
             'downloads_total' => 100,
             'downloads_last_30_days' => 10,
         ]);
-        $maintainer = Maintainer::factory()->create([
-            'github_username' => 'Baz',
-        ]);
-        $project->maintainers()->attach($maintainer);
 
         $this->artisan('stats:fetch')->assertSuccessful();
 
