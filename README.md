@@ -18,7 +18,7 @@
     - Application Name: `Local Ozzie`
     - Homepage URL: `https://ozzie.test`
     - Application Description: `Local Version of Ozzie`
-    - Authorization Callback URL: `http://ozzie.test/callback`
+    - Authorization Callback URL: `http://ozzie.test/auth/callback`
 4. Copy the example `.env` file: `cp .env.example .env` and modify its settings to match your local install, including the client ID and secret from the previous step
 5. Run `php artisan key:generate`
 6. Create a database (by default `.env` looks for one named `ozzie`) and run the migrations (`php artisan migrate`)
