@@ -19,7 +19,7 @@ it('renders project', function () {
 
     $project = Project::factory()->create();
 
-    $this->get(route("projects.show", [$project->namespace, $project->name]))
+    $this->get(route('projects.show', [$project->namespace, $project->name]))
         ->assertStatus(200)
         ->assertInertia(
             fn (AssertableInertia $page) => $page->component('Projects/Show')
@@ -28,7 +28,7 @@ it('renders project', function () {
 });
 
 it('fails to render project', function () {
-    $this->get(route("projects.show", ['does', 'not-exist']))
+    $this->get(route('projects.show', ['does', 'not-exist']))
         ->assertStatus(404);
 });
 
