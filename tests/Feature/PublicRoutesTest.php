@@ -19,7 +19,7 @@ it('renders project', function () {
 
     $project = Project::factory()->create();
 
-    $this->get("/projects/{$project->namespace}/{$project->name}")
+    $this->get(route("projects.show", [$project->namespace, $project->name]))
         ->assertStatus(200)
         ->assertInertia(
             fn (AssertableInertia $page) => $page->component('Projects/Show')
@@ -28,15 +28,15 @@ it('renders project', function () {
 });
 
 it('fails to render project', function () {
-    $this->get('/projects/does/not-exist')
+    $this->get(route("projects.show", ['does', 'not-exist']))
         ->assertStatus(404);
 });
 
 it('renders project issues', function () {
 
-    $project = Project::factory()->withIssues([['id' => 1]])->create();
+    $project = Project::factory()->withIssues([['number' => $issue = 1]])->create();
 
-    $this->get("/projects/{$project->namespace}/{$project->name}/issues/1")
+    $this->get(route('issue.show', [$project->namespace, $project->name, $issue]))
         ->assertStatus(200)
         ->assertInertia(
             fn (AssertableInertia $page) => $page->component('Issue/Show')
@@ -48,9 +48,9 @@ it('renders project issues', function () {
 
 it('renders project prs', function () {
 
-    $project = Project::factory()->withPrs([['number' => 1]])->create();
+    $project = Project::factory()->withPrs([['number' => $pr = 1]])->create();
 
-    $this->get(route('pull-request.show', [$project->namespace, $project->name, 1]))
+    $this->get(route('pull-request.show', [$project->namespace, $project->name, $pr]))
         ->assertStatus(200)
         ->assertInertia(
             fn (AssertableInertia $page) => $page->component('PullRequest/Show')

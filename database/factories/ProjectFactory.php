@@ -33,31 +33,31 @@ class ProjectFactory extends Factory
         });
     }
 
-    public function withIssues(array $issues = [['id' => 1]]): Factory
+    public function withIssues(array $issues): Factory
     {
         return $this->state(function (array $attributes) use ($issues) {
             return [
                 'issues_count' => count($issues),
-                'issues' => collect($issues)->map(function ($issue) {
-                    return new Issue([
+                'issues' => collect($issues)->map(function ($issue, $index) {
+                    return new Issue(array_merge([
                         'created_at' => now(),
                         'html_url' => fake()->url(),
                         'pull_request' => null,
                         'title' => fake()->sentence(),
-                        'number' => $issue['id'],
+                        'number' => $index,
                         'body' => fake()->paragraph(),
                         'labels' => [],
                         'user' => [
                             'html_url' => fake()->url(),
                             'login' => fake()->userName(),
                         ],
-                    ]);
+                    ], $issue));
                 })->toArray(),
             ];
         });
     }
 
-    public function withPrs(array $pullRequests = [[]]): Factory
+    public function withPrs(array $pullRequests): Factory
     {
         return $this->state(function (array $attributes) use ($pullRequests) {
             return [
