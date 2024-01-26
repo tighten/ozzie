@@ -2,17 +2,19 @@ import { fileURLToPath, URL } from 'url';
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
+import dotenv from 'dotenv';
+import { basename } from 'path'
 
 export default defineConfig(({ mode }) => {
     // Default valet hostname guess is repo.test, but you can override
     // this by setting the VALET_DOMAIN environment variable in a .env file
-    const envConfig = require('dotenv').config({
+    const envConfig = dotenv.config({
         path: './.env' ?? `./.env.${mode}`,
     });
 
     const envAppUrl = new URL(
         envConfig?.parsed?.APP_URL ??
-            `http://${require('path').basename(__dirname)}.test`
+            `http://${ basename(__dirname)}.test`
     );
 
     return {
