@@ -11,7 +11,7 @@ class RedirectIfAuthenticated
     /**
      * Handle an incoming request.
      */
-    public function handle(Request $request, Closure $next, string $guard = null): Response
+    public function handle(Request $request, Closure $next, ?string $guard = null): Response
     {
         if (auth()->guard($guard)->check()) {
             return redirect('/home');
