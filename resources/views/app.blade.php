@@ -28,7 +28,7 @@
 
         <title>Ozzie - {{ config('app.name') }}</title>
         @routes
-        @vite(['resources/ts/app.css', 'resources/ts/app.ts'])
+        @vite(['resources/ts/app.ts'])
     </head>
 
     <body class="bg-frost">

@@ -4,6 +4,7 @@ namespace App\GitHub;
 
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
+use Exception;
 use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
 
 class Repository
@@ -20,24 +21,37 @@ class Repository
 
     public function isArchived()
     {
-        return GitHubClient::repo()->show($this->namespace, $this->name)['archived'];
+        try {
+            return GitHubClient::repo()->show($this->namespace, $this->name)['archived'];
+        } catch (Exception $th) {
+            return false;
+        }
     }
 
     public function issues()
     {
-        return collect(GitHubClient::issues()->all($this->namespace, $this->name))
-            ->map(function ($issue) {
-                return new Issue($issue);
-            })->reject(function (Issue $issue) {
-                return ! is_null($issue->pull_request);
-            });
+        try {
+            return collect(GitHubClient::issues()->all($this->namespace, $this->name))
+                ->map(function ($issue) {
+                    return new Issue($issue);
+                })->reject(function (Issue $issue) {
+                    return ! is_null($issue->pull_request);
+                });
+        } catch (Exception $th) {
+            return collect();
+        }
     }
 
     public function pullRequests()
     {
-        return collect(GitHubClient::pullRequests()->all($this->namespace, $this->name))
-            ->map(function ($pullRequest) {
-                return new PullRequest($pullRequest);
-            });
+        try {
+            return collect(GitHubClient::pullRequests()->all($this->namespace, $this->name))
+                ->map(function ($pullRequest) {
+                    return new PullRequest($pullRequest);
+                });
+        } catch (Exception $th) {
+            return collect();
+        }
+
     }
 }
