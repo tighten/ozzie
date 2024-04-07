@@ -49,8 +49,9 @@ class FetchProjectStats extends Command
         $project->issues_count = $issues->count();
         $project->pull_requests_count = $pullRequests->count();
 
-        $project->issues = $issues;
-        $project->pull_requests = $pullRequests;
+        // We call ->values() here to re-key the collection after filtering
+        $project->issues = $issues->values();
+        $project->pull_requests = $pullRequests->values();
 
         // Fetch download counts (if applicable)
         $packagist = Package::fromProject($project);
