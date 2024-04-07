@@ -3,12 +3,9 @@
 namespace Tests\Feature;
 
 use App\Models\Project;
-use Github\Api\Organization;
-use Github\Api\PullRequest;
 use Github\Api\Repo;
 use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Mockery;
 use Tests\TestCase;
@@ -27,22 +24,22 @@ class FetchGitHubProjectsTest extends TestCase
             'packagist.org/search.json?q=tighten&per_page=100' => Http::response([
                 'results' => [
                     [
-                        "name" => "tighten/ziggy",
-                        "description" => "Use your Laravel named routes in JavaScript.",
-                        "url" => "https://packagist.org/packages/tighten/ziggy",
-                        "repository" => "https://github.com/tighten/ziggy",
-                        "downloads" => 16043634,
-                        "favers" => 3697
+                        'name' => 'tighten/ziggy',
+                        'description' => 'Use your Laravel named routes in JavaScript.',
+                        'url' => 'https://packagist.org/packages/tighten/ziggy',
+                        'repository' => 'https://github.com/tighten/ziggy',
+                        'downloads' => 16043634,
+                        'favers' => 3697,
                     ],
                     [
-                        "name" => "tighten/collect",
-                        "description" => "Collect - Illuminate Collections as a separate package.",
-                        "url" => "https://packagist.org/packages/tighten/collect",
-                        "repository" => "https://github.com/tighten/collect",
-                        "downloads" => 17251907,
-                        "favers" => 1540,
-                        "abandoned" => "illuminate/collections"
-                    ]
+                        'name' => 'tighten/collect',
+                        'description' => 'Collect - Illuminate Collections as a separate package.',
+                        'url' => 'https://packagist.org/packages/tighten/collect',
+                        'repository' => 'https://github.com/tighten/collect',
+                        'downloads' => 17251907,
+                        'favers' => 1540,
+                        'abandoned' => 'illuminate/collections',
+                    ],
                 ],
             ]),
         ]);
@@ -144,10 +141,10 @@ class FetchGitHubProjectsTest extends TestCase
                 [
                     'full_name' => 'tighten/confomo',
                     'description' => 'ConFOMO is a simple tool that makes it easy to track your friends at conferences.',
-                    'url'  => 'https://api.github.com/repos/tighten/confomo',
+                    'url' => 'https://api.github.com/repos/tighten/confomo',
                     'archived' => true,
                     'fork' => false,
-                ]
+                ],
             ]);
 
         $repoMock->shouldReceive('org')

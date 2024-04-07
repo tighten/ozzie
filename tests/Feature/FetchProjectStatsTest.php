@@ -50,16 +50,16 @@ class FetchProjectStatsTest extends TestCase
         $this->assertEquals($project->issues_count, 1);
         $this->assertEquals($project->pull_requests_count, 1);
         $this->assertEquals($project->issues, collect([
-                [
-                    'labels' => [['name' => 'help wanted']],
-                    'created_at' => '2021-01-01T00:00:00.000000Z',
-                    'html_url' => 'https://example.com/issue/2',
-                    'pull_request' => null,
-                    'title' => 'Readme is unclear',
-                    'number' => '1234',
-                    'body' => 'Something in the readme is unclear and needs to be updated.',
-                    'user' => 'appleseed',
-                ]
+            [
+                'labels' => [['name' => 'help wanted']],
+                'created_at' => '2021-01-01T00:00:00.000000Z',
+                'html_url' => 'https://example.com/issue/2',
+                'pull_request' => null,
+                'title' => 'Readme is unclear',
+                'number' => '1234',
+                'body' => 'Something in the readme is unclear and needs to be updated.',
+                'user' => 'appleseed',
+            ],
         ]));
         $this->assertEquals($project->pull_requests, collect([
             [
@@ -72,7 +72,7 @@ class FetchProjectStatsTest extends TestCase
                 'title' => 'Add Readme',
                 'labels' => [],
                 'user' => 'johncash',
-            ]
+            ],
         ]));
 
         $this->assertEquals($project->is_hidden, false);
@@ -117,7 +117,7 @@ class FetchProjectStatsTest extends TestCase
                 'number' => '1234',
                 'body' => 'Something in the readme is unclear and needs to be updated.',
                 'user' => 'appleseed',
-            ]
+            ],
         ]));
         $this->assertEquals($project->pull_requests, collect([
             [
@@ -130,7 +130,7 @@ class FetchProjectStatsTest extends TestCase
                 'title' => 'Add Readme',
                 'labels' => [],
                 'user' => 'johncash',
-            ]
+            ],
         ]));
 
         $this->assertEquals($project->is_hidden, false);
@@ -183,12 +183,12 @@ class FetchProjectStatsTest extends TestCase
                 // Include a draft PR to test that it's filtered out
                 [
                     'draft' => true,
-                    'created_at' => '2021-01-01T00:00:00.000000Z'
+                    'created_at' => '2021-01-01T00:00:00.000000Z',
                 ],
                 // Include a PR that's in progress to test that it's filtered out
                 [
                     'labels' => [['name' => 'in progress']],
-                    'created_at' => '2021-01-01T00:00:00.000000Z'
+                    'created_at' => '2021-01-01T00:00:00.000000Z',
                 ],
                 // Include an open PR to test that it's included
                 [
@@ -201,7 +201,7 @@ class FetchProjectStatsTest extends TestCase
                     'title' => 'Add Readme',
                     'labels' => [],
                     'user' => 'johncash',
-                ]
+                ],
             ]);
         GitHubClient::shouldReceive('pullRequests')
             ->once()
