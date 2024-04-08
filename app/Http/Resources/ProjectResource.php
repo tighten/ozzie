@@ -7,9 +7,10 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProjectResource extends JsonResource
 {
+    public static $wrap = null;
+
     public function toArray($request): array
     {
-        self::withoutWrapping();
         $sparkline = new Sparkline;
         $sparkline->setLineColorRGB(67, 79, 181);
         $sparkline->deactivateBackgroundColor();
