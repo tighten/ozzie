@@ -12,4 +12,9 @@ class OrgSlack
     {
         return config('services.slack.webhook_url');
     }
+
+    public function getKey()
+    {
+        return 'org-slack-key';
+    }
 }
