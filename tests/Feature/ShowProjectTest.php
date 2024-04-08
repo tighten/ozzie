@@ -16,10 +16,10 @@ class ShowProjectTest extends TestCase
         $project = Project::factory()->create([
             'namespace' => $namespace = 'acme',
             'name' => $name = 'my-project',
-            'packagist_name'  => null,
+            'packagist_name' => null,
         ]);
 
-        $this->getJson("/api/projects/$namespace/$name")
+        $this->getJson("/api/projects/{$namespace}/{$name}")
             ->assertOk()
             ->assertJson([
                 'data' => [
@@ -32,7 +32,7 @@ class ShowProjectTest extends TestCase
                     'packagist_name' => $project->packagist_name,
                     'is_hidden' => false,
                     'debt_score' => 0,
-                ]
+                ],
             ]);
     }
 }

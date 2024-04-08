@@ -42,7 +42,7 @@ class GetProjectsTest extends TestCase
                         'is_hidden' => false,
                         'debt_score' => 0,
                     ],
-                ]
+                ],
             ]);
     }
 }

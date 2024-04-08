@@ -8,7 +8,6 @@ use App\OrgSlack;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
-use function Symfony\Component\String\s;
 
 class SendStatsToSlackTest extends TestCase
 {
@@ -22,19 +21,19 @@ class SendStatsToSlackTest extends TestCase
         Project::factory()->create([
             'namespace' => 'acme',
             'name' => 'project-a',
-            'issues_count' => 500
+            'issues_count' => 500,
         ]);
 
         Project::factory()->create([
             'namespace' => 'acme',
             'name' => 'project-b',
-            'issues_count' => 700
+            'issues_count' => 700,
         ]);
 
         $this->artisan('stats:slack')
             ->assertExitCode(0);
 
-        Notification::assertSentTo(new OrgSlack(), SendOzzieStats::class, function ($notification, $channels, $notifiable) {
+        Notification::assertSentTo(new OrgSlack, SendOzzieStats::class, function ($notification, $channels, $notifiable) {
             $slackNotification = $notification->toSlack($notifiable);
 
             return $channels === ['slack']
