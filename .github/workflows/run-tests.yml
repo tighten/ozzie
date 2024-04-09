@@ -31,8 +31,7 @@ jobs:
 
     - name: Install Composer Dependencies
       run: |
-        composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
-        composer install --no-interaction
+        composer remove laravel/nova --no-scripts --no-interaction
 
     - name: Install Frontend Dependencies
       run: npm install
@@ -41,7 +40,8 @@ jobs:
       run: npm run build
 
     - name: Generate Key
-      run: php artisan key:generate
+      run: export APP_ENV=testing && php artisan key:generate
+      shell: bash
 
     - name: Run PHP Tests
-      run: php artisan test
+      run: ./vendor/bin/pest

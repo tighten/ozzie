@@ -168,7 +168,7 @@ return [
     |
     */
 
-    'providers' => ServiceProvider::defaultProviders()->merge([
+    'providers' => ServiceProvider::defaultProviders()->merge(array_filter([
         /*
          * Package Service Providers...
          */
@@ -181,9 +181,9 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\NovaServiceProvider::class,
+        (env('APP_ENV', 'production') != 'testing' ? App\Providers\NovaServiceProvider::class : null),
         App\Providers\RouteServiceProvider::class,
-    ])->toArray(),
+    ]))->toArray(),
 
     /*
     |--------------------------------------------------------------------------
