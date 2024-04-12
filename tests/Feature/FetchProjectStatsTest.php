@@ -47,10 +47,33 @@ class FetchProjectStatsTest extends TestCase
         $this->assertEquals($project->downloads_total, 1000);
         $this->assertEquals($project->downloads_last_30_days, 100);
 
-        $this->assertEquals($project->issues_count, 0);
-        $this->assertEquals($project->pull_requests_count, 0);
-        $this->assertEquals($project->issues, collect([]));
-        $this->assertEquals($project->pull_requests, collect([]));
+        $this->assertEquals($project->issues_count, 1);
+        $this->assertEquals($project->pull_requests_count, 1);
+        $this->assertEquals($project->issues, collect([
+            [
+                'labels' => [['name' => 'help wanted']],
+                'created_at' => '2021-01-01T00:00:00.000000Z',
+                'html_url' => 'https://example.com/issue/2',
+                'pull_request' => null,
+                'title' => 'Readme is unclear',
+                'number' => '1234',
+                'body' => 'Something in the readme is unclear and needs to be updated.',
+                'user' => 'appleseed',
+            ],
+        ]));
+        $this->assertEquals($project->pull_requests, collect([
+            [
+                'body' => 'This PR adds a readme to the project',
+                'created_at' => '2021-01-01T00:00:00.000000Z',
+                'draft' => false,
+                'html_url' => 'https://example.com/pr/1',
+                'node_id' => 12345,
+                'number' => 1,
+                'title' => 'Add Readme',
+                'labels' => [],
+                'user' => 'johncash',
+            ],
+        ]));
 
         $this->assertEquals($project->is_hidden, false);
         $this->assertNotEmpty(Cache::get('projects'));
@@ -82,10 +105,33 @@ class FetchProjectStatsTest extends TestCase
         $this->assertEquals($project->downloads_total, 100);
         $this->assertEquals($project->downloads_last_30_days, 10);
 
-        $this->assertEquals($project->issues_count, 0);
-        $this->assertEquals($project->pull_requests_count, 0);
-        $this->assertEquals($project->issues, collect([]));
-        $this->assertEquals($project->pull_requests, collect([]));
+        $this->assertEquals($project->issues_count, 1);
+        $this->assertEquals($project->pull_requests_count, 1);
+        $this->assertEquals($project->issues, collect([
+            [
+                'labels' => [['name' => 'help wanted']],
+                'created_at' => '2021-01-01T00:00:00.000000Z',
+                'html_url' => 'https://example.com/issue/2',
+                'pull_request' => null,
+                'title' => 'Readme is unclear',
+                'number' => '1234',
+                'body' => 'Something in the readme is unclear and needs to be updated.',
+                'user' => 'appleseed',
+            ],
+        ]));
+        $this->assertEquals($project->pull_requests, collect([
+            [
+                'body' => 'This PR adds a readme to the project',
+                'created_at' => '2021-01-01T00:00:00.000000Z',
+                'draft' => false,
+                'html_url' => 'https://example.com/pr/1',
+                'node_id' => 12345,
+                'number' => 1,
+                'title' => 'Add Readme',
+                'labels' => [],
+                'user' => 'johncash',
+            ],
+        ]));
 
         $this->assertEquals($project->is_hidden, false);
         $this->assertNotEmpty(Cache::get('projects'));
@@ -97,7 +143,34 @@ class FetchProjectStatsTest extends TestCase
         $issuesMock->shouldReceive('all')
             ->with($namespace, $repo)
             ->once()
-            ->andReturn([]);
+            ->andReturn([
+                // Include an issue that's in progress to test that it's filtered out
+                [
+                    'labels' => [['name' => 'in progress']],
+                    'created_at' => '2021-01-01T00:00:00.000000Z',
+                ],
+                // Include an issue that has a PR associated with it to test that it's filtered out
+                [
+                    'labels' => [['name' => 'good first issue']],
+                    'created_at' => '2021-01-01T00:00:00.000000Z',
+                    'html_url' => 'https://example.com/issue/1',
+                    'pull_request' => 'https://example.com/pr/1',
+                    'title' => 'Need to add a readme',
+                    'number' => '1234',
+                    'body' => 'This repo does not have a readme',
+                    'user' => 'johnsmith',
+                ],
+                [
+                    'labels' => [['name' => 'help wanted']],
+                    'created_at' => '2021-01-01T00:00:00.000000Z',
+                    'html_url' => 'https://example.com/issue/2',
+                    'pull_request' => null,
+                    'title' => 'Readme is unclear',
+                    'number' => '1234',
+                    'body' => 'Something in the readme is unclear and needs to be updated.',
+                    'user' => 'appleseed',
+                ],
+            ]);
         GitHubClient::shouldReceive('issues')
             ->once()
             ->andReturn($issuesMock);
@@ -106,7 +179,30 @@ class FetchProjectStatsTest extends TestCase
         $pullRequestsMock->shouldReceive('all')
             ->with($namespace, $repo)
             ->once()
-            ->andReturn([]);
+            ->andReturn([
+                // Include a draft PR to test that it's filtered out
+                [
+                    'draft' => true,
+                    'created_at' => '2021-01-01T00:00:00.000000Z',
+                ],
+                // Include a PR that's in progress to test that it's filtered out
+                [
+                    'labels' => [['name' => 'in progress']],
+                    'created_at' => '2021-01-01T00:00:00.000000Z',
+                ],
+                // Include an open PR to test that it's included
+                [
+                    'body' => 'This PR adds a readme to the project',
+                    'created_at' => '2021-01-01T00:00:00.000000Z',
+                    'draft' => false,
+                    'html_url' => 'https://example.com/pr/1',
+                    'node_id' => 12345,
+                    'number' => 1,
+                    'title' => 'Add Readme',
+                    'labels' => [],
+                    'user' => 'johncash',
+                ],
+            ]);
         GitHubClient::shouldReceive('pullRequests')
             ->once()
             ->andReturn($pullRequestsMock);

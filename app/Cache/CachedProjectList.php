@@ -28,10 +28,6 @@ class CachedProjectList
                     ->transform(fn ($project) => app(CachedProjectResource::class)($project->packagist_name))
                     ->sortByDesc(fn ($project) => $project['debt_score'])
                     ->values();
-
-                return Project::all()
-                    ->sortByDesc(fn ($project) => $project['debt_score'])
-                    ->values();
             }
         );
     }
