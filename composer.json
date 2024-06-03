@@ -44,7 +44,7 @@
         "phpunit/phpunit": "^10.1",
         "spatie/laravel-ignition": "^2.0",
         "spatie/laravel-ray": "^1.32",
-        "tightenco/duster": "^2.0"
+        "tightenco/duster": "^3.0"
     },
     "config": {
         "optimize-autoloader": true,
