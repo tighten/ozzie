@@ -10,6 +10,7 @@
 
 ## Local Installation
 
+### MacOS - Valet
 1. Clone the repo (`git clone git@github.com:tighten/ozzie.git && cd ozzie`)
 2. Install dependencies (`composer install && npm install`)
 3. Run `valet secure` to use `https` for the local domain
@@ -18,12 +19,49 @@
     - Application Name: `Local Ozzie`
     - Homepage URL: `https://ozzie.test`
     - Application Description: `Local Version of Ozzie`
-    - Authorization Callback URL: `http://ozzie.test/auth/callback`
+    - Authorization Callback URL: `https://ozzie.test/auth/callback`
 4. Copy the example `.env` file: `cp .env.example .env` and modify its settings to match your local install, including the client ID and secret from the previous step
 5. Run `php artisan key:generate`
 6. Create a database (by default `.env` looks for one named `ozzie`) and run the migrations (`php artisan migrate`)
 7. Fetch the projects list (into the database) by using the `projects:fetch` command. Alternatively, you can seed your `projects` table using a `projects.json` file at the root of the project (see below for more info).
 9. Fetch all projects' stats for the first time using `stats:fetch`
+
+### Sail - Docker
+
+*ensure you have docker installed and running*
+
+For the following steps, you'll need to have the `sail` command available. You can alias it by running:
+```shell
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+```
+[For more info around aliasing check this part of the docs](https://laravel.com/docs/10.x/sail#configuring-a-shell-alias)
+
+1. Clone the repo (`git clone git@github.com:tighten/ozzie.git && cd ozzie`)
+2. Install dependencies
+
+    ```shell
+    docker run --rm \
+        -u "$(id -u):$(id -g)" \
+        -v "$(pwd):/var/www/html" \
+        -w /var/www/html \
+        laravelsail/php82-composer:latest \
+        composer install --ignore-platform-reqs
+    ```
+
+    ```shell
+    sail npm install
+    ```
+
+3. Create a [GitHub OAuth Application](https://github.com/settings/developers). If you use Valet to serve your application locally, you can use the following settings:
+    - Application Name: `Local Ozzie`
+    - Homepage URL: `http://localhost`
+    - Application Description: `Local Version of Ozzie`
+    - Authorization Callback URL: `http://localhost/auth/callback`
+4. Copy the example `.env` file: `cp .env.example .env` and modify its settings to match your local install, including the client ID and secret from the previous step
+5. Run `sail artisan key:generate`
+6. Run the migrations (`sail artisan migrate`)
+7. Fetch the projects list (into the database) by using the `projects:fetch` command. Alternatively, you can seed your `projects` table using a `projects.json` file at the root of the project (see below for more info).
+8. Fetch all projects' stats for the first time using `stats:fetch`
 
 > Note: If you're not using a tool like Laravel Valet, run `php artisan serve` and visit your site at http://127.0.0.1:8000; you'll also want to modify your GitHub app settings to use http://127.0.0.1:8000 instead of http://ozzie.test
 
