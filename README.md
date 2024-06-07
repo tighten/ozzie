@@ -39,7 +39,6 @@ alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 1. Clone the repo (`git clone git@github.com:tighten/ozzie.git && cd ozzie`)
 2. Install dependencies
 
-    `composer install`
     ```shell
     docker run --rm \
         -u "$(id -u):$(id -g)" \
@@ -49,7 +48,6 @@ alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
         composer install --ignore-platform-reqs
     ```
 
-    `npm install`
     ```shell
     sail npm install
     ```
