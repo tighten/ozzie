@@ -12246,28 +12246,28 @@
         },
         {
             "name": "tightenco/duster",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tighten/duster.git",
-                "reference": "e7c38d576ec555a2765b4a01fb762f09fe7179bd"
+                "reference": "0128c2eb26fe759b79148c18a8dfe442b32eb211"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tighten/duster/zipball/e7c38d576ec555a2765b4a01fb762f09fe7179bd",
-                "reference": "e7c38d576ec555a2765b4a01fb762f09fe7179bd",
+                "url": "https://api.github.com/repos/tighten/duster/zipball/0128c2eb26fe759b79148c18a8dfe442b32eb211",
+                "reference": "0128c2eb26fe759b79148c18a8dfe442b32eb211",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.2.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.54",
+                "friendsofphp/php-cs-fixer": "^3.59",
                 "laravel-zero/framework": "^11.0",
-                "laravel/pint": "^1.15",
+                "laravel/pint": "^1.16",
                 "nunomaduro/termwind": "^2.0",
                 "spatie/invade": "^1.1",
-                "squizlabs/php_codesniffer": "^3.9",
+                "squizlabs/php_codesniffer": "^3.10",
                 "tightenco/tlint": "^9.3"
             },
             "bin": [
@@ -12312,7 +12312,7 @@
                 "issues": "https://github.com/tighten/duster/issues",
                 "source": "https://github.com/tighten/duster"
             },
-            "time": "2024-06-03T18:29:50+00:00"
+            "time": "2024-06-24T20:05:09+00:00"
         },
         {
             "name": "zbateson/mail-mime-parser",
