@@ -54,12 +54,12 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily', 'bugsnag'],
+            'channels' => ['daily', 'flare'],
             'ignore_exceptions' => false,
         ],
 
-        'bugsnag' => [
-            'driver' => 'bugsnag',
+        'flare' => [
+            'driver' => 'flare',
         ],
 
         'single' => [

@@ -170,11 +170,6 @@ return [
 
     'providers' => ServiceProvider::defaultProviders()->merge(array_filter([
         /*
-         * Package Service Providers...
-         */
-        Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
-
-        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
