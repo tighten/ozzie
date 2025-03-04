@@ -6,7 +6,6 @@ use App\Models\Project;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
-use Throwable;
 
 class Package
 {
@@ -37,27 +36,20 @@ class Package
 
     protected function fetchDownloads()
     {
-        try {
-            $response = Http::retry(self::RETRY_ATTEMPTS, self::RETRY_DELAY_MS, function ($exception, $request) {
-                return $exception instanceof ConnectionException;
-            })->get($this->url);
+        $response = Http::retry(self::RETRY_ATTEMPTS, self::RETRY_DELAY_MS, function ($exception, $request) {
+            return $exception instanceof ConnectionException;
+        }, false)->get($this->url);
 
-            report_if(
-                $response->serverError(),
-                "HTTP Error: Was unable to fetch from packagist {$this->url}"
-            );
+        report_if(
+            $response->serverError(),
+            "HTTP Error: Was unable to fetch from packagist {$this->url}"
+        );
 
-            if ($response->ok()) {
-                $this->requestOk = true;
-                $this->downloadsData = Arr::get($response->json(), 'package.downloads', 0);
-                $this->monthlyDownloads = $this->downloadsData['monthly'];
-                $this->totalDownloads = $this->downloadsData['total'];
-            }
-        } catch (ConnectionException $e) {
-            $this->requestOk = false;
-        } catch (Throwable $e) {
-            report("Error when fetching from packagist {$this->url}: " . $e->getMessage());
-            $this->requestOk = false;
+        if ($response->ok()) {
+            $this->requestOk = true;
+            $this->downloadsData = Arr::get($response->json(), 'package.downloads', 0);
+            $this->monthlyDownloads = $this->downloadsData['monthly'];
+            $this->totalDownloads = $this->downloadsData['total'];
         }
     }
 
