@@ -1,10 +1,11 @@
 import '../css/app.css';
 
 import { createApp, h } from 'vue';
+import type { DefineComponent } from 'vue';
 import { createInertiaApp, Head, Link } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { DateTime } from 'luxon';
-import route from 'ziggy-js';
+import { ZiggyVue, route } from 'ziggy-js';
 
 createInertiaApp({
     progress: {
@@ -13,12 +14,10 @@ createInertiaApp({
         showSpinner: true,
     },
     resolve: (name) =>
-        resolvePageComponent(
-            `./Pages/${name}.vue`,
-            import.meta.glob('./Pages/**/*.vue')
-        ),
+        resolvePageComponent(`./pages/${name}.vue`, import.meta.glob<DefineComponent>('./pages/**/*.vue')),
     setup({ el, App, props, plugin }) {
         const ozzie = createApp({ render: () => h(App, props) });
+        ozzie.use(ZiggyVue);
         ozzie.config.globalProperties.$luxon = DateTime;
         ozzie.config.globalProperties.$route = route;
         ozzie.component('InertiaHead', Head);
