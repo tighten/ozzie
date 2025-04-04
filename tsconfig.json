@@ -1,24 +1,43 @@
 {
     "compilerOptions": {
-        "target": "esnext",
-        "module": "esnext",
+        "target": "ESNext",
+        "useDefineForClassFields": true,
         "lib": [
             "ESNext",
-            "dom"
+            "DOM",
+            "DOM.Iterable"
         ],
-        // this enables stricter inference for data properties on `this`
-        "strict": false,
         "jsx": "preserve",
-        "moduleResolution": "node",
-        "sourceMap": true,
-        "noImplicitAny": false,
-        "baseUrl": ".",
+        "jsxImportSource": "vue",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
         "paths": {
-            "@/*": ["resources/ts/*"]
+            "@/*": [
+                "./resources/ts/*"
+            ],
+            "ziggy-js": [
+                "./vendor/tightenco/ziggy"
+            ]
         },
+        "types": [
+            "vite/client",
+            "vue/tsx",
+            "./resources/ts/types"
+        ],
+        "resolveJsonModule": true,
+        "allowJs": true,
+        "sourceMap": true,
+        "noEmit": true,
+        "isolatedModules": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "skipLibCheck": true
     },
-    "exclude": [
-        "node_modules",
-        "vendor"
+    "include": [
+        "resources/ts/**/*.ts",
+        "resources/ts/**/*.d.ts",
+        "resources/ts/**/*.tsx",
+        "resources/ts/**/*.vue"
     ]
 }
