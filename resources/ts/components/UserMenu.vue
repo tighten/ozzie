@@ -1,5 +1,5 @@
 <template>
-    <HeadlessMenu
+    <Menu
         as="div"
         class="group relative inline-block text-left">
         <div>
@@ -96,12 +96,12 @@
                 </div>
             </MenuItems>
         </transition>
-    </HeadlessMenu>
+    </Menu>
 </template>
 
 <script lang="ts">
 import {
-    Menu as HeadlessMenu, MenuButton, MenuItem, MenuItems,
+    Menu, MenuButton, MenuItem, MenuItems,
 } from '@headlessui/vue';
 import { ChevronDownIcon } from '@heroicons/vue/20/solid';
 import { PropType } from 'vue';
@@ -110,7 +110,7 @@ import { User } from '@/ozzie';
 export default {
     name: 'UserMenu',
     components: {
-        HeadlessMenu,
+        Menu,
         MenuButton,
         MenuItem,
         MenuItems,

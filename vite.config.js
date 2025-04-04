@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 import dotenv from 'dotenv';
-import { basename } from 'path';
+import { basename } from 'path'
 
 export default defineConfig(({ mode }) => {
     // Default valet hostname guess is repo.test, but you can override
@@ -12,7 +12,10 @@ export default defineConfig(({ mode }) => {
         path: './.env' ?? `./.env.${mode}`,
     });
 
-    const envAppUrl = new URL(envConfig?.parsed?.APP_URL ?? `http://${basename(__dirname)}.test`);
+    const envAppUrl = new URL(
+        envConfig?.parsed?.APP_URL ??
+            `http://${ basename(__dirname)}.test`
+    );
 
     return {
         resolve: {
@@ -24,7 +27,7 @@ export default defineConfig(({ mode }) => {
             laravel({
                 input: ['resources/ts/app.ts'],
                 refresh: true,
-                detectTls: !envConfig?.parsed?.LARAVEL_SAIL || envAppUrl.hostname,
+                valetTls: !envConfig?.parsed?.LARAVEL_SAIL ?? envAppUrl.hostname,
             }),
             vue({
                 template: {

@@ -1,4 +1,4 @@
- 
+/* eslint-disable camelcase */
 
 export declare type Label = {
     color: string;
