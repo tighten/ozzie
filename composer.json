@@ -30,7 +30,9 @@
         "laravel/socialite": "^5.11",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
+        "league/commonmark": "^2.7",
         "nathanheffley/laravel-slack-blocks": "^2.3",
+        "nesbot/carbon": "^2.73",
         "spatie/data-transfer-object": "^3.9",
         "spatie/laravel-ignition": "^2.0",
         "tightenco/ziggy": "^1.6"
