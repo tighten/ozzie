@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
-use App\Models\FetchResult;
 use Carbon\CarbonPeriod;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -165,11 +164,11 @@ class Project extends Model
         }
     }
 
-    public function recentFetchSuccessRate($type = null): float | null
+    public function recentFetchSuccessRate($type = null): ?float
     {
         $results = FetchResult::where('project_id', $this->id)
             ->where('created_at', '>=', now()->subDays(30))
-            ->when($type, fn($query) => $query->where('type', $type))
+            ->when($type, fn ($query) => $query->where('type', $type))
             ->get();
 
         return $results->isNotEmpty() ? $results->avg('success') : null;

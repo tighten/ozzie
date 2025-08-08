@@ -37,14 +37,15 @@ class Repository
     {
         try {
             return collect(GitHubClient::issues()->all($this->namespace, $this->name))
-                ->tap(fn() => FetchResult::githubSuccess($this->project))
+                ->tap(fn () => FetchResult::githubSuccess($this->project))
                 ->map(function ($issue) {
                     return new Issue($issue);
                 })->reject(function (Issue $issue) {
-                return ! is_null($issue->pull_request);
-            });
+                    return ! is_null($issue->pull_request);
+                });
         } catch (Exception $th) {
             FetchResult::githubFail($this->project);
+
             return collect();
         }
     }

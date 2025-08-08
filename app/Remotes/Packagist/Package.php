@@ -55,7 +55,7 @@ class Package
                 $response->serverError(),
                 "HTTP Error: Was unable to fetch from packagist {$this->url}"
             );
-        } catch (ConnectionException | RequestException $e) {
+        } catch (ConnectionException|RequestException $e) {
             report($e);
 
             FetchResult::packagistFail($this->project);
