@@ -10,6 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
+use Throwable;
 
 class FetchErrorHandlingTest extends TestCase
 {
@@ -37,7 +38,7 @@ class FetchErrorHandlingTest extends TestCase
             // Attempt to fetch from Packagist
             $package = Package::fromProject($project);
             $this->assertNull($package->downloadsData);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             $this->fail('Package failed to swallow curl exception');
         }
     }

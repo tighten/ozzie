@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Project;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -20,11 +19,6 @@ class FetchResult extends Model
     protected $casts = [
         'success' => 'boolean',
     ];
-
-    public function project(): BelongsTo
-    {
-        return $this->belongsTo(Project::class);
-    }
 
     public static function packagistSuccess(Project $project): self
     {
@@ -60,5 +54,10 @@ class FetchResult extends Model
             'type' => 'github',
             'success' => false,
         ]);
+    }
+
+    public function project(): BelongsTo
+    {
+        return $this->belongsTo(Project::class);
     }
 }
