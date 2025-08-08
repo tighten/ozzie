@@ -15,6 +15,8 @@ class FetchProjectStats extends Command
 
     protected $description = "Fetch each project's stats from GitHub and store in the projects table.";
 
+    protected $bar;
+
     public function handle(): int
     {
         $projects = Project::all();
@@ -41,7 +43,7 @@ class FetchProjectStats extends Command
         $this->updateProgressBar($project->name);
 
         // Fetch GitHub project issues and pull requests
-        $githubProject = new Repository($project->namespace, $project->name);
+        $githubProject = new Repository($project);
 
         $issues = $this->filterIssues($githubProject->issues());
         $pullRequests = $this->filterPullRequests($githubProject->pullRequests());

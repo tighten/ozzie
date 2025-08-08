@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
+use App\Models\FetchResult;
 use Carbon\CarbonPeriod;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -162,6 +163,16 @@ class Project extends Model
         if ($this->downloads_total + $this->downloads_last_30_days > 0) {
             return true;
         }
+    }
+
+    public function recentFetchSuccessRate($type = null): float | null
+    {
+        $results = FetchResult::where('project_id', $this->id)
+            ->where('created_at', '>=', now()->subDays(30))
+            ->when($type, fn($query) => $query->where('type', $type))
+            ->get();
+
+        return $results->isNotEmpty() ? $results->avg('success') : null;
     }
 
     public function scopeExclude($query, $value = [])

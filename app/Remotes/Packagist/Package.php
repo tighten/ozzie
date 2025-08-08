@@ -2,7 +2,9 @@
 
 namespace App\Remotes\Packagist;
 
+use App\Models\FetchResult;
 use App\Models\Project;
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
@@ -22,8 +24,14 @@ class Package
 
     protected $url;
 
-    public function __construct($namespace, $name)
+    protected $package;
+
+    public function __construct(Project $project)
     {
+        $this->project = $project;
+
+        [$namespace, $name] = explode('/', $this->project->packagist_name);
+
         $this->url = "https://packagist.org/packages/{$namespace}/{$name}.json";
 
         $this->fetchDownloads();
@@ -31,25 +39,37 @@ class Package
 
     public static function fromProject(Project $project): self
     {
-        return new self(...explode('/', $project->packagist_name));
+        return new self($project);
     }
 
     protected function fetchDownloads()
     {
-        $response = Http::retry(self::RETRY_ATTEMPTS, self::RETRY_DELAY_MS, function ($exception, $request) {
-            return $exception instanceof ConnectionException;
-        }, false)->get($this->url);
+        try {
+            // Despite setting throw: false, if all attempts have a ConnectionException,
+            // that exception will still be thrown (hence, try/catch)
+            $response = Http::retry(self::RETRY_ATTEMPTS, self::RETRY_DELAY_MS, function ($exception, $request) {
+                return $exception instanceof ConnectionException || $exception instanceof RequestException;
+            }, throw: false)->get($this->url);
 
-        report_if(
-            $response->serverError(),
-            "HTTP Error: Was unable to fetch from packagist {$this->url}"
-        );
+            report_if(
+                $response->serverError(),
+                "HTTP Error: Was unable to fetch from packagist {$this->url}"
+            );
+        } catch (ConnectionException | RequestException $e) {
+            report($e);
+
+            FetchResult::packagistFail($this->project);
+
+            return;
+        }
 
         if ($response->ok()) {
             $this->requestOk = true;
             $this->downloadsData = Arr::get($response->json(), 'package.downloads', 0);
             $this->monthlyDownloads = $this->downloadsData['monthly'];
             $this->totalDownloads = $this->downloadsData['total'];
+
+            FetchResult::packagistSuccess($this->project);
         }
     }
 

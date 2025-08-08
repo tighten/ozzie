@@ -42,8 +42,8 @@ class Project extends Resource
     {
         return [
             ID::make(),
-            URL::make('Name', fn () => "https://github.com/{$this->namespace}/{$this->name}")
-                ->displayUsing(fn () => $this->name)
+            URL::make('Name', fn() => "https://github.com/{$this->namespace}/{$this->name}")
+                ->displayUsing(fn() => $this->name)
                 ->sortable()
                 ->readonly()
                 ->textAlign('left'),
@@ -62,6 +62,20 @@ class Project extends Resource
                 ->onlyOnIndex()
                 ->textAlign('center'),
             Number::make('PRs', 'pull_requests_count')
+                ->sortable()
+                ->onlyOnIndex()
+                ->textAlign('center'),
+            Number::make('Fetch Packagist Success', function () {
+                $rate = $this->recentFetchSuccessRate('packagist');
+                return is_null($rate) ? '—' : number_format(100 * $rate, 2) . '%';
+            })
+                ->sortable()
+                ->onlyOnIndex()
+                ->textAlign('center'),
+            Number::make('Fetch Github Success', function () {
+                $rate = $this->recentFetchSuccessRate('github');
+                return is_null($rate) ? '—' : number_format(100 * $rate, 2) . '%';
+            })
                 ->sortable()
                 ->onlyOnIndex()
                 ->textAlign('center'),

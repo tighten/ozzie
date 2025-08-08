@@ -4,6 +4,8 @@ namespace App\GitHub;
 
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
+use App\Models\FetchResult;
+use App\Models\Project;
 use Exception;
 use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
 
@@ -13,10 +15,13 @@ class Repository
 
     public $namespace;
 
-    public function __construct($namespace, $name)
+    protected $project;
+
+    public function __construct(Project $project)
     {
-        $this->namespace = $namespace;
-        $this->name = $name;
+        $this->project = $project;
+        $this->namespace = $project->namespace;
+        $this->name = $project->name;
     }
 
     public function isArchived()
@@ -32,12 +37,14 @@ class Repository
     {
         try {
             return collect(GitHubClient::issues()->all($this->namespace, $this->name))
+                ->tap(fn() => FetchResult::githubSuccess($this->project))
                 ->map(function ($issue) {
                     return new Issue($issue);
                 })->reject(function (Issue $issue) {
-                    return ! is_null($issue->pull_request);
-                });
+                return ! is_null($issue->pull_request);
+            });
         } catch (Exception $th) {
+            FetchResult::githubFail($this->project);
             return collect();
         }
     }
@@ -52,6 +59,5 @@ class Repository
         } catch (Exception $th) {
             return collect();
         }
-
     }
 }
