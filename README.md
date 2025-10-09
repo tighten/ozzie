@@ -10,21 +10,22 @@
 
 ## Local Installation
 
-### MacOS - Valet
+### MacOS - Valet / Herd
+
 1. Clone the repo (`git clone git@github.com:tighten/ozzie.git && cd ozzie`)
-2. Install dependencies (`composer install && npm install`)
-3. Run `valet secure` to use `https` for the local domain
+2. Install dependencies (`composer install && npm install`). You will need a Nova username and password to complete the installation.
+3. Run `valet secure` (or `herd secure` if you're using Herd) to use `https` for the local domain
 4. Update `APP_URL` in `.env` to use your local valet TLD. By default, it will use `https://ozzie.test`
-3. Create a [GitHub OAuth Application](https://github.com/settings/developers). If you use Valet to serve your application locally, you can use the following settings:
+5. Create a [GitHub OAuth Application](https://github.com/settings/developers). If you use Valet/Herd to serve your application locally, you can use the following settings:
     - Application Name: `Local Ozzie`
     - Homepage URL: `https://ozzie.test`
     - Application Description: `Local Version of Ozzie`
     - Authorization Callback URL: `https://ozzie.test/auth/callback`
-4. Copy the example `.env` file: `cp .env.example .env` and modify its settings to match your local install, including the client ID and secret from the previous step
-5. Run `php artisan key:generate`
-6. Create a database (by default `.env` looks for one named `ozzie`) and run the migrations (`php artisan migrate`)
-7. Fetch the projects list (into the database) by using the `projects:fetch` command. Alternatively, you can seed your `projects` table using a `projects.json` file at the root of the project (see below for more info).
-9. Fetch all projects' stats for the first time using `stats:fetch`
+6. Copy the example `.env` file: `cp .env.example .env` and modify its settings to match your local install, including the client ID and secret from the previous step
+7. Run `php artisan key:generate`
+8. Create a database (by default `.env` looks for one named `ozzie`) and run the migrations (`php artisan migrate`)
+9. Fetch the projects list (into the database) by using the `php artisan projects:fetch` command. Alternatively, you can seed your `projects` table using a `projects.json` file at the root of the project (see below for more info).
+10. Fetch all projects' stats for the first time using `php artisan stats:fetch`
 
 ### Sail - Docker
 
