@@ -34,7 +34,7 @@
         "typescript": "^5.3.3",
         "vite": "^6.4.1",
         "vue": "^3.4.15",
-        "ziggy-js": "^1.8.1"
+        "ziggy-js": "^2.6.0"
     },
     "prettier": {
         "singleQuote": true,
