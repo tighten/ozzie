@@ -15,8 +15,7 @@ class ProjectController extends Controller
 
     public function show(string $vendor, string $name)
     {
-        // @todo Re-work using explicit route model binding
-        $project = Project::forPackagist($vendor, $name)->firstOrFail();
+        $project = Project::fromVendorAndName($vendor, $name)->firstOrFail();
 
         return new ProjectResource($project);
     }

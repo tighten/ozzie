@@ -25,7 +25,7 @@ class CachedProjectList
             function () {
                 return Project::exclude(['pull_requests', 'issues'])->get()
                     ->filter(fn ($project) => ! $project->is_hidden)
-                    ->transform(fn ($project) => app(CachedProjectResource::class)($project->packagist_name))
+                    ->transform(fn ($project) => app(CachedProjectResource::class)($project->namespace, $project->name))
                     ->sortByDesc(fn ($project) => $project['debt_score'])
                     ->values();
             }

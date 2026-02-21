@@ -15,7 +15,7 @@ class ProjectController extends Controller
     public function show(string $vendor, string $name)
     {
         return inertia('Projects/Show', [
-            'project' => app(CachedProjectResource::class)("{$vendor}/{$name}"),
+            'project' => app(CachedProjectResource::class)($vendor, $name),
         ]);
     }
 }

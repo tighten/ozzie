@@ -17,12 +17,12 @@
                     :key="pull_request.node_id">
                     <CardRow
                         class="cursor-pointer"
-                        @click="$inertia.visit(urlForType(project.packagist_name, 'pull-request', pull_request.number))">
+                        @click="$inertia.visit(urlForType(project.namespace, project.name, 'pull-request', pull_request.number))">
                         <GitHubListItem
                             :git-hub-item="pull_request"
                             :project-namespace="project.namespace"
                             :project-name="project.name"
-                            :ozzie-url="urlForType(project.packagist_name, 'pull-request', pull_request.number)" />
+                            :ozzie-url="urlForType(project.namespace, project.name, 'pull-request', pull_request.number)" />
                     </CardRow>
                 </li>
             </ul>
@@ -37,12 +37,12 @@
                     :key="issue.node_id">
                     <CardRow
                         class="cursor-pointer"
-                        @click="$inertia.visit(urlForType(project.packagist_name, 'issue', issue.number))">
+                        @click="$inertia.visit(urlForType(project.namespace, project.name, 'issue', issue.number))">
                         <GitHubListItem
                             :git-hub-item="issue"
                             :project-namespace="project.namespace"
                             :project-name="project.name"
-                            :ozzie-url="urlForType(project.packagist_name, 'issue', issue.number)" />
+                            :ozzie-url="urlForType(project.namespace, project.name, 'issue', issue.number)" />
                     </CardRow>
                 </li>
             </ul>

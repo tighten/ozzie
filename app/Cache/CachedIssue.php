@@ -14,7 +14,7 @@ class CachedIssue
         return Cache::rememberForever(
             "{$vendor}-{$name}-{$type}-{$id}",
             function () use ($vendor, $name, $type, $id) {
-                $project = new ProjectResource(Project::forPackagist("{$vendor}/{$name}")->firstOrFail());
+                $project = new ProjectResource(Project::fromVendorAndName($vendor, $name)->firstOrFail());
 
                 return [
                     'project' => $project->jsonSerialize(),

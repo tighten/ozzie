@@ -72,11 +72,6 @@ class Project extends Model
         });
     }
 
-    public function getPackagistNameAttribute($value)
-    {
-        return $value ?? "{$this->namespace}/{$this->name}";
-    }
-
     public function getDebtScoreAttribute()
     {
         return $this->debtScore();

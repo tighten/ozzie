@@ -1,15 +1,14 @@
 import route from 'ziggy-js';
 
-export function ozzieProjectUrl(packageName: string): string {
-    const [vendor, name] = packageName.split('/');
+export function ozzieProjectUrl(vendor: string, name: string): string {
     return route('projects.show', { vendor, name });
 }
 
 export function urlForType(
-    packageName: string,
+    vendor: string,
+    name: string,
     type: string,
     id: number
 ): string {
-    const [vendor, name] = packageName.split('/');
     return route(`${type}.show`, { vendor, name, id });
 }

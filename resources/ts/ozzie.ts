@@ -36,7 +36,7 @@ export declare type Project = {
     id: number;
     namespace: string;
     name: string;
-    packagist_name: string;
+    packagist_name: string | null;
     maintainers: Array<string>;
     issues_count: number;
     pull_requests_count: number;

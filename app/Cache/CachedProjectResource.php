@@ -8,14 +8,12 @@ use Illuminate\Support\Facades\Cache;
 
 class CachedProjectResource
 {
-    public function __invoke(string $packagistName)
+    public function __invoke(string $namespace, string $name)
     {
-        [$vendor, $name] = explode('/', $packagistName);
-
         return Cache::rememberForever(
-            "{$vendor}-{$name}",
-            function () use ($packagistName) {
-                return (new ProjectResource(Project::forPackagist($packagistName)->firstOrFail()))->jsonSerialize();
+            "{$namespace}-{$name}",
+            function () use ($namespace, $name) {
+                return (new ProjectResource(Project::fromVendorAndName($namespace, $name)->firstOrFail()))->jsonSerialize();
             }
         );
     }

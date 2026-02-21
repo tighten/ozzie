@@ -12,9 +12,9 @@
         <InertiaLink
             v-if="project"
             class="text-indigo"
-            :href="ozzieProjectUrl(project.packagist_name)"
+            :href="ozzieProjectUrl(project.namespace, project.name)"
             method="get">
-            {{ project.packagist_name }}
+            {{ project.namespace }}/{{ project.name }}
         </InertiaLink>
         <span
             v-if="issue"

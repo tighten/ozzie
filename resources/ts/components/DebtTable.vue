@@ -37,13 +37,13 @@
                 v-for="project in projects.filter(project => project.debt_score > 0)"
                 :key="project.id"
                 :class="linkProjects ? ['hover:bg-indigo-hover', 'cursor-pointer'] : []"
-                @click="linkProjects ? $inertia.visit(ozzieProjectUrl(project.packagist_name)) : null">
+                @click="linkProjects ? $inertia.visit(ozzieProjectUrl(project.namespace, project.name)) : null">
                 <td
                     v-if="showProjectName"
                     class="p-4">
                     <InertiaLink
                         class="text-indigo no-underline"
-                        :href="ozzieProjectUrl(project.packagist_name)"
+                        :href="ozzieProjectUrl(project.namespace, project.name)"
                         method="get">
                         {{ project.namespace }}/{{ project.name }}
                     </InertiaLink>
