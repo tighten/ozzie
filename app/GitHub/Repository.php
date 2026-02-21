@@ -6,7 +6,7 @@ use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
 use App\Models\FetchResult;
 use App\Models\Project;
-use Exception;
+use Github\Exception\RuntimeException;
 use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
 
 class Repository
@@ -17,6 +17,8 @@ class Repository
 
     protected $project;
 
+    protected $repoData;
+
     public function __construct(Project $project)
     {
         $this->project = $project;
@@ -24,13 +26,24 @@ class Repository
         $this->name = $project->name;
     }
 
-    public function isArchived()
+    public function exists()
     {
         try {
-            return GitHubClient::repo()->show($this->namespace, $this->name)['archived'];
-        } catch (Exception $th) {
-            return false;
+            $this->repoData = GitHubClient::repo()->show($this->namespace, $this->name);
+
+            return true;
+        } catch (RuntimeException $e) {
+            if ($e->getCode() === 404) {
+                return false;
+            }
+
+            throw $e;
         }
+    }
+
+    public function isArchived()
+    {
+        return ($this->repoData ?? [])['archived'] ?? false;
     }
 
     public function issues()

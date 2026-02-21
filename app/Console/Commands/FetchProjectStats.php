@@ -6,6 +6,7 @@ use App\Cache\CachedProjectList;
 use App\GitHub\Repository;
 use App\Models\Project;
 use App\Remotes\Packagist\Package;
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
@@ -19,7 +20,7 @@ class FetchProjectStats extends Command
 
     public function handle(): int
     {
-        $projects = Project::all();
+        $projects = Project::where('is_hidden', false)->get();
 
         $this->createProgressBar($projects->count());
 
@@ -42,9 +43,31 @@ class FetchProjectStats extends Command
     {
         $this->updateProgressBar($project->name);
 
-        // Fetch GitHub project issues and pull requests
         $githubProject = new Repository($project);
 
+        try {
+            $repoExists = $githubProject->exists();
+        } catch (Exception $e) {
+            $this->warn("Skipping {$project->name}: {$e->getMessage()}");
+
+            return;
+        }
+
+        if (! $repoExists) {
+            $this->warn("Hiding {$project->name}: repo not found on GitHub.");
+            $project->update(['is_hidden' => true]);
+
+            return;
+        }
+
+        if ($githubProject->isArchived()) {
+            $this->warn("Hiding {$project->name}: repo is archived on GitHub.");
+            $project->update(['is_hidden' => true]);
+
+            return;
+        }
+
+        // Fetch GitHub project issues and pull requests
         $issues = $this->filterIssues($githubProject->issues());
         $pullRequests = $this->filterPullRequests($githubProject->pullRequests());
 
@@ -56,14 +79,14 @@ class FetchProjectStats extends Command
         $project->pull_requests = $pullRequests->values();
 
         // Fetch download counts (if applicable)
-        $packagist = Package::fromProject($project);
+        if ($project->packagist_name) {
+            $packagist = Package::fromProject($project);
 
-        if ($packagist->requestOk) {
-            $project->downloads_total = $packagist->totalDownloads;
-            $project->downloads_last_30_days = $packagist->monthlyDownloads;
+            if ($packagist->requestOk) {
+                $project->downloads_total = $packagist->totalDownloads;
+                $project->downloads_last_30_days = $packagist->monthlyDownloads;
+            }
         }
-
-        $project->is_hidden = $githubProject->isArchived() || $project->is_hidden;
 
         $project->save();
     }

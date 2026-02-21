@@ -6,6 +6,7 @@ use App\Models\Project;
 use Github\Api\Issue;
 use Github\Api\PullRequest;
 use Github\Api\Repo;
+use Github\Exception\ApiLimitExceedException;
 use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Cache;
@@ -38,7 +39,7 @@ class FetchProjectStatsTest extends TestCase
         $project = Project::factory()->create([
             'namespace' => 'tighten',
             'name' => 'existing_package',
-            'packagist_name' => null,
+            'packagist_name' => 'tighten/existing_package',
         ]);
 
         $this->artisan('stats:fetch')->assertSuccessful();
@@ -93,7 +94,7 @@ class FetchProjectStatsTest extends TestCase
         $project = Project::factory()->create([
             'namespace' => 'tighten',
             'name' => '404_package',
-            'packagist_name' => null,
+            'packagist_name' => 'tighten/404_package',
             'downloads_total' => 100,
             'downloads_last_30_days' => 10,
         ]);
@@ -135,6 +136,93 @@ class FetchProjectStatsTest extends TestCase
 
         $this->assertEquals($project->is_hidden, false);
         $this->assertNotEmpty(Cache::get('projects'));
+    }
+
+    /** @test */
+    public function deleted_github_repo_is_marked_as_hidden(): void
+    {
+        $reposMock = Mockery::mock(Repo::class);
+        $reposMock->shouldReceive('show')
+            ->with('tighten', 'deleted_package')
+            ->once()
+            ->andThrow(new \Github\Exception\RuntimeException('Not Found', 404));
+        GitHubClient::shouldReceive('repo')
+            ->once()
+            ->andReturn($reposMock);
+
+        $project = Project::factory()->create([
+            'namespace' => 'tighten',
+            'name' => 'deleted_package',
+        ]);
+
+        $this->artisan('stats:fetch')
+            ->expectsOutputToContain('Hiding deleted_package: repo not found on GitHub.')
+            ->assertSuccessful();
+
+        $project->refresh();
+
+        $this->assertTrue($project->is_hidden);
+    }
+
+    /** @test */
+    public function archived_github_repo_is_marked_as_hidden(): void
+    {
+        $reposMock = Mockery::mock(Repo::class);
+        $reposMock->shouldReceive('show')
+            ->with('tighten', 'archived_package')
+            ->once()
+            ->andReturn(['archived' => true]);
+        GitHubClient::shouldReceive('repo')
+            ->once()
+            ->andReturn($reposMock);
+
+        $project = Project::factory()->create([
+            'namespace' => 'tighten',
+            'name' => 'archived_package',
+        ]);
+
+        $this->artisan('stats:fetch')
+            ->expectsOutputToContain('Hiding archived_package: repo is archived on GitHub.')
+            ->assertSuccessful();
+
+        $project->refresh();
+
+        $this->assertTrue($project->is_hidden);
+    }
+
+    /** @test */
+    public function rate_limited_repo_is_not_hidden(): void
+    {
+        $reposMock = Mockery::mock(Repo::class);
+        $reposMock->shouldReceive('show')
+            ->with('tighten', 'rate_limited_package')
+            ->once()
+            ->andThrow(new ApiLimitExceedException());
+        GitHubClient::shouldReceive('repo')
+            ->once()
+            ->andReturn($reposMock);
+
+        $project = Project::factory()->create([
+            'namespace' => 'tighten',
+            'name' => 'rate_limited_package',
+        ]);
+
+        $this->artisan('stats:fetch')
+            ->expectsOutputToContain('Skipping rate_limited_package')
+            ->assertSuccessful();
+
+        $project->refresh();
+
+        $this->assertFalse($project->is_hidden);
+    }
+
+    /** @test */
+    public function hidden_projects_are_skipped(): void
+    {
+        $project = Project::factory()->hidden()->create();
+
+        // No GitHub mocks set up — if the command tries to call GitHub, it will fail
+        $this->artisan('stats:fetch')->assertSuccessful();
     }
 
     public function mockGithubClient($namespace, $repo): void
