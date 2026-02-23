@@ -54,7 +54,7 @@ class SendOzzieStats extends Notification
 
                 $message->contextBlock(function ($block) use ($project) {
                     $block->text(sprintf(
-                        "PRs: %s (*%s old*)  Issues: %s (*%s old*)",
+                        'PRs: %s (*%s old*)  Issues: %s (*%s old*)',
                         $project->pull_requests_count,
                         $project->oldPullRequests()->count(),
                         $project->issues_count,
