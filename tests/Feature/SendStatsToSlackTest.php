@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Notifications\SendOzzieStats;
 use App\OrgSlack;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Notifications\Slack\SlackMessage;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
@@ -36,15 +37,39 @@ class SendStatsToSlackTest extends TestCase
         Notification::assertSentTo(new OrgSlack, SendOzzieStats::class, function ($notification, $channels, $notifiable) {
             $slackNotification = $notification->toSlack($notifiable);
 
-            return $channels === ['slack']
-                && $notifiable instanceof OrgSlack
-                && $slackNotification->username === 'Ozzie'
-                && $slackNotification->icon === ':robot_face:'
-                && $slackNotification->content === sprintf('Here are your Ozzie stats! %s', config('app.url'))
-                && $slackNotification->attachments[0]->blocks[0]->text['text'] === '*<https://github.com/acme/project-b|Acme / Project-b>*: *7*'
-                && $slackNotification->attachments[1]->blocks[0]->text['text'] === '*<https://github.com/acme/project-a|Acme / Project-a>*: *5*'
-                && $slackNotification->attachments[0]->blocks[1]->elements[1]['text'] === "PRs: 0 (*0 old*)\t\t\tIssues: 700 (*0 old*)"
-                && $slackNotification->attachments[1]->blocks[1]->elements[1]['text'] === "PRs: 0 (*0 old*)\t\t\tIssues: 500 (*0 old*)";
+            $this->assertInstanceOf(SlackMessage::class, $slackNotification);
+            $this->assertSame(['slack'], $channels);
+            $this->assertInstanceOf(OrgSlack::class, $notifiable);
+
+            $payload = $slackNotification->toArray();
+
+            $this->assertSame('Ozzie', $payload['username']);
+            $this->assertSame(':robot_face:', $payload['icon_emoji']);
+            $this->assertSame(sprintf('Here are your Ozzie stats! %s', config('app.url')), $payload['text']);
+
+            // First block is the header section with button
+            $this->assertSame('section', $payload['blocks'][0]['type']);
+
+            // Second block is section for project-b (higher debt)
+            $this->assertSame('section', $payload['blocks'][1]['type']);
+            $this->assertStringContainsString('*<https://github.com/acme/project-b|Acme / Project-b>*: *7*', $payload['blocks'][1]['text']['text']);
+
+            // Third block is context for project-b
+            $this->assertSame('context', $payload['blocks'][2]['type']);
+            $this->assertStringContainsString("PRs: 0 (*0 old*)\t\t\tIssues: 700 (*0 old*)", $payload['blocks'][2]['elements'][1]['text']);
+
+            // Fourth block is divider
+            $this->assertSame('divider', $payload['blocks'][3]['type']);
+
+            // Fifth block is section for project-a (lower debt)
+            $this->assertSame('section', $payload['blocks'][4]['type']);
+            $this->assertStringContainsString('*<https://github.com/acme/project-a|Acme / Project-a>*: *5*', $payload['blocks'][4]['text']['text']);
+
+            // Sixth block is context for project-a
+            $this->assertSame('context', $payload['blocks'][5]['type']);
+            $this->assertStringContainsString("PRs: 0 (*0 old*)\t\t\tIssues: 500 (*0 old*)", $payload['blocks'][5]['elements'][1]['text']);
+
+            return true;
         });
     }
 }

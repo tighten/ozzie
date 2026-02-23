@@ -31,9 +31,8 @@
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.4",
         "league/commonmark": "^2.7",
-        "nathanheffley/laravel-slack-blocks": "^2.3",
+        "laravel/slack-notification-channel": "^3.0",
         "nesbot/carbon": "^3.0",
-        "spatie/data-transfer-object": "^3.9",
         "spatie/laravel-ignition": "^2.4",
         "tightenco/ziggy": "^2.0"
     },

@@ -2,9 +2,7 @@
 
 namespace App\GitHub\Dto;
 
-use Spatie\DataTransferObject\DataTransferObject;
-
-class Branch extends DataTransferObject
+class Branch
 {
     public $label;
 
@@ -16,5 +14,12 @@ class Branch extends DataTransferObject
 
     public $repo;
 
-    protected bool $ignoreMissing = true;
+    public function __construct(array $data = [])
+    {
+        foreach ($data as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->$key = $value;
+            }
+        }
+    }
 }

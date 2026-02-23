@@ -2,13 +2,18 @@
 
 namespace App\GitHub\Dto;
 
-use Spatie\DataTransferObject\DataTransferObject;
-
-class User extends DataTransferObject
+class User
 {
     public $html_url;
 
     public $login;
 
-    protected bool $ignoreMissing = true;
+    public function __construct(array $data = [])
+    {
+        foreach ($data as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->$key = $value;
+            }
+        }
+    }
 }

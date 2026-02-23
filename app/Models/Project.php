@@ -25,15 +25,6 @@ class Project extends Model
         'debt_score',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'issues' => 'collection',
-            'is_hidden' => 'boolean',
-            'pull_requests' => 'collection',
-        ];
-    }
-
     public function snapshots(): HasMany
     {
         return $this->hasMany(Snapshot::class);
@@ -67,7 +58,7 @@ class Project extends Model
         }
 
         $query->where([
-            'packagist_name' => $vendor.'/'.$name,
+            'packagist_name' => $vendor . '/' . $name,
         ])->orWhere(function ($query) use ($vendor, $name) {
             $query->where([
                 'packagist_name' => null,
@@ -115,7 +106,7 @@ class Project extends Model
 
     public function url()
     {
-        return 'https://github.com/'.$this->namespace.'/'.$this->name;
+        return 'https://github.com/' . $this->namespace . '/' . $this->name;
     }
 
     public function issue(int $id): array
@@ -138,11 +129,11 @@ class Project extends Model
 
     public function getDebtScoreHistory()
     {
-        return Cache::remember('debt_score_history_'.$this->name, 60 * 60, function () {
+        return Cache::remember('debt_score_history_' . $this->name, 60 * 60, function () {
             $list = [];
 
             $now = Carbon::now();
-            $period = new CarbonPeriod($now->parse()->subDays(7)->format('Y-m-d'), $now->format('Y-m-d'));
+            $period = new CarbonPeriod($now->copy()->subDays(7)->format('Y-m-d'), $now->format('Y-m-d'));
 
             foreach ($period as $date) {
                 $snapshot = Snapshot::where('name', $this->name)
@@ -185,5 +176,14 @@ class Project extends Model
     public function scopeNotHidden($query)
     {
         return $query->where('is_hidden', false);
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'issues' => 'collection',
+            'is_hidden' => 'boolean',
+            'pull_requests' => 'collection',
+        ];
     }
 }
