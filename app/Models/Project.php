@@ -23,11 +23,14 @@ class Project extends Model
         'debt_score',
     ];
 
-    protected $casts = [
-        'issues' => 'collection',
-        'is_hidden' => 'boolean',
-        'pull_requests' => 'collection',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'issues' => 'collection',
+            'is_hidden' => 'boolean',
+            'pull_requests' => 'collection',
+        ];
+    }
 
     public function snapshots()
     {

@@ -16,9 +16,12 @@ class FetchResult extends Model
         'success',
     ];
 
-    protected $casts = [
-        'success' => 'boolean',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'success' => 'boolean',
+        ];
+    }
 
     public static function packagistSuccess(Project $project): self
     {
