@@ -36,32 +36,24 @@ class SendOzzieStats extends Notification
                 return $project->debtScore();
             })
             ->each(function ($project) use ($message) {
-                $scoreMoji = $project->debtScore() < 1 ? ':white_check_mark: ' : ':warning: ';
+                $scoreMoji = $project->debtScore() < 1 ? ':white_check_mark:' : ':warning:';
 
-                $message->sectionBlock(function (SectionBlock $block) use ($project) {
+                $message->sectionBlock(function (SectionBlock $block) use ($project, $scoreMoji) {
                     $block
                         ->text(sprintf(
-                            '*<%s|%s / %s>*: *%s*',
+                            "%s *<%s|%s / %s>*: *%s*\nPRs: %s (*%s old*)  Issues: %s (*%s old*)",
+                            $scoreMoji,
                             $project->url(),
                             ucwords($project->namespace),
                             ucwords($project->name),
-                            $project->debtScore()
+                            $project->debtScore(),
+                            $project->pull_requests_count,
+                            $project->oldPullRequests()->count(),
+                            $project->issues_count,
+                            $project->oldIssues()->count()
                         ))
                         ->markdown();
                 });
-
-                $message->contextBlock(function ($block) use ($project, $scoreMoji) {
-                    $block->text($scoreMoji);
-                    $block->text(sprintf(
-                        "PRs: %s (*%s old*)\t\t\tIssues: %s (*%s old*)",
-                        $project->pull_requests_count,
-                        $project->oldPullRequests()->count(),
-                        $project->issues_count,
-                        $project->oldIssues()->count()
-                    ))->markdown();
-                });
-
-                $message->dividerBlock();
             });
 
         return $message;
