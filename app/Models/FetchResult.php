@@ -16,13 +16,6 @@ class FetchResult extends Model
         'success',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'success' => 'boolean',
-        ];
-    }
-
     public static function packagistSuccess(Project $project): self
     {
         return self::create([
@@ -62,5 +55,12 @@ class FetchResult extends Model
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'success' => 'boolean',
+        ];
     }
 }

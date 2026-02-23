@@ -107,7 +107,7 @@ class FetchProjectStats extends Command
 
     protected function createProgressBar($count)
     {
-        $this->info("Fetching stats for {$count} ".Str::plural('project', $count));
+        $this->info("Fetching stats for {$count} " . Str::plural('project', $count));
         $this->bar = $this->output->createProgressBar($count);
     }
 

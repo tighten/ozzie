@@ -7,6 +7,7 @@ use Github\Api\Issue;
 use Github\Api\PullRequest;
 use Github\Api\Repo;
 use Github\Exception\ApiLimitExceedException;
+use Github\Exception\RuntimeException;
 use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Cache;
@@ -145,7 +146,7 @@ class FetchProjectStatsTest extends TestCase
         $reposMock->shouldReceive('show')
             ->with('tighten', 'deleted_package')
             ->once()
-            ->andThrow(new \Github\Exception\RuntimeException('Not Found', 404));
+            ->andThrow(new RuntimeException('Not Found', 404));
         GitHubClient::shouldReceive('repo')
             ->once()
             ->andReturn($reposMock);

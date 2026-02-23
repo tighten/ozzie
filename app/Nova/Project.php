@@ -68,7 +68,7 @@ class Project extends Resource
             Number::make('Fetch Packagist Success', function () {
                 $rate = $this->recentFetchSuccessRate('packagist');
 
-                return is_null($rate) ? '—' : number_format(100 * $rate, 2).'%';
+                return is_null($rate) ? '—' : number_format(100 * $rate, 2) . '%';
             })
                 ->sortable()
                 ->onlyOnIndex()
@@ -76,7 +76,7 @@ class Project extends Resource
             Number::make('Fetch Github Success', function () {
                 $rate = $this->recentFetchSuccessRate('github');
 
-                return is_null($rate) ? '—' : number_format(100 * $rate, 2).'%';
+                return is_null($rate) ? '—' : number_format(100 * $rate, 2) . '%';
             })
                 ->sortable()
                 ->onlyOnIndex()
