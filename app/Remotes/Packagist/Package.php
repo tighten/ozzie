@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Http;
 class Package
 {
     const RETRY_ATTEMPTS = 2;
+
     const RETRY_DELAY_MS = 500;
 
     public $downloadsData;

@@ -197,7 +197,7 @@ class FetchProjectStatsTest extends TestCase
         $reposMock->shouldReceive('show')
             ->with('tighten', 'rate_limited_package')
             ->once()
-            ->andThrow(new ApiLimitExceedException());
+            ->andThrow(new ApiLimitExceedException);
         GitHubClient::shouldReceive('repo')
             ->once()
             ->andReturn($reposMock);
