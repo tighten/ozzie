@@ -17,7 +17,7 @@ class FetchErrorHandlingTest extends TestCase
     use RefreshDatabase, WithFaker;
 
     /** @test */
-    public function packagist_curl_error_marks_as_unsuccessful()
+    public function packagist_curl_error_marks_as_unsuccessful(): void
     {
         $project = Project::factory()->create([
             'namespace' => 'tighten',
@@ -44,7 +44,7 @@ class FetchErrorHandlingTest extends TestCase
     }
 
     /** @test */
-    public function fetch_success_rate_calculates_for_package()
+    public function fetch_success_rate_calculates_for_package(): void
     {
         $project = Project::factory()->create();
 

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         // Before dropping the maintainers column, let's grab everything
         // to make new records in the maintainers table (and their assigned projects)
@@ -49,7 +49,7 @@ return new class extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('maintainers');
         Schema::dropIfExists('maintainer_project');

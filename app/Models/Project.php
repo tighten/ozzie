@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
 use Carbon\CarbonPeriod;
@@ -32,12 +34,12 @@ class Project extends Model
         ];
     }
 
-    public function snapshots()
+    public function snapshots(): HasMany
     {
         return $this->hasMany(Snapshot::class);
     }
 
-    public function snapshotToday()
+    public function snapshotToday(): HasMany
     {
         return $this->hasMany(Snapshot::class)->today();
     }
@@ -47,7 +49,7 @@ class Project extends Model
         return $query->where('is_hidden', false);
     }
 
-    public function maintainers()
+    public function maintainers(): BelongsToMany
     {
         return $this->belongsToMany(Maintainer::class);
     }

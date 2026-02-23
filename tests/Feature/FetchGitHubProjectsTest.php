@@ -68,7 +68,7 @@ class FetchGitHubProjectsTest extends TestCase
     }
 
     /** @test */
-    public function fetch_projects_and_persist_successfully_with_all_option_enabled()
+    public function fetch_projects_and_persist_successfully_with_all_option_enabled(): void
     {
         $this->artisan('projects:fetch --all');
 
@@ -76,7 +76,7 @@ class FetchGitHubProjectsTest extends TestCase
     }
 
     /** @test */
-    public function fetch_projects_and_persist_successfully_with_archived_option_enabled()
+    public function fetch_projects_and_persist_successfully_with_archived_option_enabled(): void
     {
         $this->artisan('projects:fetch --archived');
 
@@ -84,7 +84,7 @@ class FetchGitHubProjectsTest extends TestCase
     }
 
     /** @test */
-    public function fetch_projects_and_persist_successfully_with_fork_option_enabled()
+    public function fetch_projects_and_persist_successfully_with_fork_option_enabled(): void
     {
         $this->artisan('projects:fetch --fork');
 
