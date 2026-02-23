@@ -7,12 +7,12 @@ use App\Models\User;
 
 class MaintainerObserver
 {
-    public function created(Maintainer $maintainer)
+    public function created(Maintainer $maintainer): void
     {
         $this->updateMatchingUser($maintainer);
     }
 
-    public function updated(Maintainer $maintainer)
+    public function updated(Maintainer $maintainer): void
     {
         // Make sure we don't get in a loop
         if (! $maintainer->isDirty('user_id')) {

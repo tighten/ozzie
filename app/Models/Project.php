@@ -8,6 +8,8 @@ use Carbon\CarbonPeriod;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -23,18 +25,12 @@ class Project extends Model
         'debt_score',
     ];
 
-    protected $casts = [
-        'issues' => 'collection',
-        'is_hidden' => 'boolean',
-        'pull_requests' => 'collection',
-    ];
-
-    public function snapshots()
+    public function snapshots(): HasMany
     {
         return $this->hasMany(Snapshot::class);
     }
 
-    public function snapshotToday()
+    public function snapshotToday(): HasMany
     {
         return $this->hasMany(Snapshot::class)->today();
     }
@@ -44,7 +40,7 @@ class Project extends Model
         return $query->where('is_hidden', false);
     }
 
-    public function maintainers()
+    public function maintainers(): BelongsToMany
     {
         return $this->belongsToMany(Maintainer::class);
     }
@@ -137,7 +133,7 @@ class Project extends Model
             $list = [];
 
             $now = Carbon::now();
-            $period = new CarbonPeriod($now->parse()->subDays(7)->format('Y-m-d'), $now->format('Y-m-d'));
+            $period = new CarbonPeriod($now->copy()->subDays(7)->format('Y-m-d'), $now->format('Y-m-d'));
 
             foreach ($period as $date) {
                 $snapshot = Snapshot::where('name', $this->name)
@@ -180,5 +176,14 @@ class Project extends Model
     public function scopeNotHidden($query)
     {
         return $query->where('is_hidden', false);
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'issues' => 'collection',
+            'is_hidden' => 'boolean',
+            'pull_requests' => 'collection',
+        ];
     }
 }

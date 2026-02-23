@@ -2,9 +2,7 @@
 
 namespace App\GitHub\Dto;
 
-use Spatie\DataTransferObject\DataTransferObject;
-
-class PullRequest extends DataTransferObject
+class PullRequest
 {
     use CastDates;
 
@@ -28,11 +26,14 @@ class PullRequest extends DataTransferObject
     /** @var \App\GitHub\Dto\User */
     public $user;
 
-    protected bool $ignoreMissing = true;
-
-    public function __construct(array $parameters = [])
+    public function __construct(array $data = [])
     {
-        parent::__construct($parameters);
+        foreach ($data as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->$key = $value;
+            }
+        }
+
         $this->toCarbon($this->created_at);
     }
 }

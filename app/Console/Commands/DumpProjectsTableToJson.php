@@ -12,7 +12,7 @@ class DumpProjectsTableToJson extends Command
 
     protected $description = 'Dump the list of visible projects from MySQL to projects.json.dist, ordered by name. By default, any project marked as hidden is not exported; use the --all flag to dump all projects.';
 
-    public function handle()
+    public function handle(): void
     {
         $query = Project::query()->orderBy('name');
 

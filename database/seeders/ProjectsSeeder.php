@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ProjectsSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $projectsJson = file_get_contents(
             Storage::disk('root')->exists('projects.json')

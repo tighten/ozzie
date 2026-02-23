@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Schedule;
+
 /*
 |--------------------------------------------------------------------------
 | Console Routes
@@ -14,3 +16,17 @@
 // Artisan::command('inspire', function () {
 //     $this->comment(Inspiring::quote());
 // })->describe('Display an inspiring quote');
+
+Schedule::command('projects:fetch')
+    ->daily();
+
+Schedule::command('stats:snapshot')
+    ->daily();
+
+Schedule::command('stats:fetch')
+    ->hourly();
+
+Schedule::command('stats:slack')
+    ->weekly()
+    ->fridays()
+    ->at('06:00');
