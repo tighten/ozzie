@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Schedule;
 //     $this->comment(Inspiring::quote());
 // })->describe('Display an inspiring quote');
 
-
 Schedule::command('projects:fetch')
     ->daily();
 
