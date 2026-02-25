@@ -29,6 +29,7 @@ class FetchProjectStats extends Command
         }
 
         $this->bar->finish();
+        $this->newLine();
 
         // Clear frontend cache
         cache()->clear();
