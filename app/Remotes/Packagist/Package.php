@@ -27,6 +27,8 @@ class Package
 
     protected $package;
 
+    protected $project;
+
     public function __construct(Project $project)
     {
         $this->project = $project;

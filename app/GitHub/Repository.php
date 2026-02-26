@@ -6,8 +6,12 @@ use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
 use App\Models\FetchResult;
 use App\Models\Project;
+use App\Notifications\GitHubFetchFailed;
+use App\OrgSlack;
+use Exception;
 use Github\Exception\RuntimeException;
 use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
+use Illuminate\Support\Facades\Log;
 
 class Repository
 {
@@ -56,8 +60,8 @@ class Repository
                 })->reject(function (Issue $issue) {
                     return ! is_null($issue->pull_request);
                 });
-        } catch (Exception $th) {
-            FetchResult::githubFail($this->project);
+        } catch (Exception $e) {
+            $this->handleFetchFailure($e, 'issues');
 
             return collect();
         }
@@ -70,8 +74,30 @@ class Repository
                 ->map(function ($pullRequest) {
                     return new PullRequest($pullRequest);
                 });
-        } catch (Exception $th) {
+        } catch (Exception $e) {
+            $this->handleFetchFailure($e, 'pull requests');
+
             return collect();
         }
+    }
+
+    protected function handleFetchFailure(Exception $e, string $endpoint): void
+    {
+        $repo = "{$this->namespace}/{$this->name}";
+
+        Log::warning("GitHub {$endpoint} fetch failed for {$repo}", [
+            'exception' => get_class($e),
+            'code' => $e->getCode(),
+            'message' => substr($e->getMessage(), 0, 500),
+        ]);
+
+        FetchResult::githubFail($this->project);
+
+        (new OrgSlack)->notify(new GitHubFetchFailed(
+            repo: $repo,
+            endpoint: $endpoint,
+            code: $e->getCode(),
+            exceptionClass: get_class($e),
+        ));
     }
 }
