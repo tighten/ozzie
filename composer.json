@@ -26,7 +26,7 @@
         "http-interop/http-factory-guzzle": "^1.2",
         "inertiajs/inertia-laravel": "^1.3",
         "laravel/framework": "^12.53",
-        "laravel/nova": "4.33.3",
+        "laravel/nova": "^4.35",
         "laravel/socialite": "^5.17",
         "laravel/tinker": "^2.10.1",
         "laravel/ui": "^4.6",
