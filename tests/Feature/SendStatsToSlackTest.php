@@ -56,18 +56,15 @@ class SendStatsToSlackTest extends TestCase
 
             // Third block is context for project-b
             $this->assertSame('context', $payload['blocks'][2]['type']);
-            $this->assertStringContainsString("PRs: 0 (*0 old*)\t\t\tIssues: 700 (*0 old*)", $payload['blocks'][2]['elements'][1]['text']);
+            $this->assertStringContainsString('PRs: 0 (*0 old*)  Issues: 700 (*0 old*)', $payload['blocks'][2]['elements'][0]['text']);
 
-            // Fourth block is divider
-            $this->assertSame('divider', $payload['blocks'][3]['type']);
+            // Fourth block is section for project-a (lower debt)
+            $this->assertSame('section', $payload['blocks'][3]['type']);
+            $this->assertStringContainsString('*<https://github.com/acme/project-a|Acme / Project-a>*: *5*', $payload['blocks'][3]['text']['text']);
 
-            // Fifth block is section for project-a (lower debt)
-            $this->assertSame('section', $payload['blocks'][4]['type']);
-            $this->assertStringContainsString('*<https://github.com/acme/project-a|Acme / Project-a>*: *5*', $payload['blocks'][4]['text']['text']);
-
-            // Sixth block is context for project-a
-            $this->assertSame('context', $payload['blocks'][5]['type']);
-            $this->assertStringContainsString("PRs: 0 (*0 old*)\t\t\tIssues: 500 (*0 old*)", $payload['blocks'][5]['elements'][1]['text']);
+            // Fifth block is context for project-a
+            $this->assertSame('context', $payload['blocks'][4]['type']);
+            $this->assertStringContainsString('PRs: 0 (*0 old*)  Issues: 500 (*0 old*)', $payload['blocks'][4]['elements'][0]['text']);
 
             return true;
         });

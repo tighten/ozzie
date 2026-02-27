@@ -5,6 +5,7 @@ namespace App\Models;
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
 use Carbon\CarbonPeriod;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,37 +36,9 @@ class Project extends Model
         return $this->hasMany(Snapshot::class)->today();
     }
 
-    public function scopeVisible(Builder $query): Builder
-    {
-        return $query->where('is_hidden', false);
-    }
-
     public function maintainers(): BelongsToMany
     {
         return $this->belongsToMany(Maintainer::class);
-    }
-
-    public function scopeFromVendorAndName(Builder $query, string $projectNamespace, string $projectName): Builder
-    {
-        return $query->where('namespace', $projectNamespace)->where('name', $projectName);
-    }
-
-    public function scopeForPackagist($query, $vendor, $name = null)
-    {
-        // @todo test this
-        if (! $name) {
-            [$vendor, $name] = explode('/', $vendor);
-        }
-
-        $query->where([
-            'packagist_name' => $vendor . '/' . $name,
-        ])->orWhere(function ($query) use ($vendor, $name) {
-            $query->where([
-                'packagist_name' => null,
-                'namespace' => $vendor,
-                'name' => $name,
-            ]);
-        });
     }
 
     public function getDebtScoreAttribute()
@@ -165,7 +138,39 @@ class Project extends Model
         return $results->isNotEmpty() ? $results->avg('success') : null;
     }
 
-    public function scopeExclude($query, $value = [])
+    #[Scope]
+    protected function visible(Builder $query): Builder
+    {
+        return $query->where('is_hidden', false);
+    }
+
+    #[Scope]
+    protected function fromVendorAndName(Builder $query, string $projectNamespace, string $projectName): Builder
+    {
+        return $query->where('namespace', $projectNamespace)->where('name', $projectName);
+    }
+
+    #[Scope]
+    protected function forPackagist($query, $vendor, $name = null)
+    {
+        // @todo test this
+        if (! $name) {
+            [$vendor, $name] = explode('/', $vendor);
+        }
+
+        $query->where([
+            'packagist_name' => $vendor . '/' . $name,
+        ])->orWhere(function ($query) use ($vendor, $name) {
+            $query->where([
+                'packagist_name' => null,
+                'namespace' => $vendor,
+                'name' => $name,
+            ]);
+        });
+    }
+
+    #[Scope]
+    protected function exclude($query, $value = [])
     {
         return $query->select(array_diff(
             $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable()),
@@ -173,7 +178,8 @@ class Project extends Model
         ));
     }
 
-    public function scopeNotHidden($query)
+    #[Scope]
+    protected function notHidden($query)
     {
         return $query->where('is_hidden', false);
     }

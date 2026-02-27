@@ -6,8 +6,10 @@
 /public/css
 /public/mix-manifest.json
 /storage/*.key
+/storage/pail
 /vendor
 /.idea
+/.nova
 /.vscode
 npm-debug.log
 yarn-error.log
