@@ -58,7 +58,7 @@ class Project extends Model
         }
 
         $query->where([
-            'packagist_name' => $vendor . '/' . $name,
+            'packagist_name' => $vendor.'/'.$name,
         ])->orWhere(function ($query) use ($vendor, $name) {
             $query->where([
                 'packagist_name' => null,
@@ -106,7 +106,7 @@ class Project extends Model
 
     public function url()
     {
-        return 'https://github.com/' . $this->namespace . '/' . $this->name;
+        return 'https://github.com/'.$this->namespace.'/'.$this->name;
     }
 
     public function issue(int $id): array
@@ -129,7 +129,7 @@ class Project extends Model
 
     public function getDebtScoreHistory()
     {
-        return Cache::remember('debt_score_history_' . $this->name, 60 * 60, function () {
+        return Cache::remember('debt_score_history_'.$this->name, 60 * 60, function () {
             $list = [];
 
             $now = Carbon::now();

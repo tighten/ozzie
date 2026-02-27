@@ -51,7 +51,7 @@ class CreateProjectSnapshotsTest extends TestCase
             ->assertExitCode(0);
 
         $this->artisan('stats:snapshot')
-            ->expectsOutput('No projects need snapshots for ' . now()->format('Y-m-d'))
+            ->expectsOutput('No projects need snapshots for '.now()->format('Y-m-d'))
             ->assertExitCode(0);
 
         $this->assertDatabaseCount('snapshots', 1);
@@ -88,7 +88,7 @@ class CreateProjectSnapshotsTest extends TestCase
     public function no_snapshots_are_created_if_no_projects_exist(): void
     {
         $this->artisan('stats:snapshot')
-            ->expectsOutput('No projects need snapshots for ' . now()->format('Y-m-d'))
+            ->expectsOutput('No projects need snapshots for '.now()->format('Y-m-d'))
             ->assertExitCode(0);
     }
 
