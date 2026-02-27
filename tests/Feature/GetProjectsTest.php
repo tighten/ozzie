@@ -4,13 +4,14 @@ namespace Tests\Feature;
 
 use App\Models\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class GetProjectsTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     public function get_a_list_of_all_projects(): void
     {
         $project_a = Project::factory()->create(['namespace' => 'acme', 'name' => 'project_a']);

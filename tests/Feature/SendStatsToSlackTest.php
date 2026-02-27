@@ -8,13 +8,14 @@ use App\OrgSlack;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Notifications\Slack\SlackMessage;
 use Illuminate\Support\Facades\Notification;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class SendStatsToSlackTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     public function sends_latest_stats_to_slack(): void
     {
         Notification::fake();

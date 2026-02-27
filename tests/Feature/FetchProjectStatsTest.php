@@ -13,13 +13,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Mockery;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class FetchProjectStatsTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     public function fetch_stats_and_persist_successfully(): void
     {
         Http::preventStrayRequests();
@@ -81,7 +82,7 @@ class FetchProjectStatsTest extends TestCase
         $this->assertNotEmpty(Cache::get('projects'));
     }
 
-    /** @test */
+    #[Test]
     public function failed_stats_fetch_does_not_overwrite_packagist_stats(): void
     {
         Http::preventStrayRequests();
@@ -139,7 +140,7 @@ class FetchProjectStatsTest extends TestCase
         $this->assertNotEmpty(Cache::get('projects'));
     }
 
-    /** @test */
+    #[Test]
     public function deleted_github_repo_is_marked_as_hidden(): void
     {
         $reposMock = Mockery::mock(Repo::class);
@@ -165,7 +166,7 @@ class FetchProjectStatsTest extends TestCase
         $this->assertTrue($project->is_hidden);
     }
 
-    /** @test */
+    #[Test]
     public function archived_github_repo_is_marked_as_hidden(): void
     {
         $reposMock = Mockery::mock(Repo::class);
@@ -191,7 +192,7 @@ class FetchProjectStatsTest extends TestCase
         $this->assertTrue($project->is_hidden);
     }
 
-    /** @test */
+    #[Test]
     public function rate_limited_repo_is_not_hidden(): void
     {
         $reposMock = Mockery::mock(Repo::class);
@@ -217,7 +218,7 @@ class FetchProjectStatsTest extends TestCase
         $this->assertFalse($project->is_hidden);
     }
 
-    /** @test */
+    #[Test]
     public function hidden_projects_are_skipped(): void
     {
         $project = Project::factory()->hidden()->create();

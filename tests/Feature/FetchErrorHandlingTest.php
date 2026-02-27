@@ -10,13 +10,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 use Throwable;
 
 class FetchErrorHandlingTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
-    /** @test */
+    #[Test]
     public function packagist_curl_error_marks_as_unsuccessful(): void
     {
         $project = Project::factory()->create([
@@ -43,7 +44,7 @@ class FetchErrorHandlingTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function fetch_success_rate_calculates_for_package(): void
     {
         $project = Project::factory()->create();

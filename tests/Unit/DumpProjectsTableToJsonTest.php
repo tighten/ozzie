@@ -7,13 +7,14 @@ use App\Models\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class DumpProjectsTableToJsonTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     public function it_dumps_non_hidden_projects_to_json(): void
     {
         Storage::fake('root');
@@ -52,7 +53,7 @@ class DumpProjectsTableToJsonTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function using_all_flag_dumps_all_projects(): void
     {
         Storage::fake('root');

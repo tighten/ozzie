@@ -6,13 +6,14 @@ use App\Cache\CachedProjectList;
 use App\Models\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Cache;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class CreateProjectSnapshotsTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     public function one_snapshot_is_created_for_each_project(): void
     {
         $projects = Project::factory()
@@ -41,7 +42,7 @@ class CreateProjectSnapshotsTest extends TestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function no_snapshots_are_created_if_the_project_has_already_been_snapshotted_today(): void
     {
         Project::factory()
@@ -57,7 +58,7 @@ class CreateProjectSnapshotsTest extends TestCase
         $this->assertDatabaseCount('snapshots', 1);
     }
 
-    /** @test */
+    #[Test]
     public function the_force_option_overwrites_the_project_snapshot_taken_today(): void
     {
         $project = Project::factory()
@@ -84,7 +85,7 @@ class CreateProjectSnapshotsTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function no_snapshots_are_created_if_no_projects_exist(): void
     {
         $this->artisan('stats:snapshot')
@@ -92,7 +93,7 @@ class CreateProjectSnapshotsTest extends TestCase
             ->assertExitCode(0);
     }
 
-    /** @test */
+    #[Test]
     public function the_cache_is_cleared_and_rebuilt_after_snapshots_are_taken(): void
     {
         Cache::shouldReceive('clear')

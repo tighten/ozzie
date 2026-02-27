@@ -8,6 +8,7 @@ use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Mockery;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class FetchGitHubProjectsTest extends TestCase
@@ -47,7 +48,7 @@ class FetchGitHubProjectsTest extends TestCase
         $this->mockGithubClient('tighten');
     }
 
-    /** @test */
+    #[Test]
     public function fetch_projects_and_persist_successfully(): void
     {
         $this->artisan('projects:fetch');
@@ -67,7 +68,7 @@ class FetchGitHubProjectsTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function fetch_projects_and_persist_successfully_with_all_option_enabled(): void
     {
         $this->artisan('projects:fetch --all');
@@ -75,7 +76,7 @@ class FetchGitHubProjectsTest extends TestCase
         $this->assertDatabaseCount('projects', 4);
     }
 
-    /** @test */
+    #[Test]
     public function fetch_projects_and_persist_successfully_with_archived_option_enabled(): void
     {
         $this->artisan('projects:fetch --archived');
@@ -83,7 +84,7 @@ class FetchGitHubProjectsTest extends TestCase
         $this->assertDatabaseCount('projects', 3);
     }
 
-    /** @test */
+    #[Test]
     public function fetch_projects_and_persist_successfully_with_fork_option_enabled(): void
     {
         $this->artisan('projects:fetch --fork');
@@ -91,7 +92,7 @@ class FetchGitHubProjectsTest extends TestCase
         $this->assertDatabaseCount('projects', 3);
     }
 
-    /** @test */
+    #[Test]
     public function avoid_persisting_projects_that_already_exist_in_the_database(): void
     {
         $existingProject = Project::factory()->create([

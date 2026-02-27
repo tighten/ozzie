@@ -4,13 +4,14 @@ namespace Tests\Feature;
 
 use App\Models\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class OutputStatsTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     public function outputs_stats_in_the_console(): void
     {
         Project::factory()->create(['name' => 'project_a', 'namespace' => 'acme', 'issues_count' => 600]);
