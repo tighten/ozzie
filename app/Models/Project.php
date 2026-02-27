@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
 use Carbon\CarbonPeriod;
@@ -35,7 +36,8 @@ class Project extends Model
         return $this->hasMany(Snapshot::class)->today();
     }
 
-    public function scopeVisible(Builder $query): Builder
+    #[Scope]
+    protected function visible(Builder $query): Builder
     {
         return $query->where('is_hidden', false);
     }
@@ -45,12 +47,14 @@ class Project extends Model
         return $this->belongsToMany(Maintainer::class);
     }
 
-    public function scopeFromVendorAndName(Builder $query, string $projectNamespace, string $projectName): Builder
+    #[Scope]
+    protected function fromVendorAndName(Builder $query, string $projectNamespace, string $projectName): Builder
     {
         return $query->where('namespace', $projectNamespace)->where('name', $projectName);
     }
 
-    public function scopeForPackagist($query, $vendor, $name = null)
+    #[Scope]
+    protected function forPackagist($query, $vendor, $name = null)
     {
         // @todo test this
         if (! $name) {
@@ -165,7 +169,8 @@ class Project extends Model
         return $results->isNotEmpty() ? $results->avg('success') : null;
     }
 
-    public function scopeExclude($query, $value = [])
+    #[Scope]
+    protected function exclude($query, $value = [])
     {
         return $query->select(array_diff(
             $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable()),
@@ -173,7 +178,8 @@ class Project extends Model
         ));
     }
 
-    public function scopeNotHidden($query)
+    #[Scope]
+    protected function notHidden($query)
     {
         return $query->where('is_hidden', false);
     }
