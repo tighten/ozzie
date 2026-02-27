@@ -1,6 +1,6 @@
 {
     "private": true,
-    "type":"module",
+    "type": "module",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
@@ -34,7 +34,8 @@
         "typescript": "^5.3.3",
         "vite": "^6.4.1",
         "vue": "^3.4.15",
-        "ziggy-js": "^1.8.1"
+        "ziggy-js": "^1.8.1",
+        "concurrently": "^9.0.1"
     },
     "prettier": {
         "singleQuote": true,
