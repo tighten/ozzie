@@ -1,4 +1,4 @@
-import route from 'ziggy-js';
+import { route } from 'ziggy-js';
 
 export function ozzieProjectUrl(vendor: string, name: string): string {
     return route('projects.show', { vendor, name });

@@ -4,7 +4,7 @@ import { createApp, h } from 'vue';
 import { createInertiaApp, Head, Link } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { DateTime } from 'luxon';
-import route from 'ziggy-js';
+import { route } from 'ziggy-js';
 
 createInertiaApp({
     progress: {
