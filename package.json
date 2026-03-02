@@ -33,7 +33,7 @@
         "typescript": "^5.3.3",
         "vite": "^7.0.7",
         "vue": "^3.4.15",
-        "ziggy-js": "^1.8.1",
+        "ziggy-js": "^2.6.1",
         "concurrently": "^9.0.1"
     },
     "prettier": {
