@@ -9,8 +9,8 @@ use GuzzleHttp\Exception\RequestException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Http;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 use Throwable;
 
 class FetchErrorHandlingTest extends TestCase
