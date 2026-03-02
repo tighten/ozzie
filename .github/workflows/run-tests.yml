@@ -44,4 +44,4 @@ jobs:
       shell: bash
 
     - name: Run PHP Tests
-      run: ./vendor/bin/pest
+      run: php artisan test
