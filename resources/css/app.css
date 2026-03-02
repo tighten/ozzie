@@ -1,3 +1,53 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@source '../../storage/framework/views/*.php';
+
+@theme {
+  --color-transparent: transparent;
+  --color-black: #313131;
+  --color-black-light: #353744;
+  --color-black-lighter: #393e43;
+  --color-black-lightest: #475509;
+  --color-grey-darkest: #4b5c69;
+  --color-grey-darker: #606f7b;
+  --color-grey-dark: #8795a1;
+  --color-grey: #dde1e5;
+  --color-grey-light: #dae1e7;
+  --color-grey-lighter: #f1f5f8;
+  --color-grey-lightest: #f8fafc;
+  --color-grey-blue-darkest: #4b5f77;
+  --color-grey-blue-darker: #83909d;
+  --color-grey-blue-dark: #616f75;
+  --color-grey-blue: #dce3e7;
+  --color-grey-blue-light: #e7ebef;
+  --color-white: #ffffff;
+  --color-indigo: #3f50bb;
+  --color-indigo-light: #4650b6;
+  --color-indigo-muted: #9396ab;
+  --color-indigo-hover: #eef2ff;
+  --color-frost: #f4f5f7;
+  --color-smoke: #e7e8e8;
+  --color-clouds: #d1d7da;
+  --color-red: #dc2626;
+  --color-orange: #f59e0b;
+  --color-green: #16a34a;
+  --color-halloween-orange: #e4730b;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}

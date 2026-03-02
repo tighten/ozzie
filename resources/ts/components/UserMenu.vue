@@ -16,7 +16,7 @@
                     text-sm
                     font-medium
                     text-gray-500
-                    focus:outline-none
+                    focus:outline-hidden
                     focus:ring-0
                     focus:ring-inset
                     focus:ring-offset-gray-100
@@ -52,8 +52,8 @@
                     rounded-md
                     bg-white
                     shadow-lg
-                    ring-1 ring-black ring-opacity-5
-                    focus:outline-none
+                    ring-1 ring-black/5
+                    focus:outline-hidden
                 ">
                 <div class="px-4 py-3">
                     <p class="text-sm">

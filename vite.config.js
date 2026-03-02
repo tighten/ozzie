@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from 'url';
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
+import tailwindcss from '@tailwindcss/vite';
 import dotenv from 'dotenv';
 import { basename } from 'path'
 
@@ -24,10 +25,11 @@ export default defineConfig(({ mode }) => {
             },
         },
         plugins: [
+            tailwindcss(),
             laravel({
                 input: ['resources/ts/app.ts'],
                 refresh: true,
-                valetTls: !envConfig?.parsed?.LARAVEL_SAIL ?? envAppUrl.hostname,
+                valetTls: envConfig?.parsed?.LARAVEL_SAIL ? false : envAppUrl.hostname,
             }),
             vue({
                 template: {
