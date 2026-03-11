@@ -21,11 +21,16 @@
     - Homepage URL: `https://ozzie.test`
     - Application Description: `Local Version of Ozzie`
     - Authorization Callback URL: `https://ozzie.test/auth/callback`
-6. Copy the example `.env` file: `cp .env.example .env` and modify its settings to match your local install, including the client ID and secret from the previous step
-7. Run `php artisan key:generate`
-8. Create a database (by default `.env` looks for one named `ozzie`) and run the migrations (`php artisan migrate`)
-9. Fetch the projects list (into the database) by using the `php artisan projects:fetch` command. Alternatively, you can seed your `projects` table using a `projects.json` file at the root of the project (see below for more info).
-10. Fetch all projects' stats for the first time using `php artisan stats:fetch`
+6. (Optional) Set up [Slack Incoming Webhooks](https://api.slack.com/messaging/webhooks) for notifications:
+    - Go to [Your Apps](https://api.slack.com/apps) and create a new app (or select an existing one)
+    - Enable **Incoming Webhooks** and create a new webhook for each channel you want to notify
+    - Set `SLACK_WEBHOOK_URL` in your `.env` to the webhook URL for your primary notifications channel (e.g. project stats)
+    - Set `SLACK_OPS_WEBHOOK_URL` in your `.env` to the webhook URL for your ops notifications channel (e.g. GitHub API errors). If not set, ops notifications will fall back to `SLACK_WEBHOOK_URL`.
+7. Copy the example `.env` file: `cp .env.example .env` and modify its settings to match your local install, including the client ID and secret from step 5 and the Slack webhook URLs from step 6
+8. Run `php artisan key:generate`
+9. Create a database (by default `.env` looks for one named `ozzie`) and run the migrations (`php artisan migrate`)
+10. Fetch the projects list (into the database) by using the `php artisan projects:fetch` command. Alternatively, you can seed your `projects` table using a `projects.json` file at the root of the project (see below for more info).
+11. Fetch all projects' stats for the first time using `php artisan stats:fetch`
 
 ### Sail - Docker
 
@@ -58,11 +63,16 @@ alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
     - Homepage URL: `http://localhost`
     - Application Description: `Local Version of Ozzie`
     - Authorization Callback URL: `http://localhost/auth/callback`
-4. Copy the example `.env` file: `cp .env.example .env` and modify its settings to match your local install, including the client ID and secret from the previous step
-5. Run `sail artisan key:generate`
-6. Run the migrations (`sail artisan migrate`)
-7. Fetch the projects list (into the database) by using the `projects:fetch` command. Alternatively, you can seed your `projects` table using a `projects.json` file at the root of the project (see below for more info).
-8. Fetch all projects' stats for the first time using `stats:fetch`
+4. (Optional) Set up [Slack Incoming Webhooks](https://api.slack.com/messaging/webhooks) for notifications:
+    - Go to [Your Apps](https://api.slack.com/apps) and create a new app (or select an existing one)
+    - Enable **Incoming Webhooks** and create a new webhook for each channel you want to notify
+    - Set `SLACK_WEBHOOK_URL` in your `.env` to the webhook URL for your primary notifications channel (e.g. project stats)
+    - Set `SLACK_OPS_WEBHOOK_URL` in your `.env` to the webhook URL for your ops notifications channel (e.g. GitHub API errors). If not set, ops notifications will fall back to `SLACK_WEBHOOK_URL`.
+5. Copy the example `.env` file: `cp .env.example .env` and modify its settings to match your local install, including the client ID and secret from step 3 and the Slack webhook URLs from step 4
+6. Run `sail artisan key:generate`
+7. Run the migrations (`sail artisan migrate`)
+8. Fetch the projects list (into the database) by using the `projects:fetch` command. Alternatively, you can seed your `projects` table using a `projects.json` file at the root of the project (see below for more info).
+9. Fetch all projects' stats for the first time using `stats:fetch`
 
 > Note: If you're not using a tool like Laravel Valet, run `php artisan serve` and visit your site at http://127.0.0.1:8000; you'll also want to modify your GitHub app settings to use http://127.0.0.1:8000 instead of http://ozzie.test
 

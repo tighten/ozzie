@@ -8,9 +8,11 @@ class OrgSlack
 {
     use Notifiable;
 
+    public function __construct(protected ?string $webhookUrl = null) {}
+
     public function routeNotificationForSlack()
     {
-        return config('services.slack.webhook_url');
+        return $this->webhookUrl ?: config('services.slack.webhook_url');
     }
 
     public function getKey()

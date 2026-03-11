@@ -93,7 +93,7 @@ class Repository
 
         FetchResult::githubFail($this->project);
 
-        (new OrgSlack)->notify(new GitHubFetchFailed(
+        (new OrgSlack(config('services.slack.ops_webhook_url')))->notify(new GitHubFetchFailed(
             repo: $repo,
             endpoint: $endpoint,
             code: $e->getCode(),

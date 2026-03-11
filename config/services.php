@@ -11,6 +11,7 @@ return [
 
     'slack' => [
         'webhook_url' => env('SLACK_WEBHOOK_URL'),
+        'ops_webhook_url' => env('SLACK_OPS_WEBHOOK_URL'),
     ],
 
     'github' => [
