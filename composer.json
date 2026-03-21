@@ -13,6 +13,42 @@
         {
             "type": "composer",
             "url": "https://nova.laravel.com"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "graham-campbell/github",
+                "version": "13.0.1",
+                "source": {
+                    "url": "https://github.com/GrahamCampbell/Laravel-GitHub.git",
+                    "type": "git",
+                    "reference": "v13.0.0"
+                },
+                "require": {
+                    "php": "^8.1",
+                    "graham-campbell/bounded-cache": "^3.0",
+                    "graham-campbell/manager": "^5.2",
+                    "guzzlehttp/guzzle": "^7.9.2",
+                    "guzzlehttp/psr7": "^2.7.0",
+                    "illuminate/contracts": "^10.44 || ^11.0 || ^12.0 || ^13.0",
+                    "illuminate/support": "^10.44 || ^11.0 || ^12.0 || ^13.0",
+                    "knplabs/github-api": "3.16.*",
+                    "lcobucci/jwt": "^5.2",
+                    "symfony/cache": "^6.2 || ^7.0"
+                },
+                "autoload": {
+                    "psr-4": {
+                        "GrahamCampbell\\GitHub\\": "src/"
+                    }
+                },
+                "extra": {
+                    "laravel": {
+                        "providers": [
+                            "GrahamCampbell\\GitHub\\GitHubServiceProvider"
+                        ]
+                    }
+                }
+            }
         }
     ],
     "require": {
@@ -26,12 +62,11 @@
         "http-interop/http-factory-guzzle": "^1.2",
         "inertiajs/inertia-laravel": "^2.0",
         "laravel/framework": "^13.0",
-        "laravel/nova": "^4.35",
+        "laravel/nova": "^5.0",
+        "laravel/slack-notification-channel": "^3.8",
         "laravel/socialite": "^5.25",
         "laravel/tinker": "^3.0",
-        "laravel/ui": "^4.6",
         "league/commonmark": "^2.8",
-        "laravel/slack-notification-channel": "^3.8",
         "nesbot/carbon": "^3.11",
         "spatie/laravel-ignition": "^2.11",
         "tightenco/ziggy": "^2.6"

@@ -6,6 +6,7 @@ use App\Nova\Actions\HideProject;
 use App\Nova\Actions\UnHideProject;
 use App\Nova\Lenses\ProjectsNeedingMaintainers;
 use App\Nova\Metrics\ProjectsMaintainers;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
@@ -25,7 +26,7 @@ class Project extends Resource
         'name',
     ];
 
-    public static function indexQuery(NovaRequest $request, $query)
+    public static function indexQuery(NovaRequest $request, Builder $query)
     {
         // adds a `maintainers_count` column to the query result
         return $query->withCount('maintainers');

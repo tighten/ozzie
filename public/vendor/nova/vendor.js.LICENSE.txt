@@ -429,14 +429,6 @@
 */
 
 /*!
- * @overview es6-promise - a tiny implementation of Promises/A+.
- * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors (Conversion to ES6 API by Jake Archibald)
- * @license   Licensed under MIT license
- *            See https://raw.githubusercontent.com/stefanpenner/es6-promise/master/LICENSE
- * @version   v4.2.8+1e68dce6
- */
-
-/*!
  * Copyright (c) 2017 Benjamin Van Ryseghem<benjamin@vanryseghem.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -480,20 +472,18 @@
  */
 
 /*!
-* focus-trap 7.6.4
+* focus-trap 7.8.0
 * @license MIT, https://github.com/focus-trap/focus-trap/blob/master/LICENSE
 */
 
 /*!
-* tabbable 6.2.0
+* tabbable 6.4.0
 * @license MIT, https://github.com/focus-trap/tabbable/blob/master/LICENSE
 */
 
-/*! #__NO_SIDE_EFFECTS__ */
+/*! @license DOMPurify 3.2.7 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.2.7/LICENSE */
 
-/*! @license DOMPurify 3.2.5 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.2.5/LICENSE */
-
-/*! Axios v1.9.0 Copyright (c) 2025 Matt Zabriskie and contributors */
+/*! Axios v1.13.6 Copyright (c) 2026 Matt Zabriskie and contributors */
 
 /*! Hammer.JS - v2.0.7 - 2016-04-22
  * http://hammerjs.github.io/
@@ -504,19 +494,31 @@
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
 /**
-* @vue/runtime-core v3.5.13
+* @vue/compiler-core v3.5.30
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
 
 /**
-* @vue/runtime-dom v3.5.13
+* @vue/compiler-dom v3.5.30
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
 
 /**
-* @vue/shared v3.5.13
+* @vue/runtime-core v3.5.30
+* (c) 2018-present Yuxi (Evan) You and Vue contributors
+* @license MIT
+**/
+
+/**
+* @vue/runtime-dom v3.5.30
+* (c) 2018-present Yuxi (Evan) You and Vue contributors
+* @license MIT
+**/
+
+/**
+* @vue/shared v3.5.30
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
