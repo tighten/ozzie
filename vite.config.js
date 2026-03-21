@@ -11,7 +11,12 @@ export default defineConfig(({ mode }) => {
     // this by setting the VALET_DOMAIN environment variable in a .env file
     const envConfig = dotenv.config({
         path: './.env' ?? `./.env.${mode}`,
-    });
+        server: {
+        watch: {
+            ignored: ['**/storage/framework/views/**'],
+        },
+    },
+});
 
     const envAppUrl = new URL(
         envConfig?.parsed?.APP_URL ??
@@ -41,4 +46,9 @@ export default defineConfig(({ mode }) => {
             }),
         ],
     };
+    server: {
+        watch: {
+            ignored: ['**/storage/framework/views/**'],
+        },
+    },
 });

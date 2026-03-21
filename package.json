@@ -45,5 +45,6 @@
         "@headlessui/vue": "^1.7.17",
         "@heroicons/vue": "^2.1.1",
         "dotenv": "^16.4.1"
-    }
+    },
+    "$schema": "https://www.schemastore.org/package.json"
 }
