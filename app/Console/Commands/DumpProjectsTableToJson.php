@@ -3,15 +3,15 @@
 namespace App\Console\Commands;
 
 use App\Models\Project;
+use Illuminate\Console\Attributes\Description;
+use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 
+#[Signature('projects:json {--all}')]
+#[Description('Dump the list of visible projects from MySQL to projects.json.dist, ordered by name. By default, any project marked as hidden is not exported; use the --all flag to dump all projects.')]
 class DumpProjectsTableToJson extends Command
 {
-    protected $signature = 'projects:json {--all}';
-
-    protected $description = 'Dump the list of visible projects from MySQL to projects.json.dist, ordered by name. By default, any project marked as hidden is not exported; use the --all flag to dump all projects.';
-
     public function handle(): void
     {
         $query = Project::query()->orderBy('name');

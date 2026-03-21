@@ -7,15 +7,15 @@ use App\GitHub\Repository;
 use App\Models\Project;
 use App\Remotes\Packagist\Package;
 use Exception;
+use Illuminate\Console\Attributes\Description;
+use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
+#[Signature('stats:fetch')]
+#[Description("Fetch each project's stats from GitHub and store in the projects table.")]
 class FetchProjectStats extends Command
 {
-    protected $signature = 'stats:fetch';
-
-    protected $description = "Fetch each project's stats from GitHub and store in the projects table.";
-
     protected $bar;
 
     public function handle(): int

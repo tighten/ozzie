@@ -5,15 +5,15 @@ namespace App\Console\Commands;
 use App\Cache\CachedProjectList;
 use App\Models\Project;
 use App\Models\Snapshot;
+use Illuminate\Console\Attributes\Description;
+use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
+#[Signature('stats:snapshot {--f|force : Force an update of any snapshots captured today}')]
+#[Description("Create a snapshot of the current status of all projects' scores.")]
 class CreateProjectSnapshots extends Command
 {
-    protected $signature = 'stats:snapshot {--f|force : Force an update of any snapshots captured today}';
-
-    protected $description = "Create a snapshot of the current status of all projects' scores.";
-
     protected $bar;
 
     public function handle(): int

@@ -4,14 +4,14 @@ namespace App\Console\Commands;
 
 use App\Notifications\SendOzzieStats;
 use App\OrgSlack;
+use Illuminate\Console\Attributes\Description;
+use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
+#[Signature('stats:slack')]
+#[Description('Send Ozzie stats to Slack')]
 class SendStatsToSlack extends Command
 {
-    protected $signature = 'stats:slack';
-
-    protected $description = 'Send Ozzie stats to Slack';
-
     public function handle(): int
     {
         (new OrgSlack)->notify(new SendOzzieStats);

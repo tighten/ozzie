@@ -6,20 +6,14 @@ use App\Cache\CachedProjectList;
 use App\GitHub\Organization;
 use App\Models\Project;
 use App\Remotes\Packagist\Search;
+use Illuminate\Console\Attributes\Description;
+use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
+#[Signature('projects:fetch {--archived : Include repos marked as archived} {--fork : Include repos that are forks of another repo} {--all : Include all public repos (shorthand for --archived --fork)}')]
+#[Description("Fetches the organization's GitHub repositories. By default, repos are only added if they are:\n    - public\n    - not archived\n    - not a fork")]
 class FetchGitHubProjects extends Command
 {
-    protected $signature = 'projects:fetch
-                            {--archived : Include repos marked as archived}
-                            {--fork : Include repos that are forks of another repo}
-                            {--all : Include all public repos (shorthand for --archived --fork)}';
-
-    protected $description = "Fetches the organization's GitHub repositories. By default, repos are only added if they are:
-    - public
-    - not archived
-    - not a fork";
-
     protected $projects;
 
     protected $added = 0;
