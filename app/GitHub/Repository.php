@@ -2,6 +2,7 @@
 
 namespace App\GitHub;
 
+use Facades\Github\Client as GitHubClient;
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
 use App\Models\FetchResult;
@@ -10,7 +11,6 @@ use App\Notifications\GitHubFetchFailed;
 use App\OrgSlack;
 use Exception;
 use Github\Exception\RuntimeException;
-use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
 use Illuminate\Support\Facades\Log;
 
 class Repository
