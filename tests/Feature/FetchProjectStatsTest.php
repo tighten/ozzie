@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use Facades\Github\Client as GitHubClient;
 use App\Models\Project;
+use Facades\Github\Client as GitHubClient;
 use Github\Api\Issue;
 use Github\Api\PullRequest;
 use Github\Api\Repo;

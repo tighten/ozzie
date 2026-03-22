@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use Facades\Github\Client as GitHubClient;
 use App\Models\Project;
+use Facades\Github\Client as GitHubClient;
 use Github\Api\Repo;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
