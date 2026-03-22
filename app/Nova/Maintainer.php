@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -20,7 +21,7 @@ class Maintainer extends Resource
         'github_username',
     ];
 
-    public static function indexQuery(NovaRequest $request, $query)
+    public static function indexQuery(NovaRequest $request, Builder $query)
     {
         // adds a `projects_count` column to the query result
         return $query->withCount('projects');

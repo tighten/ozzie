@@ -3,12 +3,12 @@
 namespace Tests\Feature;
 
 use App\Models\Project;
+use Facades\Github\Client as GitHubClient;
 use Github\Api\Issue;
 use Github\Api\PullRequest;
 use Github\Api\Repo;
 use Github\Exception\ApiLimitExceedException;
 use Github\Exception\RuntimeException;
-use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;

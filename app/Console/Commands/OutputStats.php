@@ -3,14 +3,14 @@
 namespace App\Console\Commands;
 
 use App\Models\Project;
+use Illuminate\Console\Attributes\Description;
+use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
+#[Signature('stats:output')]
+#[Description('Output project stats to the console')]
 class OutputStats extends Command
 {
-    protected $signature = 'stats:output';
-
-    protected $description = 'Output project stats to the console';
-
     public function handle(): int
     {
         $this->info("\n");

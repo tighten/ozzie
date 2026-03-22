@@ -3,7 +3,7 @@
 namespace App\GitHub;
 
 use App\GitHub\Dto\Repo;
-use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
+use Facades\Github\Client as GitHubClient;
 
 class Organization
 {

@@ -9,8 +9,8 @@ use App\Models\Project;
 use App\Notifications\GitHubFetchFailed;
 use App\OrgSlack;
 use Exception;
+use Facades\Github\Client as GitHubClient;
 use Github\Exception\RuntimeException;
-use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
 use Illuminate\Support\Facades\Log;
 
 class Repository

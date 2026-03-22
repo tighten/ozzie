@@ -44,11 +44,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         return [];
     }
 
-    public function register(): void
-    {
-        //
-    }
-
     protected function routes()
     {
         Nova::routes()

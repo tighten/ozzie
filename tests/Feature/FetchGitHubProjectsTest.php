@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\Project;
+use Facades\Github\Client as GitHubClient;
 use Github\Api\Repo;
-use GrahamCampbell\GitHub\Facades\GitHub as GitHubClient;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Mockery;

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Github\AuthMethod;
+use Github\Client;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -14,7 +16,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(Client::class, function () {
+            $client = new Client;
+            $client->authenticate(
+                config('services.github.client_id'),
+                config('services.github.client_secret'),
+                AuthMethod::CLIENT_ID,
+            );
+
+            return $client;
+        });
     }
 
     /**

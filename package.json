@@ -10,7 +10,7 @@
     "devDependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.8.3",
         "@babel/preset-env": "^7.23.9",
-        "@inertiajs/vue3": "^1.0.14",
+        "@inertiajs/vue3": "^2.3.18",
         "@tailwindcss/vite": "^4.2.1",
         "@typescript-eslint/eslint-plugin": "^8.56.1",
         "@typescript-eslint/parser": "^8.56.1",
@@ -45,5 +45,6 @@
         "@headlessui/vue": "^1.7.17",
         "@heroicons/vue": "^2.1.1",
         "dotenv": "^16.4.1"
-    }
+    },
+    "$schema": "https://www.schemastore.org/package.json"
 }

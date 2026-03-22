@@ -24,6 +24,11 @@ export default defineConfig(({ mode }) => {
                 '@': fileURLToPath(new URL('./resources/ts', import.meta.url)),
             },
         },
+        server: {
+            watch: {
+                ignored: ['**/storage/framework/views/**'],
+            },
+        },
         plugins: [
             tailwindcss(),
             laravel({
