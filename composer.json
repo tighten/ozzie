@@ -25,15 +25,15 @@
         "http-interop/http-factory-guzzle": "^1.2",
         "inertiajs/inertia-laravel": "^2.0",
         "knplabs/github-api": "^3.16",
-        "laravel/framework": "^13.0",
+        "laravel/framework": "^13.5",
         "laravel/nova": "^5.0",
         "laravel/slack-notification-channel": "^3.8",
-        "laravel/socialite": "^5.25",
+        "laravel/socialite": "^5.26",
         "laravel/tinker": "^3.0",
         "league/commonmark": "^2.8",
         "nesbot/carbon": "^3.11",
         "php-http/discovery": "^1.20",
-        "spatie/laravel-ignition": "^2.11",
+        "spatie/laravel-ignition": "^2.12",
         "tightenco/ziggy": "^2.6"
     },
     "require-dev": {
