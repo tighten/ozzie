@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Console\Commands\SendStatsToSlack;
 use App\Models\Project;
 use App\Notifications\SendOzzieStats;
 use App\OrgSlack;
@@ -32,7 +33,7 @@ class SendStatsToSlackTest extends TestCase
             'issues_count' => 700,
         ]);
 
-        $this->artisan('stats:slack')
+        $this->artisan(SendStatsToSlack::class)
             ->assertExitCode(0);
 
         Notification::assertSentTo(new OrgSlack, SendOzzieStats::class, function ($notification, $channels, $notifiable) {

@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Cache\CachedProjectList;
+use App\Console\Commands\CreateProjectSnapshots;
 use App\Models\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Cache;
@@ -22,7 +23,7 @@ class CreateProjectSnapshotsTest extends TestCase
             ->withIssues([['number' => 1], ['number' => 2]])
             ->create();
 
-        $this->artisan('stats:snapshot')
+        $this->artisan(CreateProjectSnapshots::class)
             ->assertExitCode(0);
 
         $this->assertDatabaseCount('snapshots', 3);
@@ -48,10 +49,10 @@ class CreateProjectSnapshotsTest extends TestCase
         Project::factory()
             ->create();
 
-        $this->artisan('stats:snapshot')
+        $this->artisan(CreateProjectSnapshots::class)
             ->assertExitCode(0);
 
-        $this->artisan('stats:snapshot')
+        $this->artisan(CreateProjectSnapshots::class)
             ->expectsOutput('No projects need snapshots for ' . now()->format('Y-m-d'))
             ->assertExitCode(0);
 
@@ -64,7 +65,7 @@ class CreateProjectSnapshotsTest extends TestCase
         $project = Project::factory()
             ->create(['downloads_total' => 50]);
 
-        $this->artisan('stats:snapshot')
+        $this->artisan(CreateProjectSnapshots::class)
             ->assertExitCode(0);
 
         $this->assertDatabaseCount('snapshots', 1);
@@ -75,7 +76,7 @@ class CreateProjectSnapshotsTest extends TestCase
 
         $project->update(['downloads_total' => 1000]);
 
-        $this->artisan('stats:snapshot --force')
+        $this->artisan(CreateProjectSnapshots::class, ['--force'])
             ->assertExitCode(0);
 
         $this->assertDatabaseCount('snapshots', 1);
@@ -88,7 +89,7 @@ class CreateProjectSnapshotsTest extends TestCase
     #[Test]
     public function no_snapshots_are_created_if_no_projects_exist(): void
     {
-        $this->artisan('stats:snapshot')
+        $this->artisan(CreateProjectSnapshots::class)
             ->expectsOutput('No projects need snapshots for ' . now()->format('Y-m-d'))
             ->assertExitCode(0);
     }
@@ -109,7 +110,7 @@ class CreateProjectSnapshotsTest extends TestCase
 
         Project::factory()->create();
 
-        $this->artisan('stats:snapshot')
+        $this->artisan(CreateProjectSnapshots::class)
             ->assertExitCode(0);
 
         $this->assertTrue($cacheRebuilt);
