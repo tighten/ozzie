@@ -1,5 +1,9 @@
 <?php
 
+use App\Console\Commands\CreateProjectSnapshots;
+use App\Console\Commands\FetchGitHubProjects;
+use App\Console\Commands\FetchProjectStats;
+use App\Console\Commands\SendStatsToSlack;
 use Illuminate\Support\Facades\Schedule;
 
 /*
@@ -17,16 +21,16 @@ use Illuminate\Support\Facades\Schedule;
 //     $this->comment(Inspiring::quote());
 // })->describe('Display an inspiring quote');
 
-Schedule::command('projects:fetch')
+Schedule::command(FetchGitHubProjects::class)
     ->daily();
 
-Schedule::command('stats:snapshot')
+Schedule::command(CreateProjectSnapshots::class)
     ->daily();
 
-Schedule::command('stats:fetch')
+Schedule::command(FetchProjectStats::class)
     ->hourly();
 
-Schedule::command('stats:slack')
+Schedule::command(SendStatsToSlack::class)
     ->weekly()
     ->fridays()
     ->at('06:00');

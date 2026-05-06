@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Console\Commands\FetchProjectStats;
 use App\Models\Project;
 use Facades\Github\Client as GitHubClient;
 use Github\Api\Issue;
@@ -44,7 +45,7 @@ class FetchProjectStatsTest extends TestCase
             'packagist_name' => 'tighten/existing_package',
         ]);
 
-        $this->artisan('stats:fetch')->assertSuccessful();
+        $this->artisan(FetchProjectStats::class)->assertSuccessful();
         $project->refresh();
 
         $this->assertEquals($project->downloads_total, 1000);
@@ -101,7 +102,7 @@ class FetchProjectStatsTest extends TestCase
             'downloads_last_30_days' => 10,
         ]);
 
-        $this->artisan('stats:fetch')->assertSuccessful();
+        $this->artisan(FetchProjectStats::class)->assertSuccessful();
 
         $project->refresh();
 
@@ -157,7 +158,7 @@ class FetchProjectStatsTest extends TestCase
             'name' => 'deleted_package',
         ]);
 
-        $this->artisan('stats:fetch')
+        $this->artisan(FetchProjectStats::class)
             ->expectsOutputToContain('Hiding deleted_package: repo not found on GitHub.')
             ->assertSuccessful();
 
@@ -183,7 +184,7 @@ class FetchProjectStatsTest extends TestCase
             'name' => 'archived_package',
         ]);
 
-        $this->artisan('stats:fetch')
+        $this->artisan(FetchProjectStats::class)
             ->expectsOutputToContain('Hiding archived_package: repo is archived on GitHub.')
             ->assertSuccessful();
 
@@ -209,7 +210,7 @@ class FetchProjectStatsTest extends TestCase
             'name' => 'rate_limited_package',
         ]);
 
-        $this->artisan('stats:fetch')
+        $this->artisan(FetchProjectStats::class)
             ->expectsOutputToContain('Skipping rate_limited_package')
             ->assertSuccessful();
 
@@ -224,7 +225,7 @@ class FetchProjectStatsTest extends TestCase
         $project = Project::factory()->hidden()->create();
 
         // No GitHub mocks set up — if the command tries to call GitHub, it will fail
-        $this->artisan('stats:fetch')->assertSuccessful();
+        $this->artisan(FetchProjectStats::class)->assertSuccessful();
     }
 
     public function mockGithubClient($namespace, $repo): void
