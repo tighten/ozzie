@@ -18,10 +18,10 @@ class Issue
 
     public $body;
 
-    /** @var \App\GitHub\Dto\Label[] */
+    /** @var Label[] */
     public $labels;
 
-    /** @var \App\GitHub\Dto\User */
+    /** @var User */
     public $user;
 
     public function __construct(array $data = [])

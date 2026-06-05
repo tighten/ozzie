@@ -1,12 +1,14 @@
 <?php
 
+use App\Http\Middleware\HandleInertiaRequests;
+use App\Providers\NovaServiceProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withProviders([
-        (env('APP_ENV', 'production') != 'testing' ? App\Providers\NovaServiceProvider::class : null),
+        (env('APP_ENV', 'production') != 'testing' ? NovaServiceProvider::class : null),
     ])
     ->withRouting(
         web: __DIR__ . '/../routes/web.php',
@@ -19,7 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectGuestsTo(fn () => route('login'));
         $middleware->redirectUsersTo('/home');
 
-        $middleware->web(\App\Http\Middleware\HandleInertiaRequests::class);
+        $middleware->web(HandleInertiaRequests::class);
 
         $middleware->throttleApi();
     })
