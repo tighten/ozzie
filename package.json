@@ -31,7 +31,7 @@
         "stylelint-config-standard": "^36.0.0",
         "tailwindcss": "^4.2.1",
         "typescript": "^5.3.3",
-        "vite": "^7.0.7",
+        "vite": "^7.3.2",
         "vue": "^3.4.15",
         "ziggy-js": "^2.6.1"
     },
