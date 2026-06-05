@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Nova\Dashboards\Main;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Menu\Menu;
@@ -17,7 +19,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
         // Use our login controller instead of Nova's
         $this->app->alias(
-            \App\Http\Controllers\Auth\LoginController::class,
+            LoginController::class,
             \Laravel\Nova\Http\Controllers\LoginController::class
         );
 
@@ -62,7 +64,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function dashboards()
     {
         return [
-            new \App\Nova\Dashboards\Main,
+            new Main,
         ];
     }
 }

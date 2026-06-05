@@ -32,7 +32,7 @@ class LoginController
 
         abort_unless(collect($orgs->json())->contains(function ($org) {
             return $org['login'] === config('app.organization');
-        }), 403, 'Only members of the ' . config('app.organization') . ' GitHub organization can login to this site');
+        }), 403, 'Only members of the '.config('app.organization').' GitHub organization can login to this site');
 
         $user = User::updateOrCreate([
             'github_id' => $githubUser->id,
