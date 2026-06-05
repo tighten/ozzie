@@ -31,7 +31,7 @@ class User extends Resource
             ID::make()->sortable(),
 
             Avatar::make('avatar_url')->disableDownload()->maxWidth(50)->thumbnail(function () {
-                return $this->avatar_url ?? 'https://www.gravatar.com/avatar/'.md5($this->email).'?s=50&d=mm';
+                return $this->avatar_url ?? 'https://www.gravatar.com/avatar/' . md5($this->email) . '?s=50&d=mm';
             }),
 
             Text::make('Name')->sortable(),
