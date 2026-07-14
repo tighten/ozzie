@@ -2,7 +2,7 @@
 
 namespace App\GitHub\Dto;
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 
 trait CastDates
 {

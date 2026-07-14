@@ -84,18 +84,14 @@ class Project extends Model
 
     public function issue(int $id): array
     {
-        if (! ($issue = $this->issues->where('number', $id)->first())) {
-            throw new NotFoundHttpException("Issue number {$id} does not exist");
-        }
+        throw_unless(($issue = $this->issues->where('number', $id)->first()), new NotFoundHttpException("Issue number {$id} does not exist"));
 
         return $issue;
     }
 
     public function pullRequest(int $id): array
     {
-        if (! ($pullRequest = $this->pull_requests->where('number', $id)->first())) {
-            throw new NotFoundHttpException("Pull request number {$id} does not exist");
-        }
+        throw_unless(($pullRequest = $this->pull_requests->where('number', $id)->first()), new NotFoundHttpException("Pull request number {$id} does not exist"));
 
         return $pullRequest;
     }
