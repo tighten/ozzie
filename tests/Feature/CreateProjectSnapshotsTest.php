@@ -76,7 +76,7 @@ class CreateProjectSnapshotsTest extends TestCase
 
         $project->update(['downloads_total' => 1000]);
 
-        $this->artisan(CreateProjectSnapshots::class, ['--force'])
+        $this->artisan(CreateProjectSnapshots::class, ['--force' => true])
             ->assertExitCode(0);
 
         $this->assertDatabaseCount('snapshots', 1);

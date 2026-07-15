@@ -72,7 +72,7 @@ class FetchGitHubProjectsTest extends TestCase
     #[Test]
     public function fetch_projects_and_persist_successfully_with_all_option_enabled(): void
     {
-        $this->artisan(FetchGitHubProjects::class, ['--all']);
+        $this->artisan(FetchGitHubProjects::class, ['--all' => true]);
 
         $this->assertDatabaseCount('projects', 4);
     }
@@ -80,7 +80,7 @@ class FetchGitHubProjectsTest extends TestCase
     #[Test]
     public function fetch_projects_and_persist_successfully_with_archived_option_enabled(): void
     {
-        $this->artisan(FetchGitHubProjects::class, ['--archived']);
+        $this->artisan(FetchGitHubProjects::class, ['--archived' => true]);
 
         $this->assertDatabaseCount('projects', 3);
     }
@@ -88,7 +88,7 @@ class FetchGitHubProjectsTest extends TestCase
     #[Test]
     public function fetch_projects_and_persist_successfully_with_fork_option_enabled(): void
     {
-        $this->artisan(FetchGitHubProjects::class, ['--fork']);
+        $this->artisan(FetchGitHubProjects::class, ['--fork' => true]);
 
         $this->assertDatabaseCount('projects', 3);
     }
