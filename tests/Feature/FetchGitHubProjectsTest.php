@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Console\Commands\FetchGitHubProjects;
 use App\Models\Project;
 use Facades\Github\Client as GitHubClient;
 use Github\Api\Repo;
@@ -51,7 +52,7 @@ class FetchGitHubProjectsTest extends TestCase
     #[Test]
     public function fetch_projects_and_persist_successfully(): void
     {
-        $this->artisan('projects:fetch');
+        $this->artisan(FetchGitHubProjects::class);
 
         $this->assertDatabaseCount('projects', 2);
 
@@ -71,7 +72,7 @@ class FetchGitHubProjectsTest extends TestCase
     #[Test]
     public function fetch_projects_and_persist_successfully_with_all_option_enabled(): void
     {
-        $this->artisan('projects:fetch --all');
+        $this->artisan(FetchGitHubProjects::class, ['--all' => true]);
 
         $this->assertDatabaseCount('projects', 4);
     }
@@ -79,7 +80,7 @@ class FetchGitHubProjectsTest extends TestCase
     #[Test]
     public function fetch_projects_and_persist_successfully_with_archived_option_enabled(): void
     {
-        $this->artisan('projects:fetch --archived');
+        $this->artisan(FetchGitHubProjects::class, ['--archived' => true]);
 
         $this->assertDatabaseCount('projects', 3);
     }
@@ -87,7 +88,7 @@ class FetchGitHubProjectsTest extends TestCase
     #[Test]
     public function fetch_projects_and_persist_successfully_with_fork_option_enabled(): void
     {
-        $this->artisan('projects:fetch --fork');
+        $this->artisan(FetchGitHubProjects::class, ['--fork' => true]);
 
         $this->assertDatabaseCount('projects', 3);
     }
@@ -101,7 +102,7 @@ class FetchGitHubProjectsTest extends TestCase
             'packagist_name' => 'tighten/ziggy',
         ]);
 
-        $this->artisan('projects:fetch');
+        $this->artisan(FetchGitHubProjects::class);
 
         $this->assertDatabaseCount('projects', 2);
         $this->assertEquals($existingProject->updated_at, $existingProject->fresh()->updated_at);

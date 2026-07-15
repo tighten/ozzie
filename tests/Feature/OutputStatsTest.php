@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Console\Commands\OutputStats;
 use App\Models\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -18,7 +19,7 @@ class OutputStatsTest extends TestCase
         Project::factory()->create(['name' => 'project_b', 'namespace' => 'acme', 'issues_count' => 300]);
         Project::factory()->create(['name' => 'project_c', 'namespace' => 'acme', 'issues_count' => 100]);
 
-        $this->artisan('stats:output')
+        $this->artisan(OutputStats::class)
             ->expectsTable(
                 ['Project', 'Debt Score'],
                 [
