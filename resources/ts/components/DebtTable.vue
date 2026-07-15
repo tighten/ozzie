@@ -25,6 +25,9 @@
                 <th class="hidden p-4 text-xs font-bold uppercase leading-none tracking-wide text-grey-darkest md:table-cell">
                     Issues
                 </th>
+                <th class="hidden p-4 text-xs font-bold uppercase leading-none tracking-wide text-grey-darkest md:table-cell">
+                    Shifts
+                </th>
                 <th
                     v-if="hacktoberfest"
                     class="hidden p-4 text-xs md:table-cell">
@@ -71,6 +74,9 @@
                 </td>
                 <td class="hidden p-4 text-black-lightest md:table-cell">
                     {{ project.issues_count }}
+                </td>
+                <td class="hidden p-4 text-black-lightest md:table-cell">
+                    {{ project.shift_pull_requests_count }}
                 </td>
 
                 <td

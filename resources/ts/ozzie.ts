@@ -30,6 +30,7 @@ export declare interface Issue extends BaseIssue {
 export declare interface PullRequest extends BaseIssue {
     node_id: string;
     draft: boolean;
+    head_ref: string | null;
 }
 
 export declare type Project = {
@@ -51,6 +52,7 @@ export declare type Project = {
     debt_score_graph: string;
     old_issues_count: number;
     old_pull_requests_count: number;
+    shift_pull_requests_count: number;
     hacktoberfest_issues: number;
     has_downloads: boolean;
 };

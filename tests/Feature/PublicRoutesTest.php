@@ -59,3 +59,20 @@ it('renders project prs', function () {
                 ->has('body')
         );
 });
+
+it('counts shift pull requests on the homepage', function () {
+    Project::factory()->withPrs([
+        ['number' => 1, 'head_ref' => 'shift-2026-05'],
+        ['number' => 2, 'head_ref' => 'shift-l12-upgrade'],
+        ['number' => 3, 'head_ref' => 'fix-typo'],
+        ['number' => 4],
+    ])->create();
+
+    $this->get('/')
+        ->assertStatus(200)
+        ->assertInertia(
+            fn (AssertableInertia $page) => $page->component('Projects/Index')
+                ->where('projects.0.pull_requests_count', 4)
+                ->where('projects.0.shift_pull_requests_count', 2)
+        );
+});

@@ -12,6 +12,8 @@ class PullRequest
 
     public $draft;
 
+    public $head_ref;
+
     public $html_url;
 
     public $node_id;
@@ -33,6 +35,8 @@ class PullRequest
                 $this->$key = $value;
             }
         }
+
+        $this->head_ref ??= $data['head']['ref'] ?? null;
 
         $this->toCarbon($this->created_at);
     }

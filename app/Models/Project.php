@@ -60,6 +60,13 @@ class Project extends Model
         });
     }
 
+    public function shiftPullRequests()
+    {
+        return $this->pull_requests->mapInto(PullRequest::class)->filter(function ($pullRequest) {
+            return str_starts_with((string) $pullRequest->head_ref, 'shift-');
+        });
+    }
+
     public function oldIssues()
     {
         return $this->issues->mapInto(Issue::class)->filter(function ($issue) {

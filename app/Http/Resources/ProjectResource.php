@@ -27,6 +27,7 @@ class ProjectResource extends JsonResource
                 'debt_score_graph' => $sparkline->toBase64(),
                 'old_issues_count' => $this->oldIssues()->count(),
                 'old_pull_requests_count' => $this->oldPullRequests()->count(),
+                'shift_pull_requests_count' => $this->shiftPullRequests()->count(),
                 'hacktoberfest_issues' => $this->hacktoberfestIssues()->count(),
                 'has_downloads' => $this->hasDownloads() ? true : false,
             ]
