@@ -32,7 +32,7 @@
         "tailwindcss": "^4.2.1",
         "typescript": "^5.3.3",
         "vite": "^8.0.16",
-        "vue": "^3.4.15",
+        "vue": "^3.5.43",
         "ziggy-js": "^2.6.1"
     },
     "prettier": {
