@@ -19,6 +19,12 @@ class Search
 
     protected $url;
 
+    /**
+     * False when Packagist couldn't be reached, so callers can tell "this project
+     * isn't on Packagist" apart from "we weren't able to find out".
+     */
+    protected $searchOk = true;
+
     public function __construct($namespace, $name)
     {
         $this->namespace = $namespace;
@@ -34,25 +40,56 @@ class Search
         return new self($project->namespace, $project->name);
     }
 
+    public static function url(string $package): string
+    {
+        return "https://packagist.org/packages/{$package}.json";
+    }
+
+    /**
+     * Returns true/false, or null if Packagist couldn't tell us either way.
+     */
+    public static function packageExists(string $package): ?bool
+    {
+        $response = Http::get(static::url($package));
+
+        if ($response->ok()) {
+            return true;
+        }
+
+        if ($response->notFound()) {
+            return false;
+        }
+
+        return null;
+    }
+
     protected function findPackage()
     {
-        $packages = Cache::remember("packagist-search::{$this->namespace}-{$this->name}", config('cache.timeout'), function () {
-            $allResults = collect();
+        $key = "packagist-search::{$this->namespace}-{$this->name}";
+
+        if (Cache::has($key)) {
+            $packages = Cache::get($key);
+        } else {
+            $packages = collect();
             $url = $this->url;
 
             while ($url) {
                 $response = Http::get($url);
 
                 if (! $response->ok()) {
-                    break;
+                    // Don't cache a partial result, and don't let it be read as
+                    // "this project isn't on Packagist".
+                    $this->searchOk = false;
+
+                    return;
                 }
 
-                $allResults = $allResults->merge($response->collect('results'));
+                $packages = $packages->merge($response->collect('results'));
                 $url = $response->json('next');
             }
 
-            return $allResults;
-        });
+            Cache::put($key, $packages, config('cache.timeout'));
+        }
 
         // Loop over packages and find the one with the matching repo
         $package = $packages->first(function ($package) {

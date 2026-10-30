@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Console\Commands\FetchGitHubProjects;
+use App\Enums\PackageRegistry;
 use App\Models\Project;
 use Facades\Github\Client as GitHubClient;
 use Github\Api\Repo;
@@ -60,18 +61,81 @@ class FetchGitHubProjectsTest extends TestCase
             'namespace' => 'tighten',
             'name' => 'ziggy',
             'packagist_name' => 'tighten/ziggy',
+            'npm_name' => null,
+            'package_registry' => PackageRegistry::Packagist->value,
         ]);
 
         $this->assertDatabaseHas('projects', [
             'namespace' => 'tighten',
             'name' => 'collect',
             'packagist_name' => 'tighten/collect',
+            'npm_name' => null,
+            'package_registry' => PackageRegistry::Packagist->value,
+        ]);
+    }
+
+    #[Test]
+    public function projects_on_no_package_registry_are_recorded_as_such(): void
+    {
+        $this->fakeNpm();
+
+        $this->artisan(FetchGitHubProjects::class, ['--archived' => true]);
+
+        $this->assertDatabaseHas('projects', [
+            'namespace' => 'tighten',
+            'name' => 'confomo',
+            'packagist_name' => null,
+            'npm_name' => null,
+            'package_registry' => PackageRegistry::None->value,
+        ]);
+    }
+
+    #[Test]
+    public function npm_packages_are_detected_when_they_point_back_at_the_repo(): void
+    {
+        $this->fakeNpm([
+            'confomo' => [
+                'name' => 'confomo',
+                'repository' => ['type' => 'git', 'url' => 'git+https://github.com/tighten/confomo.git'],
+            ],
+        ]);
+
+        $this->artisan(FetchGitHubProjects::class, ['--archived' => true]);
+
+        $this->assertDatabaseHas('projects', [
+            'namespace' => 'tighten',
+            'name' => 'confomo',
+            'packagist_name' => null,
+            'npm_name' => 'confomo',
+            'package_registry' => PackageRegistry::Npm->value,
+        ]);
+    }
+
+    #[Test]
+    public function an_npm_package_belonging_to_another_repo_is_not_claimed(): void
+    {
+        $this->fakeNpm([
+            'confomo' => [
+                'name' => 'confomo',
+                'repository' => ['type' => 'git', 'url' => 'git+https://github.com/someone-else/confomo.git'],
+            ],
+        ]);
+
+        $this->artisan(FetchGitHubProjects::class, ['--archived' => true]);
+
+        $this->assertDatabaseHas('projects', [
+            'namespace' => 'tighten',
+            'name' => 'confomo',
+            'npm_name' => null,
+            'package_registry' => PackageRegistry::None->value,
         ]);
     }
 
     #[Test]
     public function fetch_projects_and_persist_successfully_with_all_option_enabled(): void
     {
+        $this->fakeNpm();
+
         $this->artisan(FetchGitHubProjects::class, ['--all' => true]);
 
         $this->assertDatabaseCount('projects', 4);
@@ -80,6 +144,8 @@ class FetchGitHubProjectsTest extends TestCase
     #[Test]
     public function fetch_projects_and_persist_successfully_with_archived_option_enabled(): void
     {
+        $this->fakeNpm();
+
         $this->artisan(FetchGitHubProjects::class, ['--archived' => true]);
 
         $this->assertDatabaseCount('projects', 3);
@@ -88,6 +154,8 @@ class FetchGitHubProjectsTest extends TestCase
     #[Test]
     public function fetch_projects_and_persist_successfully_with_fork_option_enabled(): void
     {
+        $this->fakeNpm();
+
         $this->artisan(FetchGitHubProjects::class, ['--fork' => true]);
 
         $this->assertDatabaseCount('projects', 3);
@@ -159,5 +227,18 @@ class FetchGitHubProjectsTest extends TestCase
 
         GitHubClient::shouldReceive('repositories')
             ->andReturn($repoMock);
+    }
+
+    /**
+     * Stub the npm registry. Anything not listed in $packages 404s, i.e. isn't
+     * published to npm. Stubs are matched in the order they're registered, so
+     * the catch-all has to go last.
+     */
+    protected function fakeNpm(array $packages = []): void
+    {
+        Http::fake(collect($packages)
+            ->mapWithKeys(fn ($package, $name) => ["registry.npmjs.org/{$name}" => Http::response($package)])
+            ->put('registry.npmjs.org/*', Http::response([], 404))
+            ->all());
     }
 }

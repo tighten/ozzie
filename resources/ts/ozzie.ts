@@ -38,6 +38,8 @@ export declare type Project = {
     namespace: string;
     name: string;
     packagist_name: string | null;
+    npm_name: string | null;
+    package_registry: 'unknown' | 'packagist' | 'npm' | 'none';
     maintainers: Array<string>;
     issues_count: number;
     pull_requests_count: number;

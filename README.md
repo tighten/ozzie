@@ -87,7 +87,9 @@ Here's what the structure of the file looks like:
     {
         "name": "ziggy",
         "namespace": "tighten",
-        "packagist": "tightenco/ziggy",
+        "packagist_name": "tighten/ziggy",
+        "npm_name": "ziggy-js",
+        "package_registry": "packagist",
         "maintainers": [
             "mattstauffer"
         ]
@@ -95,7 +97,28 @@ Here's what the structure of the file looks like:
 ]
 ```
 
-Each project in this file will need its GitHub namespace, the GitHub project name, and the GitHub usernames of all of its maintainers.
+Each project in this file will need its GitHub namespace, the GitHub project name, and the GitHub usernames of all of its maintainers. The registry keys are optional; see below.
+
+## Package Registries
+
+Some projects are published to Packagist, some to npm, and some are GitHub-only. Each project records which one it is in `package_registry`, so we only ever ask the registry a project actually belongs to for download counts:
+
+| Value | Meaning |
+| --- | --- |
+| `packagist` | A Composer package; download counts come from Packagist using `packagist_name`. |
+| `npm` | An npm package; download counts come from npm using `npm_name`. |
+| `none` | Not published to either; only GitHub stats are fetched. |
+| `unknown` | Not determined yet; it will be detected on the next `stats:fetch`. |
+
+Detection happens automatically:
+
+- `projects:fetch` detects the registry for each new repo as it's ingested.
+- `stats:fetch` detects the registry for any project still marked `unknown`.
+- If a registry reports that the name we have doesn't exist any more, `stats:fetch` re-detects the project instead of failing the same way the next day.
+
+A project is only matched to an npm package when that package's `repository` points back at the project's GitHub repo, so unrelated packages that happen to share a name aren't claimed. If a registry can't be reached, the project is left exactly as it was rather than being downgraded to `none`.
+
+You can also set the registry by hand in Nova on the Project resource, along with the `packagist_name` and `npm_name` fields, or run the **Detect Package Registry** action to re-run detection for selected projects.
 
 ### Changing or Adding Projects
 

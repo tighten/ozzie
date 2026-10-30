@@ -3,9 +3,12 @@
 namespace App\Console\Commands;
 
 use App\Cache\CachedProjectList;
+use App\Enums\PackageRegistry;
 use App\GitHub\Repository;
 use App\Models\Project;
-use App\Remotes\Packagist\Package;
+use App\Remotes\Npm\Package as NpmPackage;
+use App\Remotes\PackageRegistryDetector;
+use App\Remotes\Packagist\Package as PackagistPackage;
 use Exception;
 use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
@@ -17,6 +20,11 @@ use Illuminate\Support\Str;
 class FetchProjectStats extends Command
 {
     protected $bar;
+
+    public function __construct(protected PackageRegistryDetector $detector)
+    {
+        parent::__construct();
+    }
 
     public function handle(): int
     {
@@ -80,16 +88,48 @@ class FetchProjectStats extends Command
         $project->pull_requests = $pullRequests->values();
 
         // Fetch download counts (if applicable)
-        if ($project->packagist_name) {
-            $packagist = Package::fromProject($project);
-
-            if ($packagist->requestOk) {
-                $project->downloads_total = $packagist->totalDownloads;
-                $project->downloads_last_30_days = $packagist->monthlyDownloads;
-            }
-        }
+        $this->fetchDownloads($project);
 
         $project->save();
+    }
+
+    public function fetchDownloads(Project $project): void
+    {
+        if (! $project->package_registry->isDetermined()) {
+            $this->detectRegistry($project);
+        }
+
+        if (! $project->package_registry->publishesPackage()) {
+            return;
+        }
+
+        $package = match (true) {
+            $project->package_registry === PackageRegistry::Packagist && filled($project->packagist_name) => PackagistPackage::fromProject($project),
+            $project->package_registry === PackageRegistry::Npm && filled($project->npm_name) => NpmPackage::fromProject($project),
+            default => null,
+        };
+
+        if (is_null($package)) {
+            $this->warn("Skipping downloads for {$project->name}: it's marked as a {$project->package_registry->label()} package but has no package name.");
+
+            return;
+        }
+
+        if ($package->requestOk) {
+            $project->downloads_total = $package->totalDownloads;
+            $project->downloads_last_30_days = $package->monthlyDownloads;
+
+            return;
+        }
+
+        // The registry says the name we're holding doesn't exist there, so our
+        // record is stale. Work out where this project actually lives (if
+        // anywhere) instead of failing the same way again tomorrow.
+        if ($package->packageMissing) {
+            $this->warn("{$project->name} was not found on {$project->package_registry->label()}; re-detecting.");
+
+            $this->detectRegistry($project, redetect: true);
+        }
     }
 
     public function filterIssues($issues)
@@ -104,6 +144,21 @@ class FetchProjectStats extends Command
         return $pullRequests->reject(function ($pullRequest) {
             return $pullRequest->draft || collect($pullRequest->labels)->contains('name', 'in progress');
         });
+    }
+
+    protected function detectRegistry(Project $project, bool $redetect = false): void
+    {
+        $registry = $redetect
+            ? $this->detector->redetect($project)
+            : $this->detector->detect($project);
+
+        if (is_null($registry)) {
+            $this->warn("Could not determine which package registry {$project->name} belongs to.");
+
+            return;
+        }
+
+        $this->line("... {$project->name} package registry: {$registry->label()}");
     }
 
     protected function createProgressBar($count)

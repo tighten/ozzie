@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\PackageRegistry;
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -16,12 +17,47 @@ class ProjectFactory extends Factory
             'name' => $name,
             'namespace' => config('app.organization'),
             'packagist_name' => config('app.organization') . '/' . $name,
+            'npm_name' => null,
+            'package_registry' => PackageRegistry::Packagist,
             'is_hidden' => false,
             'issues_count' => 0,
             'pull_requests_count' => 0,
             'issues' => [],
             'pull_requests' => [],
         ];
+    }
+
+    public function npmPackage(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'packagist_name' => null,
+                'npm_name' => $attributes['name'],
+                'package_registry' => PackageRegistry::Npm,
+            ];
+        });
+    }
+
+    public function notAPackage(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'packagist_name' => null,
+                'npm_name' => null,
+                'package_registry' => PackageRegistry::None,
+            ];
+        });
+    }
+
+    public function undetectedRegistry(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'packagist_name' => null,
+                'npm_name' => null,
+                'package_registry' => PackageRegistry::Unknown,
+            ];
+        });
     }
 
     public function hidden(): Factory

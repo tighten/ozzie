@@ -30,6 +30,24 @@ class FetchResult extends Model
         ]);
     }
 
+    public static function npmSuccess(Project $project): self
+    {
+        return self::create([
+            'project_id' => $project->id,
+            'type' => 'npm',
+            'success' => true,
+        ]);
+    }
+
+    public static function npmFail(Project $project): self
+    {
+        return self::create([
+            'project_id' => $project->id,
+            'type' => 'npm',
+            'success' => false,
+        ]);
+    }
+
     public static function githubSuccess(Project $project): self
     {
         return self::create([

@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Console\Commands\FetchProjectStats;
+use App\Enums\PackageRegistry;
 use App\Models\Project;
 use Facades\Github\Client as GitHubClient;
 use Github\Api\Issue;
@@ -91,6 +92,8 @@ class FetchProjectStatsTest extends TestCase
 
         Http::fake([
             'packagist.org/packages/tighten/404_package.json' => Http::response([], 404),
+            'packagist.org/search.json*' => Http::response(['results' => []]),
+            'registry.npmjs.org/*' => Http::response([], 404),
         ]);
 
         $this->mockGithubClient('tighten', '404_package');
@@ -109,6 +112,10 @@ class FetchProjectStatsTest extends TestCase
 
         $this->assertEquals($project->downloads_total, 100);
         $this->assertEquals($project->downloads_last_30_days, 10);
+
+        // The Packagist name we had is gone, so we stop asking Packagist for it
+        $this->assertEquals(PackageRegistry::None, $project->package_registry);
+        $this->assertNull($project->packagist_name);
 
         $this->assertEquals($project->issues_count, 1);
         $this->assertEquals($project->pull_requests_count, 1);
@@ -141,6 +148,132 @@ class FetchProjectStatsTest extends TestCase
 
         $this->assertEquals($project->is_hidden, false);
         $this->assertNotEmpty(Cache::get('projects'));
+    }
+
+    #[Test]
+    public function npm_project_downloads_are_fetched_from_npm(): void
+    {
+        Http::preventStrayRequests();
+
+        Http::fake([
+            'api.npmjs.org/downloads/point/last-month/ziggy-js' => Http::response(['downloads' => 100]),
+            'api.npmjs.org/downloads/point/*' => Http::response(['downloads' => 1000]),
+        ]);
+
+        $this->mockGithubClient('tighten', 'ziggy');
+
+        $project = Project::factory()->npmPackage()->create([
+            'namespace' => 'tighten',
+            'name' => 'ziggy',
+            'npm_name' => 'ziggy-js',
+        ]);
+
+        $this->artisan(FetchProjectStats::class)->assertSuccessful();
+
+        $project->refresh();
+
+        $this->assertEquals(1000, $project->downloads_total);
+        $this->assertEquals(100, $project->downloads_last_30_days);
+        $this->assertEquals(PackageRegistry::Npm, $project->package_registry);
+    }
+
+    #[Test]
+    public function projects_on_no_registry_are_not_looked_up_at_all(): void
+    {
+        // Any request to a package registry here would be a stray request
+        Http::preventStrayRequests();
+
+        $this->mockGithubClient('tighten', 'not_a_package');
+
+        $project = Project::factory()->notAPackage()->create([
+            'namespace' => 'tighten',
+            'name' => 'not_a_package',
+        ]);
+
+        $this->artisan(FetchProjectStats::class)->assertSuccessful();
+
+        $this->assertEquals(PackageRegistry::None, $project->refresh()->package_registry);
+    }
+
+    #[Test]
+    public function a_registry_with_no_package_name_is_skipped_rather_than_fetched(): void
+    {
+        // Building a request from a missing package name would be a stray request
+        Http::preventStrayRequests();
+
+        $this->mockGithubClient('tighten', 'jigsaw');
+
+        Project::factory()->create([
+            'namespace' => 'tighten',
+            'name' => 'jigsaw',
+            'packagist_name' => null,
+        ]);
+
+        $this->artisan(FetchProjectStats::class)
+            ->expectsOutputToContain('Skipping downloads for jigsaw')
+            ->assertSuccessful();
+    }
+
+    #[Test]
+    public function an_undetected_registry_is_detected_before_downloads_are_fetched(): void
+    {
+        Http::preventStrayRequests();
+
+        Http::fake([
+            'packagist.org/search.json*' => Http::response(['results' => [
+                [
+                    'name' => 'tightenco/jigsaw',
+                    'repository' => 'https://github.com/tighten/jigsaw',
+                ],
+            ]]),
+            'packagist.org/packages/tightenco/jigsaw.json' => Http::response([
+                'package' => [
+                    'downloads' => [
+                        'total' => 1000,
+                        'monthly' => 100,
+                    ],
+                ],
+            ]),
+        ]);
+
+        $this->mockGithubClient('tighten', 'jigsaw');
+
+        $project = Project::factory()->undetectedRegistry()->create([
+            'namespace' => 'tighten',
+            'name' => 'jigsaw',
+        ]);
+
+        $this->artisan(FetchProjectStats::class)->assertSuccessful();
+
+        $project->refresh();
+
+        $this->assertEquals(PackageRegistry::Packagist, $project->package_registry);
+        $this->assertEquals('tightenco/jigsaw', $project->packagist_name);
+        $this->assertEquals(1000, $project->downloads_total);
+        $this->assertEquals(100, $project->downloads_last_30_days);
+    }
+
+    #[Test]
+    public function an_unreachable_registry_leaves_the_project_undetected(): void
+    {
+        Http::preventStrayRequests();
+
+        Http::fake([
+            'packagist.org/search.json*' => Http::response([], 503),
+        ]);
+
+        $this->mockGithubClient('tighten', 'jigsaw');
+
+        $project = Project::factory()->undetectedRegistry()->create([
+            'namespace' => 'tighten',
+            'name' => 'jigsaw',
+        ]);
+
+        $this->artisan(FetchProjectStats::class)
+            ->expectsOutputToContain('Could not determine which package registry jigsaw belongs to.')
+            ->assertSuccessful();
+
+        $this->assertEquals(PackageRegistry::Unknown, $project->refresh()->package_registry);
     }
 
     #[Test]

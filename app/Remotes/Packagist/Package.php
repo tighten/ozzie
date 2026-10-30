@@ -23,6 +23,8 @@ class Package
 
     public $requestOk = false;
 
+    public $packageMissing = false;
+
     protected $url;
 
     protected $package;
@@ -32,10 +34,9 @@ class Package
     public function __construct(Project $project)
     {
         $this->project = $project;
+        $this->package = $project->packagist_name;
 
-        [$namespace, $name] = explode('/', $this->project->packagist_name);
-
-        $this->url = "https://packagist.org/packages/{$namespace}/{$name}.json";
+        $this->url = Search::url($this->package);
 
         $this->fetchDownloads();
     }
@@ -66,6 +67,16 @@ class Package
             return;
         }
 
+        // A 404 here isn't an error worth reporting: it just means this project
+        // isn't published to Packagist under the name we have for it.
+        if ($response->notFound()) {
+            $this->packageMissing = true;
+
+            FetchResult::packagistFail($this->project);
+
+            return;
+        }
+
         if ($response->ok()) {
             $this->requestOk = true;
             $this->downloadsData = Arr::get($response->json(), 'package.downloads', 0);
@@ -73,7 +84,11 @@ class Package
             $this->totalDownloads = $this->downloadsData['total'];
 
             FetchResult::packagistSuccess($this->project);
+
+            return;
         }
+
+        FetchResult::packagistFail($this->project);
     }
 
     public function __get($key)

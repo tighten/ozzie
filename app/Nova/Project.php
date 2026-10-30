@@ -2,6 +2,8 @@
 
 namespace App\Nova;
 
+use App\Enums\PackageRegistry;
+use App\Nova\Actions\DetectPackageRegistry;
 use App\Nova\Actions\HideProject;
 use App\Nova\Actions\UnHideProject;
 use App\Nova\Lenses\ProjectsNeedingMaintainers;
@@ -12,6 +14,7 @@ use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\URL;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -51,6 +54,21 @@ class Project extends Resource
             Boolean::make('Hidden?', 'is_hidden')
                 ->sortable()
                 ->filterable(),
+            Select::make('Package Registry', 'package_registry')
+                ->options(PackageRegistry::options())
+                ->resolveUsing(fn ($registry) => $registry?->value)
+                ->displayUsingLabels()
+                ->sortable()
+                ->filterable()
+                ->help('Which registry we pull download counts from. Leave on "Unknown" to have it detected on the next stats fetch.'),
+            Text::make('Packagist Name', 'packagist_name')
+                ->hideFromIndex()
+                ->rules('required_if:package_registry,' . PackageRegistry::Packagist->value)
+                ->help('Only used when the package registry is Packagist, e.g. tightenco/jigsaw.'),
+            Text::make('npm Name', 'npm_name')
+                ->hideFromIndex()
+                ->rules('required_if:package_registry,' . PackageRegistry::Npm->value)
+                ->help('Only used when the package registry is npm, e.g. ziggy-js.'),
             BelongsToMany::make('Maintainers')
                 ->searchable()
                 ->showCreateRelationButton(),
@@ -66,8 +84,12 @@ class Project extends Resource
                 ->sortable()
                 ->onlyOnIndex()
                 ->textAlign('center'),
-            Number::make('Fetch Packagist Success', function () {
-                $rate = $this->recentFetchSuccessRate('packagist');
+            Number::make('Fetch Registry Success', function () {
+                if (! $this->package_registry?->publishesPackage()) {
+                    return '—';
+                }
+
+                $rate = $this->recentFetchSuccessRate($this->package_registry->value);
 
                 return is_null($rate) ? '—' : number_format(100 * $rate, 2) . '%';
             })
@@ -119,6 +141,7 @@ class Project extends Resource
         return [
             (new HideProject)->showInline(),
             (new UnHideProject)->showInline(),
+            DetectPackageRegistry::make()->showInline(),
         ];
     }
 }

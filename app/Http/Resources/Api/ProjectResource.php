@@ -17,6 +17,8 @@ class ProjectResource extends JsonResource
                 'namespace',
                 'name',
                 'packagist_name',
+                'npm_name',
+                'package_registry',
                 'maintainers',
                 'is_hidden',
                 'issues',

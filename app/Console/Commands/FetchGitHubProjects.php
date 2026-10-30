@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Cache\CachedProjectList;
 use App\GitHub\Organization;
 use App\Models\Project;
-use App\Remotes\Packagist\Search;
+use App\Remotes\PackageRegistryDetector;
 use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
@@ -17,6 +17,11 @@ class FetchGitHubProjects extends Command
     protected $projects;
 
     protected $added = 0;
+
+    public function __construct(protected PackageRegistryDetector $detector)
+    {
+        parent::__construct();
+    }
 
     public function handle(): int
     {
@@ -50,10 +55,16 @@ class FetchGitHubProjects extends Command
                         'pull_requests' => [],
                     ]);
 
-                    // Find its Packagist listing, if applicable
-                    $packagistSearch = Search::forPackageByRepo($project);
+                    // Work out whether it's published to Packagist or npm, so
+                    // we only ever ask the registry it actually belongs to
+                    $registry = $this->detector->detect($project);
 
-                    $project->packagist_name = $packagistSearch->packagistName;
+                    if (is_null($registry)) {
+                        $this->warn("  Could not determine which package registry {$repo->full_name} belongs to; leaving it to be detected later.");
+                    } else {
+                        $this->line("    {$repo->full_name} package registry: {$registry->label()}");
+                    }
+
                     $project->save();
                 }
             });

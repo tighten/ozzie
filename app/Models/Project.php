@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\PackageRegistry;
 use App\GitHub\Dto\Issue;
 use App\GitHub\Dto\PullRequest;
 use Carbon\CarbonPeriod;
@@ -24,6 +25,10 @@ class Project extends Model
 
     protected $appends = [
         'debt_score',
+    ];
+
+    protected $attributes = [
+        'package_registry' => PackageRegistry::Unknown->value,
     ];
 
     public function snapshots(): HasMany
@@ -124,6 +129,15 @@ class Project extends Model
         });
     }
 
+    public function packageUrl(): ?string
+    {
+        return match ($this->package_registry) {
+            PackageRegistry::Packagist => 'https://packagist.org/packages/' . $this->packagist_name,
+            PackageRegistry::Npm => 'https://www.npmjs.com/package/' . $this->npm_name,
+            default => null,
+        };
+    }
+
     public function hasDownloads()
     {
         if ($this->downloads_total + $this->downloads_last_30_days > 0) {
@@ -182,6 +196,12 @@ class Project extends Model
     }
 
     #[Scope]
+    protected function needingRegistryDetection(Builder $query): Builder
+    {
+        return $query->where('package_registry', PackageRegistry::Unknown);
+    }
+
+    #[Scope]
     protected function notHidden($query)
     {
         return $query->where('is_hidden', false);
@@ -192,6 +212,7 @@ class Project extends Model
         return [
             'issues' => 'collection',
             'is_hidden' => 'boolean',
+            'package_registry' => PackageRegistry::class,
             'pull_requests' => 'collection',
         ];
     }

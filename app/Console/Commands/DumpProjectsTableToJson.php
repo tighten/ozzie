@@ -29,6 +29,8 @@ class DumpProjectsTableToJson extends Command
                 'name' => $project->name,
                 'namespace' => $project->namespace,
                 'packagist_name' => $project->packagist_name,
+                'npm_name' => $project->npm_name,
+                'package_registry' => $project->package_registry->value,
                 'maintainers' => $project->maintainers->pluck('github_username'),
             ];
         })->toArray();
